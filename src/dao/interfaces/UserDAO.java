@@ -13,14 +13,8 @@ public interface UserDAO {
 	  
 	public boolean doDelete(String email);//metodo per cancellare un utente nel database passando la mail(String)
 	
-	public boolean isAdmin(Utente user);//metodo per controllare se un utente è amministratore passando oggetto(Utente)
-	  
-	public boolean isAdmin(String email);//metodo per controllare se un utente è amministratore passando la mail(String)
-	
-	public Utente doRetrieveByKey(String email);//metodo per ricerca Utente tramite mail(String)
-	  
-	public Utente doRetrieveByEmailAndPassword(String email, String password);//metodo per ricerca  mail e password (String,String)
-	  
+	public Utente doRetrieveByKey(String matricola);//metodo per ricerca Utente tramite matricola(String)
+	    
 	public List<Utente> doRetrieveAll();//metodo di ricerca per ricavare tutti gli oggetti Utente 
 	
 }

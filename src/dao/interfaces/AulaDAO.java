@@ -13,7 +13,7 @@ public interface AulaDAO {
 	  
 	public boolean doDelete(String nomeAula);//cancella un'aula nel database passando il nome(String)
 	
-	public Utente doRetrieveByKey(String nomeAula);//ricerca l'aula tramite il nome(String)
+	public Aula doRetrieveByKey(String nomeAula);//ricerca l'aula tramite il nome(String)
 	  
 	public List<Aula> doRetrieveAll();//ricava tutti gli oggetti Aula 
 }
