@@ -18,7 +18,7 @@ public class GruppoDiStudio {
 		this.inizio = inizio;
 		this.fine = fine;
 		this.materia = nomeGruppo;
-		this.creatore = nomeGruppo;
+		this.creatore = creatore;
 		
 	}
 	
