@@ -1,41 +1,21 @@
 package bean;
 
 public class Utente {
-	private String username;
-	private String password;
+	
+
 	private String matricola;
 	private String nome;
 	private String cognome;
-	
+	private Credenziali credenziali;
 
-	public Utente(String unUsername,String unaPassword,String unaMatricola,String unNome,String unCognome) {
+	public Utente(String unaMatricola,String unNome,String unCognome,Credenziali delleCredenziali) {
           
-		this.setUsername(unUsername);
-		this.setPassword(unaPassword);
+		
 		this.setMatricola(unaMatricola);
 		this.setNome(unNome);
 		this.setCognome(unCognome);
+		setCredenziali(delleCredenziali);
 		
-	}
-
-
-	public String getUsername() {
-		return username;
-	}
-
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-
-	public String getPassword() {
-		return password;
-	}
-
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 
@@ -66,6 +46,16 @@ public class Utente {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+
+	public Credenziali getCredenziali() {
+		return credenziali;
+	}
+
+
+	public void setCredenziali(Credenziali credenziali) {
+		this.credenziali = credenziali;
 	}
 
 }
