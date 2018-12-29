@@ -9,6 +9,7 @@ public class GruppoDiStudio {
 	private Orario orario;
 	private String materia;
 	private Utente creatore;
+	private String giorno;
 	
 	
 	public GruppoDiStudio(){}
@@ -19,6 +20,7 @@ public class GruppoDiStudio {
 		this.orario =  new Orario(inizio, fine);
 		this.materia = nomeGruppo;
 		this.creatore = creatore;
+		this.giorno = getGiorno();
 		
 	}
 	
@@ -57,19 +59,20 @@ public class GruppoDiStudio {
 	}
 	
 
-	public String getGiorno() {
-		String giorno = "";
+	public void setGiorno() {
 		switch(this.orario.getInizio().DAY_OF_WEEK) {
-		case 1 : giorno = "Domenica";break;
-		case 2 : giorno = "Lunedì"; break;
-		case 3 : giorno = "Martedì"; break;
-		case 4 : giorno = "Mercoledì"; break;
-		case 5 : giorno = "Giovedì"; break;
-		case 6 : giorno = "Venerdì"; break;
-		case 7 : giorno = "Sabato"; break;
+		case 1 : this.giorno = "Domenica";break;
+		case 2 : this.giorno = "Lunedì"; break;
+		case 3 : this.giorno = "Martedì"; break;
+		case 4 : this.giorno = "Mercoledì"; break;
+		case 5 : this.giorno = "Giovedì"; break;
+		case 6 : this.giorno = "Venerdì"; break;
+		case 7 : this.giorno = "Sabato"; break;
 		}
-		return giorno;
 	}
 	
+	public String getGiorno() {
+		return this.giorno;
+	}
 	
 }
