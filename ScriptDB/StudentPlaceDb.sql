@@ -21,12 +21,12 @@ foreign key (matricola) references studente (matricola), #da modificare
 foreign key (matricola) references amministratore (matricola) 
 );
 create table gds(
-id int primary key,
+id int primary key auto_increment,
 nome varchar(45) not null,
 creatore varchar(45) not null,
 materia varchar(45) not null,
-oraInizio Time not null,
-oraFine Time not null,
+oraInizio Timestamp not null,
+oraFine Timestamp not null,
 giorno varchar(10) not  null,
 aula varchar(45) not  null
 );
@@ -45,7 +45,7 @@ create table giorno(
 giorno varchar(10) primary key
 );
 create table orario(
-id int (10) primary key,
+id int (10) primary key auto_increment,
 inzio Time not null,
 fine time not null
 );
