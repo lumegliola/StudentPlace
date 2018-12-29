@@ -27,8 +27,11 @@ public class GdSDAOimpl implements GdSDAO {
 
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
+			
+			//dichiara lo statement
 			ps = connection.prepareStatement("insert into gds values (?, ?, ?, ?, ?, ?, ?);");
-
+			
+			//inserisce i campi
 			ps.setString(1, gds.getNomeGruppo());
 			ps.setObject(2, gds.getCreatore());
 			ps.setString(3, gds.getMateria());
@@ -37,7 +40,7 @@ public class GdSDAOimpl implements GdSDAO {
 			ps.setString(6, gds.getGiorno());
 			ps.setString(7, gds.getAula().getNomeAula());
 			
-
+			//esegue lo statement
 			result = ps.executeUpdate();
 
 		} catch (SQLException e) {
@@ -60,9 +63,10 @@ public class GdSDAOimpl implements GdSDAO {
 		int result = 0;
 
 		try {
-
+			//dichiara lo statement
 			connection = DriverManagerConnectionPool.getConnection();
 			ps = connection.prepareStatement("update category set nome = ?, aula = ?, oraFine = ? where name ="+ gds.getNomeGruppo()+" ;");
+			
 			if(nomeGruppo != "")
 				ps.setString(1, nomeGruppo);
 			else
@@ -79,6 +83,7 @@ public class GdSDAOimpl implements GdSDAO {
 			else
 				ps.setTime(3, new java.sql.Time(fine.getTimeInMillis()));
 
+			//esegue lo statement
 			result = ps.executeUpdate();
 
 		} catch (SQLException e) {
@@ -112,9 +117,11 @@ public class GdSDAOimpl implements GdSDAO {
 		try {
 
 			connection = DriverManagerConnectionPool.getConnection();
+			//dichiara lo statement
 			ps = connection.prepareStatement("delete from gds where name = ?;");
 			ps.setString(1, nomeGruppo);
 
+			//esegue lo statement
 			result = ps.executeUpdate();
 
 		} catch (SQLException e) {
@@ -140,11 +147,14 @@ public class GdSDAOimpl implements GdSDAO {
 			b.setNomeGruppo(nomeGruppo);
 
 			connection = DriverManagerConnectionPool.getConnection();
+			//dichiara lo statement
 			ps = connection.prepareStatement("select * from gds where name = ?;");
 			ps.setString(1, nomeGruppo);
 
+			//esegue lo statement
 			ResultSet result = ps.executeQuery();
 
+			//ricava i risultati
 			if(result.next()) {
 				b.setCreatore(DAOFactory.getUserDAO().doRetrieveByKey(result.getString("creatore")));
 				b.setMateria(result.getString("materia"));
@@ -181,11 +191,13 @@ public class GdSDAOimpl implements GdSDAO {
 			b.setMateria(materia);
 
 			connection = DriverManagerConnectionPool.getConnection();
+			//dichiara lo statement
 			ps = connection.prepareStatement("select * from gds where materia = ?;");
 			ps.setString(1, materia);
-
+			
+			//esegue lo statement
 			ResultSet result = ps.executeQuery();
-
+			//ricava i risultati
 			if(result.next()) {
 				b.setNomeGruppo(result.getString("nome"));
 				b.setCreatore(DAOFactory.getUserDAO().doRetrieveByKey(result.getString("creatore")));
@@ -222,13 +234,15 @@ public class GdSDAOimpl implements GdSDAO {
 			b.setMateria(materia);
 
 			connection = DriverManagerConnectionPool.getConnection();
+			//dichiara lo statement
 			ps = connection.prepareStatement("select * from gds where nome = ? and materia = ?;");
 
 			ps.setString(1, nomeGruppo);
 			ps.setString(2, materia);
 
+			//esegue lo statement
 			ResultSet result = ps.executeQuery();
-
+			//ricava i risultati
 			if(result.next()) {
 				b.setCreatore(DAOFactory.getUserDAO().doRetrieveByKey(result.getString("creatore")));
 				b.setMateria(materia);
@@ -263,10 +277,14 @@ public class GdSDAOimpl implements GdSDAO {
 		try {
 
 			connection = DriverManagerConnectionPool.getConnection();
+			
+			//dichiara lo statement
 			ps = connection.prepareStatement("select * from gds;");
 
+			//esegue lo statement
 			ResultSet result = ps.executeQuery();
 
+			//ricava i risultati
 			while (result.next()) {
 				GruppoDiStudio b = new GruppoDiStudio();
 				b.setNomeGruppo(result.getString("nome"));
@@ -277,6 +295,7 @@ public class GdSDAOimpl implements GdSDAO {
 				b.setOrario(oraIn, oraFin);
 				b.setGiorno();
 				b.setAula(DAOFactory.getAulaDAO().doRetrieveByKey(result.getString("aula")));
+			// aggiunge l'oggetto alla lista
 				gruppi.add(b);
 			}
 
