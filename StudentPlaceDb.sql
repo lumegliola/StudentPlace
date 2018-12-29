@@ -45,7 +45,7 @@ create table giorno(
 giorno varchar(10) primary key
 );
 create table orario(
-id int (10) primary key,
+id int (10) primary key auto_increment,
 inzio Time not null,
 fine time not null
 );
