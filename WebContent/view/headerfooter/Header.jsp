@@ -45,7 +45,7 @@
 					src="logoInformatica.jpg">
 			</div>
 		</div>
-		
+
 		<!-- RIGA NAVBAR-->
 		<div class="row row_navbar">
 			<nav class="navbar navbar-custom">
