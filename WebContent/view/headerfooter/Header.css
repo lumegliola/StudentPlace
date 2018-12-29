@@ -1,19 +1,32 @@
 @charset "ISO-8859-1";
-.container-fluid{
-	text-align:center;
+
+.container-fluid {
+	text-align: center;
 }
-.logo{
-	padding:1em;
-	height: auto;
+
+.logo {
+	padding: 1em; height : auto;
 	width: 10em;
-}
-.logoSPxl{
-	padding:1em;
 	height: auto;
-	width: 40em;
 }
-.social{
+
+.logoSPxl {
+	padding: 1em; height : auto;
+	width: 40em;
+	height: auto;
+}
+
+.social {
 	width: 2em;
 	height: auto;
 	margin-left: 1em;
+}
+
+.navbar-custom {
+	margin-top: 1em;
+	background-color: #a01313;
+}
+
+.navbar-custom  a {
+	color: #fff;
 }
