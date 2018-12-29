@@ -29,13 +29,14 @@
 
 			<!-- COLONNA LOGO STUDENTPLACE-->
 			<div class="col-md-6 column_logoSP">
-			<div class="row row_StudentPlace">
-				<img class="logoSPxl" alt="Logo StudentPlace" src="logoSPxl.png"></div>
-			<div class="row row_Social">
-				<img class="social" alt="fb" src="fb.png">
-				<img class="social" alt="is" src="is.png">
-				<img class="social" alt="tw" src="tw.png">
-			</div>
+				<div class="row row_StudentPlace">
+					<img class="logoSPxl" alt="Logo StudentPlace" src="logoSPxl.png">
+				</div>
+				<div class="row row_Social">
+					<img class="social" alt="fb" src="fb.png"> <img
+						class="social" alt="is" src="is.png"> <img class="social"
+						alt="tw" src="tw.png">
+				</div>
 			</div>
 
 			<!-- COLONNA LOGO INFORMATICA-->
@@ -43,7 +44,23 @@
 				<img class="logo" alt="Smart Logo Informatica"
 					src="logoInformatica.jpg">
 			</div>
-
+		</div>
+		<!-- RIGA NAVBAR-->
+		<div class="row row_navbar">
+			<nav class="navbar navbar-custom">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<a class="navbar-brand" href="#">StudentPlace</a>
+					</div>
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="#">Home</a></li>
+						<li><a href="#">Gruppi di studio</a></li>
+						<li><a href="#">Aule libere</a></li>
+						<li><a href="#">Chi Siamo</a></li>
+						<li><a href="#">Aiuto</a></li>
+					</ul>
+				</div>
+			</nav>
 		</div>
 	</div>
 </body>
