@@ -13,7 +13,7 @@ import bean.Orario;
 import dao.DAOFactory;
 import dao.interfaces.GdSDAO;
 import db_connection.DriverManagerConnectionPool;
-import it.unisa.tsw18.smartshop.model.beans.CategoryBean;
+
 
 public class GdSDAOimpl implements GdSDAO {
 
@@ -33,7 +33,7 @@ public class GdSDAOimpl implements GdSDAO {
 			ps.setTime(4, gds.getOrario().getInizioDB());
 			ps.setTime(5, gds.getOrario().getFineDB());
 			ps.setString(6, gds.getGiorno());
-			ps.setString(7, gds.getAula());
+			ps.setString(7, gds.getAula().getNomeAula());
 			
 
 			result = ps.executeUpdate();
@@ -150,6 +150,7 @@ public class GdSDAOimpl implements GdSDAO {
 				GregorianCalendar oraIn = new GregorianCalendar(result.getTime("oraInizio").getYear(), result.getTime("oraInizio").getMonth(), result.getTime("oraInizio").getDay(), result.getTime("oraInizio").getHours(), result.getTime("oraInizio").getMinutes());
 				GregorianCalendar oraFin = new GregorianCalendar(result.getTime("oraFine").getYear(), result.getTime("oraFine").getMonth(), result.getTime("oraFine").getDay(), result.getTime("oraFine").getHours(), result.getTime("oraFine").getMinutes());
 				b.setOrario(oraIn, oraFin);
+				b.setAula(DAOFactory.getAulaDAO().doRetrieveByKey(result.getString("aula")));
 				return b;
 			}
 
@@ -168,14 +169,86 @@ public class GdSDAOimpl implements GdSDAO {
 
 	@Override
 	public GruppoDiStudio doRetrieveBySubject(String materia) {
-		// TODO Auto-generated method stub
+		
+		Connection connection = null;
+		PreparedStatement ps = null;
+
+		try {
+			GruppoDiStudio b = new GruppoDiStudio();
+			b.setMateria(materia);
+
+			connection = DriverManagerConnectionPool.getConnection();
+			ps = connection.prepareStatement("select * from gds where materia = ?;");
+			ps.setString(1, materia);
+
+			ResultSet result = ps.executeQuery();
+
+			if(result.next()) {
+				b.setNomeGruppo(result.getString("nome"));
+				b.setCreatore(DAOFactory.getUserDAO().doRetrieveByKey(result.getString("creatore")));
+				
+				GregorianCalendar oraIn = new GregorianCalendar(result.getTime("oraInizio").getYear(), result.getTime("oraInizio").getMonth(), result.getTime("oraInizio").getDay(), result.getTime("oraInizio").getHours(), result.getTime("oraInizio").getMinutes());
+				GregorianCalendar oraFin = new GregorianCalendar(result.getTime("oraFine").getYear(), result.getTime("oraFine").getMonth(), result.getTime("oraFine").getDay(), result.getTime("oraFine").getHours(), result.getTime("oraFine").getMinutes());
+				b.setOrario(oraIn, oraFin);
+				b.setAula(DAOFactory.getAulaDAO().doRetrieveByKey(result.getString("aula")));
+				return b;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				ps.close();
+				DriverManagerConnectionPool.releaseConnection(connection);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 		return null;
 	}
 
 	@Override
 	public GruppoDiStudio doRetrieveByNameAndSubject(String nomeGruppo, String materia) {
-		// TODO Auto-generated method stub
+		
+		Connection connection = null;
+		PreparedStatement ps = null;
+
+		try {
+			GruppoDiStudio b = new GruppoDiStudio();
+			b.setNomeGruppo(nomeGruppo);
+			b.setMateria(materia);
+
+			connection = DriverManagerConnectionPool.getConnection();
+			ps = connection.prepareStatement("select * from gds where nome = ? and materia = ?;");
+
+			ps.setString(1, nomeGruppo);
+			ps.setString(2, materia);
+
+			ResultSet result = ps.executeQuery();
+
+			if(result.next()) {
+				b.setCreatore(DAOFactory.getUserDAO().doRetrieveByKey(result.getString("creatore")));
+				b.setMateria(materia);
+				
+				GregorianCalendar oraIn = new GregorianCalendar(result.getTime("oraInizio").getYear(), result.getTime("oraInizio").getMonth(), result.getTime("oraInizio").getDay(), result.getTime("oraInizio").getHours(), result.getTime("oraInizio").getMinutes());
+				GregorianCalendar oraFin = new GregorianCalendar(result.getTime("oraFine").getYear(), result.getTime("oraFine").getMonth(), result.getTime("oraFine").getDay(), result.getTime("oraFine").getHours(), result.getTime("oraFine").getMinutes());
+				b.setOrario(oraIn, oraFin);
+				b.setAula(DAOFactory.getAulaDAO().doRetrieveByKey(result.getString("aula")));
+				return b;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				ps.close();
+				DriverManagerConnectionPool.releaseConnection(connection);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 		return null;
+		
 	}
 
 	@Override
