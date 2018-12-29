@@ -55,6 +55,6 @@ public class DriverManagerConnectionPool  {
 	}
 
 	public static synchronized void releaseConnection(Connection connection) throws SQLException {
-		if(connection != null) freeDbConnections.add(connection);										//rimette la connessione in lista, se esiste				
+		if(connection != null) freeDbConnections.add(connection);									//rimette la connessione in lista, se esiste				
 	}
 }
