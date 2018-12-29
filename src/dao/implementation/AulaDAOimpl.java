@@ -133,7 +133,7 @@ public class AulaDAOimpl implements AulaDAO {
 	public boolean doDelete(String nomeAula) {
 
 		Connection connection = null;
-
+ 
 		PreparedStatement ps = null;
 
 		int result = 0;
