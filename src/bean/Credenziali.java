@@ -4,10 +4,11 @@ public class Credenziali {
 private String mail;
 private String password;
 private boolean admin;
-	public Credenziali(String unaMail,String unaPassword,boolean unAdmin) {
+private String matricola;
+	public Credenziali(String unaMail,String unaPassword,String unMatricola,boolean unAdmin) {
 		setMail(unaMail);
 		setPassword(unaPassword);
-		setAdmin(unAdmin);
+		setAdmin(false);
 		
 	}
 	public String getMail() {
@@ -27,6 +28,12 @@ private boolean admin;
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public String getMatricola() {
+		return matricola;
+	}
+	public void setMatricola(String matricola) {
+		this.matricola = matricola;
 	}
 
 }

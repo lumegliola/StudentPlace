@@ -7,7 +7,7 @@ public interface CredenzialiDAO {
    
 	public boolean doSave(Credenziali cred);//metodo inserire credenziali
 	
-	public boolean doSaveOrUpdate(String mail,String password);//metodo modificare Credenziali e salvare
+	public boolean doSaveOrUpdate(Credenziali cred,String password);//metodo modificare Credenziali e salvare
 
 	public boolean doDelete(Credenziali cred);//metodo cancellazione in base alla mail
 

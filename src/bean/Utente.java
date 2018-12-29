@@ -8,10 +8,10 @@ public class Utente {
 	private String cognome;
 	private Credenziali credenziali;
 
-	public Utente(String unaMatricola,String unNome,String unCognome,Credenziali delleCredenziali) {
+	public Utente(String unNome,String unCognome,Credenziali delleCredenziali) {
           
 		
-		this.setMatricola(unaMatricola);
+		this.setMatricola(delleCredenziali.getMatricola());
 		this.setNome(unNome);
 		this.setCognome(unCognome);
 		setCredenziali(delleCredenziali);
