@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import bean.Credenziali;
+import bean.Utente;
 import dao.DAOFactory;
 import dao.interfaces.CredenzialiDAO;
 import db_connection.DriverManagerConnectionPool;
@@ -134,12 +135,13 @@ public class CredenzialiDAOimpl implements CredenzialiDAO {
 		try {
 
 			connection = DriverManagerConnectionPool.getConnection();
-
-			ps = connection.prepareStatement("delete from credenziali where mail=?");				//Crea un oggetto PreparedStatement relativo alla stringa SQL passata in input
+			Credenziali a = DAOFactory.getCredenzialiDAO().doRetrieveByKey(mail);
+			
+			ps = connection.prepareStatement("delete from credenziali where mail= ?");				//Crea un oggetto PreparedStatement relativo alla stringa SQL passata in input
 			ps.setString(1, mail);                                             		    // passiamo indice  e il valore che sarà inserito nel placeholder  '?'
 	        
 			result = ps.executeUpdate();                                                    	    //Esegue la query e ritorna 1
-
+			DAOFactory.getUserDAO().doDelete(a.getMatricola());
 		} catch (SQLException e) {
 
 			e.printStackTrace();

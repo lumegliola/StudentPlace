@@ -11,7 +11,7 @@ public interface UserDAO {
 	  
 	public boolean doDelete(Utente user);//metodo per cancellare un utente nel database passando oggetto (Utente)
 	  
-	public boolean doDelete(String email);//metodo per cancellare un utente nel database passando la mail(String)
+	public boolean doDelete(String matricola);//metodo per cancellare un utente nel database passando la mail(String)
 	
 	public Utente doRetrieveByKey(String matricola);//metodo per ricerca Utente tramite matricola(String)
 	    
