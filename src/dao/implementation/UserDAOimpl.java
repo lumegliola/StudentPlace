@@ -26,7 +26,7 @@ public class UserDAOimpl implements UserDAO {
 	}
 
 	@Override
-	public boolean doDelete(String email) {
+	public boolean doDelete(String matricola) {
 		// TODO Auto-generated method stub
 		return false;
 	}
