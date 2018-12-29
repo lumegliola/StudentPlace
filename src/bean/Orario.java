@@ -37,6 +37,9 @@ public class Orario {
 	public GregorianCalendar getFine() {
 		return fine;
 	}
+	public void setFine(GregorianCalendar fine) {
+		this.fine = fine;
+	}
 	public Time getFineDB() {
 		java.sql.Time orFine = new Time(fine.getTimeInMillis());
 		return orFine;

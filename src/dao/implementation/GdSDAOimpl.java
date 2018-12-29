@@ -2,13 +2,18 @@ package dao.implementation;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.GregorianCalendar;
 import java.util.List;
 
 import bean.GruppoDiStudio;
+import bean.Orario;
+import dao.DAOFactory;
 import dao.interfaces.GdSDAO;
 import db_connection.DriverManagerConnectionPool;
+import it.unisa.tsw18.smartshop.model.beans.CategoryBean;
 
 public class GdSDAOimpl implements GdSDAO {
 
@@ -48,25 +53,116 @@ public class GdSDAOimpl implements GdSDAO {
 
 	@Override
 	public boolean doSaveOrUpdate(GruppoDiStudio gds, String nomeGruppo, String nomeAula, GregorianCalendar fine) {
-		// TODO Auto-generated method stub
-		return false;
+		Connection connection = null;
+		PreparedStatement ps = null;
+		int result = 0;
+
+		try {
+
+			connection = DriverManagerConnectionPool.getConnection();
+			ps = connection.prepareStatement("update category set nome = ?, aula = ?, oraFine = ? where name ="+ gds.getNomeGruppo()+" ;");
+			if(nomeGruppo != "")
+				ps.setString(1, nomeGruppo);
+			else
+				ps.setString(1, gds.getNomeGruppo());
+			
+			if(nomeAula != "")
+				ps.setString(2, nomeAula);
+			else
+				ps.setString(2, gds.getAula().getNomeAula());
+
+			if(Orario.class.equals(null)) {
+					ps.setTime(3, gds.getOrario().getFineDB());
+			}
+			else
+				ps.setTime(3, new java.sql.Time(fine.getTimeInMillis()));
+
+			result = ps.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				ps.close();
+				DriverManagerConnectionPool.releaseConnection(connection);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		if (result == 1) {
+			return true;
+		} else return doSave(gds);
 	}
 
 	@Override
 	public boolean doDelete(GruppoDiStudio gds) {
-		// TODO Auto-generated method stub
-		return false;
+		return doDelete(gds.getNomeGruppo());
 	}
 
 	@Override
 	public boolean doDelete(String nomeGruppo) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		Connection connection = null;
+		PreparedStatement ps = null;
+		int result = 0;
+
+		try {
+
+			connection = DriverManagerConnectionPool.getConnection();
+			ps = connection.prepareStatement("delete from gds where name = ?;");
+			ps.setString(1, nomeGruppo);
+
+			result = ps.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				ps.close();
+				DriverManagerConnectionPool.releaseConnection(connection);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return (result == 1);
 	}
 
 	@Override
 	public GruppoDiStudio doRetrieveByName(String nomeGruppo) {
-		// TODO Auto-generated method stub
+		Connection connection = null;
+		PreparedStatement ps = null;
+
+		try {
+			GruppoDiStudio b = new GruppoDiStudio();
+			b.setNomeGruppo(nomeGruppo);
+
+			connection = DriverManagerConnectionPool.getConnection();
+			ps = connection.prepareStatement("select * from gds where name = ?;");
+			ps.setString(1, nomeGruppo);
+
+			ResultSet result = ps.executeQuery();
+
+			if(result.next()) {
+				b.setCreatore(DAOFactory.getUserDAO().doRetrieveByKey(result.getString("creatore")));
+				b.setMateria(result.getString("materia"));
+				
+				GregorianCalendar oraIn = new GregorianCalendar(result.getTime("oraInizio").getYear(), result.getTime("oraInizio").getMonth(), result.getTime("oraInizio").getDay(), result.getTime("oraInizio").getHours(), result.getTime("oraInizio").getMinutes());
+				GregorianCalendar oraFin = new GregorianCalendar(result.getTime("oraFine").getYear(), result.getTime("oraFine").getMonth(), result.getTime("oraFine").getDay(), result.getTime("oraFine").getHours(), result.getTime("oraFine").getMinutes());
+				b.setOrario(oraIn, oraFin);
+				return b;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				ps.close();
+				DriverManagerConnectionPool.releaseConnection(connection);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 		return null;
 	}
 

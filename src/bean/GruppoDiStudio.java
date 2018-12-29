@@ -1,9 +1,11 @@
 package bean;
 
+import java.util.GregorianCalendar;
+
 public class GruppoDiStudio {
 	 
 	private String nomeGruppo;
-	private String aula;
+	private Aula aula;
 	private Orario orario;
 	private String materia;
 	private Utente creatore;
@@ -11,10 +13,10 @@ public class GruppoDiStudio {
 	
 	public GruppoDiStudio(){}
 	
-	public GruppoDiStudio(String nomeGruppo, String aula, Orario orario, String materia, Utente creatore ){
+	public GruppoDiStudio(String nomeGruppo, Aula aula, Orario orario, String materia,GregorianCalendar inizio, GregorianCalendar fine, Utente creatore ){
 		this.nomeGruppo = nomeGruppo;
 		this.aula = aula;
-		this.orario = orario;
+		this.orario =  new Orario(inizio, fine);
 		this.materia = nomeGruppo;
 		this.creatore = creatore;
 		
@@ -27,17 +29,18 @@ public class GruppoDiStudio {
 	public void setNomeGruppo(String nomeGruppo) {
 		this.nomeGruppo = nomeGruppo;
 	}
-	public String getAula() {
+	public Aula getAula() {
 		return aula;
 	}
-	public void setAula(String aula) {
+	public void setAula(Aula aula) {
 		this.aula = aula;
 	}
 	public Orario getOrario() {
 		return orario;
 	}
-	public void setOrario(Orario inizio) {
-		this.orario = orario;
+	public void setOrario(GregorianCalendar inizio, GregorianCalendar fine) {
+		this.orario.setInizio(inizio);
+		this.orario.setFine(fine);
 	}
 	
 	public String getMateria() {
