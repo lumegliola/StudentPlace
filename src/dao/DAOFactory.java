@@ -3,7 +3,7 @@ package dao;
 import dao.interfaces.*;
 import dao.implementation.*;
 
-public sTATIC class DAOFactory {
+public static class DAOFactory {
 		
 	private DAOFactory() {}
 	
