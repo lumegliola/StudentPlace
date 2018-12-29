@@ -21,7 +21,7 @@ foreign key (matricola) references studente (matricola), #da modificare
 foreign key (matricola) references amministratore (matricola) 
 );
 create table gds(
-id int primary key,
+id int primary key auto_increment,
 nome varchar(45) not null,
 creatore varchar(45) not null,
 materia varchar(45) not null,
