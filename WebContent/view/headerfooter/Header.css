@@ -1,0 +1,19 @@
+@charset "ISO-8859-1";
+.container-fluid{
+	text-align:center;
+}
+.logo{
+	padding:1em;
+	height: auto;
+	width: 10em;
+}
+.logoSPxl{
+	padding:1em;
+	height: auto;
+	width: 40em;
+}
+.social{
+	width: 2em;
+	height: auto;
+	margin-left: 1em;
+}
