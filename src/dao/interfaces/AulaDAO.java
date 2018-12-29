@@ -7,7 +7,7 @@ public interface AulaDAO {
 	
 	public boolean doSave(Aula aula); //inserisce un'aula nel database
 	  
-	public boolean doSaveOrUpdate(Aula aula, String nomeAula);//modifica un'aula nel database tramite ricerca
+	public boolean doSaveOrUpdate(Aula aula, String nomeAula,String nomeEdificio);//modifica un'aula o l'edificio nel database tramite ricerca
 	  
 	public boolean doDelete(Aula aula);//cancella un'aula nel database passando oggetto(Aula)
 	  

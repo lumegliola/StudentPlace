@@ -24,7 +24,7 @@ public class AulaDAOimpl implements AulaDAO {
 
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
-			ps = connection.prepareStatement("insert into category values (?, ?, ?);");
+			ps = connection.prepareStatement("insert into aula values (?, ?);");
 
 			ps.setString(1, aula.getNomeAula());
 			ps.setString(2, aula.getEdificio());
@@ -47,27 +47,163 @@ public class AulaDAOimpl implements AulaDAO {
 	
 
 	@Override
-	public boolean doSaveOrUpdate(Aula aula, String nomeAula) {
+	public boolean doSaveOrUpdate(Aula aula, String nomeAula,String nomeEdificio) {
 		// TODO Auto-generated method stub
-		return false;
-	}
+		Connection connection = null;
+		PreparedStatement ps = null;
+		int result = 0;
 
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+		   
+			if( nomeEdificio.isEmpty()==false || nomeEdificio==null) {
+			
+			ps = connection.prepareStatement("update aula set nome= ? where nome=?");
+			
+			ps.setString(1, nomeAula);
+			
+			ps.setString(2,aula.getNomeAula());
+			
+			result = ps.executeUpdate();
+		   }
+			
+			if( (nomeEdificio.isEmpty()==true && nomeEdificio!=null) && (nomeAula.isEmpty() && nomeAula!=null)) {
+				
+				ps = connection.prepareStatement("update aula set nome = ? , edificio = ? where nome = ? and edificio = ?");
+				
+				ps.setString(1, nomeAula);
+				
+				ps.setString(2,nomeEdificio);
+				
+				ps.setString(3, aula.getNomeAula());
+				
+				ps.setString(4, aula.getEdificio());
+				
+				result = ps.executeUpdate();
+			   }
+			
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				ps.close();
+				DriverManagerConnectionPool.releaseConnection(connection);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return (result == 1);
+	}
+	
+        
 	@Override
 	public boolean doDelete(Aula aula) {
-		// TODO Auto-generated method stub
-		return false;
+		Connection connection = null;
+		PreparedStatement ps = null;
+		int result = 0;
+
+		try {
+			
+			connection = DriverManagerConnectionPool.getConnection();
+			
+			ps = connection.prepareStatement("delete from aula where nome=? and edificio=?");
+         	
+			ps.setString(1, aula.getNomeAula());
+			
+         	ps.setString(2, aula.getEdificio());
+			
+			result = ps.executeUpdate();
+
+		} catch (SQLException e) {
+		
+			e.printStackTrace();
+		
+		} finally {
+			
+			try {
+			
+				ps.close();
+				
+				DriverManagerConnectionPool.releaseConnection(connection);
+			
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			
+			}
+		}
+		return (result == 1);
 	}
 
 	@Override
 	public boolean doDelete(String nomeAula) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		Connection connection = null;
+		
+		PreparedStatement ps = null;
+		
+		int result = 0;
+
+		try {
+			
+			connection = DriverManagerConnectionPool.getConnection();
+			
+			ps = connection.prepareStatement("delete from aula where nome=? ");
+         	
+			ps.setString(1,nomeAula);
+			
+			result = ps.executeUpdate();
+
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		
+		} finally {
+		
+			try {
+				
+				ps.close();
+			
+				DriverManagerConnectionPool.releaseConnection(connection);
+			
+			} catch (SQLException e) {
+			
+				e.printStackTrace();
+			
+			}
+		
+		}
+		
+		return (result == 1);
+		
 	}
 
 	@Override
 	public Aula doRetrieveByKey(String nomeAula) {
-		// TODO Auto-generated method stub
-		return null;
+		Connection connection = null;
+		PreparedStatement ps = null;
+		int result = 0;
+
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			ps = connection.prepareStatement("delete from aula where nome=? and edificio=?");
+         	ps.setString(1, aula.getNomeAula());
+			ps.setString(2, aula.getEdificio());
+			
+			result = ps.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				ps.close();
+				DriverManagerConnectionPool.releaseConnection(connection);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return (result == 1);
 	}
 
 	@Override
