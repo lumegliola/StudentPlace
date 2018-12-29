@@ -4,19 +4,17 @@ public class GruppoDiStudio {
 	 
 	private String nomeGruppo;
 	private String aula;
-	private Orario inizio;
-	private Orario fine;
+	private Orario orario;
 	private String materia;
 	private Utente creatore;
 	
 	
 	public GruppoDiStudio(){}
 	
-	public GruppoDiStudio(String nomeGruppo, String aula, Orario inizio, Orario fine, String materia, Utente creatore ){
+	public GruppoDiStudio(String nomeGruppo, String aula, Orario orario, String materia, Utente creatore ){
 		this.nomeGruppo = nomeGruppo;
 		this.aula = aula;
-		this.inizio = inizio;
-		this.fine = fine;
+		this.orario = orario;
 		this.materia = nomeGruppo;
 		this.creatore = creatore;
 		
@@ -35,18 +33,13 @@ public class GruppoDiStudio {
 	public void setAula(String aula) {
 		this.aula = aula;
 	}
-	public Orario getInizio() {
-		return inizio;
+	public Orario getOrario() {
+		return orario;
 	}
-	public void setInizio(Orario inizio) {
-		this.inizio = inizio;
+	public void setOrario(Orario inizio) {
+		this.orario = orario;
 	}
-	public Orario getFine() {
-		return fine;
-	}
-	public void setFine(Orario fine) {
-		this.fine = fine;
-	}
+	
 	public String getMateria() {
 		return materia;
 	}
@@ -60,6 +53,20 @@ public class GruppoDiStudio {
 		this.creatore = creatore;
 	}
 	
+
+	public String getGiorno() {
+		String giorno = "";
+		switch(this.orario.getInizio().DAY_OF_WEEK) {
+		case 1 : giorno = "Domenica";break;
+		case 2 : giorno = "Lunedì"; break;
+		case 3 : giorno = "Martedì"; break;
+		case 4 : giorno = "Mercoledì"; break;
+		case 5 : giorno = "Giovedì"; break;
+		case 6 : giorno = "Venerdì"; break;
+		case 7 : giorno = "Sabato"; break;
+		}
+		return giorno;
+	}
 	
 	
 }

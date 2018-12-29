@@ -1,5 +1,6 @@
 package bean;
 
+import java.sql.Time;
 import java.util.GregorianCalendar;
 
 public class Orario {
@@ -26,12 +27,19 @@ public class Orario {
 	public GregorianCalendar getInizio() {
 		return inizio;
 	}
+	public Time getInizioDB() {
+		java.sql.Time orInizio = new Time(inizio.getTimeInMillis());
+		return orInizio;
+	}
 	public void setInizio(GregorianCalendar inizio) {
 		this.inizio = inizio;
 	}
 	public GregorianCalendar getFine() {
 		return fine;
 	}
-	
+	public Time getFineDB() {
+		java.sql.Time orFine = new Time(fine.getTimeInMillis());
+		return orFine;
+	}
 
 }
