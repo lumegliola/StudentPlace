@@ -29,7 +29,22 @@
 }
 
 .btnCerca{
-	margin-left: 70%;
+	
+	margin-left: 71%;
+	color: white;
+	background-color: #a01313;
+	border-radius:10px;
+	box-shadow: 0px 0px 0px 2px #a01313;
+	
+	
 }
 
+.navbar-custom {
+    background-color: #a01313; 
+    
+    
+}
+.navbar-custom a {
+   color:white;
+}
 

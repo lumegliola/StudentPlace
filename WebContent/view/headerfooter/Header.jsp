@@ -49,21 +49,18 @@
 		</div>
 
 		<!-- RIGA NAVBAR-->
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<a class="navbar-brand" href="#">Navbar</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
-				aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
+		<nav class="navbar navbar-expand-lg navbar navbar-custom">
+			
 			<div class="collapse navbar-collapse" id="navbarNavDropdown">
 				<ul class="navbar-nav">
 					<li class="nav-item active"><a class="nav-link" href="#">Home
 							<span class="sr-only">(current)</span>
 					</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Features</a>
+					<li class="nav-item"><a class="nav-link" href="#">Gruppo di studio</a>
 					</li>
-					<li class="nav-item"><a class="nav-link" href="#">Pricing</a>
+					<li class="nav-item"><a class="nav-link" href="#">Aule libere</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="#">Chi siamo</a>
 					</li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#"
@@ -77,11 +74,12 @@
 									class="form-control mr-sm-2" type="search"
 									placeholder="Nome Gruppo" aria-label="Search">
 							</form>
-							<button class="btnCerca" type="submit">Cerca</button>
+							<button class="btnCerca " type="submit">Cerca</button>
 						</div></li>
 				</ul>
 			</div>
 		</nav>
 	</div>
+	
 </body>
 </html>
