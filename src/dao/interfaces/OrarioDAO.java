@@ -1,4 +1,5 @@
 package dao.interfaces;
+import java.sql.Timestamp;
 import java.util.*;
 
 import bean.*;
@@ -6,11 +7,15 @@ public interface OrarioDAO {
 
 	     public boolean doSave(Orario or);//metodo inserimento orario
 	     
-	     public boolean doSaveOrUpdate(Orario or,GregorianCalendar start,GregorianCalendar end);//metodo modificaOrario
+	     public boolean doSaveOrUpdate(Orario or, Timestamp start, Timestamp end);//metodo modificaOrario
 	     
 	     public boolean doDelete(Orario or);//eliminazione orario
 	     
-	     public Orario doRetrieve(GregorianCalendar start,GregorianCalendar end);//ricerca in base all'orario di inizio
+	     public boolean doDelete(int id);//eliminazione orario
+	     
+	     public List<Orario> doRetrieveByStart(Timestamp start) ;//ricerca in base all'orario di inizio
+	     
+	     public Orario doRetrieveByKey(int id);//ricerca in base alla chiave
 	     
 	     public List<Orario> doRetrieveAll();//lista tutti gli orari
 	     	   

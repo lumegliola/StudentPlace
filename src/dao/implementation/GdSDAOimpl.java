@@ -35,8 +35,8 @@ public class GdSDAOimpl implements GdSDAO {
 			ps.setString(1, gds.getNomeGruppo());
 			ps.setObject(2, gds.getCreatore());
 			ps.setString(3, gds.getMateria());
-			ps.setTime(4, gds.getOrario().getInizioDB());
-			ps.setTime(5, gds.getOrario().getFineDB());
+			ps.setTimestamp(4, gds.getOrario().getInizio());
+			ps.setTimestamp(5, gds.getOrario().getFine());
 			ps.setString(6, gds.getGiorno());
 			ps.setString(7, gds.getAula().getNomeAula());
 			
@@ -65,7 +65,7 @@ public class GdSDAOimpl implements GdSDAO {
 		try {
 			//dichiara lo statement
 			connection = DriverManagerConnectionPool.getConnection();
-			ps = connection.prepareStatement("update category set nome = ?, aula = ?, oraFine = ? where name ="+ gds.getNomeGruppo()+" ;");
+			ps = connection.prepareStatement("update gds set nome = ?, aula = ?, oraFine = ? where name ="+ gds.getNomeGruppo()+" ;");
 			
 			if(nomeGruppo != "")
 				ps.setString(1, nomeGruppo);
@@ -78,7 +78,7 @@ public class GdSDAOimpl implements GdSDAO {
 				ps.setString(2, gds.getAula().getNomeAula());
 
 			if(Orario.class.equals(null)) {
-					ps.setTime(3, gds.getOrario().getFineDB());
+				ps.setTimestamp(3, gds.getOrario().getFine());
 			}
 			else
 				ps.setTime(3, new java.sql.Time(fine.getTimeInMillis()));
@@ -159,9 +159,6 @@ public class GdSDAOimpl implements GdSDAO {
 				b.setCreatore(DAOFactory.getUserDAO().doRetrieveByKey(result.getString("creatore")));
 				b.setMateria(result.getString("materia"));
 				
-				GregorianCalendar oraIn = new GregorianCalendar(result.getTime("oraInizio").getYear(), result.getTime("oraInizio").getMonth(), result.getTime("oraInizio").getDay(), result.getTime("oraInizio").getHours(), result.getTime("oraInizio").getMinutes());
-				GregorianCalendar oraFin = new GregorianCalendar(result.getTime("oraFine").getYear(), result.getTime("oraFine").getMonth(), result.getTime("oraFine").getDay(), result.getTime("oraFine").getHours(), result.getTime("oraFine").getMinutes());
-				b.setOrario(oraIn, oraFin);
 				b.setGiorno();
 				b.setAula(DAOFactory.getAulaDAO().doRetrieveByKey(result.getString("aula")));
 				return b;
@@ -202,9 +199,7 @@ public class GdSDAOimpl implements GdSDAO {
 				b.setNomeGruppo(result.getString("nome"));
 				b.setCreatore(DAOFactory.getUserDAO().doRetrieveByKey(result.getString("creatore")));
 				
-				GregorianCalendar oraIn = new GregorianCalendar(result.getTime("oraInizio").getYear(), result.getTime("oraInizio").getMonth(), result.getTime("oraInizio").getDay(), result.getTime("oraInizio").getHours(), result.getTime("oraInizio").getMinutes());
-				GregorianCalendar oraFin = new GregorianCalendar(result.getTime("oraFine").getYear(), result.getTime("oraFine").getMonth(), result.getTime("oraFine").getDay(), result.getTime("oraFine").getHours(), result.getTime("oraFine").getMinutes());
-				b.setOrario(oraIn, oraFin);
+				b.setOrario(result.getTimestamp("orainizio"), result.getTimestamp("oraFine"));
 				b.setAula(DAOFactory.getAulaDAO().doRetrieveByKey(result.getString("aula")));
 				return b;
 			}
@@ -247,9 +242,7 @@ public class GdSDAOimpl implements GdSDAO {
 				b.setCreatore(DAOFactory.getUserDAO().doRetrieveByKey(result.getString("creatore")));
 				b.setMateria(materia);
 				
-				GregorianCalendar oraIn = new GregorianCalendar(result.getTime("oraInizio").getYear(), result.getTime("oraInizio").getMonth(), result.getTime("oraInizio").getDay(), result.getTime("oraInizio").getHours(), result.getTime("oraInizio").getMinutes());
-				GregorianCalendar oraFin = new GregorianCalendar(result.getTime("oraFine").getYear(), result.getTime("oraFine").getMonth(), result.getTime("oraFine").getDay(), result.getTime("oraFine").getHours(), result.getTime("oraFine").getMinutes());
-				b.setOrario(oraIn, oraFin);
+				b.setOrario(result.getTimestamp("orainizio"), result.getTimestamp("oraFine"));
 				b.setAula(DAOFactory.getAulaDAO().doRetrieveByKey(result.getString("aula")));
 				return b;
 			}
@@ -290,9 +283,7 @@ public class GdSDAOimpl implements GdSDAO {
 				b.setNomeGruppo(result.getString("nome"));
 				b.setCreatore(DAOFactory.getUserDAO().doRetrieveByKey(result.getString("creatore")));
 				b.setMateria(result.getString("materia"));
-				GregorianCalendar oraIn = new GregorianCalendar(result.getTime("oraInizio").getYear(), result.getTime("oraInizio").getMonth(), result.getTime("oraInizio").getDay(), result.getTime("oraInizio").getHours(), result.getTime("oraInizio").getMinutes());
-				GregorianCalendar oraFin = new GregorianCalendar(result.getTime("oraFine").getYear(), result.getTime("oraFine").getMonth(), result.getTime("oraFine").getDay(), result.getTime("oraFine").getHours(), result.getTime("oraFine").getMinutes());
-				b.setOrario(oraIn, oraFin);
+				b.setOrario(result.getTimestamp("orainizio"), result.getTimestamp("oraFine"));
 				b.setGiorno();
 				b.setAula(DAOFactory.getAulaDAO().doRetrieveByKey(result.getString("aula")));
 			// aggiunge l'oggetto alla lista

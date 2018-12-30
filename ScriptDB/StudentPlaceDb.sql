@@ -25,8 +25,8 @@ id int primary key auto_increment,
 nome varchar(45) not null,
 creatore varchar(45) not null,
 materia varchar(45) not null,
-oraInizio Timestamp not null,
-oraFine Timestamp not null,
+oraInizio timestamp not null,
+oraFine timestamp not null,
 giorno varchar(10) not  null,
 aula varchar(45) not  null
 );
@@ -46,6 +46,6 @@ giorno varchar(10) primary key
 );
 create table orario(
 id int (10) primary key auto_increment,
-inzio Time not null,
-fine time not null
+inzio timestamp not null,
+fine timestamp not null
 );

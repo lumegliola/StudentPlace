@@ -1,17 +1,18 @@
 package bean;
 
-import java.sql.Time;
-import java.util.GregorianCalendar;
+
+import java.sql.Timestamp;
+
 
 public class Orario {
 
 	private int idOrario;
-	private GregorianCalendar inizio;
-	private GregorianCalendar fine;
+	private Timestamp inizio;
+	private Timestamp fine;
 	
 	public Orario() {}
 	
-	public Orario(GregorianCalendar inizio, GregorianCalendar fine) {
+	public Orario(Timestamp inizio, Timestamp fine) {
 		this.inizio = inizio;
 		this.fine = fine;
 	}
@@ -24,25 +25,18 @@ public class Orario {
 	public void setIdOrario(int idOrario) {
 		this.idOrario = idOrario;
 	}
-	public GregorianCalendar getInizio() {
+	public Timestamp getInizio() {
 		return inizio;
 	}
-	public Time getInizioDB() {
-		java.sql.Time orInizio = new Time(inizio.getTimeInMillis());
-		return orInizio;
-	}
-	public void setInizio(GregorianCalendar inizio) {
+	
+	public void setInizio(Timestamp inizio) {
 		this.inizio = inizio;
 	}
-	public GregorianCalendar getFine() {
+	public Timestamp getFine() {
 		return fine;
 	}
-	public void setFine(GregorianCalendar fine) {
+	public void setFine(Timestamp fine) {
 		this.fine = fine;
-	}
-	public Time getFineDB() {
-		java.sql.Time orFine = new Time(fine.getTimeInMillis());
-		return orFine;
 	}
 
 }

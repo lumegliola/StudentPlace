@@ -1,5 +1,7 @@
 package bean;
 
+import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class GruppoDiStudio {
@@ -14,7 +16,7 @@ public class GruppoDiStudio {
 	
 	public GruppoDiStudio(){}
 	
-	public GruppoDiStudio(String nomeGruppo, Aula aula, Orario orario, String materia,GregorianCalendar inizio, GregorianCalendar fine, Utente creatore ){
+	public GruppoDiStudio(String nomeGruppo, Aula aula, Orario orario, String materia, Timestamp inizio, Timestamp fine, Utente creatore ){
 		this.nomeGruppo = nomeGruppo;
 		this.aula = aula;
 		this.orario =  new Orario(inizio, fine);
@@ -40,7 +42,7 @@ public class GruppoDiStudio {
 	public Orario getOrario() {
 		return orario;
 	}
-	public void setOrario(GregorianCalendar inizio, GregorianCalendar fine) {
+	public void setOrario(Timestamp inizio, Timestamp fine) {
 		this.orario.setInizio(inizio);
 		this.orario.setFine(fine);
 	}
@@ -60,7 +62,11 @@ public class GruppoDiStudio {
 	
 
 	public void setGiorno() {
-		switch(this.orario.getInizio().DAY_OF_WEEK) {
+		
+		GregorianCalendar gc = (GregorianCalendar) Calendar.getInstance();
+		gc.setTime(this.getOrario().getInizio());
+		
+		switch(gc.DAY_OF_WEEK) {
 		case 1 : this.giorno = "Domenica";break;
 		case 2 : this.giorno = "Lunedì"; break;
 		case 3 : this.giorno = "Martedì"; break;
