@@ -12,6 +12,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+
+
+<link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -30,13 +36,8 @@
 
 			<!-- COLONNA LOGO STUDENTPLACE-->
 			<div class="col-md-6 column_logoSP">
-				<div class="row row_StudentPlace">
+				<div class="row_StudentPlace">
 					<img class="logoSPxl" alt="Logo StudentPlace" src="logoSPxl.png">
-				</div>
-				<div class="row row_Social">
-					<img class="social" alt="fb" src="fb.png"> <img
-						class="social" alt="is" src="is.png"> <img class="social"
-						alt="tw" src="tw.png">
 				</div>
 			</div>
 
@@ -48,35 +49,39 @@
 		</div>
 
 		<!-- RIGA NAVBAR-->
-		<div class="row row_navbar">
-			<nav class="navbar navbar-custom">
-				<div class="container-fluid">
-					<div class="navbar-header">
-						<a class="navbar-brand" href="#">StudentPlace</a>
-					</div>
-					<ul class="nav navbar-nav">
-						<li class="active"><a href="#">Home</a></li>
-						<li><a href="#">Gruppi di studio</a></li>
-						<li><a href="#">Aule libere</a></li>
-						<li><a href="#">Chi Siamo</a></li>
-						<li><a href="#">Aiuto</a></li>
-						<li class="nav-item dropdown" id="ricerca"><a
-							class="nav-link dropdown-toggle" href="#"
-							id="navbarDropdownMenuLink" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false"> Cerca </a>
-							<div class="dropdown-menu"
-								aria-labelledby="navbarDropdownMenuLink">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="#">Navbar</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNavDropdown">
+				<ul class="navbar-nav">
+					<li class="nav-item active"><a class="nav-link" href="#">Home
+							<span class="sr-only">(current)</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">Features</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="#">Pricing</a>
+					</li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#"
+						id="navbarDropdownMenuLink" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false"> Cerca Gruppo </a>
+						<div class="dropdown-menu"
+							aria-labelledby="navbarDropdownMenuLink">
+							<form class="form-inline">
 								<input class="form-control mr-sm-2" type="search"
 									placeholder="Materia" aria-label="Search"> <input
-									class="form-control mr-sm-2" type="search" placeholder="Gruppo"
-									aria-label="Search">
-								<button class="btn btn-outline-success my-2 my-sm-0"
-									type="submit">Search</button>
-							</div></li>
-					</ul>
-				</div>
-			</nav>
-		</div>
+									class="form-control mr-sm-2" type="search"
+									placeholder="Nome Gruppo" aria-label="Search">
+							</form>
+							<button class="btnCerca" type="submit">Cerca</button>
+						</div></li>
+				</ul>
+			</div>
+		</nav>
 	</div>
 </body>
 </html>

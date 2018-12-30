@@ -24,14 +24,12 @@
 	margin-left: 1em;
 }
 
-.navbar-custom {
-	margin-top: 1em;
-	background-color: #a01313;
+.form-control{
+	margin: 5px;
 }
 
-.navbar-custom  a {
-	color: #fff;
+.btnCerca{
+	margin-left: 70%;
 }
-#ricerca{
-	text-align: right;
-}
+
+
