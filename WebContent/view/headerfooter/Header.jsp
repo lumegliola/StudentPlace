@@ -10,6 +10,7 @@
 
 <!-- IMPORT BOOTSTRAP-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
@@ -59,6 +60,19 @@
 						<li><a href="#">Aule libere</a></li>
 						<li><a href="#">Chi Siamo</a></li>
 						<li><a href="#">Aiuto</a></li>
+						<li class="nav-item dropdown" id="ricerca"><a
+							class="nav-link dropdown-toggle" href="#"
+							id="navbarDropdownMenuLink" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false"> Cerca </a>
+							<div class="dropdown-menu"
+								aria-labelledby="navbarDropdownMenuLink">
+								<input class="form-control mr-sm-2" type="search"
+									placeholder="Materia" aria-label="Search"> <input
+									class="form-control mr-sm-2" type="search" placeholder="Gruppo"
+									aria-label="Search">
+								<button class="btn btn-outline-success my-2 my-sm-0"
+									type="submit">Search</button>
+							</div></li>
 					</ul>
 				</div>
 			</nav>
