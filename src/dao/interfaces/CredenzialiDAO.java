@@ -13,10 +13,6 @@ public interface CredenzialiDAO {
 
 	public boolean doDelete(String mail);//metodo cancellazione in base alla mail
 	
-	public boolean isAdmin(Credenziali cred);//metodo per controllare se un utente è amministratore passando oggetto(Utente)
-	  
-	public boolean isAdmin(String email);//metodo per controllare se un utente è amministratore passando la mail(String)
-	
 	public Credenziali doRetrieveByKey(String email);//metodo per ricerca Credenziali tramite mail(String)
 	  
 	public Credenziali doRetrieveByMatricola(String matricola);//metodo per ricerca Credenziali tramite mail(String)

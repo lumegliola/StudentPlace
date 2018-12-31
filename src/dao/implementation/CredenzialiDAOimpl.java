@@ -2,7 +2,9 @@ package dao.implementation;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import bean.Credenziali;
@@ -164,38 +166,207 @@ public class CredenzialiDAOimpl implements CredenzialiDAO {
 		
 	}
 
-	@Override
-	public boolean isAdmin(Credenziali cred) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean isAdmin(String email) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public Credenziali doRetrieveByKey(String email) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
 	public Credenziali doRetrieveByMatricola(String matricola) {
-		return null;
+		Connection connection = null;
+		PreparedStatement ps = null;
+		ResultSet result = null;
+		Credenziali cred=null;
+
+		try {
+
+			connection = DriverManagerConnectionPool.getConnection();			
+			ps = connection.prepareStatement("select * from credenziali where matricola=?");				//Crea un oggetto PreparedStatement relativo alla stringa SQL passata in input
+			ps.setString(1, matricola);                                             		    // passiamo indice  e il valore che sarà inserito nel placeholder  '?'
+	        
+			result = ps.executeQuery();                                                         //Esegue la query e ritorna 1
+			String mail="";
+			String password="";
+			String nMatricola="";
+			boolean admin=false;
+			while(result.next()) {
+			  
+				mail=result.getString("mail");
+				password=result.getString("password");
+				nMatricola=result.getString("matricola");
+				admin=result.getBoolean("amministratore");
+				
+			}
+			new Credenziali(mail, password, nMatricola, admin);
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+
+		} finally {
+
+			try {
+
+				ps.close();
+
+				DriverManagerConnectionPool.releaseConnection(connection);
+
+			} catch (SQLException e) {
+
+				e.printStackTrace();
+
+			}
+		}
+		return cred;
 	}
 
 	@Override
 	public Credenziali doRetrieveByEmailAndPassword(String email, String password) {
 		// TODO Auto-generated method stub
-		return null;
+		Connection connection = null;
+		PreparedStatement ps = null;
+		ResultSet result = null;
+		Credenziali cred=null;
+
+		try {
+
+			connection = DriverManagerConnectionPool.getConnection();			
+			ps = connection.prepareStatement("select * from credenziali where email=? and password=?");				//Crea un oggetto PreparedStatement relativo alla stringa SQL passata in input
+			ps.setString(1, email);                                                                     // passiamo indice  e il valore che sarà inserito nel placeholder  '?'
+	        ps.setString(2, password);                                                
+			result = ps.executeQuery();                                                                 //Esegue la query e ritorna 1
+			
+			String mail="";
+			String pass="";
+			String nMatricola="";
+			boolean admin=false;
+			while(result.next()) {
+			  
+				mail=result.getString("email");
+				pass=result.getString("password");
+				nMatricola=result.getString("matricola");
+				admin=result.getBoolean("amministratore");
+				
+			}
+			new Credenziali(mail, password, nMatricola, admin);
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+
+		} finally {
+
+			try {
+
+				ps.close();
+
+				DriverManagerConnectionPool.releaseConnection(connection);
+
+			} catch (SQLException e) {
+
+				e.printStackTrace();
+
+			}
+		}
+		return cred;
+
+	
 	}
 
 	@Override
 	public List<Credenziali> doRetriveAll() {
 		// TODO Auto-generated method stub
-		return null;
+		List <Credenziali> listaCredenziali=new ArrayList<Credenziali>();
+		Connection connection = null;
+		PreparedStatement ps = null;
+		ResultSet result = null;
+ 
+
+		try {
+
+			connection = DriverManagerConnectionPool.getConnection();			
+			ps = connection.prepareStatement("select * from credenziali");				//Crea un oggetto PreparedStatement relativo alla stringa SQL passata in input
+			result = ps.executeQuery();                                                                 //Esegue la query e ritorna 1
+			
+			String mail="";
+			String pass="";
+			String nMatricola="";
+			boolean admin=false;
+			while(result.next()) {
+			  
+				mail=result.getString("email");
+				pass=result.getString("password");
+				nMatricola=result.getString("matricola");
+				admin=result.getBoolean("amministratore");
+				Credenziali cred=new Credenziali(mail, pass, nMatricola, admin);
+			    listaCredenziali.add(cred);	
+			
+			}
+			
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+
+		} finally {
+
+			try {
+
+				ps.close();
+
+				DriverManagerConnectionPool.releaseConnection(connection);
+
+			} catch (SQLException e) {
+
+				e.printStackTrace();
+
+			}
+		}
+		return listaCredenziali;
+		
+	}
+
+	@Override
+	public Credenziali doRetrieveByKey(String email) {
+		// TODO Auto-generated method stub
+		Connection connection = null;
+		PreparedStatement ps = null;
+		ResultSet result = null;
+		Credenziali cred=null;
+
+		try {
+
+			connection = DriverManagerConnectionPool.getConnection();			
+			ps = connection.prepareStatement("select * from credenziali where email=?");				//Crea un oggetto PreparedStatement relativo alla stringa SQL passata in input
+			ps.setString(1, email);
+			result = ps.executeQuery();                                                                 //Esegue la query e ritorna 1
+			
+			String mail="";
+			String pass="";
+			String nMatricola="";
+			boolean admin=false;
+			while(result.next()) {
+			  
+				mail=result.getString("mail");
+				pass=result.getString("password");
+				nMatricola=result.getString("matricola");
+				admin=result.getBoolean("amministratore");
+				cred=new Credenziali(mail, pass, nMatricola, admin);
+			   
+			
+			}
+			cred=new Credenziali(mail, pass, nMatricola, admin);
+			
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+
+		} finally {
+
+			try {
+
+				ps.close();
+
+				DriverManagerConnectionPool.releaseConnection(connection);
+
+			} catch (SQLException e) {
+
+				e.printStackTrace();
+
+			}
+		}
+		return cred;
 	}
 
 }
