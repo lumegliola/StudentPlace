@@ -87,44 +87,7 @@ public class CredenzialiDAOimpl implements CredenzialiDAO {
 
 	@Override
 	public boolean doDelete(Credenziali cred) {
-		// TODO Auto-generated method stub
-		Connection connection = null;
-		PreparedStatement ps = null;
-		int result = 0;
-
-		try {
-
-			connection = DriverManagerConnectionPool.getConnection();
-
-			ps = connection.prepareStatement("delete from credenziali where mail=? and password=? and matricola=? and amministratore=?");				//Crea un oggetto PreparedStatement relativo alla stringa SQL passata in input
-			ps.setString(1, cred.getMail());                                             		    // passiamo indice  e il valore che sarà inserito nel placeholder  '?'
-            ps.setString(2, cred.getPassword());
-            ps.setString(3,cred.getMatricola());
-            ps.setBoolean(4,cred.isAdmin());
-            
-            DAOFactory.getUserDAO().doDelete(cred.getMatricola());
-            
-			result = ps.executeUpdate();                                                    	    //Esegue la query e ritorna 1
-
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-
-		} finally {
-
-			try {
-
-				ps.close();
-
-				DriverManagerConnectionPool.releaseConnection(connection);
-
-			} catch (SQLException e) {
-
-				e.printStackTrace();
-
-			}
-		}
-		return (result == 1);
+		return doDelete(cred.getMail());
 	}
 
 	@Override
