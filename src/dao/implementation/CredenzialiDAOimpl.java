@@ -103,7 +103,7 @@ public class CredenzialiDAOimpl implements CredenzialiDAO {
 			Credenziali a = DAOFactory.getCredenzialiDAO().doRetrieveByKey(mail);
 			
 			ps = connection.prepareStatement("delete from credenziali where mail= ?");				//Crea un oggetto PreparedStatement relativo alla stringa SQL passata in input
-			ps.setString(1, mail);                                             		    // passiamo indice  e il valore che sarà inserito nel placeholder  '?'
+			ps.setString(1, mail);                                             		    			// passiamo indice  e il valore che sarà inserito nel placeholder  '?'
 	        
 			result = ps.executeUpdate();                                                    	    //Esegue la query e ritorna 1
 			DAOFactory.getUserDAO().doDelete(a.getMatricola());
