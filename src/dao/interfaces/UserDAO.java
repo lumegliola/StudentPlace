@@ -7,7 +7,7 @@ public interface UserDAO {
 
 	public boolean doSave(Utente user); //metodo per inserire utente nel database
 	  
-	public boolean doSaveOrUpdate(Utente user, String emailToFind);//metodo per modificare un utente nel database tramite ricerca
+	public boolean doSaveOrUpdate(Utente user, String password);//metodo per modificare un utente nel database tramite ricerca
 	  
 	public boolean doDelete(Utente user);//metodo per cancellare un utente nel database passando oggetto (Utente)
 	  

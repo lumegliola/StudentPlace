@@ -181,6 +181,10 @@ public class CredenzialiDAOimpl implements CredenzialiDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public Credenziali doRetrieveByMatricola(String matricola) {
+		return null;
+	}
 
 	@Override
 	public Credenziali doRetrieveByEmailAndPassword(String email, String password) {

@@ -8,6 +8,7 @@ public class Utente {
 	private String cognome;
 	private Credenziali credenziali;
 
+	public Utente() {}
 	public Utente(String unNome,String unCognome,Credenziali delleCredenziali) {
           
 		

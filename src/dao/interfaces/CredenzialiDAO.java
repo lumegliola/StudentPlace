@@ -19,6 +19,8 @@ public interface CredenzialiDAO {
 	
 	public Credenziali doRetrieveByKey(String email);//metodo per ricerca Credenziali tramite mail(String)
 	  
+	public Credenziali doRetrieveByMatricola(String matricola);//metodo per ricerca Credenziali tramite mail(String)
+	
 	public Credenziali doRetrieveByEmailAndPassword(String email, String password);//metodo per ricerca  mail e password (String,String)
 
 	public List<Credenziali> doRetriveAll();//metodo restituisce la lista delle credenziali
