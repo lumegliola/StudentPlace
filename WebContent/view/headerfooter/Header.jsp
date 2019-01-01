@@ -49,37 +49,39 @@
 		</div>
 
 		<!-- RIGA NAVBAR-->
-		<nav class="navbar navbar-expand-lg navbar navbar-custom">
-			
-			<div class="collapse navbar-collapse" id="navbarNavDropdown">
-				<ul class="navbar-nav">
-					<li class="nav-item active"><a class="nav-link" href="#">Home
-							<span class="sr-only">(current)</span>
+		<nav class="navbar navbar-expand-lg navbar-custom">
+			<span class="navbar-brand">
+				StudentPlace
+			</span>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav nav nav-pills nav-fill">
+					<li class="nav-item active"><a class="nav-link" href="#">
+							<span class="glyphicon glyphicon-home"></span> Home
 					</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Gruppo di studio</a>
-					</li>
-					<li class="nav-item"><a class="nav-link" href="#">Aule libere</a>
-					</li>
-					<li class="nav-item"><a class="nav-link" href="#">Chi siamo</a>
-					</li>
 					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#"
-						id="navbarDropdownMenuLink" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> Cerca Gruppo </a>
-						<div class="dropdown-menu"
-							aria-labelledby="navbarDropdownMenuLink">
-							<form class="form-inline">
-								<input class="form-control mr-sm-2" type="search"
-									placeholder="Materia" aria-label="Search"> <input
-									class="form-control mr-sm-2" type="search"
-									placeholder="Nome Gruppo" aria-label="Search">
-							</form>
-							<button class="btnCerca " type="submit">Cerca</button>
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false"> Gruppi di Studio</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="#">Crea</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="#">Modifica</a>
 						</div></li>
+					<li class="nav-item"><a class="nav-link" href="#">Cerca
+							aule libere</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">Contatti</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">Chi
+							Siamo</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="nav-item"><a href="#">Ciao! Nome Utente</a></li>
+					<li class="nav-item"><a href="#"><span class="glyphicon glyphicon-log-out"></span>
+							Logout</a></li>
 				</ul>
 			</div>
 		</nav>
 	</div>
-	
+
 </body>
 </html>
