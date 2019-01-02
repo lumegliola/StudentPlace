@@ -38,8 +38,10 @@ public class ServletLogin extends HttpServlet {
     }
   
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String email = request.getParameter("email").toLowerCase();
-		String password = request.getParameter("password");
+		//String email = request.getParameter("email").toLowerCase();
+		//String password = request.getParameter("password");
+		String email = "email di test";
+		String password = "password di test";
 		Credenziali b = DAOFactory.getCredenzialiDAO().doRetrieveByEmailAndPassword(email, password);
 		
 		if(b == null) { // Utente Non trovato, credenziali errate.

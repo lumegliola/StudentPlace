@@ -12,9 +12,8 @@ nome varchar(45) not null,
 cognome varchar(45)not null
 );
 create table credenziali(
-idcredenziali int primary key,
+email varchar(45) primary key,
 matricola varchar(10) not null,
-email varchar(45) not null,
 password varchar(45) not null,
 amministratore smallint not null,
 foreign key (matricola) references studente (matricola), #da modificare
