@@ -182,7 +182,7 @@ public class CredenzialiDAOimpl implements CredenzialiDAO {
 		Connection connection = null;
 		PreparedStatement ps = null;
 		ResultSet result = null;
-		Credenziali cred=null;
+		Credenziali cred= new Credenziali();
 
 		try {
 
@@ -192,19 +192,16 @@ public class CredenzialiDAOimpl implements CredenzialiDAO {
 	        ps.setString(2, password);                                                
 			result = ps.executeQuery();                                                                 //Esegue la query e ritorna 1
 			
-			String mail="";
-			String pass="";
-			String nMatricola="";
-			boolean admin=false;
-			while(result.next()) {
+			if(result.next()) {
 			  
-				mail=result.getString("email");
-				pass=result.getString("password");
-				nMatricola=result.getString("matricola");
-				admin=result.getBoolean("amministratore");
-				
+				cred.setMail(result.getString("email"));
+				cred.setPassword(result.getString("password"));
+				cred.setMatricola(result.getString("matricola"));
+				cred.setAdmin(result.getBoolean("amministratore"));
+							
 			}
-			new Credenziali(mail, password, nMatricola, admin);
+			else return null;
+			
 		} catch (SQLException e) {
 
 			e.printStackTrace();

@@ -5,6 +5,9 @@ private String mail;
 private String password;
 private boolean admin;
 private String matricola;
+
+	public Credenziali() {};
+
 	public Credenziali(String unaMail,String unaPassword,String unMatricola,boolean unAdmin) {
 		setMail(unaMail);
 		setPassword(unaPassword);

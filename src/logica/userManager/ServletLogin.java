@@ -44,11 +44,12 @@ public class ServletLogin extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//String email = request.getParameter("email").toLowerCase();
 		//String password = request.getParameter("password");
-		String email = "f.megliola@studenti.unisa.it";
-		String password = "123456";
+		String email = "";
+		String password = "";
 		Credenziali b = DAOFactory.getCredenzialiDAO().doRetrieveByEmailAndPassword(email, password);
 		
 		if(b == null) { // Utente Non trovato, credenziali errate.
+			System.out.println("null");
 			request.setAttribute("is_error", true);
 			request.setAttribute("title", "Login Fallita");
 			request.setAttribute("message", "Controlla di aver inserito i dati di accesso correttamente.");
@@ -59,6 +60,7 @@ public class ServletLogin extends HttpServlet {
 		} else { // Utente trovato, le credenziali sono giuste!
 			HttpSession session = request.getSession(false);
 			
+			System.out.println("ok");
 			//Setto i cookie per i prossimi accessi al sito.
 			Cookie emailCookie = new Cookie("email", email);
 			Cookie passwordCookie = new Cookie("password", password);
