@@ -149,7 +149,7 @@ public class CredenzialiDAOimpl implements CredenzialiDAO {
 			boolean admin=false;
 			while(result.next()) {
 			  
-				mail=result.getString("mail");
+				mail=result.getString("email");
 				password=result.getString("password");
 				nMatricola=result.getString("matricola");
 				admin=result.getBoolean("amministratore");

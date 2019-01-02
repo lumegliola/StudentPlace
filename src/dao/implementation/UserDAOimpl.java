@@ -131,7 +131,51 @@ public class UserDAOimpl implements UserDAO {
 	}
 
 	@Override
-	public Utente doRetrieveByKey(String matricola) {
+	public Utente doRetrieveAdminByKey(String matricola) {
+		Connection connection = null;
+		PreparedStatement ps = null;
+		PreparedStatement psAmm = null;
+
+		try {
+			Utente b = new Utente();
+			b.setMatricola(matricola);
+
+			connection = DriverManagerConnectionPool.getConnection();
+			//dichiara lo statement
+			ps = connection.prepareStatement("select * from amministratore where matricola = ?;");
+			ps.setString(1, matricola);
+
+			//esegue lo statement
+			ResultSet result = ps.executeQuery();
+
+			//studente
+			if(result.next()) {
+				b.setNome(result.getString("nome"));
+				b.setCognome(result.getString("cognome"));
+				b.setCredenziali(DAOFactory.getCredenzialiDAO().doRetrieveByMatricola(matricola));
+				return b;
+			}else {
+				return doRetrieveStudentByKey(matricola);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(connection != null) {
+				try {
+					ps.close();
+					DriverManagerConnectionPool.releaseConnection(connection);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				}
+		}
+		return null;
+	}
+
+	
+	@Override
+	public Utente doRetrieveStudentByKey(String matricola) {
 		Connection connection = null;
 		PreparedStatement ps = null;
 		PreparedStatement psAmm = null;
@@ -152,23 +196,11 @@ public class UserDAOimpl implements UserDAO {
 			if(result.next()) {
 				b.setNome(result.getString("nome"));
 				b.setCognome(result.getString("cognome"));
+				b.setCredenziali(DAOFactory.getCredenzialiDAO().doRetrieveByMatricola(matricola));
 				return b;
 			}else {
-				psAmm = connection.prepareStatement("select * from amministratore where matricola = ?;");
-				ps.setString(1, matricola);
-
-				//esegue lo statement
-				ResultSet result1 = psAmm.executeQuery();
-
-				//studente
-				if(result.next()) {
-					b.setNome(result1.getString("nome"));
-					b.setCognome(result1.getString("cognome"));
-					return b;
-				}
+				return doRetrieveStudentByKey(matricola);
 			}
-			b.setCredenziali(DAOFactory.getCredenzialiDAO().doRetrieveByMatricola(matricola));
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -184,6 +216,7 @@ public class UserDAOimpl implements UserDAO {
 		return null;
 	}
 
+	
 	@Override
 	public List<Utente> doRetrieveAll() {
 		Connection connection = null;

@@ -15,6 +15,10 @@ insert into amministratore(matricola, nome,cognome) values
 ("0512103647", "Antonio","Panico"),
 ("0512102855", "Filippo","Megliola");
 
+insert into studente(matricola, nome,cognome) values
+
+("0512102865", "Filippo","Megliola");
+
 insert into aula(nome,edificio) values
 
 ("P1", "F3"),

@@ -13,7 +13,9 @@ public interface UserDAO {
 	  
 	public boolean doDelete(String matricola);//metodo per cancellare un utente nel database passando la mail(String)
 	
-	public Utente doRetrieveByKey(String matricola);//metodo per ricerca Utente tramite matricola(String)
+	public Utente doRetrieveAdminByKey(String matricola);//metodo per ricerca Utente tramite matricola(String)
+	
+	public Utente doRetrieveStudentByKey(String matricola);//metodo per ricerca Utente tramite matricola(String)
 	    
 	public List<Utente> doRetrieveAll();//metodo di ricerca per ricavare tutti gli oggetti Utente 
 	

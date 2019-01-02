@@ -46,7 +46,7 @@ public class ServletCreaGds extends HttpServlet {
 			String materia = (String) request.getParameter("materia");
 				if(DAOFactory.getGdSDAO().doRetrieveByNameAndSubject(nomeGruppo, materia) != null){
 			
-					Utente creatore = DAOFactory.getUserDAO().doRetrieveByKey((String)session.getAttribute("matricola"));
+					Utente creatore = DAOFactory.getUserDAO().doRetrieveAdminByKey((String)session.getAttribute("matricola"));
 			
 					Timestamp inizio, fine;
 					Aula aula = DAOFactory.getAulaDAO().doRetrieveByKey((String)request.getParameter("aula"));
