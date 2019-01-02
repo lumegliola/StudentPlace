@@ -39,10 +39,9 @@ public class ServletCreaGds extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		if(session != null) {
-		if((boolean)session.getAttribute("logged")) {
-		
+		HttpSession session = request.getSession(false);
+		if(session != null && session.getAttribute("logged") != null) {
+			
 			String nomeGruppo = (String) request.getParameter("nomegruppo");
 			String materia = (String) request.getParameter("materia");
 				if(DAOFactory.getGdSDAO().doRetrieveByNameAndSubject(nomeGruppo, materia) != null){
@@ -70,17 +69,17 @@ public class ServletCreaGds extends HttpServlet {
 				}
 				else {
 					session.setAttribute("esito", "errore");
-					getServletContext().getRequestDispatcher("/view/ProvaOutput.jsp").forward(request, response);
 			
 				}
+				getServletContext().getRequestDispatcher("/view/ProvaOutput.jsp").forward(request, response);
 			}
 		else {
 			//messagggio: utente non loggato
 			session.setAttribute("esito", "errore");
-			getServletContext().getRequestDispatcher("ProvaOutput").forward(request, response);
+			getServletContext().getRequestDispatcher("/view/ProvaOutput.jsp").forward(request, response);
 		}
 		}
 		
 		
 	}
-}
+
