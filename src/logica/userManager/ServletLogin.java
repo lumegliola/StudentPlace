@@ -37,6 +37,10 @@ public class ServletLogin extends HttpServlet {
         super();
     }
   
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	doPost(request, response);
+    }
+    
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//String email = request.getParameter("email").toLowerCase();
 		//String password = request.getParameter("password");
@@ -79,9 +83,10 @@ public class ServletLogin extends HttpServlet {
 				session.setAttribute("logged", true);	
 			}
 			
-			// Reindiriziamo alla home.
+			/* Reindiriziamo alla home.
 			RequestDispatcher d = request.getRequestDispatcher("index.html");
 			d.forward(request, response);
+		*/
 		}
 		
 	}

@@ -210,17 +210,15 @@ public class CredenzialiDAOimpl implements CredenzialiDAO {
 			e.printStackTrace();
 
 		} finally {
+			if(ps != null) {
+				try {
+					ps.close();
+					DriverManagerConnectionPool.releaseConnection(connection);
 
-			try {
+				} catch (SQLException e) {
 
-				ps.close();
-
-				DriverManagerConnectionPool.releaseConnection(connection);
-
-			} catch (SQLException e) {
-
-				e.printStackTrace();
-
+					e.printStackTrace();
+				}
 			}
 		}
 		return cred;
