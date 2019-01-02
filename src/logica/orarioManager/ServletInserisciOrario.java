@@ -11,13 +11,13 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class inserisciOrario
  */
 @WebServlet("/inserisciOrario")
-public class inserisciOrario extends HttpServlet {
+public class ServletInserisciOrario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public inserisciOrario() {
+    public ServletInserisciOrario() {
         super();
         // TODO Auto-generated constructor stub
     }

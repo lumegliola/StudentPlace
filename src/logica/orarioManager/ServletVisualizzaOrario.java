@@ -1,4 +1,4 @@
-package logica.GdSManager;
+package logica.orarioManager;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class IscrizioneGdS
+ * Servlet implementation class VisualizzaOrario
  */
-@WebServlet("/IscrizioneGdS")
-public class IscrizioneGdS extends HttpServlet {
+@WebServlet("/VisualizzaOrario")
+public class ServletVisualizzaOrario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public IscrizioneGdS() {
+    public ServletVisualizzaOrario() {
         super();
         // TODO Auto-generated constructor stub
     }

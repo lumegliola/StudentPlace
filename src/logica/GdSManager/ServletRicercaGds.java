@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ModificaGdS
+ * Servlet implementation class RicercaGds
  */
-@WebServlet("/ModificaGdS")
-public class ModificaGdS extends HttpServlet {
+@WebServlet("/RicercaGds")
+public class ServletRicercaGds extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ModificaGdS() {
+    public ServletRicercaGds() {
         super();
         // TODO Auto-generated constructor stub
     }
