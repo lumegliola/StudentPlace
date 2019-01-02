@@ -34,7 +34,7 @@ public class ServletCreaGds extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		doPost(request, response);
 	}
 
 	
@@ -42,13 +42,16 @@ public class ServletCreaGds extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		if(session != null && session.getAttribute("logged") != null) {
 			
-			String nomeGruppo = (String) request.getParameter("nomegruppo");
-			String materia = (String) request.getParameter("materia");
-				if(DAOFactory.getGdSDAO().doRetrieveByNameAndSubject(nomeGruppo, materia) != null){
+			String nomeGruppo = "ciao";
+			String materia = "materia";
+				if(DAOFactory.getGdSDAO().doRetrieveByNameAndSubject(nomeGruppo, materia) == null){
 			
-					Utente creatore = DAOFactory.getUserDAO().doRetrieveAdminByKey((String)session.getAttribute("matricola"));
+					Utente creatore = DAOFactory.getUserDAO().doRetrieveAdminByKey("0512102865");
 			
-					Timestamp inizio, fine;
+					@SuppressWarnings("deprecation")
+					Timestamp inizio = new Timestamp(124, 11, 16, 15, 00, 00, 00);
+					@SuppressWarnings("deprecation")
+					Timestamp fine = new Timestamp(124, 11, 16, 15, 01, 00, 00);
 					Aula aula = DAOFactory.getAulaDAO().doRetrieveByKey((String)request.getParameter("aula"));
 			
 			
@@ -56,13 +59,14 @@ public class ServletCreaGds extends HttpServlet {
 			
 					nuovo.setNomeGruppo(nomeGruppo);
 					nuovo.setCreatore(creatore);
-					nuovo.setMateria(request.getParameter("materia"));
+					nuovo.setMateria(materia);
 					//prendi ora inizio
-					//prendi ora fine
+					nuovo.setOrario(inizio, fine);
 					nuovo.setGiorno();
+					//System.out.println("giorno: "+nuovo.getGiorno());
 					nuovo.setAula(aula);
 					
-					DAOFactory.getGdSDAO().doSave(nuovo);
+					//DAOFactory.getGdSDAO().doSave(nuovo);
 					
 			
 					session.setAttribute("esito", true);

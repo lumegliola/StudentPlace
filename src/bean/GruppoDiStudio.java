@@ -1,5 +1,7 @@
 package bean;
 
+import static java.util.Calendar.DAY_OF_WEEK;
+
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -43,8 +45,8 @@ public class GruppoDiStudio {
 		return orario;
 	}
 	public void setOrario(Timestamp inizio, Timestamp fine) {
-		this.orario.setInizio(inizio);
-		this.orario.setFine(fine);
+		this.orario = new Orario(inizio, fine);
+
 	}
 	
 	public String getMateria() {
@@ -63,18 +65,23 @@ public class GruppoDiStudio {
 
 	public void setGiorno() {
 		
-		GregorianCalendar gc = (GregorianCalendar) Calendar.getInstance();
+		GregorianCalendar gc = new GregorianCalendar();
 		gc.setTime(this.getOrario().getInizio());
+		System.out.println(this.getOrario().getInizio());
 		
-		switch(gc.DAY_OF_WEEK) {
-		case 1 : this.giorno = "Domenica";break;
-		case 2 : this.giorno = "Lunedì"; break;
+		
+		switch(gc.get(DAY_OF_WEEK)) {
+		case 1 : this.giorno = "Domenica"; break;
+		case 2 : this.giorno = "Lunedì";break;
 		case 3 : this.giorno = "Martedì"; break;
 		case 4 : this.giorno = "Mercoledì"; break;
 		case 5 : this.giorno = "Giovedì"; break;
 		case 6 : this.giorno = "Venerdì"; break;
 		case 7 : this.giorno = "Sabato"; break;
+		
 		}
+		System.out.println(this.giorno);
+
 	}
 	
 	public String getGiorno() {
