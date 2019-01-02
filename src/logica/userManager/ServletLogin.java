@@ -82,6 +82,7 @@ public class ServletLogin extends HttpServlet {
 				session = request.getSession(true); 
 				session.setAttribute("email", b.getMail());
 				session.setAttribute("name", usr.getNome());
+				session.setAttribute("matricola", usr.getMatricola());
 				session.setAttribute("logged", true);	
 			}
 			
