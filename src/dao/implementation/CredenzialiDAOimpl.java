@@ -37,11 +37,13 @@ public class CredenzialiDAOimpl implements CredenzialiDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
+			if(connection != null) {
 			try {
 				ps.close();
 				DriverManagerConnectionPool.releaseConnection(connection);
 			} catch (SQLException e) {
 				e.printStackTrace();
+			}
 			}
 		}
 		return (result == 1);
@@ -75,12 +77,14 @@ public class CredenzialiDAOimpl implements CredenzialiDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				ps.close();
-				DriverManagerConnectionPool.releaseConnection(connection);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			if(connection != null) {
+				try {
+					ps.close();
+					DriverManagerConnectionPool.releaseConnection(connection);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				}
 		}
 		return (result == 1);
 	}
@@ -113,17 +117,14 @@ public class CredenzialiDAOimpl implements CredenzialiDAO {
 
 		} finally {
 
-			try {
-
-				ps.close();
-
-				DriverManagerConnectionPool.releaseConnection(connection);
-
-			} catch (SQLException e) {
-
-				e.printStackTrace();
-
-			}
+			if(connection != null) {
+				try {
+					ps.close();
+					DriverManagerConnectionPool.releaseConnection(connection);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				}
 		}
 		return (result == 1);
 		
@@ -160,18 +161,14 @@ public class CredenzialiDAOimpl implements CredenzialiDAO {
 			e.printStackTrace();
 
 		} finally {
-
-			try {
-
-				ps.close();
-
-				DriverManagerConnectionPool.releaseConnection(connection);
-
-			} catch (SQLException e) {
-
-				e.printStackTrace();
-
-			}
+			if(connection != null) {
+				try {
+					ps.close();
+					DriverManagerConnectionPool.releaseConnection(connection);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				}
 		}
 		return cred;
 	}
@@ -259,17 +256,14 @@ public class CredenzialiDAOimpl implements CredenzialiDAO {
 
 		} finally {
 
-			try {
-
-				ps.close();
-
-				DriverManagerConnectionPool.releaseConnection(connection);
-
-			} catch (SQLException e) {
-
-				e.printStackTrace();
-
-			}
+			if(connection != null) {
+				try {
+					ps.close();
+					DriverManagerConnectionPool.releaseConnection(connection);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				}
 		}
 		return listaCredenziali;
 		
@@ -311,18 +305,14 @@ public class CredenzialiDAOimpl implements CredenzialiDAO {
 			e.printStackTrace();
 
 		} finally {
-
-			try {
-
-				ps.close();
-
-				DriverManagerConnectionPool.releaseConnection(connection);
-
-			} catch (SQLException e) {
-
-				e.printStackTrace();
-
-			}
+			if(connection != null) {
+				try {
+					ps.close();
+					DriverManagerConnectionPool.releaseConnection(connection);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				}
 		}
 		return cred;
 	}

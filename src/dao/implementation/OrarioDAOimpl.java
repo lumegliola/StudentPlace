@@ -39,12 +39,14 @@ public class OrarioDAOimpl implements OrarioDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				ps.close();
-				DriverManagerConnectionPool.releaseConnection(connection);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			if(connection != null) {
+				try {
+					ps.close();
+					DriverManagerConnectionPool.releaseConnection(connection);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				}
 		}
 		return (result == 1);
 	}
@@ -78,12 +80,14 @@ public class OrarioDAOimpl implements OrarioDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				ps.close();
-				DriverManagerConnectionPool.releaseConnection(connection);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			if(connection != null) {
+				try {
+					ps.close();
+					DriverManagerConnectionPool.releaseConnection(connection);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				}
 		}
 		return (result == 1);
 	}
@@ -112,12 +116,14 @@ public class OrarioDAOimpl implements OrarioDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				ps.close();
-				DriverManagerConnectionPool.releaseConnection(connection);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			if(connection != null) {
+				try {
+					ps.close();
+					DriverManagerConnectionPool.releaseConnection(connection);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				}
 		}
 		return (result == 1);
 	}
@@ -150,12 +156,14 @@ public class OrarioDAOimpl implements OrarioDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				ps.close();
-				DriverManagerConnectionPool.releaseConnection(connection);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			if(connection != null) {
+				try {
+					ps.close();
+					DriverManagerConnectionPool.releaseConnection(connection);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				}
 		}
 		return null;
 	}
@@ -191,12 +199,14 @@ public class OrarioDAOimpl implements OrarioDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				ps.close();
-				DriverManagerConnectionPool.releaseConnection(connection);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			if(connection != null) {
+				try {
+					ps.close();
+					DriverManagerConnectionPool.releaseConnection(connection);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				}
 		}
 		return orari;
 	}	
@@ -233,12 +243,14 @@ public class OrarioDAOimpl implements OrarioDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				ps.close();
-				DriverManagerConnectionPool.releaseConnection(connection);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			if(connection != null) {
+				try {
+					ps.close();
+					DriverManagerConnectionPool.releaseConnection(connection);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				}
 		}
 		return orari;
 	}

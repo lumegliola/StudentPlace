@@ -57,12 +57,14 @@ public class UserDAOimpl implements UserDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				ps.close();
-				DriverManagerConnectionPool.releaseConnection(connection);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			if(connection != null) {
+				try {
+					ps.close();
+					DriverManagerConnectionPool.releaseConnection(connection);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				}
 		}
 		return (result == 1);
 	}
@@ -116,13 +118,14 @@ public class UserDAOimpl implements UserDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				ps.close();
-				psDel.close();
-				DriverManagerConnectionPool.releaseConnection(connection);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			if(connection != null) {
+				try {
+					ps.close();
+					DriverManagerConnectionPool.releaseConnection(connection);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				}
 		}
 		return (result == 1);
 	}
@@ -169,13 +172,14 @@ public class UserDAOimpl implements UserDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				ps.close();
-				psAmm.close();
-				DriverManagerConnectionPool.releaseConnection(connection);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			if(connection != null) {
+				try {
+					ps.close();
+					DriverManagerConnectionPool.releaseConnection(connection);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				}
 		}
 		return null;
 	}
@@ -228,13 +232,14 @@ public class UserDAOimpl implements UserDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				ps.close();
-				ps2.close();
-				DriverManagerConnectionPool.releaseConnection(connection);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			if(connection != null) {
+				try {
+					ps.close();
+					DriverManagerConnectionPool.releaseConnection(connection);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				}
 		}
 		return utenti;
 	}
