@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="/ServletCreaGds" method="post">
+<form action="../ServletCreaGds" method="post">
       <label>Nome Gds:</label>
       <input type="text" name ="nome">
       <br>

@@ -27,10 +27,10 @@ public class GdSDAOimpl implements GdSDAO {
 
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
-			
+
 			//dichiara lo statement
 			ps = connection.prepareStatement("insert into gds values (?, ?, ?, ?, ?, ?, ?);");
-			
+
 			//inserisce i campi
 			ps.setString(1, gds.getNomeGruppo());
 			ps.setObject(2, gds.getCreatore());
@@ -39,18 +39,20 @@ public class GdSDAOimpl implements GdSDAO {
 			ps.setTimestamp(5, gds.getOrario().getFine());
 			ps.setString(6, gds.getGiorno());
 			ps.setString(7, gds.getAula().getNomeAula());
-			
+
 			//esegue lo statement
 			result = ps.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				ps.close();
-				DriverManagerConnectionPool.releaseConnection(connection);
-			} catch (SQLException e) {
-				e.printStackTrace();
+			if(connection != null) {
+				try {
+					ps.close();
+					DriverManagerConnectionPool.releaseConnection(connection);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		return (result == 1);
@@ -66,12 +68,12 @@ public class GdSDAOimpl implements GdSDAO {
 			//dichiara lo statement
 			connection = DriverManagerConnectionPool.getConnection();
 			ps = connection.prepareStatement("update gds set nome = ?, aula = ?, oraFine = ? where name ="+ gds.getNomeGruppo()+" ;");
-			
+
 			if(nomeGruppo != "")
 				ps.setString(1, nomeGruppo);
 			else
 				ps.setString(1, gds.getNomeGruppo());
-			
+
 			if(nomeAula != "")
 				ps.setString(2, nomeAula);
 			else
@@ -89,12 +91,15 @@ public class GdSDAOimpl implements GdSDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
+			if(connection != null) {
+			}
 			try {
 				ps.close();
 				DriverManagerConnectionPool.releaseConnection(connection);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+
 		}
 
 		if (result == 1) {
@@ -109,7 +114,7 @@ public class GdSDAOimpl implements GdSDAO {
 
 	@Override
 	public boolean doDelete(String nomeGruppo) {
-		
+
 		Connection connection = null;
 		PreparedStatement ps = null;
 		int result = 0;
@@ -127,11 +132,13 @@ public class GdSDAOimpl implements GdSDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				ps.close();
-				DriverManagerConnectionPool.releaseConnection(connection);
-			} catch (SQLException e) {
-				e.printStackTrace();
+			if(connection != null) {
+				try {
+					ps.close();
+					DriverManagerConnectionPool.releaseConnection(connection);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		return (result == 1);
@@ -158,7 +165,7 @@ public class GdSDAOimpl implements GdSDAO {
 			if(result.next()) {
 				b.setCreatore(DAOFactory.getUserDAO().doRetrieveByKey(result.getString("creatore")));
 				b.setMateria(result.getString("materia"));
-				
+
 				b.setGiorno();
 				b.setAula(DAOFactory.getAulaDAO().doRetrieveByKey(result.getString("aula")));
 				return b;
@@ -167,11 +174,13 @@ public class GdSDAOimpl implements GdSDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				ps.close();
-				DriverManagerConnectionPool.releaseConnection(connection);
-			} catch (SQLException e) {
-				e.printStackTrace();
+			if(connection != null) {
+				try {
+					ps.close();
+					DriverManagerConnectionPool.releaseConnection(connection);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		return null;
@@ -179,7 +188,7 @@ public class GdSDAOimpl implements GdSDAO {
 
 	@Override
 	public GruppoDiStudio doRetrieveBySubject(String materia) {
-		
+
 		Connection connection = null;
 		PreparedStatement ps = null;
 
@@ -191,14 +200,14 @@ public class GdSDAOimpl implements GdSDAO {
 			//dichiara lo statement
 			ps = connection.prepareStatement("select * from gds where materia = ?;");
 			ps.setString(1, materia);
-			
+
 			//esegue lo statement
 			ResultSet result = ps.executeQuery();
 			//ricava i risultati
 			if(result.next()) {
 				b.setNomeGruppo(result.getString("nome"));
 				b.setCreatore(DAOFactory.getUserDAO().doRetrieveByKey(result.getString("creatore")));
-				
+
 				b.setOrario(result.getTimestamp("orainizio"), result.getTimestamp("oraFine"));
 				b.setAula(DAOFactory.getAulaDAO().doRetrieveByKey(result.getString("aula")));
 				return b;
@@ -207,11 +216,13 @@ public class GdSDAOimpl implements GdSDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				ps.close();
-				DriverManagerConnectionPool.releaseConnection(connection);
-			} catch (SQLException e) {
-				e.printStackTrace();
+			if(connection != null) {
+				try {
+					ps.close();
+					DriverManagerConnectionPool.releaseConnection(connection);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		return null;
@@ -219,7 +230,7 @@ public class GdSDAOimpl implements GdSDAO {
 
 	@Override
 	public GruppoDiStudio doRetrieveByNameAndSubject(String nomeGruppo, String materia) {
-		
+
 		Connection connection = null;
 		PreparedStatement ps = null;
 
@@ -241,7 +252,7 @@ public class GdSDAOimpl implements GdSDAO {
 			if(result.next()) {
 				b.setCreatore(DAOFactory.getUserDAO().doRetrieveByKey(result.getString("creatore")));
 				b.setMateria(materia);
-				
+
 				b.setOrario(result.getTimestamp("orainizio"), result.getTimestamp("oraFine"));
 				b.setAula(DAOFactory.getAulaDAO().doRetrieveByKey(result.getString("aula")));
 				return b;
@@ -250,15 +261,17 @@ public class GdSDAOimpl implements GdSDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				ps.close();
-				DriverManagerConnectionPool.releaseConnection(connection);
-			} catch (SQLException e) {
-				e.printStackTrace();
+			if(connection != null) {
+				try {
+					ps.close();
+					DriverManagerConnectionPool.releaseConnection(connection);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		return null;
-		
+
 	}
 
 	@Override
@@ -270,7 +283,7 @@ public class GdSDAOimpl implements GdSDAO {
 		try {
 
 			connection = DriverManagerConnectionPool.getConnection();
-			
+
 			//dichiara lo statement
 			ps = connection.prepareStatement("select * from gds;");
 
@@ -286,18 +299,20 @@ public class GdSDAOimpl implements GdSDAO {
 				b.setOrario(result.getTimestamp("orainizio"), result.getTimestamp("oraFine"));
 				b.setGiorno();
 				b.setAula(DAOFactory.getAulaDAO().doRetrieveByKey(result.getString("aula")));
-			// aggiunge l'oggetto alla lista
+				// aggiunge l'oggetto alla lista
 				gruppi.add(b);
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				ps.close();
-				DriverManagerConnectionPool.releaseConnection(connection);
-			} catch (SQLException e) {
-				e.printStackTrace();
+			if(connection != null) {
+				try {
+					ps.close();
+					DriverManagerConnectionPool.releaseConnection(connection);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		return gruppi;

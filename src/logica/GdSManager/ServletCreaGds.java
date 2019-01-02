@@ -40,7 +40,8 @@ public class ServletCreaGds extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		if((boolean)session.getAttribute("logged")) {
+		//if(session != null) {
+		//if((boolean)session.getAttribute("logged")) {
 		
 			String nomeGruppo = (String) request.getParameter("nomegruppo");
 			String materia = (String) request.getParameter("materia");
@@ -73,11 +74,13 @@ public class ServletCreaGds extends HttpServlet {
 			
 				}
 			}
-		else {
+		/*else {
 			//messagggio: utente non loggato
 			session.setAttribute("esito", "errore");
 			getServletContext().getRequestDispatcher("ProvaOutput").forward(request, response);
-	
 		}
-	}
+		}
+		
+		
+	}*/
 }
