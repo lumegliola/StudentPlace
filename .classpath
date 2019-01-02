@@ -9,6 +9,6 @@
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="servlet-api.jar"/>
-	<classpathentry kind="lib" path="C:/Users/lumeg/git/repository/StudentPlace/ScriptDB/mysql-connector-java-8.0.11.jar"/>
+	<classpathentry kind="lib" path="ScriptDB/mysql-connector-java-8.0.11.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
