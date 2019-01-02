@@ -1,4 +1,13 @@
 
+insert into credenziali(matricola,email,password,amministratore) values
+("0512101769", "email di luigi",123456,1),
+("0512103853", "a.crispo6studenti.unisa.it",123456,1),
+("0512103593", "a.capodanno5@studenti.unisa.it",123456,1),
+("0512103647", "a.panico19@studenti.unisa.it",123456,1),
+("0512102855", "f.megliola@studenti.unisa.it",123456,1),
+("0512102865", "f.megliola1@studenti.unisa.it",123456,0);
+
+
 insert into amministratore(matricola, nome,cognome) values
 ("0512101769", "Luigi","Califano"),
 ("0512103853", "Alessia","Crispo"),
@@ -49,14 +58,7 @@ insert into aula(nome,edificio) values
 ("F8", "F2");
 
 
-insert into credenziali(matricola,email,password,amministratore) values
-("0512101769", "email di luigi",123456,1),
-("0512103853", "a.crispo6studenti.unisa.it",123456,1),
-("0512103593", "a.capodanno5@studenti.unisa.it",123456,1),
-("0512103647", "a.panico19@studenti.unisa.it",123456,1),
-("0512102855", "f.megliola@studenti.unisa.it",123456,1),
-("0512102865", "f.megliola1@studenti.unisa.it",123456,0);
 
 insert into gds(nome,creatore,materia,oraInizio,oraFine,giorno,aula) values
 
-("Gruppo di is","a.crispo6studenti.unisa.it","Ingegneria Del software",20181210130000,201812101400000,"F1")
+("Gruppo di is","a.crispo6studenti.unisa.it","Ingegneria Del software","2018-12-21, 15:00:00", "2018-12-21, 17:30:00","lunedì" ,"F1")

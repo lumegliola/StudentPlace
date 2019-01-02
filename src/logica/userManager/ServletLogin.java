@@ -40,8 +40,8 @@ public class ServletLogin extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//String email = request.getParameter("email").toLowerCase();
 		//String password = request.getParameter("password");
-		String email = "email di test";
-		String password = "password di test";
+		String email = "f.megliola@studenti.unisa.it";
+		String password = "123456";
 		Credenziali b = DAOFactory.getCredenzialiDAO().doRetrieveByEmailAndPassword(email, password);
 		
 		if(b == null) { // Utente Non trovato, credenziali errate.
@@ -65,6 +65,7 @@ public class ServletLogin extends HttpServlet {
 
 			response.addCookie(emailCookie);
 			response.addCookie(passwordCookie);
+			System.out.println("Tutt appost");
 			
 			if(session != null) { //L'utente che si è appena loggato ha già una sessione.
 			session.setAttribute("email", b.getMail());
