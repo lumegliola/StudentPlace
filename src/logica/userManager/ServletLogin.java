@@ -11,9 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import it.unisa.tsw18.smartshop.model.beans.Cart;
-import it.unisa.tsw18.smartshop.model.beans.UserBean;
-import it.unisa.tsw18.smartshop.model.daos.implementations.DAOFactory;
+import bean.Credenziali;
+import bean.Utente;
+import dao.DAOFactory;
+
+
+
 
 /* *
  * Si occupa della login.
@@ -27,17 +30,17 @@ import it.unisa.tsw18.smartshop.model.daos.implementations.DAOFactory;
  * */
 
 @WebServlet("/login")
-public class LoginServlet extends HttpServlet {
+public class ServletLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public LoginServlet() {
+    public ServletLogin() {
         super();
     }
   
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String email = request.getParameter("email").toLowerCase();
 		String password = request.getParameter("password");
-		UserBean b = DAOFactory.getUserDAO().doRetrieveByEmailAndPassword(email, password);
+		Credenziali b = DAOFactory.getCredenzialiDAO().doRetrieveByEmailAndPassword(email, password);
 		
 		if(b == null) { // Utente Non trovato, credenziali errate.
 			request.setAttribute("is_error", true);
@@ -53,7 +56,7 @@ public class LoginServlet extends HttpServlet {
 			//Setto i cookie per i prossimi accessi al sito.
 			Cookie emailCookie = new Cookie("email", email);
 			Cookie passwordCookie = new Cookie("password", password);
-
+			Utente usr =DAOFactory.getUserDAO().doRetrieveByKey(b.getMatricola());
 			//Setto la durata massima dei cookies, un mese
 			emailCookie.setMaxAge(60 * 60 * 24 * 30);
 			passwordCookie.setMaxAge(60 * 60 * 24 * 30);
@@ -62,16 +65,15 @@ public class LoginServlet extends HttpServlet {
 			response.addCookie(passwordCookie);
 			
 			if(session != null) { //L'utente che si è appena loggato ha già una sessione.
-			session.setAttribute("email", b.getEmail());
-			session.setAttribute("name", b.getName());
+			session.setAttribute("email", b.getMail());
+			session.setAttribute("nome", usr.getNome());
 			session.setAttribute("logged", true);
 			
 			} else { //L'Utente che si è appena loggato non ha ancora una sessione, quindi dobbiamo creargliela.
 				session = request.getSession(true); 
-				session.setAttribute("email", b.getEmail());
-				session.setAttribute("name", b.getName());
-				session.setAttribute("logged", true);
-				session.setAttribute("cart", new Cart());	
+				session.setAttribute("email", b.getMail());
+				session.setAttribute("name", usr.getNome());
+				session.setAttribute("logged", true);	
 			}
 			
 			// Reindiriziamo alla home.
