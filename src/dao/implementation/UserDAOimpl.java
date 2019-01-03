@@ -154,8 +154,6 @@ public class UserDAOimpl implements UserDAO {
 				b.setCognome(result.getString("cognome"));
 				b.setCredenziali(DAOFactory.getCredenzialiDAO().doRetrieveByMatricola(matricola));
 				return b;
-			}else {
-				return doRetrieveStudentByKey(matricola);
 			}
 			
 		} catch (SQLException e) {
@@ -198,8 +196,6 @@ public class UserDAOimpl implements UserDAO {
 				b.setCognome(result.getString("cognome"));
 				b.setCredenziali(DAOFactory.getCredenzialiDAO().doRetrieveByMatricola(matricola));
 				return b;
-			}else {
-				return doRetrieveAdminByKey(matricola);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

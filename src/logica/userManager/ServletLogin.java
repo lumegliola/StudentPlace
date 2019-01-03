@@ -65,6 +65,8 @@ public class ServletLogin extends HttpServlet {
 			Cookie emailCookie = new Cookie("email", email);
 			Cookie passwordCookie = new Cookie("password", password);
 			Utente usr = DAOFactory.getUserDAO().doRetrieveAdminByKey(b.getMatricola());
+			if(usr == null)
+				usr = DAOFactory.getUserDAO().doRetrieveStudentByKey(b.getMatricola());
 			//Setto la durata massima dei cookies, un mese
 			emailCookie.setMaxAge(60 * 60 * 24 * 30);
 			passwordCookie.setMaxAge(60 * 60 * 24 * 30);
