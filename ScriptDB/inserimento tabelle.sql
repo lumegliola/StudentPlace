@@ -64,5 +64,4 @@ insert into aula(nome,edificio) values
 
 
 insert into gds(nome,creatore,materia,oraInizio,oraFine,giorno,aula) values
-
-("Gruppo di is","f.megliola1@studenti.unisa.it","Ingegneria Del software","2018-12-21, 15:00:00", "2018-12-21, 17:30:00","lunedì" ,"F1")
+("Gruppo di is","0512102865","Ingegneria Del software","2018-12-21, 15:00:00", "2018-12-21, 17:30:00","lunedì" ,"F1");
