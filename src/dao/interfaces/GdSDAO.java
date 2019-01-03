@@ -11,7 +11,7 @@ public interface GdSDAO {
 		  
 	public boolean doDelete(GruppoDiStudio gds);//metodo per cancellare un gds nel database passando oggetto (GruppoDiStudio)
 		  
-	public boolean doDelete(String nomeGruppo);//metodo per cancellare un gds nel database passando il nome(String)
+	public boolean doDeleteByNameAndSubjet(String nomeGruppo,String materia);//metodo per cancellare un gds nel database passando il nome(String)
 			
 	public GruppoDiStudio doRetrieveByName(String nomeGruppo);//metodo di ricerca gds tramite nome(String)
 		  

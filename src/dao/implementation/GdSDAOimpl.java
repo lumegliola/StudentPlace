@@ -109,11 +109,11 @@ public class GdSDAOimpl implements GdSDAO {
 
 	@Override
 	public boolean doDelete(GruppoDiStudio gds) {
-		return doDelete(gds.getNomeGruppo());
+		return doDeleteByNameAndSubjet(gds.getNomeGruppo(),gds.getMateria());
 	}
 
 	@Override
-	public boolean doDelete(String nomeGruppo) {
+	public boolean doDeleteByNameAndSubjet(String nomeGruppo,String materia) {
 
 		Connection connection = null;
 		PreparedStatement ps = null;
@@ -123,8 +123,9 @@ public class GdSDAOimpl implements GdSDAO {
 
 			connection = DriverManagerConnectionPool.getConnection();
 			//dichiara lo statement
-			ps = connection.prepareStatement("delete from gds where name = ?;");
+			ps = connection.prepareStatement("delete from gds where nome = ? and materia=?;");
 			ps.setString(1, nomeGruppo);
+			ps.setString(2,materia);
 
 			//esegue lo statement
 			result = ps.executeUpdate();
