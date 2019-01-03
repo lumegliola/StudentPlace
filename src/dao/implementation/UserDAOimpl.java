@@ -199,7 +199,7 @@ public class UserDAOimpl implements UserDAO {
 				b.setCredenziali(DAOFactory.getCredenzialiDAO().doRetrieveByMatricola(matricola));
 				return b;
 			}else {
-				return doRetrieveStudentByKey(matricola);
+				return doRetrieveAdminByKey(matricola);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
