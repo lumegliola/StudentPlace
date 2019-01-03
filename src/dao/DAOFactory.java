@@ -26,5 +26,13 @@ public class DAOFactory {
 		public static OrarioDAO getOrarioDAO() {
 			return new OrarioDAOimpl();
 		}
+		
+		public static AulaLiberaDAO getAulaLiberaDAO() {
+			return new AulaLibreaDAOimpl();
+		}
+		
+		public static IscrizioneDAO getIscrizioneDAO() {
+			return new IscrizioneDAOImpl();
+		}
 
 }
