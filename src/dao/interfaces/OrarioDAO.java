@@ -15,6 +15,8 @@ public interface OrarioDAO {
 	     
 	     public List<Orario> doRetrieveByStart(Timestamp start) ;//ricerca in base all'orario di inizio
 	     
+	     public Orario doRetrieveByStartAndFinish(Timestamp start, Timestamp finish) ;//ricerca in base all'orario di inizio e fine
+	     
 	     public Orario doRetrieveByKey(int id);//ricerca in base alla chiave
 	     
 	     public List<Orario> doRetrieveAll();//lista tutti gli orari

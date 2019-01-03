@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
@@ -210,6 +211,47 @@ public class OrarioDAOimpl implements OrarioDAO {
 		}
 		return orari;
 	}	
+	
+	@Override
+	public Orario doRetrieveByStartAndFinish(Timestamp start, Timestamp finish) {
+		Connection connection = null;
+		PreparedStatement ps = null;
+		Orario o = new Orario();
+
+		try {
+
+			connection = DriverManagerConnectionPool.getConnection();
+			
+			//dichiara lo statement
+			ps = connection.prepareStatement("select * from orario where inizio = ? and fine = ?;");
+			ps.setTimestamp(1, start);
+			ps.setTimestamp(1, finish);
+			
+			//esegue lo statement
+			ResultSet result = ps.executeQuery();
+
+			//ricava i risultati
+			if (result.next()) {
+				Orario b = new Orario();
+				b.setIdOrario(result.getInt("id"));
+				b.setInizio(start);
+				b.setFine(result.getTimestamp("fine"));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(connection != null) {
+				try {
+					ps.close();
+					DriverManagerConnectionPool.releaseConnection(connection);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				}
+		}
+		return o;
+	}
 
 	
 	
