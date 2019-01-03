@@ -1,6 +1,8 @@
 package logica.GdSManager;
 
 import java.io.IOException;
+import java.sql.Timestamp;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -56,10 +58,10 @@ public class ServletModificaGdS extends HttpServlet {
 						}
 						 String matricolaCretore=gds.getCreatore().getMatricola();
 	                     String matricola=(String)session.getAttribute("matricola");
-
-						if(matricola.equals(matricolaCretore)) { // se la matricola di chi sta eliminando è uguale a creatore elimina
+                        System.out.println("matricola"+matricola +"& matricola"+matricolaCretore );
+						if(matricola.equals(matricolaCretore)) { // se la matricola di chi sta modificando è uguale a creatore elimina
 							System.out.println("Gruppo di Studio viene modificato dal creatore!");
-                            DAOFactory.getGdSDAO().doSaveOrUpdate(gds, null, "capocchia", "", "", "");
+                            DAOFactory.getGdSDAO().doSaveOrUpdate(gds, "", "capocchia", "F8", new Timestamp (2018,10,23, 15,0,0,0),new Timestamp (2018,10,23, 16,0,0, 0));
 							
 							session.setAttribute("esito","ok");
 						    getServletContext().getRequestDispatcher("/view/ProvaOutput.jsp").forward(request, response);

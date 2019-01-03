@@ -73,18 +73,19 @@ public class GdSDAOimpl implements GdSDAO {
 			if(nomeGruppo.isEmpty() && (!nomeAula.isEmpty() && (inizio !=null && fine!=null))) {//se gruppo è vuota e (Aula no,inizio e fine != null)
 				Orario or=new Orario(inizio, fine);
 				
-				ps = connection.prepareStatement("update gds set  aula = ?,oraInzio=? ,oraFine = ?,giorno=? where nome =? and materia=? ;");
+				ps = connection.prepareStatement("update gds set  aula = ?,oraInizio=? ,oraFine = ?,giorno=? where nome =? and materia=? ;");
 				ps.setString(1,nomeAula);
 				ps.setTimestamp(2, inizio);
 				ps.setTimestamp(3, fine);
 				ps.setString(4, or.getGiorno());
 				ps.setString(5, gds.getNomeGruppo());
 				ps.setString(6, gds.getMateria());
+				result = ps.executeUpdate();
 			}
 			
 			
 			//esegue lo statement
-			result = ps.executeUpdate();
+
 
 		} catch (SQLException e) {
 			e.printStackTrace();
