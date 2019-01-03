@@ -51,3 +51,12 @@ id int (10) primary key auto_increment,
 inzio timestamp not null,
 fine timestamp not null
 );
+create table libera(
+aula varchar(10) not null,
+giorno varchar(10) not null,
+orario int(10) not null,
+primary key(aula,giorno,orario),
+foreign key (aula) references aula(nome),
+foreign key (giorno) references giorno(giorno),
+foreign key (orario) references orario(id)
+);
