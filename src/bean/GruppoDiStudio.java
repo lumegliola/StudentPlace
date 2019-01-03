@@ -14,21 +14,33 @@ public class GruppoDiStudio {
 	private String materia;
 	private Utente creatore;
 	private String giorno;
+	private int id;
 	
 	
+	
+
 	public GruppoDiStudio(){}
 	
-	public GruppoDiStudio(String nomeGruppo, Aula aula, Orario orario, String materia, Timestamp inizio, Timestamp fine, Utente creatore ){
+	public GruppoDiStudio(int unId,String nomeGruppo, Aula aula, Orario orario, String materia, Timestamp inizio, Timestamp fine, Utente creatore ){
+		this.id=unId;
 		this.nomeGruppo = nomeGruppo;
 		this.aula = aula;
 		this.orario =  new Orario(inizio, fine);
 		this.materia = nomeGruppo;
 		this.creatore = creatore;
 		this.giorno = getGiorno();
+	
 		
 	}
 	
-	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public String getNomeGruppo() {
 		return nomeGruppo;
 	}

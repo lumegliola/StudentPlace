@@ -60,11 +60,4 @@ foreign key (aula) references aula(nome),
 foreign key (giorno) references giorno(giorno),
 foreign key (orario) references orario(id)
 );
-create iscrizione(
-studente varchar(10) not null,
-gds int(10) not null,
-primary key (studente,gds ),
-foreign key (gds) references gds(id),
-foreign key (studente) references studente(matricola)
-);
 

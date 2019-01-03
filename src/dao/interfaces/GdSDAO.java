@@ -20,6 +20,8 @@ public interface GdSDAO {
 	public List<GruppoDiStudio> doRetrieveBySubject(String materia);//metodo di ricerca  per materia (String)
 	
 	public GruppoDiStudio doRetrieveByNameAndSubject(String nomeGruppo, String materia);//metodo per ricerca  nome e materiua(String,String)
+	
+	public GruppoDiStudio doRetrieveById(int id);
 
 	public List<GruppoDiStudio> doRetrieveAll();//metodo di ricerca per ricavare tutti gli oggetti gds 
 		

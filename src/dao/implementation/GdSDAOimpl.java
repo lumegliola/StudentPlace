@@ -318,6 +318,49 @@ public class GdSDAOimpl implements GdSDAO {
 			}
 		}
 		return gruppi;
+	}
+
+	@Override
+	public GruppoDiStudio doRetrieveById(int id) {
+		// TODO Auto-generated method stub
+		Connection connection = null;
+		PreparedStatement ps = null;
+
+		try {
+			GruppoDiStudio b = new GruppoDiStudio();
+			b.setId(id);
+
+			connection = DriverManagerConnectionPool.getConnection();
+			//dichiara lo statement
+			ps = connection.prepareStatement("select * from gds where id = ? ;");
+
+			ps.setInt(1, id);
+			
+			//esegue lo statement
+			ResultSet result = ps.executeQuery();
+			//ricava i risultati
+			if(result.next()) {
+				b.setCreatore(DAOFactory.getUserDAO().doRetrieveAdminByKey(result.getString("creatore")));
+				b.setMateria(result.getString("materia"));
+				b.setOrario(result.getTimestamp("orainizio"), result.getTimestamp("oraFine"));
+				b.setAula(DAOFactory.getAulaDAO().doRetrieveByKey(result.getString("aula")));
+				return b;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(connection != null) {
+				try {
+					ps.close();
+					DriverManagerConnectionPool.releaseConnection(connection);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return null;
+
 	}	
 
 }
