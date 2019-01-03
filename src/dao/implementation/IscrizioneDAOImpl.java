@@ -9,6 +9,7 @@ import java.util.List;
 
 import bean.GruppoDiStudio;
 import bean.Iscrizione;
+import bean.Utente;
 import dao.DAOFactory;
 import dao.interfaces.IscrizioneDAO;
 import db_connection.DriverManagerConnectionPool;
@@ -29,7 +30,7 @@ public class IscrizioneDAOImpl implements IscrizioneDAO{
 
 			//inserisce i campi
 			ps.setString(1, iscrizione.getIscritto().getMatricola());
-			ps.setObject(2, iscrizione.getGruppo().getNomeGruppo());
+			ps.setInt(2, iscrizione.getGruppo().getId());
 
 			//esegue lo statement
 			result = ps.executeUpdate();
@@ -51,11 +52,11 @@ public class IscrizioneDAOImpl implements IscrizioneDAO{
 
 	@Override
 	public boolean doDelete(Iscrizione iscrizione) {
-		return doDeleteByUserAndGroup(iscrizione.getIscritto().getMatricola(), iscrizione.getGruppo().getNomeGruppo());
+		return doDeleteByUserAndGroup(iscrizione.getIscritto().getMatricola(), iscrizione.getGruppo().getId());
 	}
 
 	@Override
-	public boolean doDeleteByUserAndGroup(String matricola, String nomeGruppo) {
+	public boolean doDeleteByUserAndGroup(String matricola, int idGruppo) {
 		Connection connection = null;
 		PreparedStatement ps = null;
 		int result = 0;
@@ -66,7 +67,7 @@ public class IscrizioneDAOImpl implements IscrizioneDAO{
 			//dichiara lo statement
 			ps = connection.prepareStatement("delete from iscrizione where studente = ? and gruppo = ?;");
 			ps.setString(1, matricola);
-			ps.setString(2, nomeGruppo);
+			ps.setInt(2, idGruppo);
 
 			//esegue lo statement
 			result = ps.executeUpdate();
@@ -98,7 +99,7 @@ public class IscrizioneDAOImpl implements IscrizioneDAO{
 
 			connection = DriverManagerConnectionPool.getConnection();
 			//dichiara lo statement
-			ps = connection.prepareStatement("select * from iscrizione join gds where iscrizione.studente = ?;");
+			ps = connection.prepareStatement("select * from iscrizione where studente = ?;");
 			ps.setString(1, matricola);
 
 			//esegue lo statement
@@ -107,7 +108,7 @@ public class IscrizioneDAOImpl implements IscrizioneDAO{
 			//ricava i risultati
 			while(result.next()) {
 				
-				b.setGruppo(DAOFactory.getGdSDAO().doRetrieveByNameAndSubject(result.getString("nome"), result.getString("materia")));
+				b.setGruppo(DAOFactory.getGdSDAO().doRetrieveById(result.getInt("gruppo")));
 				res.add(b);
 				
 			}
@@ -129,31 +130,29 @@ public class IscrizioneDAOImpl implements IscrizioneDAO{
 	}
 
 	@Override
-	public List<Iscrizione> doRetrieveByGroup(String nomeGruppo) {
+	public List<Iscrizione> doRetrieveByGroup(int idGruppo) {
 		Connection connection = null;
 		PreparedStatement ps = null;
 		List<Iscrizione> res = new ArrayList<>();
 
 		try {
 			Iscrizione b = new Iscrizione();
-			b.setGruppo(DAOFactory.getGdSDAO().doRetrieveByName(nomeGruppo).get(0));
+			b.setGruppo(DAOFactory.getGdSDAO().doRetrieveById(idGruppo));
 
 			connection = DriverManagerConnectionPool.getConnection();
 			//dichiara lo statement
-			ps = connection.prepareStatement("select * from iscrizione join studente where  = ?;");
-			ps.setString(1, nomeGruppo);
+			ps = connection.prepareStatement("select * from iscrizione where gruppo = ?;");
+			ps.setInt(1, idGruppo);
 
 			//esegue lo statement
 			ResultSet result = ps.executeQuery();
 
 			//ricava i risultati
 			while(result.next()) {
-				b.setIscritto(DAOFactory.getUserDAO().doRetrieveStudentByKey(result.getString("creatore")));
-				b.setMateria(result.getString("materia"));
-
-				b.setGiorno();
-				b.setAula(DAOFactory.getAulaDAO().doRetrieveByKey(result.getString("aula")));
+			
+				b.setIscritto(DAOFactory.getUserDAO().doRetrieveStudentByKey(result.getString("studente")));
 				res.add(b);
+	
 			}
 			return res;
 
@@ -173,15 +172,89 @@ public class IscrizioneDAOImpl implements IscrizioneDAO{
 	}
 
 	@Override
-	public Iscrizione doRetrieveByUserAndGroup(String matricola, String nomeGruppo) {
-		// TODO Auto-generated method stub
+	public Iscrizione doRetrieveByUserAndGroup(String matricola, int idGruppo) {
+		Connection connection = null;
+		PreparedStatement ps = null;
+
+		try {
+			Iscrizione b = new Iscrizione();
+			Utente s = DAOFactory.getUserDAO().doRetrieveStudentByKey(matricola);
+			GruppoDiStudio g = DAOFactory.getGdSDAO().doRetrieveById(idGruppo);
+			
+
+			connection = DriverManagerConnectionPool.getConnection();
+			//dichiara lo statement
+			ps = connection.prepareStatement("select * from iscrizione where studente = ? and gruppo = ?;");
+
+			ps.setString(1, s.getMatricola());
+			ps.setInt(2, g.getId());
+
+			//esegue lo statement
+			ResultSet result = ps.executeQuery();
+			//ricava i risultati
+			if(result.next()) {
+				
+				b.setIscritto(DAOFactory.getUserDAO().doRetrieveStudentByKey(result.getString("matricola")));
+				b.setGruppo(DAOFactory.getGdSDAO().doRetrieveById(result.getInt("gruppo")));
+				return b;
+		
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(connection != null) {
+				try {
+					ps.close();
+					DriverManagerConnectionPool.releaseConnection(connection);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 		return null;
+
 	}
 
 	@Override
 	public List<Iscrizione> doRetrieveAll() {
-		// TODO Auto-generated method stub
-		return null;
+		Connection connection = null;
+		PreparedStatement ps = null;
+		List<Iscrizione> res = new ArrayList<>();
+
+		try {
+
+			connection = DriverManagerConnectionPool.getConnection();
+
+			//dichiara lo statement
+			ps = connection.prepareStatement("select * from iscrizione;");
+
+			//esegue lo statement
+			ResultSet result = ps.executeQuery();
+
+			//ricava i risultati
+			while (result.next()) {
+				Iscrizione b = new Iscrizione();
+				b.setIscritto(DAOFactory.getUserDAO().doRetrieveStudentByKey(result.getString("matricola")));
+				b.setGruppo(DAOFactory.getGdSDAO().doRetrieveById(result.getInt("gruppo")));
+				
+				// aggiunge l'oggetto alla lista
+				res.add(b);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(connection != null) {
+				try {
+					ps.close();
+					DriverManagerConnectionPool.releaseConnection(connection);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return res;
 	}
 
 }
