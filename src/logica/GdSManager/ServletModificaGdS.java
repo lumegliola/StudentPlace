@@ -54,14 +54,13 @@ public class ServletModificaGdS extends HttpServlet {
 							session.setAttribute("esito", "errore");
 							getServletContext().getRequestDispatcher("/view/ProvaOutput.jsp").forward(request, response);
 							return;
-						
 						}
 						 String matricolaCretore=gds.getCreatore().getMatricola();
 	                     String matricola=(String)session.getAttribute("matricola");
                         System.out.println("matricola"+matricola +" & matricola"+matricolaCretore );
 						if(matricola.equals(matricolaCretore)) { // se la matricola di chi sta modificando è uguale a creatore elimina
 							System.out.println("Gruppo di Studio viene modificato dal creatore!");
-                            DAOFactory.getGdSDAO().doSaveOrUpdate(gds, "", "capocchia", "F8", new Timestamp(118,10,23, 15,0,0,0),new Timestamp (118,10,23, 16,0,0,0));
+                            DAOFactory.getGdSDAO().doSaveOrUpdate(gds, "F8", new Timestamp(118,10,23, 15,0,0,0),new Timestamp (118,10,23, 16,0,0,0));
 							
 							session.setAttribute("esito","ok");
 						    getServletContext().getRequestDispatcher("/view/ProvaOutput.jsp").forward(request, response);

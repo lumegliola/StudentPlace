@@ -60,7 +60,7 @@ public class GdSDAOimpl implements GdSDAO {
 	}
 
 	@Override
-	public boolean doSaveOrUpdate(GruppoDiStudio gds, String nomeGruppo, String materia,String nomeAula, Timestamp inizio ,Timestamp fine) {
+	public boolean doSaveOrUpdate(GruppoDiStudio gds,String nomeAula, Timestamp inizio ,Timestamp fine) {
 		Connection connection = null;
 		PreparedStatement ps = null;
 		int result = 0;
@@ -70,7 +70,7 @@ public class GdSDAOimpl implements GdSDAO {
 			connection = DriverManagerConnectionPool.getConnection();
 			
 
-			if(nomeGruppo.isEmpty() && (!nomeAula.isEmpty() && (inizio !=null && fine!=null))) {//se gruppo è vuota e (Aula no,inizio e fine != null)
+		//se gruppo è vuota e (Aula no,inizio e fine != null)
 				Orario or=new Orario(inizio, fine);
 				
 				ps = connection.prepareStatement("update gds set  aula = ? ,oraInizio=? ,oraFine = ?,giorno=? where nome =? and materia=? ;");
@@ -81,8 +81,7 @@ public class GdSDAOimpl implements GdSDAO {
 				ps.setString(5, gds.getNomeGruppo());
 				ps.setString(6, gds.getMateria());
 				
-			}
-			result = ps.executeUpdate();
+					result = ps.executeUpdate();
 			
 			//esegue lo statement
 

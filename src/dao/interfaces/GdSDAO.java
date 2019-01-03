@@ -9,7 +9,7 @@ public interface GdSDAO {
 
 	public boolean doSave(GruppoDiStudio gds); //metodo per inserire GdS nel database
 		  
-	public boolean doSaveOrUpdate(GruppoDiStudio gds, String nomeGruppo,String materia, String nomeAula,Timestamp inizio ,Timestamp fine);//metodo per modificare un Gruppo nel database
+	public boolean doSaveOrUpdate(GruppoDiStudio gds, String nomeAula,Timestamp inizio ,Timestamp fine);//metodo per modificare un Gruppo nel database
 		  
 	public boolean doDelete(GruppoDiStudio gds);//metodo per cancellare un gds nel database passando oggetto (GruppoDiStudio)
 		  
