@@ -145,9 +145,10 @@ public class GdSDAOimpl implements GdSDAO {
 	}
 
 	@Override
-	public GruppoDiStudio doRetrieveByName(String nomeGruppo) {
+	public List<GruppoDiStudio> doRetrieveByName(String nomeGruppo) {
 		Connection connection = null;
 		PreparedStatement ps = null;
+		List<GruppoDiStudio> res = new ArrayList<>();
 
 		try {
 			GruppoDiStudio b = new GruppoDiStudio();
@@ -162,14 +163,15 @@ public class GdSDAOimpl implements GdSDAO {
 			ResultSet result = ps.executeQuery();
 
 			//ricava i risultati
-			if(result.next()) {
+			while(result.next()) {
 				b.setCreatore(DAOFactory.getUserDAO().doRetrieveAdminByKey(result.getString("creatore")));
 				b.setMateria(result.getString("materia"));
 
 				b.setGiorno();
 				b.setAula(DAOFactory.getAulaDAO().doRetrieveByKey(result.getString("aula")));
-				return b;
+				res.add(b);
 			}
+			return res;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -187,11 +189,11 @@ public class GdSDAOimpl implements GdSDAO {
 	}
 
 	@Override
-	public GruppoDiStudio doRetrieveBySubject(String materia) {
+	public List<GruppoDiStudio> doRetrieveBySubject(String materia) {
 
 		Connection connection = null;
 		PreparedStatement ps = null;
-
+		List<GruppoDiStudio> res = new ArrayList<>();
 		try {
 			GruppoDiStudio b = new GruppoDiStudio();
 			b.setMateria(materia);
@@ -204,14 +206,15 @@ public class GdSDAOimpl implements GdSDAO {
 			//esegue lo statement
 			ResultSet result = ps.executeQuery();
 			//ricava i risultati
-			if(result.next()) {
+			while(result.next()) {
 				b.setNomeGruppo(result.getString("nome"));
 				b.setCreatore(DAOFactory.getUserDAO().doRetrieveAdminByKey(result.getString("creatore")));
 
 				b.setOrario(result.getTimestamp("orainizio"), result.getTimestamp("oraFine"));
 				b.setAula(DAOFactory.getAulaDAO().doRetrieveByKey(result.getString("aula")));
-				return b;
+				res.add(b);
 			}
+			return res;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
