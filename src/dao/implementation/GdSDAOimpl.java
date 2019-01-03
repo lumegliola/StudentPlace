@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -59,7 +60,7 @@ public class GdSDAOimpl implements GdSDAO {
 	}
 
 	@Override
-	public boolean doSaveOrUpdate(GruppoDiStudio gds, String nomeGruppo, String nomeAula, GregorianCalendar fine) {
+	public boolean doSaveOrUpdate(GruppoDiStudio gds, String nomeGruppo, String materia,String nomeAula, Timestamp inizio ,Timestamp fine) {
 		Connection connection = null;
 		PreparedStatement ps = null;
 		int result = 0;
@@ -67,24 +68,21 @@ public class GdSDAOimpl implements GdSDAO {
 		try {
 			//dichiara lo statement
 			connection = DriverManagerConnectionPool.getConnection();
-			ps = connection.prepareStatement("update gds set nome = ?, aula = ?, oraFine = ? where name ="+ gds.getNomeGruppo()+" ;");
+			
 
-			if(nomeGruppo != "")
-				ps.setString(1, nomeGruppo);
-			else
-				ps.setString(1, gds.getNomeGruppo());
-
-			if(nomeAula != "")
-				ps.setString(2, nomeAula);
-			else
-				ps.setString(2, gds.getAula().getNomeAula());
-
-			if(Orario.class.equals(null)) {
-				ps.setTimestamp(3, gds.getOrario().getFine());
+			if(nomeGruppo.isEmpty() && (!nomeAula.isEmpty() && (inizio !=null && fine!=null))) {//se gruppo è vuota e (Aula no,inizio e fine != null)
+				Orario or=new Orario(inizio, fine);
+				
+				ps = connection.prepareStatement("update gds set  aula = ?,oraInzio=? ,oraFine = ?,giorno=? where nome =? and materia=? ;");
+				ps.setString(1,nomeAula);
+				ps.setTimestamp(2, inizio);
+				ps.setTimestamp(3, fine);
+				ps.setString(4, or.getGiorno());
+				ps.setString(5, gds.getNomeGruppo());
+				ps.setString(6, gds.getMateria());
 			}
-			else
-				ps.setTime(3, new java.sql.Time(fine.getTimeInMillis()));
-
+			
+			
 			//esegue lo statement
 			result = ps.executeUpdate();
 
