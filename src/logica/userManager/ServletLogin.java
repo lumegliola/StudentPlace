@@ -76,6 +76,8 @@ public class ServletLogin extends HttpServlet {
 			if(session != null) { //L'utente che si è appena loggato ha già una sessione.
 				session.setAttribute("email", b.getMail());
 				session.setAttribute("nome", usr.getNome());
+				session.setAttribute("matricola", usr.getMatricola());
+
 				session.setAttribute("logged", true);
 				
 			} else { //L'Utente che si è appena loggato non ha ancora una sessione, quindi dobbiamo creargliela.
