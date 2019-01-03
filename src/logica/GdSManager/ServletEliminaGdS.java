@@ -56,6 +56,7 @@ public class ServletEliminaGdS extends HttpServlet {
 						session.setAttribute("esito", "errore");
 						getServletContext().getRequestDispatcher("/view/ProvaOutput.jsp").forward(request, response);
 						return;
+					
 					}
 					 String matricolaCretore=gds.getCreatore().getMatricola();
                      String matricola=(String)session.getAttribute("matricola");
