@@ -1,7 +1,7 @@
 package bean;
 
 public class Utente {
-	
+
 
 	private String matricola;
 	private String nome;
@@ -10,13 +10,13 @@ public class Utente {
 
 	public Utente() {}
 	public Utente(String unNome,String unCognome,Credenziali delleCredenziali) {
-          
-		
+
+
 		this.setMatricola(delleCredenziali.getMatricola());
 		this.setNome(unNome);
 		this.setCognome(unCognome);
 		setCredenziali(delleCredenziali);
-		
+
 	}
 
 
@@ -68,36 +68,13 @@ public class Utente {
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		return result;
 	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
+	
+	public boolean equals(Utente obj) {
+		
+		if( nome.equals(obj.getNome())  &&cognome.equals(obj.getCognome() )
+				&&matricola.equals(obj.getMatricola())  &&credenziali.equals(obj.getCredenziali()))  {
 			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Utente other = (Utente) obj;
-		if (cognome == null) {
-			if (other.cognome != null)
-				return false;
-		} else if (!cognome.equals(other.cognome))
-			return false;
-		if (credenziali == null) {
-			if (other.credenziali != null)
-				return false;
-		} else if (!credenziali.equals(other.credenziali))
-			return false;
-		if (matricola == null) {
-			if (other.matricola != null)
-				return false;
-		} else if (!matricola.equals(other.matricola))
-			return false;
-		if (nome == null) {
-			if (other.nome != null)
-				return false;
-		} else if (!nome.equals(other.nome))
-			return false;
-		return true;
+		}
+		else return false;
 	}
-
 }

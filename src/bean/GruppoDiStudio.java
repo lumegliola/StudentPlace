@@ -116,46 +116,19 @@ public class GruppoDiStudio {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
 		GruppoDiStudio other = (GruppoDiStudio) obj;
-		if (aula == null) {
-			if (other.aula != null)
-				return false;
-		} else if (!aula.equals(other.aula))
-			return false;
-		if (creatore == null) {
-			if (other.creatore != null)
-				return false;
-		} else if (!creatore.equals(other.creatore))
-			return false;
-		if (giorno == null) {
-			if (other.giorno != null)
-				return false;
-		} else if (!giorno.equals(other.giorno))
-			return false;
-		if (id != other.id)
-			return false;
-		if (materia == null) {
-			if (other.materia != null)
-				return false;
-		} else if (!materia.equals(other.materia))
-			return false;
-		if (nomeGruppo == null) {
-			if (other.nomeGruppo != null)
-				return false;
-		} else if (!nomeGruppo.equals(other.nomeGruppo))
-			return false;
-		if (orario == null) {
-			if (other.orario != null)
-				return false;
-		} else if (!orario.equals(other.orario))
-			return false;
+		if (aula.equals(other.getAula())  &&
+				creatore.equals(other.getCreatore()) && nomeGruppo.equals(other.nomeGruppo)
+				&& ){
+		
 		return true;
 	}
-	
-}
+		return false ;
+	}
+}private String nomeGruppo;
+private Aula aula;
+private Orario orario;
+private String materia;
+private Utente creatore;
+private String giorno;
+private int id;

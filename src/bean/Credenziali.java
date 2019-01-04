@@ -51,33 +51,12 @@ private String matricola;
 		return result;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
+	
+	public boolean equals(Credenziali obj) {
+		if (mail.equals(obj.getMail())  && password.equals(obj.getPassword())  &&
+				admin==obj.isAdmin()&& matricola.equals(obj.getMatricola())) {
 			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Credenziali other = (Credenziali) obj;
-		if (admin != other.admin)
-			return false;
-		if (mail == null) {
-			if (other.mail != null)
-				return false;
-		} else if (!mail.equals(other.mail))
-			return false;
-		if (matricola == null) {
-			if (other.matricola != null)
-				return false;
-		} else if (!matricola.equals(other.matricola))
-			return false;
-		if (password == null) {
-			if (other.password != null)
-				return false;
-		} else if (!password.equals(other.password))
-			return false;
-		return true;
 	}
-
+		else return false;
+	}
 }

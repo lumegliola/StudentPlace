@@ -22,6 +22,8 @@ class GdSDAOimplTest {
 	Timestamp inizio = new Timestamp(119, 0, 15, 0, 0, 0, 0);
 	Timestamp fine = new Timestamp(119, 0, 15, 0, 10, 0, 0);
 	boolean ok;
+	
+	
 	@Test
 	void testDoSave() {
 		gruppo.setAula(aula);
@@ -36,12 +38,11 @@ class GdSDAOimplTest {
 		ok = false;
 		Boolean res = dao.doSave(gruppo);
 		assertTrue(res);
-		List<GruppoDiStudio> aRes = dao.doRetrieveByName(gruppo.getNomeGruppo());
-		for( GruppoDiStudio b : aRes) {
-			if(gruppo.equals(b))
-				ok = true; System.out.println("successo");
-		}
-		assertTrue(ok);
+		GruppoDiStudio risultato = dao.doRetrieveByNameAndSubject(gruppo.getNomeGruppo(),gruppo.getMateria());
+		System.out.println(risultato.getNomeGruppo());
+		
+		
+		assertTrue(risultato.equals(gruppo));
 		
 	}
 
