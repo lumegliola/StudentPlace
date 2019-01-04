@@ -61,6 +61,15 @@ insert into aula(nome,edificio) values
 ("F7", "F2"),
 ("F8", "F2");
 
+insert into giorno (giorno)value
+("lunedì"),
+("martedì"),
+("mercoledì"),
+("gioveì"),
+("venerdì"),
+("sabato"),
+("domenica");
+
 
 
 insert into gds(nome,creatore,materia,oraInizio,oraFine,giorno,aula) values

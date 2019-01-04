@@ -225,7 +225,7 @@ public class OrarioDAOimpl implements OrarioDAO {
 			//dichiara lo statement
 			ps = connection.prepareStatement("select * from orario where inizio = ? and fine = ?;");
 			ps.setTimestamp(1, start);
-			ps.setTimestamp(1, finish);
+			ps.setTimestamp(2, finish);
 			
 			//esegue lo statement
 			ResultSet result = ps.executeQuery();
