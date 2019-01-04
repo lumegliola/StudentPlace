@@ -18,15 +18,6 @@ import dao.interfaces.AulaLiberaDAO;
 
 public class AulaLiberaDAOimplTest {
 
-	/*AulaLiberaDAO a = DAOFactory.getAulaLiberaDAO();
-	Aula aula = new Aula("P12", "F3");
-	Timestamp inizio = new Timestamp(119, 0, 21, 0, 0, 0, 0);
-	Timestamp fine = new Timestamp(119, 0, 21, 0, 10, 0, 0);
-	Orario or = new Orario(inizio, fine);
-	Orario or2 = new Orario(new Timestamp(119, 0, 7, 15, 14, 0, 0),new Timestamp(119, 0, 17, 15, 30, 0, 0));
-	AulaLibera al = new AulaLibera(aula, or);
-	boolean ok;
-	 */
 	@Test
 	public void testDoSave() {
 		System.out.println("test metodo 1");
