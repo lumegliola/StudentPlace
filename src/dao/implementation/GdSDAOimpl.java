@@ -166,7 +166,7 @@ public class GdSDAOimpl implements GdSDAO {
 				b.setCreatore(DAOFactory.getUserDAO().doRetrieveAdminByKey(result.getString("creatore")));
 				b.setMateria(result.getString("materia"));
                 b.setOrario(result.getTimestamp("oraInizio"), result.getTimestamp("oraFine"));
-                
+                b.setId(result.getInt("id"));
 				b.setGiorno();
 				b.setAula(DAOFactory.getAulaDAO().doRetrieveByKey(result.getString("aula")));
 				res.add(b);
@@ -209,7 +209,7 @@ public class GdSDAOimpl implements GdSDAO {
 			while(result.next()) {
 				b.setNomeGruppo(result.getString("nome"));
 				b.setCreatore(DAOFactory.getUserDAO().doRetrieveAdminByKey(result.getString("creatore")));
-
+				b.setId(result.getInt("id"));
 				b.setOrario(result.getTimestamp("orainizio"), result.getTimestamp("oraFine"));
 				b.setAula(DAOFactory.getAulaDAO().doRetrieveByKey(result.getString("aula")));
 				res.add(b);
@@ -257,6 +257,7 @@ public class GdSDAOimpl implements GdSDAO {
 				b.setMateria(materia);
 
 				b.setOrario(result.getTimestamp("orainizio"), result.getTimestamp("oraFine"));
+				b.setId(result.getInt("id"));
 				b.setAula(DAOFactory.getAulaDAO().doRetrieveByKey(result.getString("aula")));
 				return b;
 			}
@@ -298,6 +299,7 @@ public class GdSDAOimpl implements GdSDAO {
 				GruppoDiStudio b = new GruppoDiStudio();
 				b.setNomeGruppo(result.getString("nome"));
 				b.setCreatore(DAOFactory.getUserDAO().doRetrieveAdminByKey(result.getString("creatore")));
+				b.setId(result.getInt("id"));
 				b.setMateria(result.getString("materia"));
 				b.setOrario(result.getTimestamp("orainizio"), result.getTimestamp("oraFine"));
 				b.setGiorno();
