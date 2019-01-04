@@ -76,26 +76,36 @@ public class Orario {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (!(obj instanceof Orario)) {
 			return false;
+		}
 		Orario other = (Orario) obj;
 		if (fine == null) {
-			if (other.fine != null)
+			if (other.fine != null) {
 				return false;
-		} else if (!fine.equals(other.fine))
+			}
+		} else if (!fine.equals(other.fine)) {
 			return false;
-		if (idOrario != other.idOrario)
+		}
+		if (idOrario != other.idOrario) {
 			return false;
+		}
 		if (inizio == null) {
-			if (other.inizio != null)
+			if (other.inizio != null) {
 				return false;
-		} else if (!inizio.equals(other.inizio))
+			}
+		} else if (!inizio.equals(other.inizio)) {
 			return false;
+		}
 		return true;
 	}
+
+
 	
 }

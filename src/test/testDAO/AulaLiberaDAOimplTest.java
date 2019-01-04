@@ -17,25 +17,38 @@ import dao.interfaces.AulaLiberaDAO;
 
 public class AulaLiberaDAOimplTest {
 
-	AulaLiberaDAO a = DAOFactory.getAulaLiberaDAO();
-	Aula aula = new Aula("P8", "F3");
+	/*AulaLiberaDAO a = DAOFactory.getAulaLiberaDAO();
+	Aula aula = new Aula("P12", "F3");
 	Timestamp inizio = new Timestamp(119, 0, 21, 0, 0, 0, 0);
 	Timestamp fine = new Timestamp(119, 0, 21, 0, 10, 0, 0);
 	Orario or = new Orario(inizio, fine);
 	Orario or2 = new Orario(new Timestamp(119, 0, 7, 15, 14, 0, 0),new Timestamp(119, 0, 17, 15, 30, 0, 0));
 	AulaLibera al = new AulaLibera(aula, or);
 	boolean ok;
-
+*/
 	@Test
 	public void testDoSave() {
 		System.out.println("test metodo 1");
-		ok = false;
-		Boolean res = a.doSave(al);
+		Aula aula = new Aula("P4", "F3");
+		Timestamp inizio = new Timestamp(119, 0, 21, 0, 0, 0, 0);
+		Timestamp fine = new Timestamp(119, 0, 21, 0, 10, 0, 0);
+		Orario or = new Orario(inizio, fine);
+		DAOFactory.getOrarioDAO().doSave(or);
+		
+		AulaLibera al = new AulaLibera(aula, or);
+		
+		Boolean res = DAOFactory.getAulaLiberaDAO().doSave(al);
 		assertTrue(res);
-		AulaLibera risultato = a.doRetrieveByKey(al.getAula().getNomeAula(), al.getGiorno(), al.getOrario().getIdOrario());
+		
+		AulaLibera risultato = DAOFactory.getAulaLiberaDAO().doRetrieveByKey(al.getAula().getNomeAula(), al.getGiorno(), DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(inizio, fine).getIdOrario());
+		al.getOrario().setIdOrario(DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(inizio, fine).getIdOrario());
 		
 		
 		System.out.println(risultato.equals(al));
+		System.out.println(risultato.getAula().getNomeAula());
+		System.out.println(risultato.getGiorno());
+		System.out.println(risultato.getOrario().getIdOrario());
+		
 		
 		System.out.println("successo");	
 		
@@ -44,9 +57,8 @@ public class AulaLiberaDAOimplTest {
 	@Test
 	public void testDoSaveOrUpdate() {
 		System.out.println("test metodo 2");
-		ok = false;
 		
-		a.doSaveOrUpdate(al, or2);
+		DAOFactory.getAulaLiberaDAO().doSaveOrUpdate(al, or2);
 		
 		AulaLibera al2= new AulaLibera(aula, or2);
 		
@@ -59,12 +71,16 @@ public class AulaLiberaDAOimplTest {
 
 	@Test
 	public void testDoDeleteAulaLibera() {
-		fail("Not yet implemented");
+		System.out.println("test metodo 3");
+		
+		assertTrue(a.doDelete(al));
+		System.out.println("successo");
+		
 	}
 
 	@Test
 	public void testDoDeleteStringStringInt() {
-		fail("Not yet implemented");
+		
 	}
 
 	@Test

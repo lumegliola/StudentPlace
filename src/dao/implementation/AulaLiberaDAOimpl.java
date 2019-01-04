@@ -163,7 +163,6 @@ public class AulaLiberaDAOimpl implements AulaLiberaDAO{
 					b.setGiorno(b.getOrario().getGiorno());
 					
 					
-
 				}
 
 			} catch (SQLException e) {

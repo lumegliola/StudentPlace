@@ -33,26 +33,33 @@ public class Iscrizione {
 	}
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (!(obj instanceof Iscrizione)) {
 			return false;
+		}
 		Iscrizione other = (Iscrizione) obj;
 		if (gruppo == null) {
-			if (other.gruppo != null)
+			if (other.gruppo != null) {
 				return false;
-		} else if (!gruppo.equals(other.gruppo))
+			}
+		} else if (!gruppo.equals(other.gruppo)) {
 			return false;
+		}
 		if (iscritto == null) {
-			if (other.iscritto != null)
+			if (other.iscritto != null) {
 				return false;
-		} else if (!iscritto.equals(other.iscritto))
+			}
+		} else if (!iscritto.equals(other.iscritto)) {
 			return false;
+		}
 		return true;
 	}
-	
+
 	
 
 }

@@ -50,13 +50,43 @@ public class AulaLibera {
 		return result;
 	}
 
-	
-	public boolean equals(AulaLibera obj) {
-	
-		if(this.getAula().equals(obj.getAula()) && this.getGiorno().equals(obj.getGiorno()) && this.getOrario().equals(obj.getOrario()))
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
-		else return false;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof AulaLibera)) {
+			return false;
+		}
+		AulaLibera other = (AulaLibera) obj;
+		if (aula == null) {
+			if (other.aula != null) {
+				return false;
+			}
+		} else if (!aula.equals(other.aula)) {
+			return false;
+		}
+		if (giorno == null) {
+			if (other.giorno != null) {
+				return false;
+			}
+		} else if (!giorno.equals(other.giorno)) {
+			return false;
+		}
+		if (orario == null) {
+			if (other.orario != null) {
+				return false;
+			}
+		} else if (!orario.equals(other.orario)) {
+			return false;
+		}
+		return true;
 	}
+
+	
 
 	
 }

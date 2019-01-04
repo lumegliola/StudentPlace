@@ -44,17 +44,34 @@ public class Aula {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Aula other = (Aula) obj;
-		if(other.getNomeAula().equals(this.getNomeAula())&&other.getEdificio().equals(this.getEdificio())) {
+		if (this == obj) {
 			return true;
 		}
-		
-		return false;
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof Aula)) {
+			return false;
+		}
+		Aula other = (Aula) obj;
+		if (edificio == null) {
+			if (other.edificio != null) {
+				return false;
+			}
+		} else if (!edificio.equals(other.edificio)) {
+			return false;
+		}
+		if (nomeAula == null) {
+			if (other.nomeAula != null) {
+				return false;
+			}
+		} else if (!nomeAula.equals(other.nomeAula)) {
+			return false;
+		}
+		return true;
 	}
+
+
 	
 	
 }
