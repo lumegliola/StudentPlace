@@ -65,7 +65,7 @@ public class CredenzialiDAOimpl implements CredenzialiDAO {
 				
 			}else {
 				
-				 ps = connection.prepareStatement("update credenziale set password = ? where mail=?");     
+				 ps = connection.prepareStatement("update credenziali set password = ? where email=?");     
 			
 				 ps.setString(1, password);
 				 ps.setString(2, cred.getMail());
@@ -105,12 +105,12 @@ public class CredenzialiDAOimpl implements CredenzialiDAO {
 
 			connection = DriverManagerConnectionPool.getConnection();
 			Credenziali a = DAOFactory.getCredenzialiDAO().doRetrieveByKey(mail);
-			
-			ps = connection.prepareStatement("delete from credenziali where mail= ?");				//Crea un oggetto PreparedStatement relativo alla stringa SQL passata in input
+			DAOFactory.getUserDAO().doDelete(a.getMatricola());
+			ps = connection.prepareStatement("delete from credenziali where email= ?");				//Crea un oggetto PreparedStatement relativo alla stringa SQL passata in input
 			ps.setString(1, mail);                                             		    			// passiamo indice  e il valore che sarà inserito nel placeholder  '?'
 	        
 			result = ps.executeUpdate();                                                    	    //Esegue la query e ritorna 1
-			DAOFactory.getUserDAO().doDelete(a.getMatricola());
+			
 		} catch (SQLException e) {
 
 			e.printStackTrace();
@@ -290,7 +290,7 @@ public class CredenzialiDAOimpl implements CredenzialiDAO {
 			boolean admin=false;
 			while(result.next()) {
 			  
-				mail=result.getString("mail");
+				mail=result.getString("email");
 				pass=result.getString("password");
 				nMatricola=result.getString("matricola");
 				admin=result.getBoolean("amministratore");
