@@ -11,6 +11,7 @@ private String matricola;
 	public Credenziali(String unaMail,String unaPassword,String unMatricola,boolean unAdmin) {
 		setMail(unaMail);
 		setPassword(unaPassword);
+		setMatricola(unMatricola);
 		setAdmin(false);
 		
 	}

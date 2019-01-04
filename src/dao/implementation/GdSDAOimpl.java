@@ -30,11 +30,11 @@ public class GdSDAOimpl implements GdSDAO {
 			connection = DriverManagerConnectionPool.getConnection();
 
 			//dichiara lo statement
-			ps = connection.prepareStatement("insert into gds values (?, ?, ?, ?, ?, ?, ?);");
+			ps = connection.prepareStatement("insert into gds(nome,creatore,materia,oraInizio,oraFine,giorno,aula) values (?, ?, ?, ?, ?, ?, ?);");
 
 			//inserisce i campi
 			ps.setString(1, gds.getNomeGruppo());
-			ps.setObject(2, gds.getCreatore());
+			ps.setString(2, gds.getCreatore().getMatricola());
 			ps.setString(3, gds.getMateria());
 			ps.setTimestamp(4, gds.getOrario().getInizio());
 			ps.setTimestamp(5, gds.getOrario().getFine());
@@ -155,7 +155,7 @@ public class GdSDAOimpl implements GdSDAO {
 
 			connection = DriverManagerConnectionPool.getConnection();
 			//dichiara lo statement
-			ps = connection.prepareStatement("select * from gds where name = ?;");
+			ps = connection.prepareStatement("select * from gds where nome = ?;");
 			ps.setString(1, nomeGruppo);
 
 			//esegue lo statement
@@ -165,7 +165,8 @@ public class GdSDAOimpl implements GdSDAO {
 			while(result.next()) {
 				b.setCreatore(DAOFactory.getUserDAO().doRetrieveAdminByKey(result.getString("creatore")));
 				b.setMateria(result.getString("materia"));
-
+                b.setOrario(result.getTimestamp("oraInizio"), result.getTimestamp("oraFine"));
+                
 				b.setGiorno();
 				b.setAula(DAOFactory.getAulaDAO().doRetrieveByKey(result.getString("aula")));
 				res.add(b);

@@ -11,6 +11,7 @@ import java.util.List;
 
 
 import bean.Aula;
+import dao.DAOFactory;
 import dao.interfaces.AulaDAO;
 import db_connection.DriverManagerConnectionPool;
 
@@ -24,7 +25,10 @@ public class AulaDAOimpl implements AulaDAO {
 
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
-
+            Aula valore=DAOFactory.getAulaDAO().doRetrieveByKey(aula.getNomeAula());
+            if(valore!=null) {
+            	return false;
+            }
 			ps = connection.prepareStatement("insert into aula values (?, ?);");                  //Crea un oggetto PreparedStatement relativo alla stringa SQL passata in input
 
 			ps.setString(1, aula.getNomeAula());                                                  // passiamo indice  e il valore che sarà inserito nel placeholder '?'

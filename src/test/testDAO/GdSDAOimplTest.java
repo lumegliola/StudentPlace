@@ -17,7 +17,7 @@ class GdSDAOimplTest {
 	GdSDAO dao = DAOFactory.getGdSDAO();
 	GruppoDiStudio gruppo=new GruppoDiStudio();
 	Aula aula = new Aula("P4", "F2");
-	Credenziali c= new Credenziali("prova@prova.con", "123456", "0512102332", false);
+	Credenziali c= new Credenziali("kitemmuort1995@studenti.unisa,it", "123456", "0512104592", false);
 	Utente creatore= new Utente("filippo","lumegliola",c);
 	Timestamp inizio = new Timestamp(119, 0, 15, 0, 0, 0, 0);
 	Timestamp fine = new Timestamp(119, 0, 15, 0, 10, 0, 0);
@@ -26,10 +26,12 @@ class GdSDAOimplTest {
 	void testDoSave() {
 		gruppo.setAula(aula);
 		gruppo.setCreatore(creatore);
+		gruppo.setOrario(inizio, fine);
 		gruppo.setGiorno();
 		gruppo.setMateria("matematica");
 		gruppo.setNomeGruppo("gruppo performante");
-		gruppo.setOrario(inizio, fine);
+		
+		System.out.println(gruppo.getCreatore().getCredenziali().getMatricola());
 		System.out.println("test metodo 1");
 		ok = false;
 		Boolean res = dao.doSave(gruppo);
