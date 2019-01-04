@@ -63,14 +63,20 @@ public class AulaLiberaDAOimpl implements AulaLiberaDAO{
 		Connection connection = null;
 		PreparedStatement ps = null;
 		int result = 0;
-
+		Orario or = DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(o.getInizio(), o.getFine());
+		if(or.getIdOrario() <= 0) {
+			System.out.println("orario è null");
+			or = new Orario(o.getInizio(), o.getFine());
+			DAOFactory.getOrarioDAO().doSave(or);
+			or.setIdOrario(DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(o.getInizio(), o.getFine()).getIdOrario());
+		}
 		try {
 			//dichiara lo statement
 			connection = DriverManagerConnectionPool.getConnection();
 			ps = connection.prepareStatement("update libera set giorno = ?, orario = ? where aula = ? and giorno =? and orario = ?;");
 
-			ps.setString(1, o.getGiorno());
-			ps.setInt(2, o.getIdOrario());
+			ps.setString(1, or.getGiorno());
+			ps.setInt(2, or.getIdOrario());
 			ps.setString(3, aula.getAula().getNomeAula());
 			ps.setString(4, aula.getOrario().getGiorno());
 			ps.setInt(5, aula.getOrario().getIdOrario());
