@@ -21,17 +21,20 @@ public class AulaLiberaDAOimplTest {
 	Timestamp inizio = new Timestamp(119, 0, 15, 0, 0, 0, 0);
 	Timestamp fine = new Timestamp(119, 0, 15, 0, 10, 0, 0);
 	Orario or = new Orario(inizio, fine);
+	Orario or2 = new Orario(new Timestamp(119, 0, 7, 15, 0, 0, 0),new Timestamp(119, 0, 17, 15, 30, 0, 0));
 	AulaLibera al = new AulaLibera(aula, or);
-	boolean ok = false;
+	boolean ok;
 
 	@Test
 	public void testDoSave() {
+		System.out.println("test metodo 1");
+		ok = false;
 		Boolean res = a.doSave(al);
 		assertTrue(res);
 		List<AulaLibera> aRes = a.doRetrieveByName(al.getAula().getNomeAula());
 		for( AulaLibera b : aRes) {
 			if(al.equals(b))
-				ok = true;
+				ok = true; System.out.println("successo");
 		}
 		assertTrue(ok);
 		
@@ -39,7 +42,16 @@ public class AulaLiberaDAOimplTest {
 
 	@Test
 	public void testDoSaveOrUpdate() {
-		fail("Not yet implemented");
+		System.out.println("test metodo 2");
+		ok = false;
+		boolean res = a.doSaveOrUpdate(al, or2);
+		AulaLibera al2= new AulaLibera(aula, or2);
+		List<AulaLibera> aRes = a.doRetrieveByName(al.getAula().getNomeAula());
+		for( AulaLibera b : aRes) {
+			if(al2.equals(b))
+				ok = true; System.out.println("successo");	
+		}
+		assertTrue(ok);
 	}
 
 	@Test

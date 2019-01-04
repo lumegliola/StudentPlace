@@ -62,13 +62,13 @@ insert into aula(nome,edificio) values
 ("F8", "F2");
 
 insert into giorno (giorno)value
-("lunedì"),
-("martedì"),
-("mercoledì"),
-("gioveì"),
-("venerdì"),
-("sabato"),
-("domenica");
+("Lunedì"),
+("Martedì"),
+("Mercoledì"),
+("Gioveì"),
+("Venerdì"),
+("Sabato"),
+("Domenica");
 
 
 
