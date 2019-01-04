@@ -23,6 +23,35 @@ public class Iscrizione {
 	public void setGruppo(GruppoDiStudio gruppo) {
 		this.gruppo = gruppo;
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((gruppo == null) ? 0 : gruppo.hashCode());
+		result = prime * result + ((iscritto == null) ? 0 : iscritto.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Iscrizione other = (Iscrizione) obj;
+		if (gruppo == null) {
+			if (other.gruppo != null)
+				return false;
+		} else if (!gruppo.equals(other.gruppo))
+			return false;
+		if (iscritto == null) {
+			if (other.iscritto != null)
+				return false;
+		} else if (!iscritto.equals(other.iscritto))
+			return false;
+		return true;
+	}
 	
 	
 

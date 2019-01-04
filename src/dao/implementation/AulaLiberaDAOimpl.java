@@ -67,7 +67,7 @@ public class AulaLiberaDAOimpl implements AulaLiberaDAO{
 		try {
 			//dichiara lo statement
 			connection = DriverManagerConnectionPool.getConnection();
-			ps = connection.prepareStatement("update libera set giorno = ?, orario = ? where aula = ? giorno =?, orario = ?;");
+			ps = connection.prepareStatement("update libera set giorno = ?, orario = ? where aula = ? and giorno =? and orario = ?;");
 
 			ps.setString(1, o.getGiorno());
 			ps.setInt(2, o.getIdOrario());

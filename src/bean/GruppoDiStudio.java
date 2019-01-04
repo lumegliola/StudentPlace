@@ -99,5 +99,63 @@ public class GruppoDiStudio {
 	public String getGiorno() {
 		return this.giorno;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((aula == null) ? 0 : aula.hashCode());
+		result = prime * result + ((creatore == null) ? 0 : creatore.hashCode());
+		result = prime * result + ((giorno == null) ? 0 : giorno.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((materia == null) ? 0 : materia.hashCode());
+		result = prime * result + ((nomeGruppo == null) ? 0 : nomeGruppo.hashCode());
+		result = prime * result + ((orario == null) ? 0 : orario.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		GruppoDiStudio other = (GruppoDiStudio) obj;
+		if (aula == null) {
+			if (other.aula != null)
+				return false;
+		} else if (!aula.equals(other.aula))
+			return false;
+		if (creatore == null) {
+			if (other.creatore != null)
+				return false;
+		} else if (!creatore.equals(other.creatore))
+			return false;
+		if (giorno == null) {
+			if (other.giorno != null)
+				return false;
+		} else if (!giorno.equals(other.giorno))
+			return false;
+		if (id != other.id)
+			return false;
+		if (materia == null) {
+			if (other.materia != null)
+				return false;
+		} else if (!materia.equals(other.materia))
+			return false;
+		if (nomeGruppo == null) {
+			if (other.nomeGruppo != null)
+				return false;
+		} else if (!nomeGruppo.equals(other.nomeGruppo))
+			return false;
+		if (orario == null) {
+			if (other.orario != null)
+				return false;
+		} else if (!orario.equals(other.orario))
+			return false;
+		return true;
+	}
 	
 }

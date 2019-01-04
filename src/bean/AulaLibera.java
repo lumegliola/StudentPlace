@@ -2,6 +2,7 @@ package bean;
 
 public class AulaLibera {
 
+	
 	private Aula aula;
 	private Orario orario;
 	private String giorno;
@@ -39,6 +40,42 @@ public class AulaLibera {
 		this.giorno = this.getOrario().getGiorno();
 	}
 	
-	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((aula == null) ? 0 : aula.hashCode());
+		result = prime * result + ((giorno == null) ? 0 : giorno.hashCode());
+		result = prime * result + ((orario == null) ? 0 : orario.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AulaLibera other = (AulaLibera) obj;
+		if (aula == null) {
+			if (other.aula != null)
+				return false;
+		} else if (!aula.equals(other.aula))
+			return false;
+		if (giorno == null) {
+			if (other.giorno != null)
+				return false;
+		} else if (!giorno.equals(other.giorno))
+			return false;
+		if (orario == null) {
+			if (other.orario != null)
+				return false;
+		} else if (!orario.equals(other.orario))
+			return false;
+		return true;
+	}
+
 	
 }
