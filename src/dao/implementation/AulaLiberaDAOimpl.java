@@ -139,6 +139,50 @@ public class AulaLiberaDAOimpl implements AulaLiberaDAO{
 		}
 
 		@Override
+		public AulaLibera doRetrieveByKey(String nomeAula, String giorno, int idOrario){
+			Connection connection = null;
+			PreparedStatement ps = null;
+			
+			try {
+
+				connection = DriverManagerConnectionPool.getConnection();
+
+				//dichiara lo statement
+				ps = connection.prepareStatement("select * from libera where aula = ? and giorno = ? and orario = ?;");
+				ps.setString(1, nomeAula);
+				ps.setString(2, giorno);
+				ps.setInt(3, idOrario);
+				//esegue lo statement
+				ResultSet result = ps.executeQuery();
+				AulaLibera b = new AulaLibera();
+				//ricava i risultati
+				if (result.next()) {
+					
+					b.setAula(DAOFactory.getAulaDAO().doRetrieveByKey(result.getString("aula")));
+					b.setOrario(DAOFactory.getOrarioDAO().doRetrieveByKey(result.getInt("orario")));
+					b.setGiorno(b.getOrario().getGiorno());
+					
+					return b;
+
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				if(connection != null) {
+					try {
+						ps.close();
+						DriverManagerConnectionPool.releaseConnection(connection);
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			return null;
+					
+		}
+		
+		@Override
 		public List<AulaLibera> doRetrieveByName(String nomeAula) {
 			Connection connection = null;
 			PreparedStatement ps = null;

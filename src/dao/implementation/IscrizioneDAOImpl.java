@@ -55,6 +55,9 @@ public class IscrizioneDAOImpl implements IscrizioneDAO{
 		return doDeleteByUserAndGroup(iscrizione.getIscritto().getMatricola(), iscrizione.getGruppo().getId());
 	}
 
+	
+	
+	
 	@Override
 	public boolean doDeleteByUserAndGroup(String matricola, int idGruppo) {
 		Connection connection = null;
@@ -87,6 +90,7 @@ public class IscrizioneDAOImpl implements IscrizioneDAO{
 		return (result == 1);
 	}
 
+	
 	@Override
 	public List<Iscrizione> doRetrieveByUser(String matricola) {
 		Connection connection = null;
@@ -112,7 +116,7 @@ public class IscrizioneDAOImpl implements IscrizioneDAO{
 				res.add(b);
 				
 			}
-			return res;
+			
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -126,7 +130,7 @@ public class IscrizioneDAOImpl implements IscrizioneDAO{
 				}
 			}
 		}
-		return null;
+		return res;
 	}
 
 	@Override
@@ -154,7 +158,7 @@ public class IscrizioneDAOImpl implements IscrizioneDAO{
 				res.add(b);
 	
 			}
-			return res;
+			
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -168,7 +172,7 @@ public class IscrizioneDAOImpl implements IscrizioneDAO{
 				}
 			}
 		}
-		return null;
+		return res;
 	}
 
 	@Override
