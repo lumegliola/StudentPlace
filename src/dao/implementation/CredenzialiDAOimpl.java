@@ -26,9 +26,9 @@ public class CredenzialiDAOimpl implements CredenzialiDAO {
 			connection = DriverManagerConnectionPool.getConnection();
 
 			ps = connection.prepareStatement("insert into credenziali values (?, ?,?,?);");             	     //Crea un oggetto PreparedStatement relativo alla stringa SQL passata in input
-            
-			ps.setString(1 , cred.getMatricola());													//passiamo indice  e il valore che sarà inserito nel placeholder '?'
-			ps.setString(2 , cred.getMail());                                            	        //passiamo indice  e il valore che sarà inserito nel placeholder '?'
+			ps.setString(1 , cred.getMail());          														//passiamo indice  e il valore che sarà inserito nel placeholder '?'
+			ps.setString(2 , cred.getMatricola());													//passiamo indice  e il valore che sarà inserito nel placeholder '?'
+			                                  	        
 			ps.setString(3 ,  cred.getPassword());												    //passiamo indice  e il valore che sarà inserito nel placeholder '?'
 			ps.setBoolean(4 , cred.isAdmin());													    //passiamo indice  e il valore che sarà inserito nel placeholder '?'
 		

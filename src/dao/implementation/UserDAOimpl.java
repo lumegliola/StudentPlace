@@ -23,33 +23,33 @@ public class UserDAOimpl implements UserDAO {
 
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
-			
+
 			//se l'utente è amministratore ammminitratore
 			if (user.getCredenziali().isAdmin()) {
 				//dichiara lo statement
 				ps = connection.prepareStatement("insert into amministratore values (?, ?, ?);");
-			
+
 				//inserisce i campi
 				ps.setString(1, user.getMatricola());
 				ps.setObject(2, user.getNome());
 				ps.setString(3, user.getCognome());
-			
+
 				//esegue lo statement
 				result = ps.executeUpdate();
-			
+
 			}
 			else { // se l'utente è uno studente
 				//dichiara lo statement
 				ps = connection.prepareStatement("insert into studente values (?, ?, ?);");
-			
+
 				//inserisce i campi
 				ps.setString(1, user.getMatricola());
 				ps.setObject(2, user.getNome());
 				ps.setString(3, user.getCognome());
-			
+
 				//esegue lo statement
 				result = ps.executeUpdate();	
-			
+
 			}
 			//salva anche le credenziali
 			DAOFactory.getCredenzialiDAO().doSave(user.getCredenziali());
@@ -64,7 +64,7 @@ public class UserDAOimpl implements UserDAO {
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
-				}
+			}
 		}
 		return (result == 1);
 	}
@@ -91,27 +91,27 @@ public class UserDAOimpl implements UserDAO {
 			b.setMatricola(matricola);
 
 			connection = DriverManagerConnectionPool.getConnection();
-			
+
 			//dichiara lo statement
 			ps = connection.prepareStatement("select * from studente where matricola = ?;");
 			ps.setString(1, matricola);
-			
+
 			//esegue lo statement
 			ResultSet result1 = ps.executeQuery();
 			//ricava i risultati
-			
+
 			if(result1.next()) {
-				
+
 				//utente
 				psDel = connection.prepareStatement("delete * from studente where matricola = ?");
 				psDel.setString(1, matricola);
 			}else {
-				
+
 				//Amministratore
 				psDel = connection.prepareStatement("delete * from amministratore where matricola = ?");
 				psDel.setString(1, matricola);
 			}
-			
+
 			//elimina anche le credenziali
 			DAOFactory.getCredenzialiDAO().doDelete(matricola);
 
@@ -125,7 +125,7 @@ public class UserDAOimpl implements UserDAO {
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
-				}
+			}
 		}
 		return (result == 1);
 	}
@@ -155,7 +155,7 @@ public class UserDAOimpl implements UserDAO {
 				b.setCredenziali(DAOFactory.getCredenzialiDAO().doRetrieveByMatricola(matricola));
 				return b;
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -166,12 +166,12 @@ public class UserDAOimpl implements UserDAO {
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
-				}
+			}
 		}
 		return null;
 	}
 
-	
+
 	@Override
 	public Utente doRetrieveStudentByKey(String matricola) {
 		Connection connection = null;
@@ -207,12 +207,12 @@ public class UserDAOimpl implements UserDAO {
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
-				}
+			}
 		}
 		return null;
 	}
 
-	
+
 	@Override
 	public List<Utente> doRetrieveAll() {
 		Connection connection = null;
@@ -223,7 +223,7 @@ public class UserDAOimpl implements UserDAO {
 		try {
 
 			connection = DriverManagerConnectionPool.getConnection();
-			
+
 			//dichiara lo statement
 			ps = connection.prepareStatement("select * from amministratore;");
 
@@ -237,8 +237,8 @@ public class UserDAOimpl implements UserDAO {
 				b.setNome(result.getString("nome"));
 				b.setCognome("cognome");
 				b.setCredenziali(DAOFactory.getCredenzialiDAO().doRetrieveByMatricola(b.getMatricola()));
-				
-			// aggiunge l'oggetto alla lista
+
+				// aggiunge l'oggetto alla lista
 				utenti.add(b);
 			}
 			ps2 = connection.prepareStatement("select * from studenti;");
@@ -253,8 +253,8 @@ public class UserDAOimpl implements UserDAO {
 				b.setNome(result1.getString("nome"));
 				b.setCognome("cognome");
 				b.setCredenziali(DAOFactory.getCredenzialiDAO().doRetrieveByMatricola(b.getMatricola()));
-				
-			// aggiunge l'oggetto alla lista
+
+				// aggiunge l'oggetto alla lista
 				utenti.add(b);
 			}
 
@@ -268,7 +268,7 @@ public class UserDAOimpl implements UserDAO {
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
-				}
+			}
 		}
 		return utenti;
 	}
