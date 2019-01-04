@@ -6,7 +6,10 @@ public class Aula {
 	private String nomeAula;
 	private String edificio;
 	
-	public Aula() {}
+	public Aula() {
+		nomeAula="";
+		edificio="";
+	}
 	
 	public Aula(String nomeAula, String edificio) {
 		this.nomeAula = nomeAula;
@@ -41,24 +44,16 @@ public class Aula {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
 		if (obj == null)
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
 		Aula other = (Aula) obj;
-		if (edificio == null) {
-			if (other.edificio != null)
-				return false;
-		} else if (!edificio.equals(other.edificio))
-			return false;
-		if (nomeAula == null) {
-			if (other.nomeAula != null)
-				return false;
-		} else if (!nomeAula.equals(other.nomeAula))
-			return false;
-		return true;
+		if(other.getNomeAula().equals(this.getNomeAula())&&other.getEdificio().equals(this.getEdificio())) {
+			return true;
+		}
+		
+		return false;
 	}
 	
 	

@@ -52,28 +52,15 @@ public class AulaLibera {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
+	
 		if (obj == null)
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
 		AulaLibera other = (AulaLibera) obj;
-		if (aula == null) {
-			if (other.aula != null)
-				return false;
-		} else if (!aula.equals(other.aula))
-			return false;
-		if (giorno == null) {
-			if (other.giorno != null)
-				return false;
-		} else if (!giorno.equals(other.giorno))
-			return false;
-		if (orario == null) {
-			if (other.orario != null)
-				return false;
-		} else if (!orario.equals(other.orario))
-			return false;
+	    if(other.getAula().equals(this.getAula()) && other.getGiorno().equals(this.getGiorno() )&& other.getOrario().equals(this.getOrario())) {
+	    	return true;
+	    }
 		return true;
 	}
 

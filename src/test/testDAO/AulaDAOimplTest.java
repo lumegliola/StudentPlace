@@ -13,7 +13,7 @@ import dao.implementation.AulaDAOimpl;
 import dao.interfaces.AulaDAO;
 
 public class AulaDAOimplTest {
-	Aula aula=new Aula("F19","F2");
+	Aula aula=new Aula("F9","F2");
 	AulaDAO aulaDao=DAOFactory.getAulaDAO();
 	@Test
 	public void testDoSave() {
@@ -22,10 +22,12 @@ public class AulaDAOimplTest {
 		boolean res=aulaDao.doSave(aula);
 		assertTrue(res);
 		List<Aula> listaAule=DAOFactory.getAulaDAO().doRetrieveAll();
+		
 		assertNotNull(listaAule);
 		boolean ok=false;
+		
 		for(Aula al:listaAule) {
-			if(aula.getNomeAula().equals(al.getNomeAula()) && aula.getEdificio().equals(al.getEdificio())) {
+			if(aula.equals(al)) {
 				ok = true;
 			}
 		}
@@ -35,7 +37,24 @@ public class AulaDAOimplTest {
 
 	@Test
 	public void testDoSaveOrUpdate() {
-		fail("Not yet implemented");
+		System.out.println("Start test");
+		Aula nuovaAula=new Aula();
+		nuovaAula.setEdificio("F3");
+		nuovaAula.setNomeAula("F35");
+		
+		boolean res=aulaDao.doSaveOrUpdate(aula, nuovaAula.getNomeAula(),nuovaAula.getEdificio());
+		assertTrue(res);
+		List<Aula> listaAule=DAOFactory.getAulaDAO().doRetrieveAll();
+		assertNotNull(listaAule);
+		boolean ok=false;
+		for(Aula al:listaAule) {
+			if(nuovaAula.equals(al)) {
+				ok = true;
+			}
+		}
+       assertTrue(ok);
+       System.out.println("End test");
+		
 	}
 
 	@Test
