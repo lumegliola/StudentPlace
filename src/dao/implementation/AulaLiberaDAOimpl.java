@@ -142,7 +142,7 @@ public class AulaLiberaDAOimpl implements AulaLiberaDAO{
 		public AulaLibera doRetrieveByKey(String nomeAula, String giorno, int idOrario){
 			Connection connection = null;
 			PreparedStatement ps = null;
-			
+			AulaLibera b = new AulaLibera();
 			try {
 
 				connection = DriverManagerConnectionPool.getConnection();
@@ -154,7 +154,7 @@ public class AulaLiberaDAOimpl implements AulaLiberaDAO{
 				ps.setInt(3, idOrario);
 				//esegue lo statement
 				ResultSet result = ps.executeQuery();
-				AulaLibera b = new AulaLibera();
+				
 				//ricava i risultati
 				if (result.next()) {
 					
@@ -162,7 +162,7 @@ public class AulaLiberaDAOimpl implements AulaLiberaDAO{
 					b.setOrario(DAOFactory.getOrarioDAO().doRetrieveByKey(result.getInt("orario")));
 					b.setGiorno(b.getOrario().getGiorno());
 					
-					return b;
+					
 
 				}
 
@@ -178,7 +178,7 @@ public class AulaLiberaDAOimpl implements AulaLiberaDAO{
 					}
 				}
 			}
-			return null;
+			return b;
 					
 		}
 		

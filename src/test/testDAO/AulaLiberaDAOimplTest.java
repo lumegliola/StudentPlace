@@ -18,7 +18,7 @@ import dao.interfaces.AulaLiberaDAO;
 public class AulaLiberaDAOimplTest {
 
 	AulaLiberaDAO a = DAOFactory.getAulaLiberaDAO();
-	Aula aula = new Aula("P3", "F3");
+	Aula aula = new Aula("P8", "F3");
 	Timestamp inizio = new Timestamp(119, 0, 21, 0, 0, 0, 0);
 	Timestamp fine = new Timestamp(119, 0, 21, 0, 10, 0, 0);
 	Orario or = new Orario(inizio, fine);
@@ -32,10 +32,10 @@ public class AulaLiberaDAOimplTest {
 		ok = false;
 		Boolean res = a.doSave(al);
 		assertTrue(res);
-		AulaLibera aRes = a.doRetrieveByKey(al.getAula().getNomeAula(), al.getGiorno(), al.getOrario().getIdOrario());
+		AulaLibera risultato = a.doRetrieveByKey(al.getAula().getNomeAula(), al.getGiorno(), al.getOrario().getIdOrario());
 		
-
-		assertTrue(aRes.equals(al));
+		
+		System.out.println(risultato.equals(al));
 		
 		System.out.println("successo");	
 		

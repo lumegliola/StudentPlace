@@ -53,7 +53,7 @@ public class AulaLibera {
 	
 	public boolean equals(AulaLibera obj) {
 	
-		if(this.aula.equals(obj) && this.giorno.equals(obj.giorno) && this.orario.equals(obj.orario))
+		if(this.getAula().equals(obj.getAula()) && this.getGiorno().equals(obj.getGiorno()) && this.getOrario().equals(obj.getOrario()))
 			return true;
 		else return false;
 	}
