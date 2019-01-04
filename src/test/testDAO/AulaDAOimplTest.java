@@ -13,11 +13,11 @@ import dao.implementation.AulaDAOimpl;
 import dao.interfaces.AulaDAO;
 
 public class AulaDAOimplTest {
-	Aula aula=new Aula("F9","F2");
-	AulaDAO aulaDao=DAOFactory.getAulaDAO();
+	
 	@Test
 	public void testDoSave() {
-		
+		Aula aula=new Aula("F55","F3");
+		AulaDAO aulaDao=DAOFactory.getAulaDAO();	
 		System.out.println("Start test");
 		boolean res=aulaDao.doSave(aula);
 		assertTrue(res);
@@ -38,10 +38,16 @@ public class AulaDAOimplTest {
 	@Test
 	public void testDoSaveOrUpdate() {
 		System.out.println("Start test");
+		Aula aula=new Aula();
+		aula.setEdificio("F2");
+		aula.setNomeAula("F1");
+		AulaDAO aulaDao=DAOFactory.getAulaDAO();
 		Aula nuovaAula=new Aula();
-		nuovaAula.setEdificio("F3");
-		nuovaAula.setNomeAula("F35");
-		
+		nuovaAula.setEdificio("F2");
+		nuovaAula.setNomeAula("F1");
+		assertNotNull(aulaDao);
+		assertNotNull(aula);
+		assertNotNull(nuovaAula);
 		boolean res=aulaDao.doSaveOrUpdate(aula, nuovaAula.getNomeAula(),nuovaAula.getEdificio());
 		assertTrue(res);
 		List<Aula> listaAule=DAOFactory.getAulaDAO().doRetrieveAll();
@@ -59,22 +65,67 @@ public class AulaDAOimplTest {
 
 	@Test
 	public void testDoDeleteAula() {
-		fail("Not yet implemented");
+		System.out.println("Start test");
+		Aula aula=new Aula();
+		aula.setEdificio("F2");
+		aula.setNomeAula("F5");
+		AulaDAO aulaDao=DAOFactory.getAulaDAO();
+		assertNotNull(aulaDao);
+		assertNotNull(aula);
+  	    boolean res=aulaDao.doDelete(aula);
+  	    assertTrue(res);
+	    System.out.println("End test");
 	}
 
 	@Test
 	public void testDoDeleteString() {
-		fail("Not yet implemented");
+		System.out.println("Start test");
+		Aula aula=new Aula();
+		aula.setEdificio("F2");
+		aula.setNomeAula("F2");
+		AulaDAO aulaDao=DAOFactory.getAulaDAO();
+		assertNotNull(aulaDao);
+		assertNotNull(aula);
+		String nomeAula=aula.getNomeAula();
+  	    boolean res=aulaDao.doDelete(nomeAula);
+  	    assertTrue(res);
+	    System.out.println("End test");
+	
 	}
 
 	@Test
 	public void testDoRetrieveByKey() {
-		fail("Not yet implemented");
+		System.out.println("Start test");
+		Aula aula=new Aula();
+		aula.setEdificio("F2");
+		aula.setNomeAula("F3");
+		AulaDAO aulaDao=DAOFactory.getAulaDAO();
+		assertNotNull(aulaDao);
+		assertNotNull(aula);
+		String nomeAula=aula.getNomeAula();
+		
+  	    Aula res=aulaDao.doRetrieveByKey(nomeAula);
+  	    assertEquals(res, aula);
+  	    System.out.println("End test");
+	
+	
 	}
 
 	@Test
 	public void testDoRetrieveAll() {
-		fail("Not yet implemented");
+		System.out.println("Start test");
+		
+		AulaDAO aulaDao=DAOFactory.getAulaDAO();
+		assertNotNull(aulaDao);
+		List<Aula> lista=aulaDao.doRetrieveAll();
+		assertNotNull(lista);
+		for(Aula aula: lista) {
+			System.out.println("Aula:"+aula.getNomeAula()+",Edificio:"+aula.getEdificio());
+		}
+		
+		
+		System.out.println("End test");
+		
 	}
 
 }
