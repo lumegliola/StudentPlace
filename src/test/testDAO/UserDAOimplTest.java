@@ -13,13 +13,19 @@ class UserDAOimplTest {
 	@Test
 	void testDoSave() {
 		System.out.println("Test metodo 1");
-		Credenziali c = new Credenziali("menomalechesilviocè@studenti.unisa.it", "miconsenta", "0512103322", false);
+		Credenziali c = new Credenziali("menomalechesilviocè1@studenti.unisa.it", "miconsenta", "0512103322", false);
 		Utente user = new Utente("Silvio", "Berlusconi", c);
-		DAOFactory.getCredenzialiDAO().doSave(c);
 		boolean res = DAOFactory.getUserDAO().doSave(user);
 			
+		assertTrue(res);
 		//ricavo l'inserimento dal DB
-		Utente risultato = DAOFactory.getUserDAO().doRetrieveStudentByKey(user.getMatricola());
+		Utente risultato = DAOFactory.getUserDAO().doRetrieveStudentByKey(user.getCredenziali().getMatricola());
+		System.out.println(user.getCognome());
+		System.out.println(user.getCredenziali().getMatricola());
+		
+		System.out.println(risultato.getNome());
+		System.out.println(risultato.getCognome());
+		System.out.println(risultato.getCredenziali().getMatricola());
 		
 		//confronto
 		

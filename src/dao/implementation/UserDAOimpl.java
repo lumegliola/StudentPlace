@@ -7,8 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import bean.GruppoDiStudio;
-import bean.Utente;
+import bean.*;
 import dao.DAOFactory;
 import dao.interfaces.UserDAO;
 import db_connection.DriverManagerConnectionPool;
@@ -20,39 +19,65 @@ public class UserDAOimpl implements UserDAO {
 		Connection connection = null;
 		PreparedStatement ps = null;
 		int result = 0;
+		Credenziali c = new Credenziali() ; 
 
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
 
 			//se l'utente è amministratore ammminitratore
 			if (user.getCredenziali().isAdmin()) {
-				//dichiara lo statement
-				ps = connection.prepareStatement("insert into amministratore values (?, ?, ?);");
+				if(!(c = DAOFactory.getCredenzialiDAO().doRetrieveByMatricola(user.getMatricola())).equals(new Credenziali())) {
+					//dichiara lo statement
+					ps = connection.prepareStatement("insert into amministratore values (?, ?, ?);");
 
-				//inserisce i campi
-				ps.setString(1, user.getMatricola());
-				ps.setObject(2, user.getNome());
-				ps.setString(3, user.getCognome());
+					//inserisce i campi
+					ps.setString(1, user.getMatricola());
+					ps.setObject(2, user.getNome());
+					ps.setString(3, user.getCognome());
 
-				//esegue lo statement
-				result = ps.executeUpdate();
+					//esegue lo statement
+					result = ps.executeUpdate();
+				}
+				else {
+					DAOFactory.getCredenzialiDAO().doSave(user.getCredenziali());
+					ps = connection.prepareStatement("insert into amministratore values (?, ?, ?);");
 
+					//inserisce i campi
+					ps.setString(1, user.getMatricola());
+					ps.setObject(2, user.getNome());
+					ps.setString(3, user.getCognome());
+
+					//esegue lo statement
+					result = ps.executeUpdate();
+				}
 			}
 			else { // se l'utente è uno studente
 				//dichiara lo statement
-				ps = connection.prepareStatement("insert into studente values (?, ?, ?);");
+				if(!(c = DAOFactory.getCredenzialiDAO().doRetrieveByMatricola(user.getMatricola())).equals(new Credenziali())) {
+					ps = connection.prepareStatement("insert into studente values (?, ?, ?);");
 
-				//inserisce i campi
-				ps.setString(1, user.getMatricola());
-				ps.setObject(2, user.getNome());
-				ps.setString(3, user.getCognome());
+					//inserisce i campi
+					ps.setString(1, user.getMatricola());
+					ps.setObject(2, user.getNome());
+					ps.setString(3, user.getCognome());
 
-				//esegue lo statement
-				result = ps.executeUpdate();	
+					//esegue lo statement
+					result = ps.executeUpdate();	
+				}
+				else {
+					DAOFactory.getCredenzialiDAO().doSave(user.getCredenziali());
+					ps = connection.prepareStatement("insert into studente values (?, ?, ?);");
 
+					//inserisce i campi
+					ps.setString(1, user.getMatricola());
+					ps.setObject(2, user.getNome());
+					ps.setString(3, user.getCognome());
+
+					//esegue lo statement
+					result = ps.executeUpdate();	
+				}
 			}
-			//salva anche le credenziali
-			DAOFactory.getCredenzialiDAO().doSave(user.getCredenziali());
+			
 
 		} catch (SQLException e) {
 			e.printStackTrace();

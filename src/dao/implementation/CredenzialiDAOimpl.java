@@ -134,7 +134,7 @@ public class CredenzialiDAOimpl implements CredenzialiDAO {
 		Connection connection = null;
 		PreparedStatement ps = null;
 		ResultSet result = null;
-		Credenziali cred=null;
+		Credenziali cred= new Credenziali();
 
 		try {
 
