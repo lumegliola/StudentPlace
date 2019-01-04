@@ -13,7 +13,7 @@ public class DAOFactory {
 		
 		public static GdSDAO getGdSDAO() {
 			return new GdSDAOimpl();
-		}
+        }
 
 		public static UserDAO getUserDAO() {
 			return new UserDAOimpl();

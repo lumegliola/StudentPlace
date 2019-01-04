@@ -122,7 +122,7 @@ public class AulaDAOimplTest {
 		for(Aula aula: lista) {
 			System.out.println("Aula:"+aula.getNomeAula()+",Edificio:"+aula.getEdificio());
 		}
-		
+		 
 		
 		System.out.println("End test");
 		
