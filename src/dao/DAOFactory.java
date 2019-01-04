@@ -28,7 +28,7 @@ public class DAOFactory {
 		}
 		
 		public static AulaLiberaDAO getAulaLiberaDAO() {
-			return new AulaLibreaDAOimpl();
+			return new AulaLiberaDAOimpl();
 		}
 		
 		public static IscrizioneDAO getIscrizioneDAO() {

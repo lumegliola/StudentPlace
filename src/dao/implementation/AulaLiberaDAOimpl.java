@@ -15,7 +15,7 @@ import dao.DAOFactory;
 import dao.interfaces.AulaLiberaDAO;
 import db_connection.DriverManagerConnectionPool;
 
-public class AulaLibreaDAOimpl implements AulaLiberaDAO{
+public class AulaLiberaDAOimpl implements AulaLiberaDAO{
 
 	@Override
 	public boolean doSave(AulaLibera aula) {
