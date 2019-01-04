@@ -28,7 +28,7 @@ public class OrarioDAOimpl implements OrarioDAO {
 			connection = DriverManagerConnectionPool.getConnection();
 			
 			//dichiara lo statement
-			ps = connection.prepareStatement("insert into orario values (?, ?);");
+			ps = connection.prepareStatement("insert into orario (inizio, fine) values (?, ?);");
 			
 			//inserisce i campi
 			ps.setTimestamp(1, or.getInizio());
@@ -216,7 +216,7 @@ public class OrarioDAOimpl implements OrarioDAO {
 	public Orario doRetrieveByStartAndFinish(Timestamp start, Timestamp finish) {
 		Connection connection = null;
 		PreparedStatement ps = null;
-		Orario o = new Orario();
+		Orario b = new Orario();
 
 		try {
 
@@ -232,7 +232,7 @@ public class OrarioDAOimpl implements OrarioDAO {
 
 			//ricava i risultati
 			if (result.next()) {
-				Orario b = new Orario();
+				
 				b.setIdOrario(result.getInt("id"));
 				b.setInizio(start);
 				b.setFine(result.getTimestamp("fine"));
@@ -250,7 +250,7 @@ public class OrarioDAOimpl implements OrarioDAO {
 				}
 				}
 		}
-		return o;
+		return b;
 	}
 
 	

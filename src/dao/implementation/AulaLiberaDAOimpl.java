@@ -30,20 +30,16 @@ public class AulaLiberaDAOimpl implements AulaLiberaDAO{
 			//dichiara lo statement
 			ps = connection.prepareStatement("insert into libera values (?, ?, ?);");
 			Orario or = DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(aula.getOrario().getInizio(), aula.getOrario().getFine());
-			//inserisce i campi
-			ps.setString(1, aula.getAula().getNomeAula());
-			ps.setString(2, aula.getGiorno());
-
-			//l'orario è già presente nel db
-			if(or != null)
-				ps.setInt(3, or.getIdOrario());
-			//l'orario non è presente, lo creiamo
-			else {
+			if(or.getIdOrario() <= 0) {
+				System.out.println("orario è null");
 				or = new Orario(aula.getOrario().getInizio(), aula.getOrario().getFine());
 				DAOFactory.getOrarioDAO().doSave(or);
-				ps.setInt(3, or.getIdOrario());
 			}
-
+			ps.setString(1, aula.getAula().getNomeAula());
+			ps.setString(2, aula.getOrario().getGiorno());
+			ps.setInt(3, DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(aula.getOrario().getInizio(), aula.getOrario().getFine()).getIdOrario());
+			//inserisce i campi
+			
 			//esegue lo statement
 			result = ps.executeUpdate();
 

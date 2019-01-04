@@ -19,7 +19,7 @@ public class AulaLiberaDAOimplTest {
 	AulaLiberaDAO a = DAOFactory.getAulaLiberaDAO();
 	Aula aula = new Aula("P4", "F2");
 	Timestamp inizio = new Timestamp(119, 0, 15, 0, 0, 0, 0);
-	Timestamp fine = new Timestamp(119, 0, 15, 0, 100, 0, 0);
+	Timestamp fine = new Timestamp(119, 0, 15, 0, 10, 0, 0);
 	Orario or = new Orario(inizio, fine);
 	AulaLibera al = new AulaLibera(aula, or);
 	boolean ok = false;
