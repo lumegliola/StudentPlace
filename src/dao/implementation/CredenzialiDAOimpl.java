@@ -105,11 +105,23 @@ public class CredenzialiDAOimpl implements CredenzialiDAO {
 
 			connection = DriverManagerConnectionPool.getConnection();
 			Credenziali a = DAOFactory.getCredenzialiDAO().doRetrieveByKey(mail);
-			DAOFactory.getUserDAO().doDelete(a.getMatricola());
+			Utente admin=DAOFactory.getUserDAO().doRetrieveAdminByKey(a.getMatricola());
+			Utente student=DAOFactory.getUserDAO().doRetrieveStudentByKey(a.getMatricola());
+			
+			if(admin!=null && student==null) {
+			ps = connection.prepareStatement("delete from amministratore where matricola= ?");				//Crea un oggetto PreparedStatement relativo alla stringa SQL passata in input
+			ps.setString(1, admin.getMatricola());                                             		    			// passiamo indice  e il valore che sarà inserito nel placeholder  '?'
+			result = ps.executeUpdate();
+			}
+			if(admin==null && student!=null) {
+			ps = connection.prepareStatement("delete from studente where matricola= ?");				//Crea un oggetto PreparedStatement relativo alla stringa SQL passata in input
+			ps.setString(1, student.getMatricola());                                             		    			// passiamo indice  e il valore che sarà inserito nel placeholder  '?'
+			result = ps.executeUpdate();
+			}
 			ps = connection.prepareStatement("delete from credenziali where email= ?");				//Crea un oggetto PreparedStatement relativo alla stringa SQL passata in input
 			ps.setString(1, mail);                                             		    			// passiamo indice  e il valore che sarà inserito nel placeholder  '?'
-	        
-			result = ps.executeUpdate();                                                    	    //Esegue la query e ritorna 1
+			result = ps.executeUpdate();      
+//Esegue la query e ritorna 1
 			
 		} catch (SQLException e) {
 
