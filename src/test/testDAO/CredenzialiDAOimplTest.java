@@ -1,10 +1,10 @@
-package dao.implementation;
+package test.testDAO;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class AulaDAOimplTest {
+public class CredenzialiDAOimplTest {
 
 	@Test
 	public void testDoSave() {
@@ -17,7 +17,7 @@ public class AulaDAOimplTest {
 	}
 
 	@Test
-	public void testDoDeleteAula() {
+	public void testDoDeleteCredenziali() {
 		fail("Not yet implemented");
 	}
 
@@ -27,12 +27,22 @@ public class AulaDAOimplTest {
 	}
 
 	@Test
-	public void testDoRetrieveByKey() {
+	public void testDoRetrieveByMatricola() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testDoRetrieveAll() {
+	public void testDoRetrieveByEmailAndPassword() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testDoRetriveAll() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testDoRetrieveByKey() {
 		fail("Not yet implemented");
 	}
 
