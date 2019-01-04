@@ -21,8 +21,8 @@ public class GruppoDiStudio {
 
 	public GruppoDiStudio(){}
 	
-	public GruppoDiStudio(int unId,String nomeGruppo, Aula aula, Orario orario, String materia, Timestamp inizio, Timestamp fine, Utente creatore ){
-		this.id=unId;
+	public GruppoDiStudio(String nomeGruppo, Aula aula, Orario orario, String materia, Timestamp inizio, Timestamp fine, Utente creatore ){
+
 		this.nomeGruppo = nomeGruppo;
 		this.aula = aula;
 		this.orario =  new Orario(inizio, fine);
