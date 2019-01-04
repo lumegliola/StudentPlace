@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class AulaLibreaDAOimplTest {
+public class AulaLiberaDAOimplTest {
 
 	@Test
 	public void testDoSave() {
