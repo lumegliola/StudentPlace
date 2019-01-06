@@ -61,19 +61,14 @@ public class OrarioDAOimpl implements OrarioDAO {
 		try {
 			//dichiara lo statement
 			connection = DriverManagerConnectionPool.getConnection();
-			ps = connection.prepareStatement("update orario set inizio = ?, fine = ? where id ="+ DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(start, end).getIdOrario()+" ;");
+			ps = connection.prepareStatement("update orario set inizio = ?, fine = ? where id =? ;");
 			
 			//CONTROLLA CAMPI DA NON MODIFICARE
 			
-			if(start != null)
-				ps.setTimestamp(1, start);
-			else
-				ps.setTimestamp(1, or.getInizio());
-			
-			if(end != null)
-				ps.setTimestamp(2, end);
-			else
-				ps.setTimestamp(2, or.getInizio());
+			ps.setTimestamp(1, start);
+			ps.setTimestamp(2, end);
+	       	int id= DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(or.getInizio(),or.getFine()).getIdOrario();
+			ps.setInt(3, or.getIdOrario());
 
 			//esegue lo statement
 			result = ps.executeUpdate();
