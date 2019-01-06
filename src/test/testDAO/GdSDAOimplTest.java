@@ -50,8 +50,27 @@ class GdSDAOimplTest {
 
 	@Test
 	void testDoSaveOrUpdate() {
-		fail("Not yet implemented");
+		gruppo.setAula(aula);
+		gruppo.setCreatore(creatore);
+		gruppo.setOrario(inizio, fine);
+		gruppo.setGiorno("mercoledi");
+		
+		gruppo.setMateria("matematica");
+		gruppo.setNomeGruppo("gruppo performante");
+		
+		System.out.println(gruppo.getCreatore().getCredenziali().getMatricola());
+		System.out.println("test metodo 1");
+		ok = false;
+		Boolean res = dao.doSaveOrUpdate(gruppo, gruppo.getAula().getNomeAula(), gruppo.getOrario().getInizio(), gruppo.getOrario().getFine());
+		assertTrue(res);
+		GruppoDiStudio risultato = dao.doRetrieveByNameAndSubject(gruppo.getNomeGruppo(),gruppo.getMateria());
+		System.out.println(risultato.getNomeGruppo()+"   "+ risultato.getMateria()+ "   "+risultato.getGiorno());
+		
+		
+		assertTrue(gruppo.getNomeGruppo().equals(risultato.getNomeGruppo()));
+		
 	}
+	
 
 	@Test
 	void testDoDelete() {
@@ -116,7 +135,7 @@ class GdSDAOimplTest {
 		gruppo.setNomeGruppo("gruppo performante");
 		dao.doSave(gruppo);
 		List<GruppoDiStudio> risultato = dao.doRetrieveBySubject(gruppo.getMateria());
-		
+		assertTrue(risultato.size()>0);
 		
 		
 		System.out.println("funziona");
