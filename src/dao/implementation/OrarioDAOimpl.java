@@ -57,7 +57,8 @@ public class OrarioDAOimpl implements OrarioDAO {
 		Connection connection = null;
 		PreparedStatement ps = null;
 		int result = 0;
-
+         start.setYear(start.getYear()-1900);
+         end.setYear(end.getYear()-1900);
 		try {
 			//dichiara lo statement
 			connection = DriverManagerConnectionPool.getConnection();
@@ -68,7 +69,7 @@ public class OrarioDAOimpl implements OrarioDAO {
 			ps.setTimestamp(1, start);
 			ps.setTimestamp(2, end);
 	       	int id= DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(or.getInizio(),or.getFine()).getIdOrario();
-			ps.setInt(3, or.getIdOrario());
+			ps.setInt(3,1);
 
 			//esegue lo statement
 			result = ps.executeUpdate();
