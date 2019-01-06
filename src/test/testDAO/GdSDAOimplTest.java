@@ -30,7 +30,7 @@ class GdSDAOimplTest {
 		gruppo.setAula(aula);
 		gruppo.setCreatore(creatore);
 		gruppo.setOrario(inizio, fine);
-		gruppo.setGiorno();
+		gruppo.setGiorno("mercoledi");
 		
 		gruppo.setMateria("matematica");
 		gruppo.setNomeGruppo("gruppo performante");
@@ -107,7 +107,20 @@ class GdSDAOimplTest {
 
 	@Test
 	void testDoRetrieveBySubject() {
-		fail("Not yet implemented");
+		gruppo.setAula(aula);
+		gruppo.setCreatore(creatore);
+		gruppo.setOrario(inizio, fine);
+		gruppo.setGiorno();
+		
+		gruppo.setMateria("matematica");
+		gruppo.setNomeGruppo("gruppo performante");
+		dao.doSave(gruppo);
+		List<GruppoDiStudio> risultato = dao.doRetrieveBySubject(gruppo.getMateria());
+		
+		
+		
+		System.out.println("funziona");
+	
 	}
 
 	@Test
