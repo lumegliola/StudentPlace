@@ -23,13 +23,15 @@ class GdSDAOimplTest {
 	Timestamp fine = new Timestamp(119, 0, 15, 0, 10, 0, 0);
 	boolean ok;
 	
-	
 	@Test
 	void testDoSave() {
+		
+		
 		gruppo.setAula(aula);
 		gruppo.setCreatore(creatore);
 		gruppo.setOrario(inizio, fine);
 		gruppo.setGiorno();
+		
 		gruppo.setMateria("matematica");
 		gruppo.setNomeGruppo("gruppo performante");
 		
@@ -39,10 +41,10 @@ class GdSDAOimplTest {
 		Boolean res = dao.doSave(gruppo);
 		assertTrue(res);
 		GruppoDiStudio risultato = dao.doRetrieveByNameAndSubject(gruppo.getNomeGruppo(),gruppo.getMateria());
-		System.out.println(risultato.getNomeGruppo());
+		System.out.println(risultato.getNomeGruppo()+"   "+ risultato.getMateria()+ "   "+risultato.getGiorno());
 		
 		
-		assertTrue(risultato.equals(gruppo));
+		assertTrue(gruppo.getNomeGruppo().equals(risultato.getNomeGruppo()));
 		
 	}
 
@@ -53,18 +55,55 @@ class GdSDAOimplTest {
 
 	@Test
 	void testDoDelete() {
-		fail("Not yet implemented");
+		gruppo.setAula(aula);
+		gruppo.setCreatore(creatore);
+		gruppo.setOrario(inizio, fine);
+		gruppo.setGiorno();
+		
+		gruppo.setMateria("matematica");
+		gruppo.setNomeGruppo("gruppo performante");
+		dao.doDelete(gruppo);
+		GruppoDiStudio risultato = dao.doRetrieveByNameAndSubject(gruppo.getNomeGruppo(),gruppo.getMateria());
+		
+		assertTrue(risultato==null);
+		if(risultato==null)
+		System.out.println("eliminazione completata");
 	}
 
 	@Test
 	void testDoDeleteByNameAndSubjet() {
-		fail("Not yet implemented");
+		gruppo.setAula(aula);
+		gruppo.setCreatore(creatore);
+		gruppo.setOrario(inizio, fine);
+		gruppo.setGiorno();
+		
+		gruppo.setMateria("matematica");
+		gruppo.setNomeGruppo("gruppo performante");
+		dao.doDeleteByNameAndSubjet(gruppo.getNomeGruppo(),gruppo.getMateria());
+		GruppoDiStudio risultato = dao.doRetrieveByNameAndSubject(gruppo.getNomeGruppo(),gruppo.getMateria());
+		
+		assertTrue(risultato==null);
+		System.out.println("eliminazione completata");
 	}
 
 	@Test
 	void testDoRetrieveByName() {
-		fail("Not yet implemented");
+		gruppo.setAula(aula);
+		gruppo.setCreatore(creatore);
+		gruppo.setOrario(inizio, fine);
+		gruppo.setGiorno();
+		
+		gruppo.setMateria("matematica");
+		gruppo.setNomeGruppo("gruppo performante");
+		dao.doSave(gruppo);
+		List<GruppoDiStudio> risultato = dao.doRetrieveByName(gruppo.getNomeGruppo());
+		
+		  assertTrue(risultato.get(1).getNomeGruppo().equals(gruppo.getNomeGruppo()));
+		
+		System.out.println("funziona");
 	}
+
+	
 
 	@Test
 	void testDoRetrieveBySubject() {
@@ -73,17 +112,57 @@ class GdSDAOimplTest {
 
 	@Test
 	void testDoRetrieveByNameAndSubject() {
-		fail("Not yet implemented");
+	
+		gruppo.setAula(aula);
+		gruppo.setCreatore(creatore);
+		gruppo.setOrario(inizio, fine);
+		gruppo.setGiorno();
+		
+		gruppo.setMateria("matematica");
+		gruppo.setNomeGruppo("gruppo performante");
+		dao.doSave(gruppo);
+		GruppoDiStudio risultato = dao.doRetrieveByNameAndSubject(gruppo.getNomeGruppo(),gruppo.getMateria());
+		
+		assertTrue(risultato.getNomeGruppo().equals(gruppo.getNomeGruppo()));
+		
+		System.out.println("funziona");
 	}
 
 	@Test
 	void testDoRetrieveAll() {
-		fail("Not yet implemented");
+		gruppo.setAula(aula);
+		gruppo.setCreatore(creatore);
+		gruppo.setOrario(inizio, fine);
+		gruppo.setGiorno();
+		
+		gruppo.setMateria("matematica");
+		gruppo.setNomeGruppo("gruppo performante");
+		dao.doSave(gruppo);
+	    List<GruppoDiStudio> lista =dao.doRetrieveAll();
+	 
+	    assertTrue(lista.size()>0);
 	}
 
 	@Test
 	void testDoRetrieveById() {
-		fail("Not yet implemented");
+		gruppo.setAula(aula);
+		gruppo.setCreatore(creatore);
+		gruppo.setOrario(inizio, fine);
+		gruppo.setGiorno();
+		
+		gruppo.setMateria("matematica");
+		gruppo.setNomeGruppo("gruppo performante1");
+		dao.doSave(gruppo);
+		
+		System.out.println((gruppo.getId())+"l'id è");
+		GruppoDiStudio risultato = dao.doRetrieveByNameAndSubject(gruppo.getNomeGruppo(),gruppo.getMateria());
+
+		GruppoDiStudio risultato2 = dao.doRetrieveById(risultato.getId());
+		System.out.println(risultato.getId()+"l'id è");
+		
+		assertTrue(risultato.getId()==risultato2.getId());
+		
+		System.out.println("funziona");
 	}
 
 }

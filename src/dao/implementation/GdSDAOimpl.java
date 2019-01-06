@@ -255,7 +255,8 @@ public class GdSDAOimpl implements GdSDAO {
 			if(result.next()) {
 				b.setCreatore(DAOFactory.getUserDAO().doRetrieveAdminByKey(result.getString("creatore")));
 				b.setMateria(materia);
-
+				b.setNomeGruppo(nomeGruppo);
+				b.setGiorno(result.getString("giorno"));
 				b.setOrario(result.getTimestamp("orainizio"), result.getTimestamp("oraFine"));
 				b.setId(result.getInt("id"));
 				b.setAula(DAOFactory.getAulaDAO().doRetrieveByKey(result.getString("aula")));
@@ -302,7 +303,7 @@ public class GdSDAOimpl implements GdSDAO {
 				b.setId(result.getInt("id"));
 				b.setMateria(result.getString("materia"));
 				b.setOrario(result.getTimestamp("orainizio"), result.getTimestamp("oraFine"));
-				b.setGiorno();
+				b.setGiorno(result.getString("giorno"));
 				b.setAula(DAOFactory.getAulaDAO().doRetrieveByKey(result.getString("aula")));
 				// aggiunge l'oggetto alla lista
 				gruppi.add(b);
@@ -343,6 +344,7 @@ public class GdSDAOimpl implements GdSDAO {
 			ResultSet result = ps.executeQuery();
 			//ricava i risultati
 			if(result.next()) {
+				b.setNomeGruppo(result.getString("nome"));
 				b.setCreatore(DAOFactory.getUserDAO().doRetrieveAdminByKey(result.getString("creatore")));
 				b.setMateria(result.getString("materia"));
 				b.setOrario(result.getTimestamp("orainizio"), result.getTimestamp("oraFine"));

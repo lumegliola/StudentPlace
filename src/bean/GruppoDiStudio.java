@@ -95,6 +95,9 @@ public class GruppoDiStudio {
 		System.out.println(this.giorno);
 
 	}
+	public void setGiorno(String giorno) {
+		this.giorno = giorno;
+	}
 	
 	public String getGiorno() {
 		return this.giorno;
