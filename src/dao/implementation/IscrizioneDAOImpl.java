@@ -198,7 +198,7 @@ public class IscrizioneDAOImpl implements IscrizioneDAO{
 			//ricava i risultati
 			if(result.next()) {
 				
-				b.setIscritto(DAOFactory.getUserDAO().doRetrieveStudentByKey(result.getString("matricola")));
+				b.setIscritto(DAOFactory.getUserDAO().doRetrieveStudentByKey(result.getString("studente")));
 				b.setGruppo(DAOFactory.getGdSDAO().doRetrieveById(result.getInt("gruppo")));
 				return b;
 		
@@ -239,7 +239,7 @@ public class IscrizioneDAOImpl implements IscrizioneDAO{
 			//ricava i risultati
 			while (result.next()) {
 				Iscrizione b = new Iscrizione();
-				b.setIscritto(DAOFactory.getUserDAO().doRetrieveStudentByKey(result.getString("matricola")));
+				b.setIscritto(DAOFactory.getUserDAO().doRetrieveStudentByKey(result.getString("studente")));
 				b.setGruppo(DAOFactory.getGdSDAO().doRetrieveById(result.getInt("gruppo")));
 				
 				// aggiunge l'oggetto alla lista
