@@ -12,7 +12,7 @@ public class Orario {
 	private int idOrario;
 	private Timestamp inizio;
 	private Timestamp fine;
-	
+    private final int yearsMinus=1900;
 	public Orario() {}
 	
 	public Orario(Timestamp inizio, Timestamp fine) {
@@ -33,12 +33,14 @@ public class Orario {
 	}
 	
 	public void setInizio(Timestamp inizio) {
+		inizio.setYear(inizio.getYear()-yearsMinus);
 		this.inizio = inizio;
 	}
 	public Timestamp getFine() {
 		return fine;
 	}
 	public void setFine(Timestamp fine) {
+		fine.setYear(fine.getYear()-yearsMinus);
 		this.fine = fine;
 	}
 
