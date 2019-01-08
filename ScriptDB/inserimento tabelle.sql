@@ -1,6 +1,6 @@
 
 insert into credenziali(matricola,email,password,amministratore) values
-("0512101769", "email di luigi",123456,1),
+("0512101769", "l.califano22@studenti.unisa.it",123456,1),
 ("0512103853", "a.crispo6studenti.unisa.it",123456,1),
 ("0512103593", "a.capodanno5@studenti.unisa.it",123456,1),
 ("0512103647", "a.panico19@studenti.unisa.it",123456,1),
