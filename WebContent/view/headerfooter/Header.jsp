@@ -12,9 +12,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-	crossorigin="anonymous">
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
 <link rel="stylesheet"
@@ -31,28 +29,32 @@
 		<div class="row row_loghi">
 			<!-- COLONNA LOGO UNISA-->
 			<div class="col-md-3 column_logoUnisa">
-				<img class="logo" alt="Logo Unisa" src="logoUnisa.png">
+				<img class="logo" alt="Logo Unisa" src="../images/logoUnisa.png">
 			</div>
 
 			<!-- COLONNA LOGO STUDENTPLACE-->
 			<div class="col-md-6 column_logoSP">
 				<div class="row_StudentPlace">
-					<img class="logoSPxl" alt="Logo StudentPlace" src="logoSPxl.png">
+					<img class="logoSPxl" alt="Logo StudentPlace"
+						src="../images/logoSPxl.png">
+					<p class="iconsocial">
+						<i style="font-size:3em;color:#a01313;margin-right: 0.5em;" class="fa">&#xf09a;</i>
+						 <i style="font-size:3em;color:#a01313;margin-right: 0.5em;" class="fa">&#xf099;</i>
+						 <i style="font-size:3em;color:#a01313;margin-right: 0.5em;" class="fa">&#xf16d;</i>
+					</p>
 				</div>
 			</div>
 
 			<!-- COLONNA LOGO INFORMATICA-->
 			<div class="col-md-3 column_logoInformatica">
 				<img class="logo" alt="Smart Logo Informatica"
-					src="logoInformatica.jpg">
+					src="../images/logoInformatica.jpg">
 			</div>
 		</div>
 
 		<!-- RIGA NAVBAR-->
 		<nav class="navbar navbar-expand-lg navbar-custom">
-			<span class="navbar-brand">
-				StudentPlace
-			</span>
+			<span class="navbar-brand"> StudentPlace </span>
 
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav nav nav-pills nav-fill">
@@ -76,8 +78,8 @@
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="nav-item"><a href="#">Ciao! Nome Utente</a></li>
-					<li class="nav-item"><a href="#"><span class="glyphicon glyphicon-log-out"></span>
-							Logout</a></li>
+					<li class="nav-item"><a href="#"><span
+							class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 				</ul>
 			</div>
 		</nav>
