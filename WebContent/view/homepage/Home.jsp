@@ -25,7 +25,77 @@
 	
 </head>
 <!-- INCLUDE PAGE -->
+<body>
 <%@ include file="../headerfooter/Header.jsp" %>
+<div class  ="home" align="center">
+<div class = "col-lg-1"></div>
+
+<div id= "col-sx" class = "col-lg-4">
+CIAO! non sappiamo cosa metter qui, 
+quindi per adesso ci limitiamo a scrivere questo
+
+CIAO! non sappiamo cosa metter qui, 
+quindi per adesso ci limitiamo a scrivere questo
+
+CIAO! non sappiamo cosa metter qui, 
+quindi per adesso ci limitiamo a scrivere questo
+
+CIAO! non sappiamo cosa metter qui, 
+quindi per adesso ci limitiamo a scrivere questo
+
+CIAO! non sappiamo cosa metter qui, 
+quindi per adesso ci limitiamo a scrivere questo
+
+CIAO! non sappiamo cosa metter qui, 
+quindi per adesso ci limitiamo a scrivere questo
+
+CIAO! non sappiamo cosa metter qui, 
+quindi per adesso ci limitiamo a scrivere questo
+
+</div>
+<div class = "col-lg-2">
+</div>
+<div id = "col-dx" class = "col-lg-4">
+
+		
+			<div class="container-fluid login">
+			<div>
+				<label class="creaaccount">Accedi a Student place:</label><br />
+
+				<form action="login" method="post" onsubmit="return validateForm()">
+
+					<label>E-mail:&nbsp;</label><label id="resMail"></label><br />
+					<input type="text" name="email" id="email"
+						placeholder="email"
+						style="width: 90%; clear: both;"><br /> <br /> 
+						
+						<label>Password:&nbsp;</label><label id="resPass"></label><br/> 
+						<input type="password" name="password" id="password"
+						placeholder="password" style="width: 90%; clear: both;"><br /><br />
+					
+					
+					<input type="submit" class="button" value="Accedi"></input>
+				</form>
+			</div>
+		</div>
+
+</div>
+<div class = "col-lg-1">
+</div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <%@ include file="../headerfooter/Footer.html"%>
+
 </body>
 </html>
