@@ -18,9 +18,9 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <!-- IMPORT CSS-->
-<link rel="stylesheet" href="../headerfooter/Header.css"
+<link rel="stylesheet" href="view/headerfooter/Header.css"
 	type="text/css">
-<link rel="stylesheet" href="../headerfooter/Footer.css"
+<link rel="stylesheet" href="view/headerfooter/Footer.css"
 	type="text/css">
 	
 </head>
