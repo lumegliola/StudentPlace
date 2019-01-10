@@ -18,9 +18,9 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <!-- IMPORT CSS-->
-<link rel="stylesheet" href="../headerfooter/Header.css"
+<link rel="stylesheet" href="view/headerfooter/Header.css"
 	type="text/css">
-<link rel="stylesheet" href="../headerfooter/Footer.css"
+<link rel="stylesheet" href="view/headerfooter/Footer.css"
 	type="text/css">
 
 <title>Header</title>
@@ -31,14 +31,14 @@
 		<div class="row row_loghi">
 			<!-- COLONNA LOGO UNISA-->
 			<div class="col-md-3 column_logoUnisa">
-				<img class="logoHeaderFirst" alt="Logo Unisa" src="../images/logoUnisa.png">
+				<img class="logoHeaderFirst" alt="Logo Unisa" src="view/images/logoUnisa.png">
 			</div>
 
 			<!-- COLONNA LOGO STUDENTPLACE-->
 			<div class="col-md-6 column_logoSP">
 				<div class="row_StudentPlace">
 					<img class="logoSPxl" alt="Logo StudentPlace"
-						src="../images/logoSPxl.png">
+						src="view/images/logoSPxl.png">
 					<p class="iconsocial">
 						<i style="font-size:3em;color:#a01313;margin-right: 0.5em;" class="fa">&#xf09a;</i>
 						 <i style="font-size:3em;color:#a01313;margin-right: 0.5em;" class="fa">&#xf099;</i>
@@ -50,7 +50,7 @@
 			<!-- COLONNA LOGO INFORMATICA-->
 			<div class="col-md-3 column_logoInformatica">
 				<img class="logoHeaderSecond" alt="Smart Logo Informatica"
-					src="../images/logoInformatica.jpg">
+					src="view/images/logoInformatica.jpg">
 			</div>
 		</div>
 
