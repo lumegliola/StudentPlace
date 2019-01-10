@@ -26,6 +26,9 @@ class UserDAOimplTest {
 		System.out.println(risultato.getNome());
 		System.out.println(risultato.getCognome());
 		System.out.println(risultato.getCredenziali().getMatricola());
+		System.out.println(risultato.getCredenziali().getMail());
+		System.out.println(risultato.getCredenziali().getPassword());
+		
 		
 		//confronto
 		

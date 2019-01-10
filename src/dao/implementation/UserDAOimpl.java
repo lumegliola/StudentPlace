@@ -26,12 +26,12 @@ public class UserDAOimpl implements UserDAO {
 
 			//se l'utente è amministratore ammminitratore
 			if (user.getCredenziali().isAdmin()) {
-				if(!(c = DAOFactory.getCredenzialiDAO().doRetrieveByMatricola(user.getMatricola())).equals(new Credenziali())) {
+				if(!user.getCredenziali().equals(DAOFactory.getCredenzialiDAO().doRetrieveByMatricola(user.getCredenziali().getMatricola()))) {
 					//dichiara lo statement
 					ps = connection.prepareStatement("insert into amministratore values (?, ?, ?);");
 
 					//inserisce i campi
-					ps.setString(1, user.getMatricola());
+					ps.setString(1, user.getCredenziali().getMatricola());
 					ps.setObject(2, user.getNome());
 					ps.setString(3, user.getCognome());
 
@@ -43,7 +43,7 @@ public class UserDAOimpl implements UserDAO {
 					ps = connection.prepareStatement("insert into amministratore values (?, ?, ?);");
 
 					//inserisce i campi
-					ps.setString(1, user.getMatricola());
+					ps.setString(1, user.getCredenziali().getMatricola());
 					ps.setObject(2, user.getNome());
 					ps.setString(3, user.getCognome());
 
@@ -53,11 +53,11 @@ public class UserDAOimpl implements UserDAO {
 			}
 			else { // se l'utente è uno studente
 				//dichiara lo statement
-				if(!(c = DAOFactory.getCredenzialiDAO().doRetrieveByMatricola(user.getMatricola())).equals(new Credenziali())) {
+				if(!user.getCredenziali().equals(DAOFactory.getCredenzialiDAO().doRetrieveByMatricola(user.getCredenziali().getMatricola()))) {
 					ps = connection.prepareStatement("insert into studente values (?, ?, ?);");
 
 					//inserisce i campi
-					ps.setString(1, user.getMatricola());
+					ps.setString(1, user.getCredenziali().getMatricola());
 					ps.setObject(2, user.getNome());
 					ps.setString(3, user.getCognome());
 
@@ -69,7 +69,7 @@ public class UserDAOimpl implements UserDAO {
 					ps = connection.prepareStatement("insert into studente values (?, ?, ?);");
 
 					//inserisce i campi
-					ps.setString(1, user.getMatricola());
+					ps.setString(1, user.getCredenziali().getMatricola());
 					ps.setObject(2, user.getNome());
 					ps.setString(3, user.getCognome());
 
