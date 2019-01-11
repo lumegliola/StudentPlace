@@ -27,29 +27,29 @@
 <!-- INCLUDE PAGE -->
 <body>
 <%@ include file="../headerfooter/Header.jsp" %>
-<div class  ="home" align="center">
+<div style="min-height: 20em; padding-top: 3em;" class  ="home">
 <div class = "col-lg-1"></div>
 
 <div id= "col-sx" class = "col-lg-4">
-CIAO! non sappiamo cosa metter qui, 
+CIAO! non sappiamo cosa mettere qui, 
 quindi per adesso ci limitiamo a scrivere questo
 
-CIAO! non sappiamo cosa metter qui, 
+CIAO! non sappiamo cosa mettere qui, 
 quindi per adesso ci limitiamo a scrivere questo
 
-CIAO! non sappiamo cosa metter qui, 
+CIAO! non sappiamo cosa mettere qui, 
 quindi per adesso ci limitiamo a scrivere questo
 
-CIAO! non sappiamo cosa metter qui, 
+CIAO! non sappiamo cosa mettere qui, 
 quindi per adesso ci limitiamo a scrivere questo
 
-CIAO! non sappiamo cosa metter qui, 
+CIAO! non sappiamo cosa mettere qui, 
 quindi per adesso ci limitiamo a scrivere questo
 
-CIAO! non sappiamo cosa metter qui, 
+CIAO! non sappiamo cosa mettere qui, 
 quindi per adesso ci limitiamo a scrivere questo
 
-CIAO! non sappiamo cosa metter qui, 
+CIAO! non sappiamo cosa mettere qui, 
 quindi per adesso ci limitiamo a scrivere questo
 
 </div>
@@ -83,18 +83,7 @@ quindi per adesso ci limitiamo a scrivere questo
 <div class = "col-lg-1">
 </div>
 </div>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+
 <%@ include file="../headerfooter/Footer.html"%>
 
 </body>
