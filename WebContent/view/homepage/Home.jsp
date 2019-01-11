@@ -30,7 +30,7 @@
 <div style="min-height: 20em; padding-top: 3em;" class  ="home">
 <div class = "col-lg-1"></div>
 
-<div id= "col-sx" class = "col-lg-4">
+<div id= "col-sx" class = "col-lg-5">
 CIAO! non sappiamo cosa mettere qui, 
 quindi per adesso ci limitiamo a scrivere questo
 
@@ -55,10 +55,10 @@ quindi per adesso ci limitiamo a scrivere questo
 </div>
 <div class = "col-lg-2">
 </div>
-<div id = "col-dx" class = "col-lg-4">
+<div id = "col-dx" style=" border-left: 1px solid red;" class = "col-lg-4">
 
 		
-			<div class="container-fluid login">
+			<div class="container-fluid login" style="margin-left: 5em; margin-right: 5em;">
 			<div>
 				<label class="creaaccount">Accedi a Student place:</label><br />
 
@@ -80,8 +80,7 @@ quindi per adesso ci limitiamo a scrivere questo
 		</div>
 
 </div>
-<div class = "col-lg-1">
-</div>
+
 </div>
 
 <%@ include file="../headerfooter/Footer.html"%>
