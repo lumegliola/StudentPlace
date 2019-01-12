@@ -2,24 +2,14 @@ drop database studentplaceDB;
 create database StudentPlaceDB;
 use StudentPlaceDB;
 
-create table credenziali(
+
+create table utente(
+matricola varchar(10),
+nome varchar(45) not null,
+cognome varchar(45)not null,
 email varchar(45) primary key,
-matricola varchar(10) unique not null,
 password varchar(45) not null,
 amministratore smallint not null
-);
-
-create table amministratore(
-matricola varchar(10) primary key,
-nome varchar(45) not null,
-cognome varchar(45)not null,
-foreign key (matricola) references credenziali(matricola)
-);
-create table studente(
-matricola varchar(10) primary key,
-nome varchar(45) not null,
-cognome varchar(45)not null,
-foreign key (matricola) references credenziali(matricola)
 );
 
 create table gds(
