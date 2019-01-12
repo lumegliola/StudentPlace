@@ -6,20 +6,40 @@ public class Utente {
 	private String matricola;
 	private String nome;
 	private String cognome;
-	private Credenziali credenziali;
+	private String mail;
+	private String password;
+	private boolean admin;
 
 	public Utente() {}
-	public Utente(String unNome,String unCognome,Credenziali delleCredenziali) {
-
-
-		this.setMatricola(delleCredenziali.getMatricola());
+	public Utente(String unaMatricola, String unNome,String unCognome, String mail, String password) {
+		
 		this.setNome(unNome);
 		this.setCognome(unCognome);
-		setCredenziali(delleCredenziali);
-
+		this.setMatricola(unaMatricola);
+		this.setMail(mail);
+		this.setPassword(password);
+		
 	}
 
 
+	public String getMail() {
+		return mail;
+	}
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public boolean isAdmin() {
+		return admin;
+	}
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
+	}
 	public String getMatricola() {
 		return matricola;
 	}
@@ -49,23 +69,16 @@ public class Utente {
 		this.nome = nome;
 	}
 
-
-	public Credenziali getCredenziali() {
-		return credenziali;
-	}
-
-
-	public void setCredenziali(Credenziali credenziali) {
-		this.credenziali = credenziali;
-	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + (admin ? 1231 : 1237);
 		result = prime * result + ((cognome == null) ? 0 : cognome.hashCode());
-		result = prime * result + ((credenziali == null) ? 0 : credenziali.hashCode());
+		result = prime * result + ((mail == null) ? 0 : mail.hashCode());
 		result = prime * result + ((matricola == null) ? 0 : matricola.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		return result;
 	}
 	@Override
@@ -80,6 +93,9 @@ public class Utente {
 			return false;
 		}
 		Utente other = (Utente) obj;
+		if (admin != other.admin) {
+			return false;
+		}
 		if (cognome == null) {
 			if (other.cognome != null) {
 				return false;
@@ -87,11 +103,11 @@ public class Utente {
 		} else if (!cognome.equals(other.cognome)) {
 			return false;
 		}
-		if (credenziali == null) {
-			if (other.credenziali != null) {
+		if (mail == null) {
+			if (other.mail != null) {
 				return false;
 			}
-		} else if (!credenziali.equals(other.credenziali)) {
+		} else if (!mail.equals(other.mail)) {
 			return false;
 		}
 		if (matricola == null) {
@@ -108,8 +124,16 @@ public class Utente {
 		} else if (!nome.equals(other.nome)) {
 			return false;
 		}
+		if (password == null) {
+			if (other.password != null) {
+				return false;
+			}
+		} else if (!password.equals(other.password)) {
+			return false;
+		}
 		return true;
 	}
+
 	
 	
 }

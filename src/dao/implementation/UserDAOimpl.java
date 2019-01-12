@@ -19,66 +19,25 @@ public class UserDAOimpl implements UserDAO {
 		Connection connection = null;
 		PreparedStatement ps = null;
 		int result = 0;
-		Credenziali c = new Credenziali() ; 
-
+		
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
 
 			//se l'utente è amministratore ammminitratore
-			if (user.getCredenziali().isAdmin()) {
-				if(!user.getCredenziali().equals(DAOFactory.getCredenzialiDAO().doRetrieveByMatricola(user.getCredenziali().getMatricola()))) {
-					//dichiara lo statement
-					ps = connection.prepareStatement("insert into amministratore values (?, ?, ?);");
+				
+					ps = connection.prepareStatement("insert into utente values (?, ?, ?, ?, ?, ?);");
 
 					//inserisce i campi
-					ps.setString(1, user.getCredenziali().getMatricola());
+					ps.setString(1, user.getMatricola());
 					ps.setObject(2, user.getNome());
 					ps.setString(3, user.getCognome());
-
+					ps.setString(4, user.getMail());
+					ps.setObject(5, user.getPassword());
+					ps.setBoolean(6, user.isAdmin());
+					
 					//esegue lo statement
 					result = ps.executeUpdate();
-				}
-				else {
-					DAOFactory.getCredenzialiDAO().doSave(user.getCredenziali());
-					ps = connection.prepareStatement("insert into amministratore values (?, ?, ?);");
-
-					//inserisce i campi
-					ps.setString(1, user.getCredenziali().getMatricola());
-					ps.setObject(2, user.getNome());
-					ps.setString(3, user.getCognome());
-
-					//esegue lo statement
-					result = ps.executeUpdate();
-				}
-			}
-			else { // se l'utente è uno studente
-				//dichiara lo statement
-				if(!user.getCredenziali().equals(DAOFactory.getCredenzialiDAO().doRetrieveByMatricola(user.getCredenziali().getMatricola()))) {
-					ps = connection.prepareStatement("insert into studente values (?, ?, ?);");
-
-					//inserisce i campi
-					ps.setString(1, user.getCredenziali().getMatricola());
-					ps.setObject(2, user.getNome());
-					ps.setString(3, user.getCognome());
-
-					//esegue lo statement
-					result = ps.executeUpdate();	
-				}
-				else {
-					DAOFactory.getCredenzialiDAO().doSave(user.getCredenziali());
-					ps = connection.prepareStatement("insert into studente values (?, ?, ?);");
-
-					//inserisce i campi
-					ps.setString(1, user.getCredenziali().getMatricola());
-					ps.setObject(2, user.getNome());
-					ps.setString(3, user.getCognome());
-
-					//esegue lo statement
-					result = ps.executeUpdate();	
-				}
-			}
 			
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -96,7 +55,37 @@ public class UserDAOimpl implements UserDAO {
 
 	@Override
 	public boolean doSaveOrUpdate(Utente user, String password) {
-		return DAOFactory.getCredenzialiDAO().doSaveOrUpdate(user.getCredenziali(), password);
+		Connection connection = null;
+		PreparedStatement ps = null;
+		int result = 0;		
+		
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+
+			//se l'utente è amministratore ammminitratore
+				
+					ps = connection.prepareStatement("update utente set password = ? where matricola = ?;");
+
+					//inserisce i campi
+					ps.setString(1, password);
+					ps.setString(2, user.getMatricola());
+				
+					//esegue lo statement
+					result = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(connection != null) {
+				try {
+					ps.close();
+					DriverManagerConnectionPool.releaseConnection(connection);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return (result == 1);
 	}
 
 	@Override
@@ -118,27 +107,9 @@ public class UserDAOimpl implements UserDAO {
 			connection = DriverManagerConnectionPool.getConnection();
 
 			//dichiara lo statement
-			ps = connection.prepareStatement("select * from studente where matricola = ?;");
+			ps = connection.prepareStatement("delete * from studente where matricola = ?;");
 			ps.setString(1, matricola);
 
-			//esegue lo statement
-			ResultSet result1 = ps.executeQuery();
-			//ricava i risultati
-
-			if(result1.next()) {
-
-				//utente
-				psDel = connection.prepareStatement("delete * from studente where matricola = ?");
-				psDel.setString(1, matricola);
-			}else {
-
-				//Amministratore
-				psDel = connection.prepareStatement("delete * from amministratore where matricola = ?");
-				psDel.setString(1, matricola);
-			}
-
-			//elimina anche le credenziali
-			DAOFactory.getCredenzialiDAO().doDelete(matricola);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -156,10 +127,9 @@ public class UserDAOimpl implements UserDAO {
 	}
 
 	@Override
-	public Utente doRetrieveAdminByKey(String matricola) {
+	public Utente doRetrieveByKey(String matricola) {
 		Connection connection = null;
 		PreparedStatement ps = null;
-		PreparedStatement psAmm = null;
 
 		try {
 			Utente b = new Utente();
@@ -167,7 +137,7 @@ public class UserDAOimpl implements UserDAO {
 
 			connection = DriverManagerConnectionPool.getConnection();
 			//dichiara lo statement
-			ps = connection.prepareStatement("select * from amministratore where matricola = ?;");
+			ps = connection.prepareStatement("select * from utente where matricola = ?;");
 			ps.setString(1, matricola);
 
 			//esegue lo statement
@@ -177,7 +147,9 @@ public class UserDAOimpl implements UserDAO {
 			if(result.next()) {
 				b.setNome(result.getString("nome"));
 				b.setCognome(result.getString("cognome"));
-				b.setCredenziali(DAOFactory.getCredenzialiDAO().doRetrieveByMatricola(matricola));
+				b.setMail(result.getString("email"));
+				b.setPassword(result.getString("password"));
+				b.setAdmin(result.getBoolean("amministratore"));
 				return b;
 			}
 
@@ -195,54 +167,12 @@ public class UserDAOimpl implements UserDAO {
 		}
 		return null;
 	}
-
-
-	@Override
-	public Utente doRetrieveStudentByKey(String matricola) {
-		Connection connection = null;
-		PreparedStatement ps = null;
-		PreparedStatement psAmm = null;
-
-		try {
-			Utente b = new Utente();
-			b.setMatricola(matricola);
-
-			connection = DriverManagerConnectionPool.getConnection();
-			//dichiara lo statement
-			ps = connection.prepareStatement("select * from studente where matricola = ?;");
-			ps.setString(1, matricola);
-
-			//esegue lo statement
-			ResultSet result = ps.executeQuery();
-
-			//studente
-			if(result.next()) {
-				b.setNome(result.getString("nome"));
-				b.setCognome(result.getString("cognome"));
-				b.setCredenziali(DAOFactory.getCredenzialiDAO().doRetrieveByMatricola(matricola));
-				return b;
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			if(connection != null) {
-				try {
-					ps.close();
-					DriverManagerConnectionPool.releaseConnection(connection);
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-		return null;
-	}
-
 
 	@Override
 	public List<Utente> doRetrieveAll() {
 		Connection connection = null;
 		PreparedStatement ps = null;
-		PreparedStatement ps2 = null;
+		
 		List <Utente> utenti = new ArrayList<>();
 
 		try {
@@ -250,7 +180,7 @@ public class UserDAOimpl implements UserDAO {
 			connection = DriverManagerConnectionPool.getConnection();
 
 			//dichiara lo statement
-			ps = connection.prepareStatement("select * from amministratore;");
+			ps = connection.prepareStatement("select * from utente;");
 
 			//esegue lo statement
 			ResultSet result = ps.executeQuery();
@@ -258,30 +188,16 @@ public class UserDAOimpl implements UserDAO {
 			//ricava i risultati
 			while (result.next()) {
 				Utente b = new Utente();
-				b.setMatricola(result.getString("matricola"));
 				b.setNome(result.getString("nome"));
-				b.setCognome("cognome");
-				b.setCredenziali(DAOFactory.getCredenzialiDAO().doRetrieveByMatricola(b.getMatricola()));
+				b.setCognome(result.getString("cognome"));
+				b.setMail(result.getString("email"));
+				b.setPassword(result.getString("password"));
+				b.setAdmin(result.getBoolean("amministratore"));
 
 				// aggiunge l'oggetto alla lista
 				utenti.add(b);
 			}
-			ps2 = connection.prepareStatement("select * from studenti;");
-
-			//esegue lo statement
-			ResultSet result1 = ps.executeQuery();
-
-			//ricava i risultati
-			while (result.next()) {
-				Utente b = new Utente();
-				b.setMatricola(result1.getString("matricola"));
-				b.setNome(result1.getString("nome"));
-				b.setCognome("cognome");
-				b.setCredenziali(DAOFactory.getCredenzialiDAO().doRetrieveByMatricola(b.getMatricola()));
-
-				// aggiunge l'oggetto alla lista
-				utenti.add(b);
-			}
+			
 
 		} catch (SQLException e) {
 			e.printStackTrace();
