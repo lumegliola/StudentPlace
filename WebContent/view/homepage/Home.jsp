@@ -27,8 +27,8 @@
 <!-- INCLUDE PAGE -->
 <body>
 <%@ include file="../headerfooter/Header.jsp" %>
-<div style="min-height: 20em; padding-top: 3em;" class  ="home">
-<div class = "col-lg-1"></div>
+<div style="min-height: 30em; padding-top: 3em;" class  ="home">
+<div class = "col-lg-1" style="min-height: 30em;"></div>
 
 <div id= "col-sx" class = "col-lg-5">
 CIAO! non sappiamo cosa mettere qui, 

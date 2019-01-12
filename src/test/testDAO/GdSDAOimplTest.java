@@ -17,8 +17,7 @@ class GdSDAOimplTest {
 	GdSDAO dao = DAOFactory.getGdSDAO();
 	GruppoDiStudio gruppo=new GruppoDiStudio();
 	Aula aula = new Aula("P4", "F2");
-	Credenziali c= new Credenziali("kitemmuort1995@studenti.unisa,it", "123456", "0512104592", false);
-	Utente creatore= new Utente("filippo","lumegliola",c);
+	Utente creatore= new Utente("0512104592", "filippo", "lumegliola", "kitemmuort1995@studenti.unisa,it", "123456");
 	Timestamp inizio = new Timestamp(119, 0, 15, 0, 0, 0, 0);
 	Timestamp fine = new Timestamp(119, 0, 15, 0, 10, 0, 0);
 	boolean ok;
@@ -35,7 +34,7 @@ class GdSDAOimplTest {
 		gruppo.setMateria("matematica");
 		gruppo.setNomeGruppo("gruppo performante");
 		
-		System.out.println(gruppo.getCreatore().getCredenziali().getMatricola());
+		System.out.println(gruppo.getCreatore().getMatricola());
 		System.out.println("test metodo 1");
 		ok = false;
 		Boolean res = dao.doSave(gruppo);
@@ -58,7 +57,7 @@ class GdSDAOimplTest {
 		gruppo.setMateria("matematica");
 		gruppo.setNomeGruppo("gruppo performante");
 		
-		System.out.println(gruppo.getCreatore().getCredenziali().getMatricola());
+		System.out.println(gruppo.getCreatore().getMatricola());
 		System.out.println("test metodo 1");
 		ok = false;
 		Boolean res = dao.doSaveOrUpdate(gruppo, gruppo.getAula().getNomeAula(), gruppo.getOrario().getInizio(), gruppo.getOrario().getFine());

@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import bean.Credenziali;
 import bean.Utente;
 import dao.DAOFactory;
 
@@ -13,21 +12,20 @@ class UserDAOimplTest {
 	@Test
 	void testDoSave() {
 		System.out.println("Test metodo 1");
-		Credenziali c = new Credenziali("menomalechesilviocè1@studenti.unisa.it", "miconsenta", "0512103322", false);
-		Utente user = new Utente("Silvio", "Berlusconi", c);
+		Utente user = new Utente("0512103322", "Silvio", "Berlusconi","menomalechesilviocè1@studenti.unisa.it", "miconsenta");
 		boolean res = DAOFactory.getUserDAO().doSave(user);
 			
 		assertTrue(res);
 		//ricavo l'inserimento dal DB
-		Utente risultato = DAOFactory.getUserDAO().doRetrieveStudentByKey(user.getCredenziali().getMatricola());
+		Utente risultato = DAOFactory.getUserDAO().doRetrieveByKey(user.getMatricola());
 		System.out.println(user.getCognome());
-		System.out.println(user.getCredenziali().getMatricola());
+		System.out.println(user.getMatricola());
 		
 		System.out.println(risultato.getNome());
 		System.out.println(risultato.getCognome());
-		System.out.println(risultato.getCredenziali().getMatricola());
-		System.out.println(risultato.getCredenziali().getMail());
-		System.out.println(risultato.getCredenziali().getPassword());
+		System.out.println(risultato.getMatricola());
+		System.out.println(risultato.getMail());
+		System.out.println(risultato.getPassword());
 		
 		
 		//confronto

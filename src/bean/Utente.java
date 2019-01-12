@@ -18,7 +18,7 @@ public class Utente {
 		this.setMatricola(unaMatricola);
 		this.setMail(mail);
 		this.setPassword(password);
-		
+		this.setAdmin(false);
 	}
 
 

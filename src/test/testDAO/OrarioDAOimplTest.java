@@ -10,10 +10,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import bean.Credenziali;
 import bean.Orario;
 import dao.DAOFactory;
-import dao.interfaces.CredenzialiDAO;
 import dao.interfaces.OrarioDAO;
 
 class OrarioDAOimplTest {
