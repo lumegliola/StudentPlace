@@ -99,7 +99,7 @@ public class IscrizioneDAOImpl implements IscrizioneDAO{
 
 		try {
 			Iscrizione b = new Iscrizione();
-			b.setIscritto(DAOFactory.getUserDAO().doRetrieveStudentByKey(matricola));
+			b.setIscritto(DAOFactory.getUserDAO().doRetrieveByKey(matricola));
 
 			connection = DriverManagerConnectionPool.getConnection();
 			//dichiara lo statement
@@ -154,7 +154,7 @@ public class IscrizioneDAOImpl implements IscrizioneDAO{
 			//ricava i risultati
 			while(result.next()) {
 			
-				b.setIscritto(DAOFactory.getUserDAO().doRetrieveStudentByKey(result.getString("studente")));
+				b.setIscritto(DAOFactory.getUserDAO().doRetrieveByKey(result.getString("studente")));
 				res.add(b);
 	
 			}
@@ -182,7 +182,7 @@ public class IscrizioneDAOImpl implements IscrizioneDAO{
 
 		try {
 			Iscrizione b = new Iscrizione();
-			Utente s = DAOFactory.getUserDAO().doRetrieveStudentByKey(matricola);
+			Utente s = DAOFactory.getUserDAO().doRetrieveByKey(matricola);
 			GruppoDiStudio g = DAOFactory.getGdSDAO().doRetrieveById(idGruppo);
 			
 
@@ -198,7 +198,7 @@ public class IscrizioneDAOImpl implements IscrizioneDAO{
 			//ricava i risultati
 			if(result.next()) {
 				
-				b.setIscritto(DAOFactory.getUserDAO().doRetrieveStudentByKey(result.getString("studente")));
+				b.setIscritto(DAOFactory.getUserDAO().doRetrieveByKey(result.getString("studente")));
 				b.setGruppo(DAOFactory.getGdSDAO().doRetrieveById(result.getInt("gruppo")));
 				return b;
 		
@@ -239,7 +239,7 @@ public class IscrizioneDAOImpl implements IscrizioneDAO{
 			//ricava i risultati
 			while (result.next()) {
 				Iscrizione b = new Iscrizione();
-				b.setIscritto(DAOFactory.getUserDAO().doRetrieveStudentByKey(result.getString("studente")));
+				b.setIscritto(DAOFactory.getUserDAO().doRetrieveByKey(result.getString("studente")));
 				b.setGruppo(DAOFactory.getGdSDAO().doRetrieveById(result.getInt("gruppo")));
 				
 				// aggiunge l'oggetto alla lista

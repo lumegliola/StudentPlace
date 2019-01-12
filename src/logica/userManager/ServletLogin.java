@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import bean.Credenziali;
 import bean.Utente;
 import dao.DAOFactory;
 
@@ -46,7 +44,7 @@ public class ServletLogin extends HttpServlet {
 		//String password = request.getParameter("password");
 		String email = "f.megliola1@studenti.unisa.it";
 		String password = "123456";
-		Credenziali b = DAOFactory.getCredenzialiDAO().doRetrieveByEmailAndPassword(email, password);
+		Utente b = DAOFactory.getUserDAO().doRetrieveByMailAndPass(email, password);
 
 		if(b == null) { // Utente Non trovato, credenziali errate.
 			//System.out.println("null");
@@ -64,9 +62,7 @@ public class ServletLogin extends HttpServlet {
 			//Setto i cookie per i prossimi accessi al sito.
 			Cookie emailCookie = new Cookie("email", email);
 			Cookie passwordCookie = new Cookie("password", password);
-			Utente usr = DAOFactory.getUserDAO().doRetrieveAdminByKey(b.getMatricola());
-			if(usr == null)
-				usr = DAOFactory.getUserDAO().doRetrieveStudentByKey(b.getMatricola());
+			
 			//Setto la durata massima dei cookies, un mese
 			emailCookie.setMaxAge(60 * 60 * 24 * 30);
 			passwordCookie.setMaxAge(60 * 60 * 24 * 30);
@@ -77,16 +73,16 @@ public class ServletLogin extends HttpServlet {
 
 			if(session != null) { //L'utente che si è appena loggato ha già una sessione.
 				session.setAttribute("email", b.getMail());
-				session.setAttribute("nome", usr.getNome());
-				session.setAttribute("matricola", usr.getMatricola());
+				session.setAttribute("nome", b.getNome());
+				session.setAttribute("matricola", b.getMatricola());
 
 				session.setAttribute("logged", true);
 				
 			} else { //L'Utente che si è appena loggato non ha ancora una sessione, quindi dobbiamo creargliela.
 				session = request.getSession(true); 
 				session.setAttribute("email", b.getMail());
-				session.setAttribute("nome", usr.getNome());
-				session.setAttribute("matricola", usr.getMatricola());
+				session.setAttribute("nome", b.getNome());
+				session.setAttribute("matricola", b.getMatricola());
 				session.setAttribute("logged", true);	
 			}
 

@@ -64,11 +64,11 @@ public class UserDAOimpl implements UserDAO {
 
 			//se l'utente è amministratore ammminitratore
 				
-					ps = connection.prepareStatement("update utente set password = ? where matricola = ?;");
+					ps = connection.prepareStatement("update utente set password = ? where email = ?;");
 
 					//inserisce i campi
 					ps.setString(1, password);
-					ps.setString(2, user.getMatricola());
+					ps.setString(2, user.getMail());
 				
 					//esegue lo statement
 					result = ps.executeUpdate();
@@ -94,21 +94,18 @@ public class UserDAOimpl implements UserDAO {
 	}
 
 	@Override
-	public boolean doDelete(String matricola) {
+	public boolean doDelete(String mail) {
 		Connection connection = null;
 		PreparedStatement ps = null;
 		PreparedStatement psDel = null;
 		int result = 0;
 
 		try {
-			Utente b = new Utente();
-			b.setMatricola(matricola);
-
 			connection = DriverManagerConnectionPool.getConnection();
 
 			//dichiara lo statement
-			ps = connection.prepareStatement("delete * from studente where matricola = ?;");
-			ps.setString(1, matricola);
+			ps = connection.prepareStatement("delete * from studente where email = ?;");
+			ps.setString(1, mail);
 
 
 		} catch (SQLException e) {
@@ -127,18 +124,18 @@ public class UserDAOimpl implements UserDAO {
 	}
 
 	@Override
-	public Utente doRetrieveByKey(String matricola) {
+	public Utente doRetrieveByKey(String mail) {
 		Connection connection = null;
 		PreparedStatement ps = null;
 
 		try {
 			Utente b = new Utente();
-			b.setMatricola(matricola);
+			b.setMail(mail);;
 
 			connection = DriverManagerConnectionPool.getConnection();
 			//dichiara lo statement
-			ps = connection.prepareStatement("select * from utente where matricola = ?;");
-			ps.setString(1, matricola);
+			ps = connection.prepareStatement("select * from utente where email = ?;");
+			ps.setString(1, mail);
 
 			//esegue lo statement
 			ResultSet result = ps.executeQuery();
@@ -212,6 +209,51 @@ public class UserDAOimpl implements UserDAO {
 			}
 		}
 		return utenti;
+	}
+
+	@Override
+	public Utente doRetrieveByMailAndPass(String mail, String password) {
+		
+		Connection connection = null;
+		PreparedStatement ps = null;
+
+		try {
+			Utente b = new Utente();
+			b.setMail(mail);
+			b.setPassword(password);
+
+			connection = DriverManagerConnectionPool.getConnection();
+			//dichiara lo statement
+			ps = connection.prepareStatement("select * from utente where email = ? and password = ? ;");
+			ps.setString(1, mail);
+			ps.setString(2, password);
+
+			//esegue lo statement
+			ResultSet result = ps.executeQuery();
+
+			//studente
+			if(result.next()) {
+				b.setNome(result.getString("nome"));
+				b.setCognome(result.getString("cognome"));
+				b.setMail(result.getString("email"));
+				b.setPassword(result.getString("password"));
+				b.setAdmin(result.getBoolean("amministratore"));
+				return b;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(connection != null) {
+				try {
+					ps.close();
+					DriverManagerConnectionPool.releaseConnection(connection);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return null;
 	}
 
 }

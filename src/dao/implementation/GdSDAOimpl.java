@@ -163,7 +163,7 @@ public class GdSDAOimpl implements GdSDAO {
 
 			//ricava i risultati
 			while(result.next()) {
-				b.setCreatore(DAOFactory.getUserDAO().doRetrieveAdminByKey(result.getString("creatore")));
+				b.setCreatore(DAOFactory.getUserDAO().doRetrieveByKey(result.getString("creatore")));
 				b.setMateria(result.getString("materia"));
                 b.setOrario(result.getTimestamp("oraInizio"), result.getTimestamp("oraFine"));
                 b.setId(result.getInt("id"));
@@ -208,7 +208,7 @@ public class GdSDAOimpl implements GdSDAO {
 			//ricava i risultati
 			while(result.next()) {
 				b.setNomeGruppo(result.getString("nome"));
-				b.setCreatore(DAOFactory.getUserDAO().doRetrieveAdminByKey(result.getString("creatore")));
+				b.setCreatore(DAOFactory.getUserDAO().doRetrieveByKey(result.getString("creatore")));
 				b.setId(result.getInt("id"));
 				b.setOrario(result.getTimestamp("orainizio"), result.getTimestamp("oraFine"));
 				b.setAula(DAOFactory.getAulaDAO().doRetrieveByKey(result.getString("aula")));
@@ -253,7 +253,7 @@ public class GdSDAOimpl implements GdSDAO {
 			ResultSet result = ps.executeQuery();
 			//ricava i risultati
 			if(result.next()) {
-				b.setCreatore(DAOFactory.getUserDAO().doRetrieveAdminByKey(result.getString("creatore")));
+				b.setCreatore(DAOFactory.getUserDAO().doRetrieveByKey(result.getString("creatore")));
 				b.setMateria(materia);
 				b.setNomeGruppo(nomeGruppo);
 				b.setGiorno(result.getString("giorno"));
@@ -299,7 +299,7 @@ public class GdSDAOimpl implements GdSDAO {
 			while (result.next()) {
 				GruppoDiStudio b = new GruppoDiStudio();
 				b.setNomeGruppo(result.getString("nome"));
-				b.setCreatore(DAOFactory.getUserDAO().doRetrieveAdminByKey(result.getString("creatore")));
+				b.setCreatore(DAOFactory.getUserDAO().doRetrieveByKey(result.getString("creatore")));
 				b.setId(result.getInt("id"));
 				b.setMateria(result.getString("materia"));
 				b.setOrario(result.getTimestamp("orainizio"), result.getTimestamp("oraFine"));
@@ -345,7 +345,7 @@ public class GdSDAOimpl implements GdSDAO {
 			//ricava i risultati
 			if(result.next()) {
 				b.setNomeGruppo(result.getString("nome"));
-				b.setCreatore(DAOFactory.getUserDAO().doRetrieveAdminByKey(result.getString("creatore")));
+				b.setCreatore(DAOFactory.getUserDAO().doRetrieveByKey(result.getString("creatore")));
 				b.setMateria(result.getString("materia"));
 				b.setOrario(result.getTimestamp("orainizio"), result.getTimestamp("oraFine"));
 				b.setAula(DAOFactory.getAulaDAO().doRetrieveByKey(result.getString("aula")));

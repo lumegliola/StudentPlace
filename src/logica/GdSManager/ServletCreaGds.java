@@ -46,7 +46,7 @@ public class ServletCreaGds extends HttpServlet {
 			String materia = "materia";
 				if(DAOFactory.getGdSDAO().doRetrieveByNameAndSubject(nomeGruppo, materia) == null){
 			
-					Utente creatore = DAOFactory.getUserDAO().doRetrieveAdminByKey("0512102865");
+					Utente creatore = DAOFactory.getUserDAO().doRetrieveByKey("0512102865");
 			
 					@SuppressWarnings("deprecation")
 					Timestamp inizio = new Timestamp(124, 11, 16, 15, 00, 00, 00);

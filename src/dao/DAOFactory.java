@@ -19,10 +19,6 @@ public class DAOFactory {
 			return new UserDAOimpl();
 		}
 	
-		public static CredenzialiDAO getCredenzialiDAO() {
-			return new CredenzialiDAOimpl();
-		}
-	
 		public static OrarioDAO getOrarioDAO() {
 			return new OrarioDAOimpl();
 		}
