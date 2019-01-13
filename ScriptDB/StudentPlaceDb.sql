@@ -4,7 +4,7 @@ use StudentPlaceDB;
 
 
 create table utente(
-matricola varchar(10),
+matricola varchar(10)unique,
 nome varchar(45) not null,
 cognome varchar(45)not null,
 email varchar(45) primary key,
@@ -23,10 +23,10 @@ giorno varchar(10) not  null,
 aula varchar(45) not  null
 );
 create table iscrizione(
-studente varchar(10),
+utente varchar(10),
 gruppo int (10),
-primary key(studente,gruppo),
-foreign key (studente) references studente(matricola),
+primary key(utente,gruppo),
+foreign key (utente) references utente(matricola),
 foreign key (gruppo) references gds(id) 
 );
 create table aula(

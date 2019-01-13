@@ -1,34 +1,17 @@
 
-insert into credenziali(matricola,email,password,amministratore) values
-("0512101769", "l.califano22@studenti.unisa.it",123456,1),
-("0512103853", "a.crispo6studenti.unisa.it",123456,1),
-("0512103593", "a.capodanno5@studenti.unisa.it",123456,1),
-("0512103647", "a.panico19@studenti.unisa.it",123456,1),
-("0512102855", "f.megliola@studenti.unisa.it",123456,1),
-("0512102865", "f.megliola1@studenti.unisa.it",123456,0),
-("0512102565", "a.lino@studenti.unisa.it",123456,0),
-("0512102765", "c.iao@studenti.unisa.it",123456,0),
-("0512102665", "b.ello@studenti.unisa.it",123456,0);
 
 
-insert into amministratore(matricola, nome,cognome) values
-("0512101769", "Luigi","Califano"),
-("0512103853", "Alessia","Crispo"),
-("0512103593", "Alessandro","Capodanno"),
-("0512103647", "Antonio","Panico"),
-("0512102855", "Filippo","Megliola");
+insert into utente(matricola, nome, cognome, email, password, amministratore) values
 
-insert into studente(matricola, nome,cognome) values
-
-("0512102865", "Filippo","Megliola"),
-("0512102565", "Antonio","Lino"),
-("0512102765", "Carmine","Iao"),
-("0512102665", "Bautista","Ello"),
-("0512101769", "Luigi","Califano"),
-("0512103853", "Alessia","Crispo"),
-("0512103593", "Alessandro","Capodanno"),
-("0512103647", "Antonio","Panico"),
-("0512102855", "Filippo","Megliola");
+("0512102865", "Filippo","Megliola", "f.megliola1@studenti.unisa.it",123456,0),
+("0512102565", "Antonio","Lino", "a.lino@studenti.unisa.it",123456,0),
+("0512102765", "Carmine","Iao", "c.iao@studenti.unisa.it",123456,0),
+("0512102665", "Bautista","Ello","b.ello@studenti.unisa.it",123456,0),
+("0512101769", "Luigi","Califano", "l.califano22@studenti.unisa.it",123456,1),
+("0512103853", "Alessia","Crispo", "a.crispo6studenti.unisa.it",123456,1),
+("0512103593", "Alessandro","Capodanno", "a.capodanno5@studenti.unisa.it",123456,1),
+("0512103647", "Antonio","Panico", "a.panico19@studenti.unisa.it",123456,1),
+("0512102855", "Filippo","Megliola", "f.megliola@studenti.unisa.it",123456,1);
 
 
 insert into aula(nome,edificio) values
