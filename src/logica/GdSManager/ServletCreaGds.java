@@ -42,8 +42,8 @@ public class ServletCreaGds extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		if(session != null && session.getAttribute("logged") != null) {
 			
-			String nomeGruppo = "ciao";
-			String materia = "materia";
+			String nomeGruppo = request.getParameter("nomeGruppo");
+			String materia = request.getParameter("materia");
 				if(DAOFactory.getGdSDAO().doRetrieveByNameAndSubject(nomeGruppo, materia) == null){
 			
 					Utente creatore = DAOFactory.getUserDAO().doRetrieveByKey("0512102865");

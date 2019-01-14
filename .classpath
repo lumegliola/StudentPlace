@@ -11,7 +11,6 @@
 	<classpathentry exported="true" kind="lib" path="servlet-api.jar"/>
 	<classpathentry exported="true" kind="lib" path="ScriptDB/mysql-connector-java-8.0.11.jar"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
-	<classpathentry exported="true" kind="lib" path="mockito-core-2.23.4.jar"/>
-	<classpathentry kind="lib" path="mockito-release-2.x.zip"/>
+	<classpathentry kind="lib" path="mockito-all-1.9.5.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
