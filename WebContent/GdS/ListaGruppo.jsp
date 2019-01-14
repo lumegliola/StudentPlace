@@ -75,10 +75,10 @@
 					if (i == numPagina) {
 			%>
 				<li><a id="active"
-					href="cerca?cosa=<%=what%>&pagina=<%=i%>"><%=i %></a></li>
+					href="cerca?cosa=<%=variabile%>&pagina=<%=i%>"><%=i %></a></li>
 
 				<% } else {%>
-				<li><a href="cerca?cosa=<%=what%>&pagina=<%=i%>"><%=i %></a></li>
+				<li><a href="cerca?cosa=<%=variabile%>&pagina=<%=i%>"><%=i %></a></li>
 
 				<% } //chiude l'else. %>
 
