@@ -8,9 +8,9 @@
 	</classpathentry>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="servlet-api.jar"/>
-	<classpathentry kind="lib" path="ScriptDB/mysql-connector-java-8.0.11.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
-	<classpathentry kind="lib" path="mockito-core-2.23.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="servlet-api.jar"/>
+	<classpathentry exported="true" kind="lib" path="ScriptDB/mysql-connector-java-8.0.11.jar"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
+	<classpathentry exported="true" kind="lib" path="mockito-core-2.23.4.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
