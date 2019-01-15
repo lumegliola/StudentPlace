@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.dbunit.DBTestCase;
 import org.dbunit.database.DatabaseConnection;
+import org.dbunit.database.DatabaseDataSourceConnection;
 import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
@@ -25,7 +26,8 @@ public class AulaDAOimplTest  extends DBTestCase{
 	
 	@Test
 	public void testDoSave() {
-		Aula aula=new Aula("F55","F3");
+		
+	Aula aula=new Aula("F6","F2");
 		AulaDAO aulaDao=DAOFactory.getAulaDAO();	
 		System.out.println("Start test");
 		boolean res=aulaDao.doSave(aula);
@@ -142,22 +144,25 @@ public class AulaDAOimplTest  extends DBTestCase{
 		// TODO Auto-generated method stub
         return new FlatXmlDataSetBuilder().build(new FileInputStream("aula.xml"));
 	}
-	@Override
-	protected void setUp() throws Exception
-    {
-        super.setUp();
+	  protected void setUp() throws Exception
+	    {
+	        Class driverClass = Class.forName("com.mysql.cj.jdbc.Driver");
+	        Connection jdbcConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentplacedb?serverTimezone = EST5EDT", "root", "root");
+	        IDatabaseConnection connection = new DatabaseConnection(jdbcConnection);
 
-        // initialize your database connection here
-        IDatabaseConnection connection = getConnection();        
-        IDataSet dataSet = getDataSet();
-        try
-        {
-            DatabaseOperation.CLEAN_INSERT.execute(connection, dataSet);
-        }
-        finally
-        {
-            connection.close();
-        }
-    }
+	        // initialize your dataset here
+	        IDataSet dataSet = getDataSet();
+	        // ...
+
+	        try
+	        {
+	            DatabaseOperation.CLEAN_INSERT.execute(connection, dataSet);
+	        }
+	        finally
+	        {
+	            connection.close();
+	        }
+	    }
+
 
 }
