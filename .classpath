@@ -12,5 +12,8 @@
 	<classpathentry exported="true" kind="lib" path="ScriptDB/mysql-connector-java-8.0.11.jar"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="lib" path="mockito-all-1.9.5.jar"/>
+	<classpathentry kind="lib" path="dbunit-2.6.0.jar"/>
+	<classpathentry kind="lib" path="slf4j-api-1.7.2.jar"/>
+	<classpathentry kind="lib" path="log4j-1.2.16.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

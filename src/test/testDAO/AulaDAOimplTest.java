@@ -3,8 +3,17 @@ package test.testDAO;
 import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.io.FileInputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.util.List;
 
+import org.dbunit.DBTestCase;
+import org.dbunit.database.DatabaseConnection;
+import org.dbunit.database.IDatabaseConnection;
+import org.dbunit.dataset.IDataSet;
+import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
+import org.dbunit.operation.DatabaseOperation;
 import org.junit.Test;
 
 import bean.Aula;
@@ -12,7 +21,7 @@ import dao.DAOFactory;
 import dao.implementation.AulaDAOimpl;
 import dao.interfaces.AulaDAO;
 
-public class AulaDAOimplTest {
+public class AulaDAOimplTest  extends DBTestCase{
 	
 	@Test
 	public void testDoSave() {
@@ -127,5 +136,28 @@ public class AulaDAOimplTest {
 		System.out.println("End test");
 		
 	}
+
+	@Override
+	protected IDataSet getDataSet() throws Exception {
+		// TODO Auto-generated method stub
+        return new FlatXmlDataSetBuilder().build(new FileInputStream("aula.xml"));
+	}
+	@Override
+	protected void setUp() throws Exception
+    {
+        super.setUp();
+
+        // initialize your database connection here
+        IDatabaseConnection connection = getConnection();        
+        IDataSet dataSet = getDataSet();
+        try
+        {
+            DatabaseOperation.CLEAN_INSERT.execute(connection, dataSet);
+        }
+        finally
+        {
+            connection.close();
+        }
+    }
 
 }

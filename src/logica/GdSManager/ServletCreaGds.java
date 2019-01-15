@@ -75,12 +75,12 @@ public class ServletCreaGds extends HttpServlet {
 					session.setAttribute("esito", "errore");
 			
 				}
-				getServletContext().getRequestDispatcher("/view/ProvaOutput.jsp").forward(request, response);
+				request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
 			}
 		else {
 			//messagggio: utente non loggato
-			session.setAttribute("esito", "errore");
-			getServletContext().getRequestDispatcher("/view/ProvaOutput.jsp").forward(request, response);
+		//	session.setAttribute("esito", "errore");
+			request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
 		}
 		}
 		
