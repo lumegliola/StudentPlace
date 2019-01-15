@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <Aula nome="F1" edificio="F2"/>
+  <Aula nome="F2" edificio="F2"/>
+  <Aula nome="F3" edificio="F2"/>
+  <Aula nome="F4" edificio="F2"/>
+  <Aula nome="F5" edificio="F2"/>
+  <Aula nome="F7" edificio="F2"/>
+  <Aula nome="F8" edificio="F2"/>
+  <Aula nome="P1" edificio="F3"/>
+  <Aula nome="P10" edificio="F3"/>
+  <Aula nome="P11" edificio="F3"/>
+  <Aula nome="P12" edificio="F3"/>
+  <Aula nome="P13" edificio="F3"/>
+  <Aula nome="P14" edificio="F3"/>
+  <Aula nome="P15" edificio="F3"/>
+  <Aula nome="P16" edificio="F3"/>
+  <Aula nome="P17" edificio="F3"/>
+  <Aula nome="P19" edificio="F3"/>
+  <Aula nome="P2" edificio="F3"/>
+  <Aula nome="P20" edificio="F3"/>
+  <Aula nome="P21" edificio="F3"/>
+  <Aula nome="P3" edificio="F3"/>
+  <Aula nome="P4" edificio="F3"/>
+  <Aula nome="P5" edificio="F3"/>
+  <Aula nome="P6" edificio="F3"/>
+  <Aula nome="P7" edificio="F3"/>
+  <Aula nome="P8" edificio="F3"/>
+  <Aula nome="P9" edificio="F3"/>
+  <Aula nome="S1" edificio="F"/>
+  <Aula nome="S2" edificio="F"/>
+  <Aula nome="S3" edificio="F"/>
+  <Aula nome="S4" edificio="F"/>
+  <Aula nome="S5" edificio="F"/>
+  <Aula nome="S6" edificio="F"/>
+</dataset>

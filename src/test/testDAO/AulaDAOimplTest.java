@@ -12,7 +12,9 @@ import org.dbunit.DBTestCase;
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.database.DatabaseDataSourceConnection;
 import org.dbunit.database.IDatabaseConnection;
+import org.dbunit.dataset.CachedDataSet;
 import org.dbunit.dataset.IDataSet;
+import org.dbunit.dataset.xml.FlatXmlDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
 import org.junit.Test;
@@ -24,10 +26,11 @@ import dao.interfaces.AulaDAO;
 
 public class AulaDAOimplTest  extends DBTestCase{
 	
+	private FlatXmlDataSet loadedDataSer;
 	@Test
 	public void testDoSave() {
 		
-	Aula aula=new Aula("F6","F2");
+	    Aula aula=new Aula("F6","F2");
 		AulaDAO aulaDao=DAOFactory.getAulaDAO();	
 		System.out.println("Start test");
 		boolean res=aulaDao.doSave(aula);
@@ -142,7 +145,9 @@ public class AulaDAOimplTest  extends DBTestCase{
 	@Override
 	protected IDataSet getDataSet() throws Exception {
 		// TODO Auto-generated method stub
-        return new FlatXmlDataSetBuilder().build(new FileInputStream("aula.xml"));
+     loadedDataSer =   new FlatXmlDataSetBuilder().build(new FileInputStream("aula.xml"));
+	loadedDataSer.endDataSet ();
+     return loadedDataSer;
 	}
 	  protected void setUp() throws Exception
 	    {
@@ -162,7 +167,11 @@ public class AulaDAOimplTest  extends DBTestCase{
 	        {
 	            connection.close();
 	        }
-	    }
+	    	    }
+	  @Override
+	protected void tearDown() throws Exception {
+		// TODO Auto-generated method stub
+		  loadedDataSer.endDataSet();	}
 
 
 }

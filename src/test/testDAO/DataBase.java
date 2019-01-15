@@ -19,14 +19,16 @@ public class DataBase {
         IDatabaseConnection connection = new DatabaseConnection(jdbcConnection);
         QueryDataSet partialDataSet = new QueryDataSet(connection);
         partialDataSet.addTable("Aula","SELECT * FROM Aula ");
-        partialDataSet.addTable("utente", "SELECT * FROM utente");
-        partialDataSet.addTable("gds","SELECT * FROM gds");
-        partialDataSet.addTable("iscrizione","SELECT * FROM iscrizione");
-        partialDataSet.addTable("giorno","SELECT * FROM giorno");
-        partialDataSet.addTable("orario","SELECT * FROM orario");
-        partialDataSet.addTable("libera","SELECT * FROM libera");
+      //  partialDataSet.addTable("utente", "SELECT * FROM utente");
+      //  partialDataSet.addTable("gds","SELECT * FROM gds");
+     //   partialDataSet.addTable("iscrizione","SELECT * FROM iscrizione");
+    //    partialDataSet.addTable("giorno","SELECT * FROM giorno");
+  //      partialDataSet.addTable("orario","SELECT * FROM orario");
+//        partialDataSet.addTable("libera","SELECT * FROM libera");
         
-        FlatXmlDataSet.write(partialDataSet, new FileOutputStream("database.xml"));
+    //    FlatXmlDataSet.write(partialDataSet, new FileOutputStream("database.xml"));
+        FlatXmlDataSet.write(partialDataSet, new FileOutputStream("aula.xml"));
+
 	}
 
 }
