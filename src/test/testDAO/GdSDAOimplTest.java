@@ -25,7 +25,7 @@ class GdSDAOimplTest {
 	@Test
 	void testDoSave() {
 		
-		
+	
 		gruppo.setAula(aula);
 		gruppo.setCreatore(creatore);
 		gruppo.setOrario(inizio, fine);
@@ -40,10 +40,11 @@ class GdSDAOimplTest {
 		Boolean res = dao.doSave(gruppo);
 		assertTrue(res);
 		GruppoDiStudio risultato = dao.doRetrieveByNameAndSubject(gruppo.getNomeGruppo(),gruppo.getMateria());
-		System.out.println(risultato.getNomeGruppo()+"   "+ risultato.getMateria()+ "   "+risultato.getGiorno());
+		System.out.println(risultato.getNomeGruppo()+"   "+ risultato.getMateria()+ "   "+risultato.getGiorno()
+				+risultato.getAula().getEdificio()+risultato.getCreatore().getMatricola()+risultato.getOrario().getInizio()+risultato.getOrario().getFine()+risultato.getCreatore().getMail());
 		
 		
-		assertTrue(gruppo.getNomeGruppo().equals(risultato.getNomeGruppo()));
+		assertTrue(risultato.equals(gruppo));
 		
 	}
 

@@ -124,18 +124,18 @@ public class UserDAOimpl implements UserDAO {
 	}
 
 	@Override
-	public Utente doRetrieveByKey(String mail) {
+	public Utente doRetrieveByKey(String matricola) {
 		Connection connection = null;
 		PreparedStatement ps = null;
 
 		try {
 			Utente b = new Utente();
-			b.setMail(mail);;
+		
 
 			connection = DriverManagerConnectionPool.getConnection();
 			//dichiara lo statement
-			ps = connection.prepareStatement("select * from utente where email = ?;");
-			ps.setString(1, mail);
+			ps = connection.prepareStatement("select * from utente where matricola = ?;");
+			ps.setString(1, matricola);
 
 			//esegue lo statement
 			ResultSet result = ps.executeQuery();
@@ -143,8 +143,9 @@ public class UserDAOimpl implements UserDAO {
 			//studente
 			if(result.next()) {
 				b.setNome(result.getString("nome"));
-				b.setCognome(result.getString("cognome"));
+				b.setMatricola(result.getString("matricola"));
 				b.setMail(result.getString("email"));
+				b.setCognome(result.getString("cognome"));
 				b.setPassword(result.getString("password"));
 				b.setAdmin(result.getBoolean("amministratore"));
 				return b;
