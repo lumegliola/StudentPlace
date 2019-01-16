@@ -39,7 +39,7 @@ public class ServletCreaGds extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession(false);
+		HttpSession session = request.getSession(false);						//
 		if(session != null && session.getAttribute("logged") != null) {
 			
 			String nomeGruppo = request.getParameter("nomeGruppo");
