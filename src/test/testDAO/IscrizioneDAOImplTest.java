@@ -3,8 +3,16 @@ package test.testDAO;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.io.FileInputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.util.List;
 
+import org.dbunit.database.DatabaseConnection;
+import org.dbunit.database.IDatabaseConnection;
+import org.dbunit.dataset.IDataSet;
+import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
+import org.dbunit.operation.DatabaseOperation;
 import org.junit.jupiter.api.Test;
 
 import bean.GruppoDiStudio;
@@ -14,6 +22,29 @@ import dao.DAOFactory;
 import dao.interfaces.GdSDAO;
 import dao.interfaces.IscrizioneDAO;
 import dao.interfaces.UserDAO;
+import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.io.FileInputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.util.List;
+
+import org.dbunit.DBTestCase;
+import org.dbunit.database.DatabaseConnection;
+import org.dbunit.database.DatabaseDataSourceConnection;
+import org.dbunit.database.IDatabaseConnection;
+import org.dbunit.dataset.CachedDataSet;
+import org.dbunit.dataset.IDataSet;
+import org.dbunit.dataset.xml.FlatXmlDataSet;
+import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
+import org.dbunit.operation.DatabaseOperation;
+import org.junit.Test;
+
+import bean.Aula;
+import dao.DAOFactory;
+import dao.implementation.AulaDAOimpl;
+import dao.interfaces.AulaDAO;
 
 class IscrizioneDAOImplTest {
 

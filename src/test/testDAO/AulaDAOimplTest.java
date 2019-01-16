@@ -30,7 +30,7 @@ public class AulaDAOimplTest  extends DBTestCase{
 	@Test
 	public void testDoSave() {
 		
-	    Aula aula=new Aula("F6","F2");
+	    Aula aula=new Aula("F12","F2");
 		AulaDAO aulaDao=DAOFactory.getAulaDAO();	
 		System.out.println("Start test");
 		boolean res=aulaDao.doSave(aula);
@@ -145,8 +145,7 @@ public class AulaDAOimplTest  extends DBTestCase{
 	@Override
 	protected IDataSet getDataSet() throws Exception {
 		// TODO Auto-generated method stub
-     loadedDataSer =   new FlatXmlDataSetBuilder().build(new FileInputStream("aula.xml"));
-	loadedDataSer.endDataSet ();
+     loadedDataSer =   new FlatXmlDataSetBuilder().build(new FileInputStream("database.xml"));
      return loadedDataSer;
 	}
 	  protected void setUp() throws Exception
@@ -167,11 +166,12 @@ public class AulaDAOimplTest  extends DBTestCase{
 	        {
 	            connection.close();
 	        }
-	    	    }
+	    }
 	  @Override
 	protected void tearDown() throws Exception {
 		// TODO Auto-generated method stub
-		  loadedDataSer.endDataSet();	}
+		  loadedDataSer.endDataSet();	
+	}
 
 
 }

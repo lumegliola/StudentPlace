@@ -4,15 +4,46 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.FileInputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.Timestamp;
 import java.util.Iterator;
 import java.util.List;
 
+import org.dbunit.database.DatabaseConnection;
+import org.dbunit.database.IDatabaseConnection;
+import org.dbunit.dataset.IDataSet;
+import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
+import org.dbunit.operation.DatabaseOperation;
 import org.junit.jupiter.api.Test;
 
 import bean.Orario;
 import dao.DAOFactory;
 import dao.interfaces.OrarioDAO;
+import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.io.FileInputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.util.List;
+
+import org.dbunit.DBTestCase;
+import org.dbunit.database.DatabaseConnection;
+import org.dbunit.database.DatabaseDataSourceConnection;
+import org.dbunit.database.IDatabaseConnection;
+import org.dbunit.dataset.CachedDataSet;
+import org.dbunit.dataset.IDataSet;
+import org.dbunit.dataset.xml.FlatXmlDataSet;
+import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
+import org.dbunit.operation.DatabaseOperation;
+import org.junit.Test;
+
+import bean.Aula;
+import dao.DAOFactory;
+import dao.implementation.AulaDAOimpl;
+import dao.interfaces.AulaDAO;
 
 class OrarioDAOimplTest {
 
@@ -129,3 +160,5 @@ class OrarioDAOimplTest {
 	    System.out.println("End test");	}
 
 }
+
+
