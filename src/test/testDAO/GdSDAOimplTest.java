@@ -53,8 +53,7 @@ class GdSDAOimplTest {
 		gruppo.setAula(aula);
 		gruppo.setCreatore(creatore);
 		gruppo.setOrario(inizio, fine);
-		gruppo.setGiorno("mercoledi");
-		
+		gruppo.setGiorno("mercoledi"); 
 		gruppo.setMateria("matematica");
 		gruppo.setNomeGruppo("gruppo performante");
 		
