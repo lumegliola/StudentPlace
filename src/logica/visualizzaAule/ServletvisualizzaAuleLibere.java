@@ -27,24 +27,24 @@ public class ServletvisualizzaAuleLibere extends HttpServlet {
     }
 
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession(false);
-		List <AulaLibera> elenco = new ArrayList<>();
-		
-		elenco.addAll(DAOFactory.getAulaLiberaDAO().doRetrieveAll());
-		
-		session.setAttribute("elencoAule", elenco);
-		RequestDispatcher view = request.getRequestDispatcher("aulelibere.jsp");
-		view.forward(request, response);
-		
-
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doPost(request, response);
 	}
+
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-			
+		HttpSession session = request.getSession();
+		List <AulaLibera> elenco = new ArrayList<>();
+		
+		elenco.addAll(DAOFactory.getAulaLiberaDAO().doRetrieveAll());
+		
+		request.setAttribute("elenco", elenco);
+		RequestDispatcher view = request.getRequestDispatcher("view/aulelibere/aulelibere.jsp");
+		view.forward(request, response);
 			
 		
 			
