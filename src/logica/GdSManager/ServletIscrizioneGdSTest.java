@@ -47,7 +47,7 @@ public class ServletIscrizioneGdSTest {
     
 	when(request.getParameter("matricola")).thenReturn("051204592");
 	
-	when(request.getSession(true)).thenReturn(session);
+	when(request.getSession(false)).thenReturn(session);
     		
 	when(request.getRequestDispatcher("ProvaOutput.jsp")).thenReturn(dispatcher);
 

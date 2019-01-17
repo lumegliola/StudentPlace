@@ -33,7 +33,7 @@ public class ServletIscrizioneGdS extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 			System.out.println("Funziona");
-			HttpSession session=request.getSession();
+			HttpSession session=request.getSession(false);
 			int idGds=1;
 			String matricola="051204592";
 			if(session!=null) {
