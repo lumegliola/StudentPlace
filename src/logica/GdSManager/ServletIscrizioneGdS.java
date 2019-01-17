@@ -42,7 +42,7 @@ public class ServletIscrizioneGdS extends HttpServlet {
 				GruppoDiStudio gds=DAOFactory.getGdSDAO().doRetrieveById(idGds);
 				if(user==null || gds==null) {
 					session.setAttribute("esito", "errore");
-					request.getRequestDispatcher("/view/ProvaOutput.jsp").forward(request, response);
+					request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
 					return;	
 				}
 				Iscrizione iscrizione=new Iscrizione(user,gds);
@@ -50,7 +50,7 @@ public class ServletIscrizioneGdS extends HttpServlet {
 				DAOFactory.getIscrizioneDAO().doSave(iscrizione);
 				
 				session.setAttribute("esito", "ok");
-				request.getRequestDispatcher("/view/ProvaOutput.jsp").forward(request, response);
+				request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
 				return;
 				
 			}else {
@@ -58,7 +58,7 @@ public class ServletIscrizioneGdS extends HttpServlet {
 				//messagggio: utente non loggato
 				session=request.getSession(true);
 				session.setAttribute("esito", "errore");
-				request.getRequestDispatcher("/view/ProvaOutput.jsp").forward(request, response);
+				request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
 				return;
 			}
 
