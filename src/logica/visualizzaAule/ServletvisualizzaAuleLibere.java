@@ -34,7 +34,7 @@ public class ServletvisualizzaAuleLibere extends HttpServlet {
 		elenco.addAll(DAOFactory.getAulaLiberaDAO().doRetrieveAll());
 		
 		session.setAttribute("elencoAule", elenco);
-		RequestDispatcher view = request.getRequestDispatcher("VisualizzaAuleLibere.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("aulelibere.jsp");
 		view.forward(request, response);
 		
 

@@ -1,0 +1,15 @@
+table{
+	width: 90%;
+	background-color: #FFFFFF;
+	color: #000000;
+	border-color: #a01313;
+	border-collapse: collapse;
+	border :"1";
+	cellspacing:"1";
+	cellpadding:"1";
+	align:"center";
+}
+
+th, td {
+	width: 13%;
+}
