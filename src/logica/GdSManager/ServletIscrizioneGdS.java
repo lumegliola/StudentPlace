@@ -33,16 +33,16 @@ public class ServletIscrizioneGdS extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 			System.out.println("Funziona");
-			HttpSession session=request.getSession();
+			HttpSession session=request.getSession(false);
 			int idGds=1;
-			String matricola="051204592";
+			String matricola="0512101769";
 			if(session!=null) {
 				System.out.println("Inizio if");
 				Utente user=DAOFactory.getUserDAO().doRetrieveByKey(matricola);
 				GruppoDiStudio gds=DAOFactory.getGdSDAO().doRetrieveById(idGds);
 				if(user==null || gds==null) {
 					session.setAttribute("esito", "errore");
-					request.getRequestDispatcher("/view/ProvaOutput.jsp").forward(request, response);
+					request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
 					return;	
 				}
 				Iscrizione iscrizione=new Iscrizione(user,gds);
@@ -50,7 +50,7 @@ public class ServletIscrizioneGdS extends HttpServlet {
 				DAOFactory.getIscrizioneDAO().doSave(iscrizione);
 				
 				session.setAttribute("esito", "ok");
-				request.getRequestDispatcher("/view/ProvaOutput.jsp").forward(request, response);
+				request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
 				return;
 				
 			}else {
@@ -58,7 +58,7 @@ public class ServletIscrizioneGdS extends HttpServlet {
 				//messagggio: utente non loggato
 				session=request.getSession(true);
 				session.setAttribute("esito", "errore");
-				request.getRequestDispatcher("/view/ProvaOutput.jsp").forward(request, response);
+				request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
 				return;
 			}
 
