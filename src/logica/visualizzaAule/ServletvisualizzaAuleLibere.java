@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,7 +34,9 @@ public class ServletvisualizzaAuleLibere extends HttpServlet {
 		elenco.addAll(DAOFactory.getAulaLiberaDAO().doRetrieveAll());
 		
 		session.setAttribute("elencoAule", elenco);
-		getServletContext().getRequestDispatcher("/view/ProvaOutput.jsp").forward(request, response);
+		RequestDispatcher view = request.getRequestDispatcher("VisualizzaAuleLibere.jsp");
+		view.forward(request, response);
+		
 
 	}
 
@@ -50,4 +53,4 @@ public class ServletvisualizzaAuleLibere extends HttpServlet {
 	
 	}
 
-}
+
