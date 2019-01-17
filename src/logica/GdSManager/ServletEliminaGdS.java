@@ -77,7 +77,6 @@ public class ServletEliminaGdS extends HttpServlet {
 				
 			}
 		else {
-			System.out.println("Inizio Else");
 			//messagggio: utente non loggato
 			session=request.getSession(true);
 			session.setAttribute("esito", "errore");
