@@ -34,7 +34,7 @@ public class ServletRicercaGds extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		if(session != null && session.getAttribute("logged") != null) {
 			
-			String input = "";
+			String input = request.getParameter("input");
 			
 			
 			List<GruppoDiStudio> elenco = new ArrayList<>();
@@ -42,7 +42,7 @@ public class ServletRicercaGds extends HttpServlet {
 			elenco.addAll(DAOFactory.getGdSDAO().doRetrieveByName(input));
 			
 			session.setAttribute("elencoGruppi", elenco);
-			request.getRequestDispatcher("/view/ProvaOutput.jsp").forward(request, response);
+			request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
 			
 		}
 		

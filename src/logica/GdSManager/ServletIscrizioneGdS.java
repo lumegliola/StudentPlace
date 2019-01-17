@@ -34,8 +34,8 @@ public class ServletIscrizioneGdS extends HttpServlet {
 		// TODO Auto-generated method stub
 			System.out.println("Funziona");
 			HttpSession session=request.getSession(false);
-			int idGds=1;
-			String matricola="0512101769";
+			int idGds=Integer.parseInt(request.getParameter("idGds"));
+			String matricola=(String) request.getParameter("matricola");
 			if(session!=null) {
 				System.out.println("Inizio if");
 				Utente user=DAOFactory.getUserDAO().doRetrieveByKey(matricola);

@@ -47,8 +47,8 @@ public class ServletEliminaGdS extends HttpServlet {
 		//Controllo esistenza sessione 
 		if(session != null && session.getAttribute("logged") != null) {//Se esiste 
 			System.out.println("Inzio if");
-					String nomeGruppo = "Gruppo di is";
-					String materia = "Ingegneria Del software";
+					String nomeGruppo = (String) request.getParameter("nomeGruppo");
+					String materia = (String) request.getParameter("materia");
 								        
 					GruppoDiStudio gds=DAOFactory.getGdSDAO().doRetrieveByNameAndSubject(nomeGruppo, materia);
 					if(gds==null) {//inizo if verifica :se l'oggetto gds non è null allora il gruppo di studio non esiste 

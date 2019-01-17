@@ -46,13 +46,13 @@ public class ServletModificaGdS extends HttpServlet {
 			//Controllo esistenza sessione 
 			if(session != null && session.getAttribute("logged") != null) {//Se esiste 
 				System.out.println("Inzio if");
-						String nomeGruppo = "Gruppo di is";
-						String materia = "Ingegneria Del software";			        
+						String nomeGruppo = (String)request.getParameter("nomeGruppo");
+						String materia = (String) request.getParameter("materia");			        
 						GruppoDiStudio gds=DAOFactory.getGdSDAO().doRetrieveByNameAndSubject(nomeGruppo, materia);
 						if(gds==null) {//inizo if verifica :se l'oggetto gds non è null allora il gruppo di studio non esiste 
 							System.out.println("Gruppo di Studio non esiste!");
 							session.setAttribute("esito", "errore");
-							request.getRequestDispatcher("/view/ProvaOutput.jsp").forward(request, response);
+							request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
 							return;
 						}
 						 String matricolaCretore=gds.getCreatore().getMatricola();
@@ -63,11 +63,11 @@ public class ServletModificaGdS extends HttpServlet {
                             DAOFactory.getGdSDAO().doSaveOrUpdate(gds, "F8", new Timestamp(118,10,23, 15,0,0,0),new Timestamp (118,10,23, 16,0,0,0));
 							
 							session.setAttribute("esito","ok");
-						    request.getRequestDispatcher("/view/ProvaOutput.jsp").forward(request, response);
+						    request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
 						     return;
 						}else {//altrimento no
 							session.setAttribute("esito", "errore");
-							request.getRequestDispatcher("/view/ProvaOutput.jsp").forward(request, response);
+							request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
 							return;
 							
 						}
@@ -80,7 +80,7 @@ public class ServletModificaGdS extends HttpServlet {
 				//messagggio: utente non loggato
 				session=request.getSession(true);
 				session.setAttribute("esito", "errore");
-				request.getRequestDispatcher("/view/ProvaOutput.jsp").forward(request, response);
+				request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
 				return;
 			}		
 	
