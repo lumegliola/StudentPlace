@@ -29,8 +29,8 @@ class GdSDAOimplTest {
 
 	GdSDAO dao = DAOFactory.getGdSDAO();
 	GruppoDiStudio gruppo=new GruppoDiStudio();
-	Aula aula = new Aula("P4", "F2");
-	Utente creatore= new Utente("0512102665", "Bautista", "Ello", "b.ello@studenti.unisa,it", "123456");
+	Aula aula = new Aula("P4", "F3");
+	Utente creatore= new Utente("0512104592", "filippo", "lumegliola", "kitemmuort1995@studenti.unisa,it", "123456");
 	Timestamp inizio = new Timestamp(119, 0, 15, 0, 0, 0, 0);
 	Timestamp fine = new Timestamp(119, 0, 15, 0, 10, 0, 0);
 	boolean ok;
@@ -54,12 +54,10 @@ class GdSDAOimplTest {
 		Boolean res = dao.doSave(gruppo);
 		assertTrue(res);
 		GruppoDiStudio risultato = dao.doRetrieveByNameAndSubject(gruppo.getNomeGruppo(),gruppo.getMateria());
-<<<<<<< HEAD
-		System.out.println(risultato.getNomeGruppo()+"   "+ risultato.getMateria()+ "   "+risultato.getGiorno()
-				+risultato.getAula().getEdificio()+risultato.getOrario().getInizio()+risultato.getOrario().getFine()+risultato.getCreatore().getMail());
-=======
+
+		
 		System.out.println(risultato.getNomeGruppo()+"   "+ risultato.getMateria()+ "  "+risultato.getGiorno()+risultato.getAula().getEdificio()+risultato.getCreatore().getMatricola()+risultato.getOrario().getInizio()+risultato.getOrario().getFine()+risultato.getCreatore().getMail());
->>>>>>> branch 'master' of https://github.com/lumegliola/StudentPlace.git
+
 		
 		
 		assertTrue(risultato.equals(gruppo));
