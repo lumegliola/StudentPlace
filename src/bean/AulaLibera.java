@@ -9,11 +9,11 @@ public class AulaLibera {
 	
 	public AulaLibera() {}
 	
-	public AulaLibera(Aula a, Orario o) {
+	public AulaLibera(Aula a, Orario o,String giorno) {
 		
 		this.aula = a;
 		this.orario = o;
-		this.giorno = o.getGiorno();
+		this.giorno = giorno;
 	}
 
 	public Aula getAula() {
