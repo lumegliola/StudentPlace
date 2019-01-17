@@ -17,6 +17,8 @@ import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import bean.Aula;
@@ -30,7 +32,7 @@ public class AulaDAOimplTest  extends DBTestCase{
 	@Test
 	public void testDoSave() {
 		
-	    Aula aula=new Aula("F12","F2");
+	    Aula aula=new Aula("F10","F2");
 		AulaDAO aulaDao=DAOFactory.getAulaDAO();	
 		System.out.println("Start test");
 		boolean res=aulaDao.doSave(aula);
@@ -57,7 +59,7 @@ public class AulaDAOimplTest  extends DBTestCase{
 		aula.setNomeAula("F1");
 		AulaDAO aulaDao=DAOFactory.getAulaDAO();
 		Aula nuovaAula=new Aula();
-		nuovaAula.setEdificio("F2");
+		nuovaAula.setEdificio("F3");
 		nuovaAula.setNomeAula("F1");
 		assertNotNull(aulaDao);
 		assertNotNull(aula);
@@ -95,8 +97,8 @@ public class AulaDAOimplTest  extends DBTestCase{
 	public void testDoDeleteString() {
 		System.out.println("Start test");
 		Aula aula=new Aula();
-		aula.setEdificio("F2");
-		aula.setNomeAula("F2");
+		aula.setEdificio("F");
+		aula.setNomeAula("S1");
 		AulaDAO aulaDao=DAOFactory.getAulaDAO();
 		assertNotNull(aulaDao);
 		assertNotNull(aula);
@@ -142,13 +144,14 @@ public class AulaDAOimplTest  extends DBTestCase{
 		
 	}
 
-	@Override
+	@Before
 	protected IDataSet getDataSet() throws Exception {
 		// TODO Auto-generated method stub
      loadedDataSer =   new FlatXmlDataSetBuilder().build(new FileInputStream("database.xml"));
      return loadedDataSer;
 	}
-	  protected void setUp() throws Exception
+    @Before
+	protected void setUp() throws Exception
 	    {
 	        Class driverClass = Class.forName("com.mysql.cj.jdbc.Driver");
 	        Connection jdbcConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentplacedb?serverTimezone = EST5EDT", "root", "root");
@@ -166,12 +169,16 @@ public class AulaDAOimplTest  extends DBTestCase{
 	        {
 	            connection.close();
 	        }
+	        
+
 	    }
-	  @Override
-	protected void tearDown() throws Exception {
+    	@After
+    	protected void tearDown() throws Exception {
 		// TODO Auto-generated method stub
 		  loadedDataSer.endDataSet();	
-	}
+    	}
+
+	   
 
 
 }

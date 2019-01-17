@@ -13,8 +13,10 @@ import java.util.List;
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.IDataSet;
+import org.dbunit.dataset.xml.FlatXmlDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -25,7 +27,7 @@ import dao.DAOFactory;
 import dao.interfaces.AulaLiberaDAO;
 
 public class AulaLiberaDAOimplTest {
-
+	private FlatXmlDataSet loadedDataSer;
 	@Test
 	public void testDoSave() {
 		System.out.println("test metodo 1");
@@ -312,6 +314,38 @@ public class AulaLiberaDAOimplTest {
 		assertTrue(listaOracolo.containsAll(listaRisultati));
 		System.out.println("successo");
 	}
+	@Before
+	public IDataSet getDataSet() throws Exception {
+		// TODO Auto-generated method stub
+     loadedDataSer =   new FlatXmlDataSetBuilder().build(new FileInputStream("database.xml"));
+     return loadedDataSer;
+	}
+    @Before
+	public void setUp() throws Exception
+	    {
+	        Class driverClass = Class.forName("com.mysql.cj.jdbc.Driver");
+	        Connection jdbcConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentplacedb?serverTimezone = EST5EDT", "root", "root");
+	        IDatabaseConnection connection = new DatabaseConnection(jdbcConnection);
 
+	        // initialize your dataset here
+	        IDataSet dataSet = getDataSet();
+	        // ...
+
+	        try
+	        {
+	            DatabaseOperation.CLEAN_INSERT.execute(connection, dataSet);
+	        }
+	        finally
+	        {
+	            connection.close();
+	        }
+	        
+
+	    }
+    	@After
+    	public void tearDown() throws Exception {
+		// TODO Auto-generated method stub
+		  loadedDataSer.endDataSet();	
+    	}
 
 }
