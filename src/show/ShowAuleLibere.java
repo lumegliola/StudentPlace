@@ -26,7 +26,7 @@ public class ShowAuleLibere extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher d = request.getRequestDispatcher("/view/homepage/aulelibere.jsp");
+		RequestDispatcher d = request.getRequestDispatcher("view/aulelibere/aulelibere.jsp");
 		d.forward(request, response);
 	}
 
