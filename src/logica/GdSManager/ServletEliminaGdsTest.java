@@ -46,12 +46,12 @@ public class ServletEliminaGdsTest {
 		when(request.getParameter("nomeGruppo")).thenReturn("Gruppo di is");
 	    
 		when(request.getParameter("materia")).thenReturn("Ingegneria del software");
-	  
-		when(request.getParameter("matricola")).thenReturn("0512102865");
 		
-		when(request.getSession(true)).thenReturn(session);
+		when(request.getSession(false)).thenReturn(session);
 	    
 		when(session.getAttribute("logged")).thenReturn("logged");
+		
+		when(session.getAttribute("matricola")).thenReturn("0512102865");
 		
 		when(request.getRequestDispatcher("ProvaOutput.jsp")).thenReturn(dispatcher);
 

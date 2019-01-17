@@ -54,21 +54,21 @@ public class ServletEliminaGdS extends HttpServlet {
 					if(gds==null) {//inizo if verifica :se l'oggetto gds non è null allora il gruppo di studio non esiste 
 						System.out.println("Gruppo di Studio non esiste!");
 						session.setAttribute("esito", "errore");
-						getServletContext().getRequestDispatcher("/view/ProvaOutput.jsp").forward(request, response);
+						request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
 						return;
 					}
-					 String matricolaCretore=gds.getCreatore().getMatricola();
+					 String matricolaCreatore=gds.getCreatore().getMatricola();
                      String matricola=(String)session.getAttribute("matricola");
 
-					if(matricola.equals(matricolaCretore)) { // se la matricola di chi sta eliminando è uguale a creatore elimina
+					if(matricola.equals(matricolaCreatore)) { // se la matricola di chi sta eliminando è uguale a creatore elimina
 						System.out.println("Gruppo di Studio viene eliminato dal creatore!");
 						DAOFactory.getGdSDAO().doDeleteByNameAndSubjet(gds.getNomeGruppo(),gds.getMateria());
 						session.setAttribute("esito","ok");
-					    getServletContext().getRequestDispatcher("/view/ProvaOutput.jsp").forward(request, response);
+					    request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
 					
 					}else {//altrimento no
 						session.setAttribute("esito", "errore");
-						getServletContext().getRequestDispatcher("/view/ProvaOutput.jsp").forward(request, response);		
+						request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);		
 					}
 					
 			}
@@ -76,7 +76,7 @@ public class ServletEliminaGdS extends HttpServlet {
 			//messagggio: utente non loggato
 			session=request.getSession(true);
 			session.setAttribute("esito", "errore");
-			getServletContext().getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
+			request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
 		}
 	}
 
