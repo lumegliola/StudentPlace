@@ -113,6 +113,10 @@ public class GdSDAOimpl implements GdSDAO {
 	@Override
 	public boolean doDeleteByNameAndSubjet(String nomeGruppo,String materia) {
 
+		//ricava l'id del gruppo e elimina le iscrizioni
+		GruppoDiStudio a = DAOFactory.getGdSDAO().doRetrieveByNameAndSubject(nomeGruppo, materia);	
+		DAOFactory.getIscrizioneDAO().doDeleteByGroup(a.getId());
+		
 		Connection connection = null;
 		PreparedStatement ps = null;
 		int result = 0;
