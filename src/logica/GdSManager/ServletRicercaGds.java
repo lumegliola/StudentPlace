@@ -42,7 +42,7 @@ public class ServletRicercaGds extends HttpServlet {
 			elenco.addAll(DAOFactory.getGdSDAO().doRetrieveByName(input));
 			
 			session.setAttribute("elencoGruppi", elenco);
-			getServletContext().getRequestDispatcher("/view/ProvaOutput.jsp").forward(request, response);
+			request.getRequestDispatcher("/view/ProvaOutput.jsp").forward(request, response);
 			
 		}
 		
