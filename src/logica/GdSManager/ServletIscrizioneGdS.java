@@ -35,7 +35,7 @@ public class ServletIscrizioneGdS extends HttpServlet {
 			System.out.println("Funziona");
 			HttpSession session=request.getSession(false);
 			int idGds=1;
-			String matricola="051204592";
+			String matricola="0512101769";
 			if(session!=null) {
 				System.out.println("Inizio if");
 				Utente user=DAOFactory.getUserDAO().doRetrieveByKey(matricola);

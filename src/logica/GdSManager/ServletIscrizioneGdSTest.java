@@ -45,7 +45,7 @@ public class ServletIscrizioneGdSTest {
   
 	when(request.getParameter("idGdS")).thenReturn("1");
     
-	when(request.getParameter("matricola")).thenReturn("051204592");
+	when(request.getParameter("matricola")).thenReturn("0512101769");
 	
 	when(request.getSession(false)).thenReturn(session);
     		
