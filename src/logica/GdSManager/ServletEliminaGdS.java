@@ -56,31 +56,27 @@ public class ServletEliminaGdS extends HttpServlet {
 						session.setAttribute("esito", "errore");
 						getServletContext().getRequestDispatcher("/view/ProvaOutput.jsp").forward(request, response);
 						return;
-					
 					}
 					 String matricolaCretore=gds.getCreatore().getMatricola();
                      String matricola=(String)session.getAttribute("matricola");
 
 					if(matricola.equals(matricolaCretore)) { // se la matricola di chi sta eliminando è uguale a creatore elimina
 						System.out.println("Gruppo di Studio viene eliminato dal creatore!");
-
 						DAOFactory.getGdSDAO().doDeleteByNameAndSubjet(gds.getNomeGruppo(),gds.getMateria());
 						session.setAttribute("esito","ok");
 					    getServletContext().getRequestDispatcher("/view/ProvaOutput.jsp").forward(request, response);
+					
 					}else {//altrimento no
 						session.setAttribute("esito", "errore");
-						getServletContext().getRequestDispatcher("/view/ProvaOutput.jsp").forward(request, response);
-						
+						getServletContext().getRequestDispatcher("/view/ProvaOutput.jsp").forward(request, response);		
 					}
 					
-					
-				
 			}
 		else {
 			//messagggio: utente non loggato
 			session=request.getSession(true);
 			session.setAttribute("esito", "errore");
-			getServletContext().getRequestDispatcher("/view/ProvaOutput.jsp").forward(request, response);
+			getServletContext().getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
 		}
 	}
 
