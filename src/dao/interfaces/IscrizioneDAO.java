@@ -12,6 +12,8 @@ public interface IscrizioneDAO {
 	public boolean doDelete(Iscrizione iscrizione);//metodo per cancellare un'iscrizione nel database passando oggetto (Iscrizione)
 		  
 	public boolean doDeleteByUserAndGroup(String matricola,int idGruppo);//metodo per cancellare un'iscrizione nel database passando il nome(String)
+	
+	public boolean doDeleteByGroup(int idGruppo);//metodo per cancellare un'iscrizione nel database passando il gruppo(int)
 			
 	public List<Iscrizione> doRetrieveByUser(String matricola);//metodo di ricerca iscrizione tramite matricola
 	

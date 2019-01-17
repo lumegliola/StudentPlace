@@ -1,12 +1,23 @@
 package dao.implementation;
 
+import java.io.FileInputStream;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.dbunit.database.DatabaseConnection;
+import org.dbunit.database.IDatabaseConnection;
+import org.dbunit.dataset.IDataSet;
+import org.dbunit.dataset.xml.FlatXmlDataSet;
+import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
+import org.dbunit.operation.DatabaseOperation;
+import org.junit.After;
+import org.junit.Before;
 
 import bean.AulaLibera;
 import bean.GruppoDiStudio;
@@ -16,6 +27,40 @@ import dao.interfaces.AulaLiberaDAO;
 import db_connection.DriverManagerConnectionPool;
 
 public class AulaLiberaDAOimpl implements AulaLiberaDAO{
+	private FlatXmlDataSet loadedDataSer;
+	@Before
+	public IDataSet getDataSet() throws Exception {
+		// TODO Auto-generated method stub
+     loadedDataSer =   new FlatXmlDataSetBuilder().build(new FileInputStream("database.xml"));
+     return loadedDataSer;
+	}
+    @Before
+	public void setUp() throws Exception
+	    {
+	        Class driverClass = Class.forName("com.mysql.cj.jdbc.Driver");
+	        Connection jdbcConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentplacedb?serverTimezone = EST5EDT", "root", "root");
+	        IDatabaseConnection connection = new DatabaseConnection(jdbcConnection);
+
+	        // initialize your dataset here
+	        IDataSet dataSet = getDataSet();
+	        // ...
+
+	        try
+	        {
+	            DatabaseOperation.CLEAN_INSERT.execute(connection, dataSet);
+	        }
+	        finally
+	        {
+	            connection.close();
+	        }
+	        
+
+	    }
+    	@After
+    	public void tearDown() throws Exception {
+		// TODO Auto-generated method stub
+		  loadedDataSer.endDataSet();	
+    	}
 
 	@Override
 	public boolean doSave(AulaLibera aula) {
@@ -314,4 +359,5 @@ public class AulaLiberaDAOimpl implements AulaLiberaDAO{
 			return aule;
 		}
 
+		
 	}

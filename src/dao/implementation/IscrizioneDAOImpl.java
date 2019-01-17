@@ -57,6 +57,38 @@ public class IscrizioneDAOImpl implements IscrizioneDAO{
 
 	
 	
+	@Override
+	public boolean doDeleteByGroup( int idGruppo) {
+		Connection connection = null;
+		PreparedStatement ps = null;
+		int result = 0;
+
+		try {
+
+			connection = DriverManagerConnectionPool.getConnection();
+			//dichiara lo statement
+			ps = connection.prepareStatement("delete from iscrizione where gruppo = ?;");
+			ps.setInt(1, idGruppo);
+
+			//esegue lo statement
+			result = ps.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(connection != null) {
+				try {
+					ps.close();
+					DriverManagerConnectionPool.releaseConnection(connection);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return (result == 1);
+	}
+
+	
 	
 	@Override
 	public boolean doDeleteByUserAndGroup(String matricola, int idGruppo) {
@@ -68,7 +100,7 @@ public class IscrizioneDAOImpl implements IscrizioneDAO{
 
 			connection = DriverManagerConnectionPool.getConnection();
 			//dichiara lo statement
-			ps = connection.prepareStatement("delete from iscrizione where studente = ? and gruppo = ?;");
+			ps = connection.prepareStatement("delete from iscrizione where utente = ? and gruppo = ?;");
 			ps.setString(1, matricola);
 			ps.setInt(2, idGruppo);
 
@@ -103,7 +135,7 @@ public class IscrizioneDAOImpl implements IscrizioneDAO{
 
 			connection = DriverManagerConnectionPool.getConnection();
 			//dichiara lo statement
-			ps = connection.prepareStatement("select * from iscrizione where studente = ?;");
+			ps = connection.prepareStatement("select * from iscrizione where utente = ?;");
 			ps.setString(1, matricola);
 
 			//esegue lo statement

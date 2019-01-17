@@ -47,41 +47,36 @@ public class ServletEliminaGdS extends HttpServlet {
 		//Controllo esistenza sessione 
 		if(session != null && session.getAttribute("logged") != null) {//Se esiste 
 			System.out.println("Inzio if");
-					String nomeGruppo = "Gruppo di is";
-					String materia = "Ingegneria Del software";
+					String nomeGruppo = (String) request.getParameter("nomeGruppo");
+					String materia = (String) request.getParameter("materia");
 								        
 					GruppoDiStudio gds=DAOFactory.getGdSDAO().doRetrieveByNameAndSubject(nomeGruppo, materia);
 					if(gds==null) {//inizo if verifica :se l'oggetto gds non è null allora il gruppo di studio non esiste 
 						System.out.println("Gruppo di Studio non esiste!");
 						session.setAttribute("esito", "errore");
-						getServletContext().getRequestDispatcher("/view/ProvaOutput.jsp").forward(request, response);
+						request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
 						return;
-					
 					}
-					 String matricolaCretore=gds.getCreatore().getMatricola();
+					 String matricolaCreatore=gds.getCreatore().getMatricola();
                      String matricola=(String)session.getAttribute("matricola");
 
-					if(matricola.equals(matricolaCretore)) { // se la matricola di chi sta eliminando è uguale a creatore elimina
+					if(matricola.equals(matricolaCreatore)) { // se la matricola di chi sta eliminando è uguale a creatore elimina
 						System.out.println("Gruppo di Studio viene eliminato dal creatore!");
-
 						DAOFactory.getGdSDAO().doDeleteByNameAndSubjet(gds.getNomeGruppo(),gds.getMateria());
 						session.setAttribute("esito","ok");
-					    getServletContext().getRequestDispatcher("/view/ProvaOutput.jsp").forward(request, response);
+					    request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
+					
 					}else {//altrimento no
 						session.setAttribute("esito", "errore");
-						getServletContext().getRequestDispatcher("/view/ProvaOutput.jsp").forward(request, response);
-						
+						request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);		
 					}
 					
-					
-				
 			}
 		else {
-			System.out.println("Inizio Else");
 			//messagggio: utente non loggato
 			session=request.getSession(true);
 			session.setAttribute("esito", "errore");
-			getServletContext().getRequestDispatcher("/view/ProvaOutput.jsp").forward(request, response);
+			request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
 		}
 	}
 

@@ -3,9 +3,20 @@ package test.testDAO;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.FileInputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.Timestamp;
 import java.util.List;
 
+import org.dbunit.database.DatabaseConnection;
+import org.dbunit.database.IDatabaseConnection;
+import org.dbunit.dataset.IDataSet;
+import org.dbunit.dataset.xml.FlatXmlDataSet;
+import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
+import org.dbunit.operation.DatabaseOperation;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import bean.*;
 import dao.DAOFactory;
@@ -14,14 +25,17 @@ import dao.implementation.GdSDAOimpl;
 import dao.interfaces.GdSDAO;
 
 class GdSDAOimplTest {
+	private FlatXmlDataSet loadedDataSer;
+
 	GdSDAO dao = DAOFactory.getGdSDAO();
 	GruppoDiStudio gruppo=new GruppoDiStudio();
-	Aula aula = new Aula("P4", "F2");
+	Aula aula = new Aula("P4", "F3");
 	Utente creatore= new Utente("0512104592", "filippo", "lumegliola", "kitemmuort1995@studenti.unisa,it", "123456");
 	Timestamp inizio = new Timestamp(119, 0, 15, 0, 0, 0, 0);
 	Timestamp fine = new Timestamp(119, 0, 15, 0, 10, 0, 0);
 	boolean ok;
 	
+
 	@Test
 	void testDoSave() {
 		
@@ -40,8 +54,10 @@ class GdSDAOimplTest {
 		Boolean res = dao.doSave(gruppo);
 		assertTrue(res);
 		GruppoDiStudio risultato = dao.doRetrieveByNameAndSubject(gruppo.getNomeGruppo(),gruppo.getMateria());
-		System.out.println(risultato.getNomeGruppo()+"   "+ risultato.getMateria()+ "   "+risultato.getGiorno()
-				+risultato.getAula().getEdificio()+risultato.getCreatore().getMatricola()+risultato.getOrario().getInizio()+risultato.getOrario().getFine()+risultato.getCreatore().getMail());
+
+		
+		System.out.println(risultato.getNomeGruppo()+"   "+ risultato.getMateria()+ "  "+risultato.getGiorno()+risultato.getAula().getEdificio()+risultato.getCreatore().getMatricola()+risultato.getOrario().getInizio()+risultato.getOrario().getFine()+risultato.getCreatore().getMail());
+
 		
 		
 		assertTrue(risultato.equals(gruppo));
@@ -195,5 +211,37 @@ class GdSDAOimplTest {
 		
 		System.out.println("funziona");
 	}
+	@Before
+	public IDataSet getDataSet() throws Exception {
+		// TODO Auto-generated method stub
+     loadedDataSer =   new FlatXmlDataSetBuilder().build(new FileInputStream("database.xml"));
+     return loadedDataSer;
+	}
+    @Before
+	public void setUp() throws Exception
+	    {
+	        Class driverClass = Class.forName("com.mysql.cj.jdbc.Driver");
+	        Connection jdbcConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentplacedb?serverTimezone = EST5EDT", "root", "root");
+	        IDatabaseConnection connection = new DatabaseConnection(jdbcConnection);
 
+	        // initialize your dataset here
+	        IDataSet dataSet = getDataSet();
+	        // ...
+
+	        try
+	        {
+	            DatabaseOperation.CLEAN_INSERT.execute(connection, dataSet);
+	        }
+	        finally
+	        {
+	            connection.close();
+	        }
+	        
+
+	    }
+    	@After
+    	public void tearDown() throws Exception {
+		// TODO Auto-generated method stub
+		  loadedDataSer.endDataSet();	
+    	}
 }
