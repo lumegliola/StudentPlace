@@ -11,6 +11,7 @@ import java.sql.Timestamp;
 import java.util.Iterator;
 import java.util.List;
 
+import org.dbunit.DBTestCase;
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.IDataSet;
@@ -26,7 +27,7 @@ import bean.Orario;
 import dao.DAOFactory;
 import dao.interfaces.OrarioDAO;
 
-class OrarioDAOimplTest {
+class OrarioDAOimplTest extends DBTestCase{
 
   @Test
   void testDoSave() {

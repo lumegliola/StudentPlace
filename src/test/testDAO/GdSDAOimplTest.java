@@ -1,40 +1,70 @@
 package test.testDAO;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
+import org.dbunit.DBTestCase;
 import org.dbunit.database.DatabaseConnection;
+import org.dbunit.database.DatabaseDataSourceConnection;
 import org.dbunit.database.IDatabaseConnection;
+import org.dbunit.database.statement.IStatementFactory;
+import org.dbunit.dataset.CachedDataSet;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import bean.*;
 import dao.DAOFactory;
 import dao.implementation.GdSDAOimpl;
 
 import dao.interfaces.GdSDAO;
 
-class GdSDAOimplTest {
-	private FlatXmlDataSet loadedDataSer;
+class GdSDAOimplTest extends DBTestCase {
+	
+	@Before
+	protected IDataSet getDataSet() throws Exception {
+		// TODO Auto-generated method stub
+     loadedDataSer =   new FlatXmlDataSetBuilder().build(new FileInputStream("database.xml"));
+     return loadedDataSer;
+	}
+    @Before
+	protected void setUp() throws Exception
+	    {
+	       Class driverClass = Class.forName("com.mysql.cj.jdbc.Driver");
+	       connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentplacedb?serverTimezone = EST5EDT", "root", "root");
+	       dbconnection = new DatabaseConnection(connection);
+	       
+	       dataSet = getDataSet();
+	    }
+    	@After
+    	protected void tearDown() throws Exception {
+		// TODO Auto-generated method stub
+    		 DatabaseOperation.CLEAN_INSERT.execute(dbconnection, getDataSet());
+        }
 
 	GdSDAO dao = DAOFactory.getGdSDAO();
 	GruppoDiStudio gruppo=new GruppoDiStudio();
 	Aula aula = new Aula("P4", "F3");
-	Utente creatore= new Utente("0512104592", "filippo", "lumegliola", "kitemmuort1995@studenti.unisa,it", "123456");
+	Utente creatore= new Utente("0512102865", "Filippo", "Lumegliola", "f.megliola1@studenti.unisa.it", "123456");
 	Timestamp inizio = new Timestamp(119, 0, 15, 0, 0, 0, 0);
 	Timestamp fine = new Timestamp(119, 0, 15, 0, 10, 0, 0);
 	boolean ok;
-	
 
 	@Test
 	void testDoSave() {
@@ -55,9 +85,10 @@ class GdSDAOimplTest {
 		assertTrue(res);
 		GruppoDiStudio risultato = dao.doRetrieveByNameAndSubject(gruppo.getNomeGruppo(),gruppo.getMateria());
 
+		System.out.println(gruppo.getNomeGruppo()+""+ gruppo.getMateria()+ ""+gruppo.getGiorno()+gruppo.getAula().getEdificio()+gruppo.getCreatore().getMatricola()+gruppo.getOrario().getInizio()+gruppo.getOrario().getFine()+gruppo.getCreatore().getMail());
 		
-		System.out.println(risultato.getNomeGruppo()+"   "+ risultato.getMateria()+ "  "+risultato.getGiorno()+risultato.getAula().getEdificio()+risultato.getCreatore().getMatricola()+risultato.getOrario().getInizio()+risultato.getOrario().getFine()+risultato.getCreatore().getMail());
-
+		System.out.println(risultato.getNomeGruppo()+""+ risultato.getMateria()+ ""+risultato.getGiorno()+risultato.getAula().getEdificio()+risultato.getCreatore().getMatricola()+risultato.getOrario().getInizio()+risultato.getOrario().getFine()+risultato.getCreatore().getMail());
+		
 		
 		
 		assertTrue(risultato.equals(gruppo));
@@ -211,37 +242,10 @@ class GdSDAOimplTest {
 		
 		System.out.println("funziona");
 	}
-	@Before
-	public IDataSet getDataSet() throws Exception {
-		// TODO Auto-generated method stub
-     loadedDataSer =   new FlatXmlDataSetBuilder().build(new FileInputStream("database.xml"));
-     return loadedDataSer;
-	}
-    @Before
-	public void setUp() throws Exception
-	    {
-	        Class driverClass = Class.forName("com.mysql.cj.jdbc.Driver");
-	        Connection jdbcConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentplacedb?serverTimezone = EST5EDT", "root", "root");
-	        IDatabaseConnection connection = new DatabaseConnection(jdbcConnection);
+	private   IDataSet dataSet;
+	private  IDatabaseConnection dbconnection;
+	private FlatXmlDataSet loadedDataSer;
+	private Connection connection;
+	
 
-	        // initialize your dataset here
-	        IDataSet dataSet = getDataSet();
-	        // ...
-
-	        try
-	        {
-	            DatabaseOperation.CLEAN_INSERT.execute(connection, dataSet);
-	        }
-	        finally
-	        {
-	            connection.close();
-	        }
-	        
-
-	    }
-    	@After
-    	public void tearDown() throws Exception {
-		// TODO Auto-generated method stub
-		  loadedDataSer.endDataSet();	
-    	}
 }

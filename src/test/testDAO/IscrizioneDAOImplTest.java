@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.List;
 
+import org.dbunit.DBTestCase;
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.IDataSet;
@@ -29,7 +30,7 @@ import dao.interfaces.GdSDAO;
 import dao.interfaces.IscrizioneDAO;
 import dao.interfaces.UserDAO;
 
-class IscrizioneDAOImplTest {
+class IscrizioneDAOImplTest extends DBTestCase{
 	private FlatXmlDataSet loadedDataSer;
 
   @Test

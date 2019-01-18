@@ -27,41 +27,7 @@ import dao.interfaces.AulaLiberaDAO;
 import db_connection.DriverManagerConnectionPool;
 
 public class AulaLiberaDAOimpl implements AulaLiberaDAO{
-	private FlatXmlDataSet loadedDataSer;
-	@Before
-	public IDataSet getDataSet() throws Exception {
-		// TODO Auto-generated method stub
-     loadedDataSer =   new FlatXmlDataSetBuilder().build(new FileInputStream("database.xml"));
-     return loadedDataSer;
-	}
-    @Before
-	public void setUp() throws Exception
-	    {
-	        Class driverClass = Class.forName("com.mysql.cj.jdbc.Driver");
-	        Connection jdbcConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentplacedb?serverTimezone = EST5EDT", "root", "root");
-	        IDatabaseConnection connection = new DatabaseConnection(jdbcConnection);
-
-	        // initialize your dataset here
-	        IDataSet dataSet = getDataSet();
-	        // ...
-
-	        try
-	        {
-	            DatabaseOperation.CLEAN_INSERT.execute(connection, dataSet);
-	        }
-	        finally
-	        {
-	            connection.close();
-	        }
-	        
-
-	    }
-    	@After
-    	public void tearDown() throws Exception {
-		// TODO Auto-generated method stub
-		  loadedDataSer.endDataSet();	
-    	}
-
+	
 	@Override
 	public boolean doSave(AulaLibera aula) {
 
