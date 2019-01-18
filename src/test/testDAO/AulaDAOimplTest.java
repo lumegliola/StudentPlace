@@ -12,6 +12,7 @@ import org.dbunit.DBTestCase;
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.database.DatabaseDataSourceConnection;
 import org.dbunit.database.IDatabaseConnection;
+import org.dbunit.database.statement.IStatementFactory;
 import org.dbunit.dataset.CachedDataSet;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSet;
@@ -27,7 +28,8 @@ import dao.implementation.AulaDAOimpl;
 import dao.interfaces.AulaDAO;
 
 public class AulaDAOimplTest  extends DBTestCase{
-	
+	private   IDataSet dataSet;
+	private  IDatabaseConnection connection;
 	private FlatXmlDataSet loadedDataSer;
 	@Test
 	public void testDoSave() {
@@ -153,30 +155,16 @@ public class AulaDAOimplTest  extends DBTestCase{
     @Before
 	protected void setUp() throws Exception
 	    {
-	        Class driverClass = Class.forName("com.mysql.cj.jdbc.Driver");
-	        Connection jdbcConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentplacedb?serverTimezone = EST5EDT", "root", "root");
-	        IDatabaseConnection connection = new DatabaseConnection(jdbcConnection);
-
-	        // initialize your dataset here
-	        IDataSet dataSet = getDataSet();
-	        // ...
-
-	        try
-	        {
-	            DatabaseOperation.CLEAN_INSERT.execute(connection, dataSet);
-	        }
-	        finally
-	        {
-	            connection.close();
-	        }
-	        
-
+	       Class driverClass = Class.forName("com.mysql.cj.jdbc.Driver");
+	       Connection jdbcConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentplacedb?serverTimezone = EST5EDT", "root", "root");
+	       connection = new DatabaseConnection(jdbcConnection);
+	       dataSet = getDataSet();
 	    }
     	@After
     	protected void tearDown() throws Exception {
 		// TODO Auto-generated method stub
-		  loadedDataSer.endDataSet();	
-    	}
+    		 DatabaseOperation.CLEAN_INSERT.execute(connection, getDataSet());
+        }
 
 	   
 

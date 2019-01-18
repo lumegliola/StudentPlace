@@ -4,8 +4,19 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.FileInputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.util.List;
 
+import org.dbunit.database.DatabaseConnection;
+import org.dbunit.database.IDatabaseConnection;
+import org.dbunit.dataset.IDataSet;
+import org.dbunit.dataset.xml.FlatXmlDataSet;
+import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
+import org.dbunit.operation.DatabaseOperation;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
 
@@ -19,6 +30,7 @@ import dao.interfaces.IscrizioneDAO;
 import dao.interfaces.UserDAO;
 
 class IscrizioneDAOImplTest {
+	private FlatXmlDataSet loadedDataSer;
 
   @Test
   void testDoSave() {
@@ -136,5 +148,39 @@ class IscrizioneDAOImplTest {
       System.out.println("End test");
      
   }
+	@Before
+	protected IDataSet getDataSet() throws Exception {
+		// TODO Auto-generated method stub
+   loadedDataSer =   new FlatXmlDataSetBuilder().build(new FileInputStream("database.xml"));
+   return loadedDataSer;
+	}
+  @Before
+	protected void setUp() throws Exception
+	    {
+	        Class driverClass = Class.forName("com.mysql.cj.jdbc.Driver");
+	        Connection jdbcConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentplacedb?serverTimezone = EST5EDT", "root", "root");
+	        IDatabaseConnection connection = new DatabaseConnection(jdbcConnection);
+
+	        // initialize your dataset here
+	        IDataSet dataSet = getDataSet();
+	        // ...
+
+	        try
+	        {
+	            DatabaseOperation.CLEAN_INSERT.execute(connection, dataSet);
+	        }
+	        finally
+	        {
+	            connection.close();
+	        }
+	        
+
+	    }
+  	@After
+  	protected void tearDown() throws Exception {
+		// TODO Auto-generated method stub
+		  loadedDataSer.endDataSet();	
+  	}
+
 
 }
