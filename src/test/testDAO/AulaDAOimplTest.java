@@ -6,7 +6,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 import org.dbunit.DBTestCase;
 import org.dbunit.database.DatabaseConnection;
@@ -29,19 +36,27 @@ import dao.interfaces.AulaDAO;
 
 public class AulaDAOimplTest  extends DBTestCase{
 	private   IDataSet dataSet;
-	private  IDatabaseConnection connection;
+	private  IDatabaseConnection dbconnection;
 	private FlatXmlDataSet loadedDataSer;
+	private Connection connection;
 	@Test
-	public void testDoSave() {
+	public void testDoSave() throws SQLException {
 		
 	    Aula aula=new Aula("F10","F2");
 		AulaDAO aulaDao=DAOFactory.getAulaDAO();	
 		System.out.println("Start test");
 		boolean res=aulaDao.doSave(aula);
 		assertTrue(res);
-		List<Aula> listaAule=DAOFactory.getAulaDAO().doRetrieveAll();
-		
-		assertNotNull(listaAule);
+		List<Aula> listaAule = new ArrayList<Aula>();
+		PreparedStatement ps=connection.prepareStatement("select * from aula");
+		ResultSet result=ps.executeQuery();
+		while (result.next()) {
+			String nomeAula=result.getString("nome");
+			String edificio=result.getString("edificio");
+			Aula aulaLista=new Aula(nomeAula, edificio);
+			listaAule.add(aulaLista);
+		}
+		assertFalse(listaAule.isEmpty());
 		boolean ok=false;
 		
 		for(Aula al:listaAule) {
@@ -156,14 +171,15 @@ public class AulaDAOimplTest  extends DBTestCase{
 	protected void setUp() throws Exception
 	    {
 	       Class driverClass = Class.forName("com.mysql.cj.jdbc.Driver");
-	       Connection jdbcConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentplacedb?serverTimezone = EST5EDT", "root", "root");
-	       connection = new DatabaseConnection(jdbcConnection);
+	       connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentplacedb?serverTimezone = EST5EDT", "root", "root");
+	       dbconnection = new DatabaseConnection(connection);
+	       
 	       dataSet = getDataSet();
 	    }
     	@After
     	protected void tearDown() throws Exception {
 		// TODO Auto-generated method stub
-    		 DatabaseOperation.CLEAN_INSERT.execute(connection, getDataSet());
+    		 DatabaseOperation.CLEAN_INSERT.execute(dbconnection, getDataSet());
         }
 
 	   
