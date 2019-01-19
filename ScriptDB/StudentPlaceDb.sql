@@ -37,9 +37,10 @@ create table giorno(
 giorno varchar(10) primary key
 );
 create table orario(
-id int (10) primary key auto_increment,
+id int (10) auto_increment,
 inizio timestamp not null,
-fine timestamp not null
+fine timestamp not null,
+primary key(id, inizio, fine)
 );
 create table libera(
 aula varchar(10) not null,
