@@ -73,8 +73,10 @@ class OrarioDAOimplTest extends DBTestCase{
       Orario orario=new Orario();
       orario.setInizio(new Timestamp(2019,11,02,11,00,00, 0));
       orario.setFine(new Timestamp(2019,11,02, 13,00,00, 0));
-      orario.setIdOrario(7);
-      boolean valore=orarioDao.doDelete(orario);
+      DAOFactory.getOrarioDAO().doSave(orario);
+      Orario or2 = DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(orario.getInizio(), orario.getFine());
+      
+      boolean valore=orarioDao.doDelete(or2);
       assertTrue(valore);
 
       System.out.println("End test");
@@ -88,8 +90,10 @@ class OrarioDAOimplTest extends DBTestCase{
       Orario orario=new Orario();
       orario.setInizio(new Timestamp(2019,11,02,12,00,00, 0));
       orario.setFine(new Timestamp(2019,11,02, 14,00,00, 0));
-      orario.setIdOrario(8);
-      boolean valore=orarioDao.doDelete(orario.getIdOrario());
+      DAOFactory.getOrarioDAO().doSave(orario);
+      Orario or2 = DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(orario.getInizio(), orario.getFine());
+    
+      boolean valore=orarioDao.doDelete(or2.getIdOrario());
       assertTrue(valore);
 
       System.out.println("End test");  }
