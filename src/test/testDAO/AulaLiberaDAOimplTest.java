@@ -9,7 +9,7 @@ import java.sql.DriverManager;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-
+import org.dbunit.DBTestCase;
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.IDataSet;
@@ -20,14 +20,16 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
 import bean.*;
 import bean.AulaLibera;
 import dao.DAOFactory;
 import dao.interfaces.AulaLiberaDAO;
 
-public class AulaLiberaDAOimplTest {
+public class AulaLiberaDAOimplTest extends DBTestCase{
+	private   IDataSet dataSet;
+	private  IDatabaseConnection dbconnection;
 	private FlatXmlDataSet loadedDataSer;
+	private Connection connection;
 	@Test
 	public void testDoSave() {
 		System.out.println("test metodo 1");
@@ -37,7 +39,7 @@ public class AulaLiberaDAOimplTest {
 		Orario or = new Orario(inizio, fine);
 		DAOFactory.getOrarioDAO().doSave(or);
 
-		AulaLibera al = new AulaLibera(aula, or);
+		AulaLibera al = new AulaLibera(aula, or,or.getGiorno());
 
 		Boolean res = DAOFactory.getAulaLiberaDAO().doSave(al);
 		assertTrue(res);
@@ -46,7 +48,7 @@ public class AulaLiberaDAOimplTest {
 		al.getOrario().setIdOrario(DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(inizio, fine).getIdOrario());
 
 		//genero l'oracolo
-		AulaLibera oracolo = new AulaLibera(aula, or);
+		AulaLibera oracolo = new AulaLibera(aula, or,or.getGiorno());
 		oracolo.getOrario().setIdOrario(DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(inizio, fine).getIdOrario());
 
 		//confronto il risultato della query con l'oracolo	
@@ -75,7 +77,7 @@ public class AulaLiberaDAOimplTest {
 		DAOFactory.getOrarioDAO().doSave(or2);
 
 		//salva l'aula nel db per ricavere l'idOrario dall'auto increment
-		AulaLibera al = new AulaLibera(aula, or);
+		AulaLibera al = new AulaLibera(aula, or,or.getGiorno());
 		DAOFactory.getAulaLiberaDAO().doSave(al);
 		DAOFactory.getAulaLiberaDAO().doRetrieveByKey(al.getAula().getNomeAula(), al.getGiorno(), DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(al.getOrario().getInizio(), al.getOrario().getFine()).getIdOrario());
 		al.getOrario().setIdOrario( DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(al.getOrario().getInizio(), al.getOrario().getFine()).getIdOrario());
@@ -87,7 +89,7 @@ public class AulaLiberaDAOimplTest {
 		AulaLibera risultato = DAOFactory.getAulaLiberaDAO().doRetrieveByKey(al.getAula().getNomeAula(), al.getGiorno(), DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(inizio1, fine1).getIdOrario());
 
 		//genero l'oracolo
-		AulaLibera oracolo = new AulaLibera(aula, or2);
+		AulaLibera oracolo = new AulaLibera(aula, or2,or2.getGiorno());
 		oracolo.getOrario().setIdOrario(DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(inizio1, fine1).getIdOrario());
 
 		//confronto il risultato della query con l'oracolo	
@@ -104,7 +106,7 @@ public class AulaLiberaDAOimplTest {
 		Timestamp fine = new Timestamp(119, 0, 21, 0, 10, 0, 0);
 		Orario or = new Orario(inizio, fine);
 		DAOFactory.getOrarioDAO().doSave(or);
-		AulaLibera al = new AulaLibera(aula, or);
+		AulaLibera al = new AulaLibera(aula, or,or.getGiorno());
 		//salva l'aula nel db per ricavere l'idOrario dall'auto increment
 		Boolean res = DAOFactory.getAulaLiberaDAO().doSave(al);
 		assertTrue(res);
@@ -135,7 +137,7 @@ public class AulaLiberaDAOimplTest {
 		Timestamp fine = new Timestamp(119, 0, 21, 0, 10, 0, 0);
 		Orario or = new Orario(inizio, fine);
 		DAOFactory.getOrarioDAO().doSave(or);
-		AulaLibera al = new AulaLibera(aula, or);
+		AulaLibera al = new AulaLibera(aula, or,or.getGiorno());
 
 		//salva l'aula nel db per ricavere l'idOrario dall'auto increment
 		Boolean res = DAOFactory.getAulaLiberaDAO().doSave(al);
@@ -164,7 +166,7 @@ public class AulaLiberaDAOimplTest {
 		Timestamp fine = new Timestamp(119, 0, 2, 0, 10, 0, 0);
 		Orario or = new Orario(inizio, fine);
 		DAOFactory.getOrarioDAO().doSave(or);
-		AulaLibera al = new AulaLibera(aula, or);
+		AulaLibera al = new AulaLibera(aula, or,or.getGiorno());
 
 		//salva l'aula nel db per ricavere l'idOrario dall'auto increment
 		Boolean res = DAOFactory.getAulaLiberaDAO().doSave(al);
@@ -176,7 +178,7 @@ public class AulaLiberaDAOimplTest {
 		AulaLibera controllo = DAOFactory.getAulaLiberaDAO().doRetrieveByKey(inserimento.getAula().getNomeAula(), inserimento.getGiorno(), inserimento.getOrario().getIdOrario());
 
 		//genero l'oracolo
-		AulaLibera oracolo = new AulaLibera(aula, or);
+		AulaLibera oracolo = new AulaLibera(aula, or,or.getGiorno());
 		oracolo.getOrario().setIdOrario(DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(inizio, fine).getIdOrario());
 
 		//settaggi iniziali 2
@@ -185,7 +187,7 @@ public class AulaLiberaDAOimplTest {
 		Timestamp fine2 = new Timestamp(119, 0, 22, 0, 10, 0, 0);
 		Orario or2 = new Orario(inizio2, fine2);
 		DAOFactory.getOrarioDAO().doSave(or2);
-		AulaLibera al2 = new AulaLibera(aula2, or2);
+		AulaLibera al2 = new AulaLibera(aula2, or2,or2.getGiorno());
 
 		//salva l'aula nel db per ricavere l'idOrario dall'auto increment
 		Boolean res2 = DAOFactory.getAulaLiberaDAO().doSave(al2);
@@ -197,7 +199,7 @@ public class AulaLiberaDAOimplTest {
 		AulaLibera controllo2 = DAOFactory.getAulaLiberaDAO().doRetrieveByKey(inserimento2.getAula().getNomeAula(), inserimento2.getGiorno(), inserimento2.getOrario().getIdOrario());
 
 		//genero l'oracolo 2
-		AulaLibera oracolo2 = new AulaLibera(aula2, or2);
+		AulaLibera oracolo2 = new AulaLibera(aula2, or2,or2.getGiorno());
 		oracolo2.getOrario().setIdOrario(DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(inizio2, fine2).getIdOrario());
 
 		//settaggi iniziali 3
@@ -206,7 +208,7 @@ public class AulaLiberaDAOimplTest {
 		Timestamp fine3 = new Timestamp(119, 0, 4, 0, 10, 0, 0);
 		Orario or3 = new Orario(inizio3, fine3);
 		DAOFactory.getOrarioDAO().doSave(or3);
-		AulaLibera al3 = new AulaLibera(aula3, or3);
+		AulaLibera al3 = new AulaLibera(aula3, or3,or3.getGiorno());
 
 		//salva l'aula nel db per ricavere l'idOrario dall'auto increment
 		Boolean res3 = DAOFactory.getAulaLiberaDAO().doSave(al3);
@@ -218,7 +220,7 @@ public class AulaLiberaDAOimplTest {
 		AulaLibera controllo3 = DAOFactory.getAulaLiberaDAO().doRetrieveByKey(inserimento3.getAula().getNomeAula(), inserimento3.getGiorno(), inserimento3.getOrario().getIdOrario());
 
 		//genero l'oracolo 3
-		AulaLibera oracolo3 = new AulaLibera(aula3, or3);
+		AulaLibera oracolo3 = new AulaLibera(aula3, or3,or3.getGiorno());
 		oracolo3.getOrario().setIdOrario(DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(inizio3, fine3).getIdOrario());
 		
 		//lista risultati
@@ -244,7 +246,7 @@ public class AulaLiberaDAOimplTest {
 		Timestamp fine = new Timestamp(119, 0, 1, 0, 10, 0, 0);
 		Orario or = new Orario(inizio, fine);
 		DAOFactory.getOrarioDAO().doSave(or);
-		AulaLibera al = new AulaLibera(aula, or);
+		AulaLibera al = new AulaLibera(aula, or,or.getGiorno());
 
 		//salva l'aula nel db per ricavere l'idOrario dall'auto increment
 		Boolean res = DAOFactory.getAulaLiberaDAO().doSave(al);
@@ -256,7 +258,7 @@ public class AulaLiberaDAOimplTest {
 		AulaLibera controllo = DAOFactory.getAulaLiberaDAO().doRetrieveByKey(inserimento.getAula().getNomeAula(), inserimento.getGiorno(), inserimento.getOrario().getIdOrario());
 
 		//genero l'oracolo
-		AulaLibera oracolo = new AulaLibera(aula, or);
+		AulaLibera oracolo = new AulaLibera(aula, or,or.getGiorno());
 		oracolo.getOrario().setIdOrario(DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(inizio, fine).getIdOrario());
 
 		//settaggi iniziali 2
@@ -265,7 +267,7 @@ public class AulaLiberaDAOimplTest {
 		Timestamp fine2 = new Timestamp(119, 0, 22, 0, 10, 0, 0);
 		Orario or2 = new Orario(inizio2, fine2);
 		DAOFactory.getOrarioDAO().doSave(or2);
-		AulaLibera al2 = new AulaLibera(aula2, or2);
+		AulaLibera al2 = new AulaLibera(aula2, or2,or2.getGiorno());
 
 		//salva l'aula nel db per ricavere l'idOrario dall'auto increment
 		Boolean res2 = DAOFactory.getAulaLiberaDAO().doSave(al2);
@@ -277,7 +279,7 @@ public class AulaLiberaDAOimplTest {
 		AulaLibera controllo2 = DAOFactory.getAulaLiberaDAO().doRetrieveByKey(inserimento2.getAula().getNomeAula(), inserimento2.getGiorno(), inserimento2.getOrario().getIdOrario());
 
 		//genero l'oracolo 2
-		AulaLibera oracolo2 = new AulaLibera(aula2, or2);
+		AulaLibera oracolo2 = new AulaLibera(aula2, or2,or2.getGiorno());
 		oracolo2.getOrario().setIdOrario(DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(inizio2, fine2).getIdOrario());
 
 		//settaggi iniziali 3
@@ -286,7 +288,7 @@ public class AulaLiberaDAOimplTest {
 		Timestamp fine3 = new Timestamp(119, 0, 4, 0, 10, 0, 0);
 		Orario or3 = new Orario(inizio3, fine3);
 		DAOFactory.getOrarioDAO().doSave(or3);
-		AulaLibera al3 = new AulaLibera(aula3, or3);
+		AulaLibera al3 = new AulaLibera(aula3, or3,or3.getGiorno());
 
 		//salva l'aula nel db per ricavere l'idOrario dall'auto increment
 		Boolean res3 = DAOFactory.getAulaLiberaDAO().doSave(al3);
@@ -298,7 +300,7 @@ public class AulaLiberaDAOimplTest {
 		AulaLibera controllo3 = DAOFactory.getAulaLiberaDAO().doRetrieveByKey(inserimento3.getAula().getNomeAula(), inserimento3.getGiorno(), inserimento3.getOrario().getIdOrario());
 
 		//genero l'oracolo 3
-		AulaLibera oracolo3 = new AulaLibera(aula3, or3);
+		AulaLibera oracolo3 = new AulaLibera(aula3, or3,or3.getGiorno());
 		oracolo3.getOrario().setIdOrario(DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(inizio3, fine3).getIdOrario());
 		
 		//lista risultati
@@ -315,37 +317,25 @@ public class AulaLiberaDAOimplTest {
 		System.out.println("successo");
 	}
 	@Before
-	public IDataSet getDataSet() throws Exception {
+	protected IDataSet getDataSet() throws Exception {
 		// TODO Auto-generated method stub
      loadedDataSer =   new FlatXmlDataSetBuilder().build(new FileInputStream("database.xml"));
      return loadedDataSer;
 	}
     @Before
-	public void setUp() throws Exception
+	protected void setUp() throws Exception
 	    {
-	        Class driverClass = Class.forName("com.mysql.cj.jdbc.Driver");
-	        Connection jdbcConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentplacedb?serverTimezone = EST5EDT", "root", "root");
-	        IDatabaseConnection connection = new DatabaseConnection(jdbcConnection);
-
-	        // initialize your dataset here
-	        IDataSet dataSet = getDataSet();
-	        // ...
-
-	        try
-	        {
-	            DatabaseOperation.CLEAN_INSERT.execute(connection, dataSet);
-	        }
-	        finally
-	        {
-	            connection.close();
-	        }
-	        
-
+	       Class driverClass = Class.forName("com.mysql.cj.jdbc.Driver");
+	       connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentplacedb?serverTimezone = EST5EDT", "root", "root");
+	       dbconnection = new DatabaseConnection(connection);
+	       
+	       dataSet = getDataSet();
 	    }
     	@After
-    	public void tearDown() throws Exception {
+    	protected void tearDown() throws Exception {
 		// TODO Auto-generated method stub
-		  loadedDataSer.endDataSet();	
-    	}
+    		 DatabaseOperation.CLEAN_INSERT.execute(dbconnection, getDataSet());
+        }
 
+	   
 }

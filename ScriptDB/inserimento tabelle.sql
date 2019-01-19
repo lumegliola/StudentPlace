@@ -7,7 +7,7 @@ insert into utente(matricola, nome, cognome, email, password, amministratore) va
 ("0512102565", "Antonio","Lino", "a.lino@studenti.unisa.it",123456,0),
 ("0512102765", "Carmine","Iao", "c.iao@studenti.unisa.it",123456,0),
 ("0512102665", "Bautista","Ello","b.ello@studenti.unisa.it",123456,0),
-("0512101769", "Luigi","Califano", "l.califano22@studenti.unisa.it",123456,1),
+("0512101769", "Luigi","Califano", "l.califano22@studenti.unisa.it",123456,0),
 ("0512103853", "Alessia","Crispo", "a.crispo6studenti.unisa.it",123456,1),
 ("0512103593", "Alessandro","Capodanno", "a.capodanno5@studenti.unisa.it",123456,1),
 ("0512103647", "Antonio","Panico", "a.panico19@studenti.unisa.it",123456,1),

@@ -90,7 +90,7 @@ public class UserDAOimpl implements UserDAO {
 
 	@Override
 	public boolean doDelete(Utente user) {
-		return doDelete(user.getMatricola());
+		return doDelete(user.getMail());
 	}
 
 	@Override
@@ -104,9 +104,10 @@ public class UserDAOimpl implements UserDAO {
 			connection = DriverManagerConnectionPool.getConnection();
 
 			//dichiara lo statement
-			ps = connection.prepareStatement("delete * from studente where email = ?;");
+			ps = connection.prepareStatement("delete  from utente where email = ?;");
 			ps.setString(1, mail);
-
+			
+			result = ps.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
