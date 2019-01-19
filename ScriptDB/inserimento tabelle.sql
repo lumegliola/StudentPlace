@@ -60,7 +60,7 @@ insert into giorno (giorno)value
 ("Lunedì"),
 ("Martedì"),
 ("Mercoledì"),
-("Gioveì"),
+("Giovedì"),
 ("Venerdì"),
 ("Sabato"),
 ("Domenica");
