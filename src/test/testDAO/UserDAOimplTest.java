@@ -1,19 +1,64 @@
 package test.testDAO;
 
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+
 import static org.junit.jupiter.api.Assertions.*;
 
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.io.FileInputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.util.List;
 
-import org.junit.jupiter.api.Test;
+import org.dbunit.DBTestCase;
+import org.dbunit.assertion.DbUnitAssert;
+import org.dbunit.database.DatabaseConnection;
+import org.dbunit.dataset.IDataSet;
+import org.dbunit.dataset.xml.FlatXmlDataSet;
+import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
+import org.dbunit.operation.DatabaseOperation;
+import org.junit.*;
 
 
 import bean.Utente;
 import dao.DAOFactory;
+import junit.framework.TestCase;
 
-class UserDAOimplTest {
+public class UserDAOimplTest extends TestCase{
+	public  UserDAOimplTest() {
+		super();
+	}
+	 private DatabaseConnection dbconnection;
 
+	@Before protected IDataSet getDataSet() throws Exception {
+		// TODO Auto-generated method stub
+		 FlatXmlDataSet loadedDataSer;
+     loadedDataSer =   new FlatXmlDataSetBuilder().build(new FileInputStream("database.xml"));
+     return loadedDataSer;
+	}
+    @Before protected void setUp() throws Exception
+	    {	 Connection connection;
+		
+		 IDataSet dataSet;
+	       Class driverClass = Class.forName("com.mysql.cj.jdbc.Driver");
+	       connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentplacedb?serverTimezone = EST5EDT", "root", "root");
+	       dbconnection = new DatabaseConnection(connection);
+	       
+	       dataSet = getDataSet();
+	    }
+    	@After
+    	protected void tearDown() throws Exception {
+		// TODO Auto-generated method stub
+    		 DatabaseOperation.CLEAN_INSERT.execute(dbconnection, getDataSet());
+        }
 	@Test
-	void testDoSave() {
+	public void testDoSave() {
 		System.out.println("Test metodo 1");
 		Utente user = new Utente("0512103322", "Silvio", "Berlusconi", "menomalechesilviocè1@studenti.unisa.it", "miconsenta");
 		
@@ -30,7 +75,7 @@ class UserDAOimplTest {
 	}
 
 	@Test
-	void testDoSaveOrUpdate() {
+	public void testDoSaveOrUpdate() {
 		System.out.println("Test metodo 2");
 		Utente user = new Utente("miconsenta", "Filippo", "Megliola", "f.megliola1@studenti.unisa.it",  "123456");
 		
@@ -45,9 +90,11 @@ class UserDAOimplTest {
 		System.out.println("successo");	}
 
 	@Test
-	void testDoDeleteUtente() {
+	public void testDoDeleteUtente() {
 		System.out.println("Test metodo 3");
-		Utente user = new Utente("051201010", "Marco", "Rossi", "m.rossi@studenti.unisa.it", "123456");
+	//	'0512101769', 'Luigi', 'Califano', 'l.califano22@studenti.unisa.it', '123456', '0'
+
+		Utente user = new Utente("0512101769", "Luigi", "Califano", "l.califano22@studenti.unisa.it", "123456");
 		boolean res = DAOFactory.getUserDAO().doDelete(user);
 		assertTrue(res);
 		//ricavo l'inserimento dal DB
@@ -55,10 +102,11 @@ class UserDAOimplTest {
 		}
 
 	@Test
-	void testDoDeleteString() {
+	public void testDoDeleteString() {
 		System.out.println("Test metodo 4");
-		Utente user = new Utente("051201010", "Marco", "Rossi", "m.rossi@studenti.unisa.it", "123456");
-		boolean res = DAOFactory.getUserDAO().doDelete(user);
+		//'0512102565', 'Antonio', 'Lino', 'a.lino@studenti.unisa.it', '123456', '0'
+		Utente user = new Utente("0512102565", "Antonio", "Lino", "a.lino@studenti.unisa.it", "123456");
+		boolean res = DAOFactory.getUserDAO().doDelete(user.getMail());
 		assertTrue(res);
 		//ricavo l'inserimento dal DB
 		System.out.println("successo");	
@@ -66,7 +114,7 @@ class UserDAOimplTest {
 	}
 
 	@Test
-	void testDoRetrieveByKey() {
+	public void testDoRetrieveByKey() {
 		System.out.println("Test metodo 5");
 		
 		Utente user = null;
@@ -77,12 +125,15 @@ class UserDAOimplTest {
 		}
 
 	@Test
-	void testDoRetrieveAll() {
+	public void testDoRetrieveAll() {
 		 System.out.println("Test metodo 7");
 			List<Utente> user = null;
 			user= DAOFactory.getUserDAO().doRetrieveAll();
 			assertNotNull(user);
 			//ricavo l'inserimento dal DB
-			System.out.println("successo");				}
+			System.out.println("successo");				
+	}
+
+
 
 }
