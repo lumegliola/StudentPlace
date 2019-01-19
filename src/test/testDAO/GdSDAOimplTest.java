@@ -84,7 +84,7 @@ public class GdSDAOimplTest extends TestCase {
 		Boolean res = dao.doSave(gruppo);
 		assertTrue(res);
 		GruppoDiStudio risultato = dao.doRetrieveByNameAndSubject(gruppo.getNomeGruppo(),gruppo.getMateria());	
-		assertTrue(risultato.getCreatore().equals(gruppo.getCreatore()));//problema creatore	
+		assertTrue(risultato.equals(gruppo));//problema creatore	
 	}
 
 	@Test
@@ -156,7 +156,6 @@ public class GdSDAOimplTest extends TestCase {
 		List<GruppoDiStudio> risultato = dao.doRetrieveByName(grupp.getNomeGruppo());
 	    boolean ris=false;
 		for (GruppoDiStudio gds:risultato) {
-			System.out.println(gds.toString());
 			if(gds.equals(grupp)) {
 				ris=true;
 			}
