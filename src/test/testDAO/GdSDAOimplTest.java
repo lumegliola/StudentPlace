@@ -143,18 +143,25 @@ public class GdSDAOimplTest extends TestCase {
 	}
 
 	@Test
-	void testDoRetrieveByName() {
-		gruppo.setAula(aula);
-		gruppo.setCreatore(creatore);
-		gruppo.setOrario(inizio, fine);
-		gruppo.setGiorno();
-		
-		gruppo.setMateria("matematica");
-		gruppo.setNomeGruppo("gruppo performante");
-		dao.doSave(gruppo);
-		List<GruppoDiStudio> risultato = dao.doRetrieveByName(gruppo.getNomeGruppo());
-		
-		  assertTrue(risultato.get(1).getNomeGruppo().equals(gruppo.getNomeGruppo()));
+	public void testDoRetrieveByName() {
+	//'2', 'Gruppo di pd', '0512103647', 'Programmazione Distribuita', '2018-12-21 15:00:00', '2018-12-21 17:30:00', 'lunedì', 'F8'
+        GruppoDiStudio grupp=new GruppoDiStudio();
+		grupp.setAula(new Aula("F8","F2"));
+		grupp.setCreatore(new Utente("0512103647", "Antonio", "Panico", "a.panico19@studenti.unisa.it", "123456"));
+		grupp.setOrario( new Timestamp(118, 11, 21, 16, 0, 0, 0), new Timestamp(118, 11, 21, 18, 30, 0, 0));
+		grupp.setGiorno();
+		grupp.setMateria("Programmazione Distribuita");
+		grupp.setNomeGruppo("Gruppo di pd");
+		grupp.setId(2);
+		List<GruppoDiStudio> risultato = dao.doRetrieveByName(grupp.getNomeGruppo());
+	    boolean ris=false;
+		for (GruppoDiStudio gds:risultato) {
+			System.out.println(gds.toString());
+			if(gds.equals(grupp)) {
+				ris=true;
+			}
+		}
+		assertTrue(ris);
 		
 		System.out.println("funziona");
 	}
@@ -180,7 +187,7 @@ public class GdSDAOimplTest extends TestCase {
 	}
 
 	@Test
-	void testDoRetrieveByNameAndSubject() {
+	public void testDoRetrieveByNameAndSubject() {
 	
 		gruppo.setAula(aula);
 		gruppo.setCreatore(creatore);

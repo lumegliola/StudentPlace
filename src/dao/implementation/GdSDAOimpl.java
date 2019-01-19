@@ -115,7 +115,6 @@ public class GdSDAOimpl implements GdSDAO {
 
 		//ricava l'id del gruppo e elimina le iscrizioni
 		GruppoDiStudio a = DAOFactory.getGdSDAO().doRetrieveByNameAndSubject(nomeGruppo, materia);	
-		DAOFactory.getIscrizioneDAO().doDeleteByGroup(a.getId());
 		
 		Connection connection = null;
 		PreparedStatement ps = null;
@@ -154,8 +153,7 @@ public class GdSDAOimpl implements GdSDAO {
 		List<GruppoDiStudio> res = new ArrayList<>();
 
 		try {
-			GruppoDiStudio b = new GruppoDiStudio();
-			b.setNomeGruppo(nomeGruppo);
+			
 
 			connection = DriverManagerConnectionPool.getConnection();
 			//dichiara lo statement
@@ -167,6 +165,8 @@ public class GdSDAOimpl implements GdSDAO {
 
 			//ricava i risultati
 			while(result.next()) {
+				GruppoDiStudio b = new GruppoDiStudio();
+				b.setNomeGruppo(nomeGruppo);
 				b.setCreatore(DAOFactory.getUserDAO().doRetrieveByKey(result.getString("creatore")));
 				b.setMateria(result.getString("materia"));
                 b.setOrario(result.getTimestamp("oraInizio"), result.getTimestamp("oraFine"));
