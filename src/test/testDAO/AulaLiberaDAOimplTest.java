@@ -9,7 +9,6 @@ import java.sql.DriverManager;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.dbunit.DBTestCase;
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.database.IDatabaseConnection;
@@ -21,7 +20,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
 import bean.*;
 import bean.AulaLibera;
 import dao.DAOFactory;
