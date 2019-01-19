@@ -139,7 +139,7 @@ public class GruppoDiStudio {
 			if (other.creatore != null) {
 				return false;
 			}
-		} else if (!creatore.equals(other.creatore)) {
+		} else if (!creatore.equals(other)) {
 			return false;
 		}
 		if (giorno == null) {

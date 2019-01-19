@@ -34,8 +34,9 @@ import dao.DAOFactory;
 import dao.implementation.GdSDAOimpl;
 
 import dao.interfaces.GdSDAO;
+import junit.framework.TestCase;
 
-class GdSDAOimplTest extends DBTestCase {
+public class GdSDAOimplTest extends TestCase {
 	
 	@Before
 	protected IDataSet getDataSet() throws Exception {
@@ -55,19 +56,19 @@ class GdSDAOimplTest extends DBTestCase {
     	@After
     	protected void tearDown() throws Exception {
 		// TODO Auto-generated method stub
-    		 DatabaseOperation.CLEAN_INSERT.execute(dbconnection, getDataSet());
+    		 DatabaseOperation.CLEAN_INSERT.execute(dbconnection, dataSet);
         }
 
 	GdSDAO dao = DAOFactory.getGdSDAO();
 	GruppoDiStudio gruppo=new GruppoDiStudio();
 	Aula aula = new Aula("P4", "F3");
-	Utente creatore= new Utente("0512102865", "Filippo", "Lumegliola", "f.megliola1@studenti.unisa.it", "123456");
+	Utente creatore= new Utente("0512102865", "Filippo", "Megliola", "f.megliola1@studenti.unisa.it", "123456");
 	Timestamp inizio = new Timestamp(119, 0, 15, 0, 0, 0, 0);
 	Timestamp fine = new Timestamp(119, 0, 15, 0, 10, 0, 0);
 	boolean ok;
 
 	@Test
-	void testDoSave() {
+	public void testDoSave() {
 		
 	
 		gruppo.setAula(aula);
@@ -78,25 +79,16 @@ class GdSDAOimplTest extends DBTestCase {
 		gruppo.setMateria("matematica");
 		gruppo.setNomeGruppo("gruppo performante");
 		
-		System.out.println(gruppo.getCreatore().getMatricola());
 		System.out.println("test metodo 1");
 		ok = false;
 		Boolean res = dao.doSave(gruppo);
 		assertTrue(res);
-		GruppoDiStudio risultato = dao.doRetrieveByNameAndSubject(gruppo.getNomeGruppo(),gruppo.getMateria());
-
-		System.out.println(gruppo.getNomeGruppo()+""+ gruppo.getMateria()+ ""+gruppo.getGiorno()+gruppo.getAula().getEdificio()+gruppo.getCreatore().getMatricola()+gruppo.getOrario().getInizio()+gruppo.getOrario().getFine()+gruppo.getCreatore().getMail());
-		
-		System.out.println(risultato.getNomeGruppo()+""+ risultato.getMateria()+ ""+risultato.getGiorno()+risultato.getAula().getEdificio()+risultato.getCreatore().getMatricola()+risultato.getOrario().getInizio()+risultato.getOrario().getFine()+risultato.getCreatore().getMail());
-		
-		
-		
-		assertTrue(risultato.equals(gruppo));
-		
+		GruppoDiStudio risultato = dao.doRetrieveByNameAndSubject(gruppo.getNomeGruppo(),gruppo.getMateria());	
+		assertTrue(risultato.getCreatore().equals(gruppo.getCreatore()));//problema creatore	
 	}
 
 	@Test
-	void testDoSaveOrUpdate() {
+	public void testDoSaveOrUpdate() {
 		gruppo.setAula(aula);
 		gruppo.setCreatore(creatore);
 		gruppo.setOrario(inizio, fine);
@@ -110,7 +102,6 @@ class GdSDAOimplTest extends DBTestCase {
 		Boolean res = dao.doSaveOrUpdate(gruppo, gruppo.getAula().getNomeAula(), gruppo.getOrario().getInizio(), gruppo.getOrario().getFine());
 		assertTrue(res);
 		GruppoDiStudio risultato = dao.doRetrieveByNameAndSubject(gruppo.getNomeGruppo(),gruppo.getMateria());
-		System.out.println(risultato.getNomeGruppo()+"   "+ risultato.getMateria()+ "   "+risultato.getGiorno());
 		
 		
 		assertTrue(gruppo.getNomeGruppo().equals(risultato.getNomeGruppo()));
@@ -119,7 +110,7 @@ class GdSDAOimplTest extends DBTestCase {
 	
 
 	@Test
-	void testDoDelete() {
+	public void testDoDelete() {
 		gruppo.setAula(aula);
 		gruppo.setCreatore(creatore);
 		gruppo.setOrario(inizio, fine);
@@ -136,7 +127,7 @@ class GdSDAOimplTest extends DBTestCase {
 	}
 
 	@Test
-	void testDoDeleteByNameAndSubjet() {
+	public void testDoDeleteByNameAndSubjet() {
 		gruppo.setAula(aula);
 		gruppo.setCreatore(creatore);
 		gruppo.setOrario(inizio, fine);
@@ -171,7 +162,7 @@ class GdSDAOimplTest extends DBTestCase {
 	
 
 	@Test
-	void testDoRetrieveBySubject() {
+	public void testDoRetrieveBySubject() {
 		gruppo.setAula(aula);
 		gruppo.setCreatore(creatore);
 		gruppo.setOrario(inizio, fine);
@@ -207,7 +198,7 @@ class GdSDAOimplTest extends DBTestCase {
 	}
 
 	@Test
-	void testDoRetrieveAll() {
+	public void testDoRetrieveAll() {
 		gruppo.setAula(aula);
 		gruppo.setCreatore(creatore);
 		gruppo.setOrario(inizio, fine);
@@ -222,7 +213,7 @@ class GdSDAOimplTest extends DBTestCase {
 	}
 
 	@Test
-	void testDoRetrieveById() {
+	public void testDoRetrieveById() {
 		gruppo.setAula(aula);
 		gruppo.setCreatore(creatore);
 		gruppo.setOrario(inizio, fine);
@@ -232,11 +223,9 @@ class GdSDAOimplTest extends DBTestCase {
 		gruppo.setNomeGruppo("gruppo performante1");
 		dao.doSave(gruppo);
 		
-		System.out.println((gruppo.getId())+"l'id è");
 		GruppoDiStudio risultato = dao.doRetrieveByNameAndSubject(gruppo.getNomeGruppo(),gruppo.getMateria());
 
 		GruppoDiStudio risultato2 = dao.doRetrieveById(risultato.getId());
-		System.out.println(risultato.getId()+"l'id è");
 		
 		assertTrue(risultato.getId()==risultato2.getId());
 		
