@@ -45,7 +45,7 @@ public class IscrizioneDAOImplTest extends TestCase{
       GdSDAO gdsDao=DAOFactory.getGdSDAO();
       UserDAO utenteDao=DAOFactory.getUserDAO();
       GruppoDiStudio gruppo=gdsDao.doRetrieveByNameAndSubject("Gruppo di is", "Ingegneria Del software");
-      Utente utente=utenteDao.doRetrieveByKey("0512103853");
+      Utente utente=utenteDao.doRetrieveByKey("0512101769");
       assertNotNull(gruppo);
       assertNotNull(utente);
       Iscrizione iscr=new Iscrizione();
@@ -65,7 +65,7 @@ public class IscrizioneDAOImplTest extends TestCase{
       GdSDAO gdsDao=DAOFactory.getGdSDAO();
       UserDAO utenteDao=DAOFactory.getUserDAO();
       GruppoDiStudio gruppo=gdsDao.doRetrieveByNameAndSubject("Gruppo di is", "Ingegneria Del software");
-      Utente utente=utenteDao.doRetrieveByKey("0512103333");
+      Utente utente=utenteDao.doRetrieveByKey("0512103593");
       assertNotNull(gruppo);
       assertNotNull(utente);
       Iscrizione iscr=new Iscrizione();
@@ -84,8 +84,8 @@ public class IscrizioneDAOImplTest extends TestCase{
       assertNotNull(iscrDao);
       GdSDAO gdsDao=DAOFactory.getGdSDAO();
       UserDAO utenteDao=DAOFactory.getUserDAO();
-      GruppoDiStudio gruppo=gdsDao.doRetrieveByNameAndSubject("Gruppo di is", "Ingegneria Del software");
-      Utente utente=utenteDao.doRetrieveByKey("0512103336");
+      GruppoDiStudio gruppo=gdsDao.doRetrieveByNameAndSubject("Gruppo di pd", "Programmazione Distribuita");
+      Utente utente=utenteDao.doRetrieveByKey("0512102565");
       assertNotNull(gruppo);
       assertNotNull(utente);
       boolean valore=iscrDao.doDeleteByUserAndGroup(utente.getMatricola(), gruppo.getId());
@@ -98,7 +98,7 @@ public class IscrizioneDAOImplTest extends TestCase{
       IscrizioneDAO iscrDao=DAOFactory.getIscrizioneDAO();
       assertNotNull(iscrDao);
       UserDAO utenteDao=DAOFactory.getUserDAO();
-      Utente utente=utenteDao.doRetrieveByKey("0512102865");
+      Utente utente=utenteDao.doRetrieveByKey("0512102855");
       assertNotNull(utente);
      List <Iscrizione> listIscr=null;
       listIscr=iscrDao.doRetrieveByUser(utente.getMatricola());
@@ -130,7 +130,7 @@ public void testDoRetrieveByUserAndGroup() {
       assertNotNull(iscrDao);
       
       UserDAO utenteDao=DAOFactory.getUserDAO();
-      Utente utente=utenteDao.doRetrieveByKey("0512102865");
+      Utente utente=utenteDao.doRetrieveByKey("0512102765");
       assertNotNull(utente);
       GdSDAO gdsDao=DAOFactory.getGdSDAO();
       GruppoDiStudio gruppo=gdsDao.doRetrieveByNameAndSubject("Gruppo di is", "Ingegneria Del software");
