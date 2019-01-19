@@ -18,5 +18,7 @@ public interface UserDAO {
 	public Utente doRetrieveByMailAndPass(String mail, String password);//ricerca un utente nel db tramite mail e password
 	
 	public List<Utente> doRetrieveAll();//metodo di ricerca per ricavare tutti gli oggetti Utente 
+
+	Utente doRetrieveByMail(String mail);
 	
 }

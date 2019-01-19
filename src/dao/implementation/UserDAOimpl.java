@@ -99,7 +99,12 @@ public class UserDAOimpl implements UserDAO {
 		PreparedStatement ps = null;
 		PreparedStatement psDel = null;
 		int result = 0;
-
+		Utente ut=DAOFactory.getUserDAO().doRetrieveByMail(mail);
+		
+		List<Iscrizione> listIscr= DAOFactory.getIscrizioneDAO().doRetrieveByUser(ut.getMatricola());
+		for(Iscrizione iscr : listIscr) {
+		DAOFactory.getIscrizioneDAO().doDeleteByUserAndGroup(iscr.getIscritto().getMatricola(), iscr.getGruppo().getId());
+       }
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
 
@@ -240,6 +245,50 @@ public class UserDAOimpl implements UserDAO {
 				b.setMail(result.getString("email"));
 				b.setPassword(result.getString("password"));
 				b.setAdmin(result.getBoolean("amministratore"));
+				return b;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(connection != null) {
+				try {
+					ps.close();
+					DriverManagerConnectionPool.releaseConnection(connection);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return null;
+	}
+	@Override
+	public Utente doRetrieveByMail(String mail) {
+		
+		Connection connection = null;
+		PreparedStatement ps = null;
+
+		try {
+			Utente b = new Utente();
+			b.setMail(mail);
+			
+
+			connection = DriverManagerConnectionPool.getConnection();
+			//dichiara lo statement
+			ps = connection.prepareStatement("select * from utente where email = ? ;");
+			ps.setString(1, mail);
+
+			//esegue lo statement
+			ResultSet result = ps.executeQuery();
+
+			//studente
+			if(result.next()) {
+				b.setNome(result.getString("nome"));
+				b.setCognome(result.getString("cognome"));
+				b.setMail(result.getString("email"));
+				b.setPassword(result.getString("password"));
+				b.setAdmin(result.getBoolean("amministratore"));
+				b.setMatricola(result.getString("matricola"));
 				return b;
 			}
 

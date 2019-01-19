@@ -105,6 +105,8 @@ public class UserDAOimplTest extends TestCase{
 	public void testDoDeleteString() {
 		System.out.println("Test metodo 4");
 		//'0512102565', 'Antonio', 'Lino', 'a.lino@studenti.unisa.it', '123456', '0'
+		//  "0512102565" "Antonio" "Lino" "a.lino@studenti.unisa.it" "123456" "0"/>
+
 		Utente user = new Utente("0512102565", "Antonio", "Lino", "a.lino@studenti.unisa.it", "123456");
 		boolean res = DAOFactory.getUserDAO().doDelete(user.getMail());
 		assertTrue(res);

@@ -50,11 +50,11 @@
   <gds id="5" nome="Gruppo di analisi" creatore="0512102865" materia="Analisi Matematica" oraInizio="2018-12-21 21:00:00.0" oraFine="2018-12-21 23:30:00.0" giorno="lunedì" aula="F2"/>
   <gds id="6" nome="Gruppo di psd" creatore="0512102865" materia="Programmazione e strutture di dati" oraInizio="2018-12-21 21:00:00.0" oraFine="2018-12-21 23:30:00.0" giorno="lunedì" aula="P4"/>
   <iscrizione utente="0512103853"  gruppo="1"/>
-    <iscrizione utente="0512102765"  gruppo="1"/>
+  <iscrizione utente="0512102765"  gruppo="1"/>
   <iscrizione utente="0512103853"  gruppo="2"/>
-   <iscrizione utente="0512103593"  gruppo="1"/>
+  <iscrizione utente="0512103593"  gruppo="1"/>
   <iscrizione utente="0512102665"  gruppo="2"/>
-   <iscrizione utente="0512102855"  gruppo="1"/>
+  <iscrizione utente="0512102855"  gruppo="1"/>
   <iscrizione utente="0512102565"  gruppo="2"/>
   <giorno giorno="Domenica"/>
   <giorno giorno="Gioveì"/>

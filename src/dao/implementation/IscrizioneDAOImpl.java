@@ -130,8 +130,7 @@ public class IscrizioneDAOImpl implements IscrizioneDAO{
 		List<Iscrizione> res = new ArrayList<>();
 
 		try {
-			Iscrizione b = new Iscrizione();
-			b.setIscritto(DAOFactory.getUserDAO().doRetrieveByKey(matricola));
+			
 
 			connection = DriverManagerConnectionPool.getConnection();
 			//dichiara lo statement
@@ -143,7 +142,8 @@ public class IscrizioneDAOImpl implements IscrizioneDAO{
 
 			//ricava i risultati
 			while(result.next()) {
-				
+				Iscrizione b = new Iscrizione();
+				b.setIscritto(DAOFactory.getUserDAO().doRetrieveByKey(matricola));
 				b.setGruppo(DAOFactory.getGdSDAO().doRetrieveById(result.getInt("gruppo")));
 				res.add(b);
 				
