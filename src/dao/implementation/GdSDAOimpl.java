@@ -12,6 +12,7 @@ import java.util.List;
 
 import bean.GruppoDiStudio;
 import bean.Orario;
+import bean.Utente;
 import dao.DAOFactory;
 import dao.interfaces.GdSDAO;
 import db_connection.DriverManagerConnectionPool;
@@ -166,9 +167,11 @@ public class GdSDAOimpl implements GdSDAO {
 			//ricava i risultati
 			while(result.next()) {
 				GruppoDiStudio b = new GruppoDiStudio();
+				Utente a = DAOFactory.getUserDAO().doRetrieveByKey(result.getString("creatore"));
 				b.setNomeGruppo(nomeGruppo);
-				b.setCreatore(DAOFactory.getUserDAO().doRetrieveByKey(result.getString("creatore")));
+				b.setCreatore(a);
 				b.setMateria(result.getString("materia"));
+				DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(result.getTimestamp("oraInizio"), result.getTimestamp("oraFine"));
                 b.setOrario(result.getTimestamp("oraInizio"), result.getTimestamp("oraFine"));
                 b.setId(result.getInt("id"));
 				b.setGiorno();

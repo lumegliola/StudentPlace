@@ -148,11 +148,21 @@ public class GdSDAOimplTest extends TestCase {
         GruppoDiStudio grupp=new GruppoDiStudio();
 		grupp.setAula(new Aula("F8","F2"));
 		grupp.setCreatore(new Utente("0512103647", "Antonio", "Panico", "a.panico19@studenti.unisa.it", "123456"));
-		grupp.setOrario( new Timestamp(118, 11, 21, 16, 0, 0, 0), new Timestamp(118, 11, 21, 18, 30, 0, 0));
+		grupp.setOrario( new Timestamp(118, 11, 21, 12, 30, 0, 0), new Timestamp(118, 11, 21, 12, 30, 0, 0));
 		grupp.setGiorno();
 		grupp.setMateria("Programmazione Distribuita");
 		grupp.setNomeGruppo("Gruppo di pd");
 		grupp.setId(2);
+		grupp.getCreatore().setAdmin(true);
+		
+		List<GruppoDiStudio> risultato = dao.doRetrieveByName(grupp.getNomeGruppo());
+		GruppoDiStudio res2 = risultato.get(0);
+		System.out.println(" "+ grupp.getOrario().getIdOrario()+" "+grupp.getOrario().getInizio()+" "+ grupp.getOrario().getFine()+" "+grupp.getCreatore().getMatricola()+" "+ grupp.getCreatore().getPassword()+" "+grupp.getCreatore().isAdmin());
+		System.out.println(" "+ res2.getOrario().getIdOrario()+" "+res2.getOrario().getInizio()+" "+ res2.getOrario().getFine()+" "+res2.getCreatore().getMatricola()+" "+ res2.getCreatore().getPassword()+" "+res2.getCreatore().isAdmin());
+		Utente usr2 = DAOFactory.getUserDAO().doRetrieveByKey(res2.getCreatore().getMatricola());
+		
+		assertTrue(grupp.equals(res2));
+		/*
 		List<GruppoDiStudio> risultato = dao.doRetrieveByName(grupp.getNomeGruppo());
 	    boolean ris=false;
 		for (GruppoDiStudio gds:risultato) {
@@ -161,7 +171,7 @@ public class GdSDAOimplTest extends TestCase {
 			}
 		}
 		assertTrue(ris);
-		
+		*/
 		System.out.println("funziona");
 	}
 
