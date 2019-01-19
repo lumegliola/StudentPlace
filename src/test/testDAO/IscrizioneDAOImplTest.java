@@ -29,19 +29,23 @@ import dao.DAOFactory;
 import dao.interfaces.GdSDAO;
 import dao.interfaces.IscrizioneDAO;
 import dao.interfaces.UserDAO;
+import junit.framework.TestCase;
 
-class IscrizioneDAOImplTest extends DBTestCase{
+public class IscrizioneDAOImplTest extends TestCase{
 	private FlatXmlDataSet loadedDataSer;
+	private Connection connection;
+	private DatabaseConnection dbconnection;
+	private IDataSet dataSet;
 
   @Test
-  void testDoSave() {
+  public void testDoSave() {
     System.out.println("Start test");
       IscrizioneDAO iscrDao=DAOFactory.getIscrizioneDAO();
       assertNotNull(iscrDao);
       GdSDAO gdsDao=DAOFactory.getGdSDAO();
       UserDAO utenteDao=DAOFactory.getUserDAO();
       GruppoDiStudio gruppo=gdsDao.doRetrieveByNameAndSubject("Gruppo di is", "Ingegneria Del software");
-      Utente utente=utenteDao.doRetrieveByKey("0512103457");
+      Utente utente=utenteDao.doRetrieveByKey("0512103853");
       assertNotNull(gruppo);
       assertNotNull(utente);
       Iscrizione iscr=new Iscrizione();
@@ -54,7 +58,7 @@ class IscrizioneDAOImplTest extends DBTestCase{
   }
 
   @Test
-  void testDoDelete() {
+  public void testDoDelete() {
     System.out.println("Start test");
       IscrizioneDAO iscrDao=DAOFactory.getIscrizioneDAO();
       assertNotNull(iscrDao);
@@ -74,7 +78,7 @@ class IscrizioneDAOImplTest extends DBTestCase{
   }
 
   @Test
-  void testDoDeleteByUserAndGroup() {
+  public void testDoDeleteByUserAndGroup() {
     System.out.println("Start test");
       IscrizioneDAO iscrDao=DAOFactory.getIscrizioneDAO();
       assertNotNull(iscrDao);
@@ -89,7 +93,7 @@ class IscrizioneDAOImplTest extends DBTestCase{
       System.out.println("End test");  }
 
   @Test
-  void testDoRetrieveByUser() {
+  public void testDoRetrieveByUser() {
     System.out.println("Start test");
       IscrizioneDAO iscrDao=DAOFactory.getIscrizioneDAO();
       assertNotNull(iscrDao);
@@ -103,7 +107,7 @@ class IscrizioneDAOImplTest extends DBTestCase{
   }
 
   @Test
-  void testDoRetrieveByGroup() {
+  public void testDoRetrieveByGroup() {
     System.out.println("Start test");
       IscrizioneDAO iscrDao=DAOFactory.getIscrizioneDAO();
       assertNotNull(iscrDao);
@@ -120,7 +124,7 @@ class IscrizioneDAOImplTest extends DBTestCase{
 
 
 @Test
-  void testDoRetrieveByUserAndGroup() {
+public void testDoRetrieveByUserAndGroup() {
     System.out.println("Start test");
       IscrizioneDAO iscrDao=DAOFactory.getIscrizioneDAO();
       assertNotNull(iscrDao);
@@ -139,7 +143,7 @@ class IscrizioneDAOImplTest extends DBTestCase{
      }
 
   @Test
-  void testDoRetrieveAll() {
+  public void testDoRetrieveAll() {
     System.out.println("Start test");
       IscrizioneDAO iscrDao=DAOFactory.getIscrizioneDAO();
       assertNotNull(iscrDao);
@@ -149,39 +153,25 @@ class IscrizioneDAOImplTest extends DBTestCase{
       System.out.println("End test");
      
   }
-	@Before
-	protected IDataSet getDataSet() throws Exception {
+  	@Before
+  	protected IDataSet getDataSet() throws Exception {
 		// TODO Auto-generated method stub
-   loadedDataSer =   new FlatXmlDataSetBuilder().build(new FileInputStream("database.xml"));
-   return loadedDataSer;
-	}
-  @Before
-	protected void setUp() throws Exception
-	    {
-	        Class driverClass = Class.forName("com.mysql.cj.jdbc.Driver");
-	        Connection jdbcConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentplacedb?serverTimezone = EST5EDT", "root", "root");
-	        IDatabaseConnection connection = new DatabaseConnection(jdbcConnection);
-
-	        // initialize your dataset here
-	        IDataSet dataSet = getDataSet();
-	        // ...
-
-	        try
-	        {
-	            DatabaseOperation.CLEAN_INSERT.execute(connection, dataSet);
-	        }
-	        finally
-	        {
-	            connection.close();
-	        }
-	        
-
-	    }
-  	@After
-  	protected void tearDown() throws Exception {
-		// TODO Auto-generated method stub
-		  loadedDataSer.endDataSet();	
+       loadedDataSer =   new FlatXmlDataSetBuilder().build(new FileInputStream("database.xml"));
+       return loadedDataSer;
   	}
-
-
-}
+      @Before
+  	protected void setUp() throws Exception
+  	    {
+  	       Class driverClass = Class.forName("com.mysql.cj.jdbc.Driver");
+  	       connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentplacedb?serverTimezone = EST5EDT", "root", "root");
+  	       dbconnection = new DatabaseConnection(connection);
+  	       
+  	       dataSet = getDataSet();
+  	    }
+      	@After
+      	protected void tearDown() throws Exception {
+  		// TODO Auto-generated method stub
+      		 DatabaseOperation.CLEAN_INSERT.execute(dbconnection, dataSet);
+          }
+ }
+  

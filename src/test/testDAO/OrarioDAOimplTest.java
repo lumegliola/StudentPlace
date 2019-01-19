@@ -26,11 +26,12 @@ import org.junit.jupiter.api.Test;
 import bean.Orario;
 import dao.DAOFactory;
 import dao.interfaces.OrarioDAO;
+import junit.framework.TestCase;
 
-class OrarioDAOimplTest extends DBTestCase{
+public class OrarioDAOimplTest extends TestCase{
 
   @Test
-  void testDoSave() {
+  public void testDoSave() {
     
     System.out.println("Start test");
       OrarioDAO orarioDao=DAOFactory.getOrarioDAO();
@@ -45,7 +46,7 @@ class OrarioDAOimplTest extends DBTestCase{
 
   
 @Test
-  void testDoSaveOrUpdate() {
+ public void testDoSaveOrUpdate() {
     System.out.println("Start test");
       OrarioDAO orarioDao=DAOFactory.getOrarioDAO();
       assertNotNull(orarioDao);
@@ -73,29 +74,33 @@ class OrarioDAOimplTest extends DBTestCase{
       Orario orario=new Orario();
       orario.setInizio(new Timestamp(2019,11,02,11,00,00, 0));
       orario.setFine(new Timestamp(2019,11,02, 13,00,00, 0));
-      orario.setIdOrario(7);
-      boolean valore=orarioDao.doDelete(orario);
+      DAOFactory.getOrarioDAO().doSave(orario);
+      Orario or2 = DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(orario.getInizio(), orario.getFine());
+      
+      boolean valore=orarioDao.doDelete(or2);
       assertTrue(valore);
 
       System.out.println("End test");
       }
 
   @Test
-  void testDoDeleteInt() {
+  public void testDoDeleteInt() {
     System.out.println("Start test");
       OrarioDAO orarioDao=DAOFactory.getOrarioDAO();
       assertNotNull(orarioDao);
       Orario orario=new Orario();
       orario.setInizio(new Timestamp(2019,11,02,12,00,00, 0));
       orario.setFine(new Timestamp(2019,11,02, 14,00,00, 0));
-      orario.setIdOrario(8);
-      boolean valore=orarioDao.doDelete(orario.getIdOrario());
+      DAOFactory.getOrarioDAO().doSave(orario);
+      Orario or2 = DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(orario.getInizio(), orario.getFine());
+    
+      boolean valore=orarioDao.doDelete(or2.getIdOrario());
       assertTrue(valore);
 
       System.out.println("End test");  }
 
   @Test
-  void testDoRetrieveByKey() {
+  public void testDoRetrieveByKey() {
     System.out.println("Start test");
       OrarioDAO orarioDao=DAOFactory.getOrarioDAO();
       assertNotNull(orarioDao);
@@ -108,7 +113,7 @@ class OrarioDAOimplTest extends DBTestCase{
       }
 
   @Test
-  void testDoRetrieveByStart() {
+ public  void testDoRetrieveByStart() {
     System.out.println("Start test");
       OrarioDAO orarioDao=DAOFactory.getOrarioDAO();
       assertNotNull(orarioDao);
@@ -123,7 +128,7 @@ class OrarioDAOimplTest extends DBTestCase{
   }
 
   @Test
-  void testDoRetrieveByStartAndFinish() {
+ public  void testDoRetrieveByStartAndFinish() {
     System.out.println("Start test");
       OrarioDAO orarioDao=DAOFactory.getOrarioDAO();
       assertNotNull(orarioDao);
@@ -136,7 +141,7 @@ class OrarioDAOimplTest extends DBTestCase{
   }
 
   @Test
-  void testDoRetrieveAll() {
+ public  void testDoRetrieveAll() {
     System.out.println("Start test");
       OrarioDAO orarioDao=DAOFactory.getOrarioDAO();
       assertNotNull(orarioDao);
