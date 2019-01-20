@@ -152,8 +152,12 @@ public class OrarioDAOimpl implements OrarioDAO {
 
 			//ricava i risultati
 			if(result.next()) {
-				b.setInizio(result.getTimestamp("inizio"));
-				b.setFine(result.getTimestamp("fine"));
+				Timestamp inizio = result.getTimestamp("inizio");
+				Timestamp fine = result.getTimestamp("fine");
+				inizio.setYear(inizio.getYear()+1900);
+				fine.setYear(fine.getYear()+1900);
+				b.setInizio(inizio);
+				b.setFine(fine);
 				return b;
 			}
 
@@ -237,7 +241,7 @@ public class OrarioDAOimpl implements OrarioDAO {
 			if (result.next()) {
 				
 				b.setIdOrario(result.getInt("id"));
-				b.setInizio(start);
+				b.setInizio(result.getTimestamp("inizio"));
 				b.setFine(result.getTimestamp("fine"));
 			}
 

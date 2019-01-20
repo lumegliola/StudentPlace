@@ -48,7 +48,7 @@ public class AulaLiberaDAOimpl implements AulaLiberaDAO{
 			}
 			ps.setString(1, aula.getAula().getNomeAula());
 			ps.setString(2, aula.getOrario().getGiorno());
-			ps.setInt(3, DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(aula.getOrario().getInizio(), aula.getOrario().getFine()).getIdOrario());
+			ps.setInt(3, or.getIdOrario());
 			//inserisce i campi
 			
 			//esegue lo statement
@@ -177,7 +177,7 @@ public class AulaLiberaDAOimpl implements AulaLiberaDAO{
 					
 					b.setAula(DAOFactory.getAulaDAO().doRetrieveByKey(result.getString("aula")));
 					b.setOrario(DAOFactory.getOrarioDAO().doRetrieveByKey(result.getInt("orario")));
-					b.setGiorno(b.getOrario().getGiorno());
+					b.setGiorno(giorno);
 					
 					
 				}

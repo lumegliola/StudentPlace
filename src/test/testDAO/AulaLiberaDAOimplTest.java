@@ -37,22 +37,22 @@ public class AulaLiberaDAOimplTest extends DBTestCase{
 		Timestamp inizio = new Timestamp(119, 0, 21, 0, 0, 0, 0);
 		Timestamp fine = new Timestamp(119, 0, 21, 0, 10, 0, 0);
 		Orario or = new Orario(inizio, fine);
+		String giorno = or.getGiorno();
 		DAOFactory.getOrarioDAO().doSave(or);
+		
 
-		AulaLibera al = new AulaLibera(aula, or,or.getGiorno());
+		AulaLibera al = new AulaLibera(aula, or, giorno);
 
 		Boolean res = DAOFactory.getAulaLiberaDAO().doSave(al);
 		assertTrue(res);
-
-		AulaLibera risultato = DAOFactory.getAulaLiberaDAO().doRetrieveByKey(al.getAula().getNomeAula(), al.getGiorno(), DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(inizio, fine).getIdOrario());
+		
+		
+		AulaLibera risultato = DAOFactory.getAulaLiberaDAO().doRetrieveByKey(al.getAula().getNomeAula(), giorno, DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(inizio, fine).getIdOrario());
 		al.getOrario().setIdOrario(DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(inizio, fine).getIdOrario());
-
-		//genero l'oracolo
-		AulaLibera oracolo = new AulaLibera(aula, or,or.getGiorno());
-		oracolo.getOrario().setIdOrario(DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(inizio, fine).getIdOrario());
-
+	
+		
 		//confronto il risultato della query con l'oracolo	
-		assertTrue(risultato.equals(oracolo));
+		assertTrue(risultato.equals(al));
 
 		System.out.println("successo");	
 
