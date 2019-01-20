@@ -18,7 +18,7 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-public class ServletModificaGdSTest {
+public class TestServletIscrizioneGdS {
 	
 	@Mock
  	ServletContext context= mock(ServletContext.class);
@@ -43,21 +43,16 @@ public class ServletModificaGdSTest {
     @Test
 	public void testDoPostHttpServletRequestHttpServletResponse() throws ServletException, IOException {
   
-    when(request.getParameter("nomeGruppo")).thenReturn("Gruppo di is");
+	when(request.getParameter("idGds")).thenReturn("1");
     
-    when(request.getParameter("materia")).thenReturn("Ingegneria del software");
+	when(request.getParameter("matricola")).thenReturn("0512101769");
 	
 	when(request.getSession(false)).thenReturn(session);
-	
-	when(session.getAttribute("logged")).thenReturn("logged");
-    
-	when(session.getAttribute("matricola")).thenReturn("0512102865");
-	
+    		
 	when(request.getRequestDispatcher("ProvaOutput.jsp")).thenReturn(dispatcher);
-	
-	new ServletModificaGdS().doPost(request, response);
+
+	new ServletIscrizioneGdS().doPost(request, response);
 	
 	verify(dispatcher).forward(request, response);
     }
-
 }
