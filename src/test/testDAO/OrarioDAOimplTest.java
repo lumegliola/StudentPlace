@@ -67,7 +67,7 @@ public class OrarioDAOimplTest extends TestCase{
   }
 
   @Test
-  void testDoDeleteOrario() {
+ public  void testDoDeleteOrario() {
     System.out.println("Start test");
       OrarioDAO orarioDao=DAOFactory.getOrarioDAO();
       assertNotNull(orarioDao);
@@ -151,40 +151,31 @@ public class OrarioDAOimplTest extends TestCase{
       for (Orario or :listOrario) {
         System.out.println("Start"+or.getInizio()+"Fine"+or.getFine());
          }
-      System.out.println("End test");  }
+      System.out.println("End test");  
+      }
 	private FlatXmlDataSet loadedDataSer;
+	private Connection connection;
+	private DatabaseConnection dbconnection;
+	private IDataSet dataSet;
 	@Before
 	protected IDataSet getDataSet() throws Exception {
 		// TODO Auto-generated method stub
-   loadedDataSer =   new FlatXmlDataSetBuilder().build(new FileInputStream("database.xml"));
-   return loadedDataSer;
+     loadedDataSer =   new FlatXmlDataSetBuilder().build(new FileInputStream("database.xml"));
+     return loadedDataSer;
 	}
-  @Before
+    @Before
 	protected void setUp() throws Exception
 	    {
-	        Class driverClass = Class.forName("com.mysql.cj.jdbc.Driver");
-	        Connection jdbcConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentplacedb?serverTimezone = EST5EDT", "root", "root");
-	        IDatabaseConnection connection = new DatabaseConnection(jdbcConnection);
-
-	        // initialize your dataset here
-	        IDataSet dataSet = getDataSet();
-	        // ...
-
-	        try
-	        {
-	            DatabaseOperation.CLEAN_INSERT.execute(connection, dataSet);
-	        }
-	        finally
-	        {
-	            connection.close();
-	        }
-	        
-
+	       Class driverClass = Class.forName("com.mysql.cj.jdbc.Driver");
+	       connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentplacedb?serverTimezone = EST5EDT", "root", "root");
+	       dbconnection = new DatabaseConnection(connection);
+	       
+	       dataSet = getDataSet();
 	    }
-  	@After
-  	protected void tearDown() throws Exception {
+    	@After
+    	protected void tearDown() throws Exception {
 		// TODO Auto-generated method stub
-		  loadedDataSer.endDataSet();	
-  	}
-
+    		 DatabaseOperation.CLEAN_INSERT.execute(dbconnection, dataSet);
+        }
+	
 }

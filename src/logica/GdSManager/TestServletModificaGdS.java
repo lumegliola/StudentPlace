@@ -18,9 +18,7 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import dao.DAOFactory;
-
-public class ServletRicercaGdSTest {
+public class TestServletModificaGdS {
 	
 	@Mock
  	ServletContext context= mock(ServletContext.class);
@@ -45,19 +43,19 @@ public class ServletRicercaGdSTest {
     @Test
 	public void testDoPostHttpServletRequestHttpServletResponse() throws ServletException, IOException {
   
+    when(request.getParameter("nomeGruppo")).thenReturn("Gruppo di is");
+    
+    when(request.getParameter("materia")).thenReturn("Ingegneria del software");
 	
 	when(request.getSession(false)).thenReturn(session);
-    
+	
 	when(session.getAttribute("logged")).thenReturn("logged");
-	
-	when(request.getAttribute("input")).thenReturn("matematica");
-
-	
+    
 	when(session.getAttribute("matricola")).thenReturn("0512102865");
 	
 	when(request.getRequestDispatcher("ProvaOutput.jsp")).thenReturn(dispatcher);
-
-	new ServletRicercaGds().doPost(request, response);
+	
+	new ServletModificaGdS().doPost(request, response);
 	
 	verify(dispatcher).forward(request, response);
     }

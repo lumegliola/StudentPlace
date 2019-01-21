@@ -18,7 +18,7 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-public class ServletEliminaGdsTest {
+public class TestServletEliminaGds {
 
     	@Mock
 	 	ServletContext context= mock(ServletContext.class);
