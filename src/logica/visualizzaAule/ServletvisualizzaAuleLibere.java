@@ -38,6 +38,7 @@ public class ServletvisualizzaAuleLibere extends HttpServlet {
 
 
 		HttpSession session = request.getSession();
+		//instanzio stringhe per giorno e fasce orarie
 		List <AulaLibera> elenco = new ArrayList<>();
 		List <String> lunedi1=  new ArrayList<>();
 		List <String> lunedi2=  new ArrayList<>();
@@ -89,13 +90,14 @@ public class ServletvisualizzaAuleLibere extends HttpServlet {
 		List <String> giovedi8=  new ArrayList<>();
 		List <String> giovedi9=  new ArrayList<>();
 		List <String> giovedi10=  new ArrayList<>();
-
+//vengono presi tutte le aule libere nel db
 		elenco.addAll(DAOFactory.getAulaLiberaDAO().doRetrieveAll());
+		//per ogni metodo sottostante , viene scorso l'elenco delle aule e controllato giorno e ora di inizio/fine
 		for(int i =0;i<elenco.size();i++) {
 			if(elenco.get(i).getOrario().getGiorno().equals("Lunedì")){
 
 
-				if((int)elenco.get(i).getOrario().getInizio().getHours()==10){
+				if((int)elenco.get(i).getOrario().getInizio().getHours()<=10){
 
 					if((int)elenco.get(i).getOrario().getFine().getHours()>=11)
 					{
@@ -104,11 +106,11 @@ public class ServletvisualizzaAuleLibere extends HttpServlet {
 							{
 								break;
 							}
-							
+						}
 								lunedi1.add(elenco.get(i).getAula().getNomeAula());
 
 
-							}
+							
 
 						}
 
@@ -338,7 +340,7 @@ public class ServletvisualizzaAuleLibere extends HttpServlet {
 			if(elenco.get(i).getOrario().getGiorno().equals("Martedì")){
 
 
-				if((int)elenco.get(i).getOrario().getInizio().getHours()==10){
+				if((int)elenco.get(i).getOrario().getInizio().getHours()<=10){
 
 					if((int)elenco.get(i).getOrario().getFine().getHours()>=11)
 					{
@@ -583,7 +585,7 @@ public class ServletvisualizzaAuleLibere extends HttpServlet {
 			if(elenco.get(i).getOrario().getGiorno().equals("Mercoledì")){
 
 
-				if((int)elenco.get(i).getOrario().getInizio().getHours()==10){
+				if((int)elenco.get(i).getOrario().getInizio().getHours()<=10){
 
 					if((int)elenco.get(i).getOrario().getFine().getHours()>=11)
 					{
@@ -831,7 +833,7 @@ public class ServletvisualizzaAuleLibere extends HttpServlet {
 			if(elenco.get(i).getOrario().getGiorno().equals("Giovedì")){
 
 
-				if((int)elenco.get(i).getOrario().getInizio().getHours()==10){
+				if((int)elenco.get(i).getOrario().getInizio().getHours()<=10){
 
 					if((int)elenco.get(i).getOrario().getFine().getHours()>=11)
 					{
@@ -1079,7 +1081,7 @@ public class ServletvisualizzaAuleLibere extends HttpServlet {
 			if(elenco.get(i).getOrario().getGiorno().equals("Venerdì")){
 
 
-				if((int)elenco.get(i).getOrario().getInizio().getHours()==10){
+				if((int)elenco.get(i).getOrario().getInizio().getHours()<=10){
 
 					if((int)elenco.get(i).getOrario().getFine().getHours()>=11)
 					{
