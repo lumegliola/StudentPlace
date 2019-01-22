@@ -49,9 +49,9 @@ public class OrarioDAOimplTest extends TestCase{
     System.out.println("Start test");
       OrarioDAO orarioDao=DAOFactory.getOrarioDAO();
       assertNotNull(orarioDao);
-      Orario orario=orarioDao.doRetrieveByKey(6);
-      Orario controllo = new Orario(new Timestamp(118, 11, 21, 12, 0, 0, 0), new Timestamp(118, 11, 21, 13, 0, 0, 0));
-      controllo.setIdOrario(6);
+      Orario orario=orarioDao.doRetrieveByKey(4);
+      Orario controllo = new Orario(new Timestamp(118, 11, 21, 11, 0, 0, 0), new Timestamp(118, 11, 21, 12, 0, 0, 0));
+      controllo.setIdOrario(4);
       assertTrue(orario.equals(controllo));
       System.out.println("End test");
       }

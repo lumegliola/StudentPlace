@@ -49,7 +49,6 @@
   <gds id="4" nome="Gruppo di so" creatore="0512103593" materia="Sistemi Operativi" oraInizio="2018-12-21 21:00:00.0" oraFine="2018-12-21 23:30:00.0" giorno="lunedì" aula="P12"/>
   <gds id="5" nome="Gruppo di analisi" creatore="0512102865" materia="Analisi Matematica" oraInizio="2018-12-21 21:00:00.0" oraFine="2018-12-21 23:30:00.0" giorno="lunedì" aula="F2"/>
   <gds id="6" nome="Gruppo di psd" creatore="0512102865" materia="Programmazione e strutture di dati" oraInizio="2018-12-21 21:00:00.0" oraFine="2018-12-21 23:30:00.0" giorno="lunedì" aula="P4"/>
-  
   <iscrizione utente="0512102765" gruppo="1"/>
   <iscrizione utente="0512102855" gruppo="1"/>
   <iscrizione utente="0512103593" gruppo="1"/>
@@ -64,6 +63,7 @@
   <giorno giorno="Mercoledì"/>
   <giorno giorno="Sabato"/>
   <giorno giorno="Venerdì"/>
+   <orario id="4" inizio="2018-12-21 16:00:00.0" fine="2018-12-21 17:00:00.0"/>
   <orario id="6" inizio="2018-12-21 17:00:00.0" fine="2018-12-21 18:00:00.0"/>
   <orario id="7" inizio="2019-01-21 17:00:00.0" fine="2019-01-21 19:00:00.0"/>
   <orario id="8" inizio="2019-02-21 15:00:00.0" fine="2019-02-21 16:00:00.0"/>
