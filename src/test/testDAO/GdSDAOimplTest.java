@@ -137,8 +137,11 @@ public class GdSDAOimplTest extends TestCase {
 		gruppo.setNomeGruppo("gruppo performante");
 		dao.doDeleteByNameAndSubjet(gruppo.getNomeGruppo(),gruppo.getMateria());
 		GruppoDiStudio risultato = dao.doRetrieveByNameAndSubject(gruppo.getNomeGruppo(),gruppo.getMateria());
-		
-		assertTrue(risultato==null);
+		boolean val=false;
+		if(risultato==null) {
+			val=true;
+		}
+		assertTrue(val);
 		System.out.println("eliminazione completata");
 	}
 
