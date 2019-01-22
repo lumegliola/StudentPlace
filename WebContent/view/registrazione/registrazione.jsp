@@ -1,5 +1,10 @@
+<%@page import="bean.*"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.sql.Timestamp"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,24 +23,18 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <!-- IMPORT CSS-->
-<link rel="stylesheet" href="view/headerfooter/Header.css"
+<link rel="stylesheet" href="\view\headerfooter\Footer.css"
 	type="text/css">
-<link rel="stylesheet" href="view/headerfooter/Footer.css"
+<link rel="stylesheet" href="\view\headerfooter\Header.css"
 	type="text/css">
-	
+<link rel="stylesheet" href="view\registrazione\registrazione.css"
+	type="text/css">
 </head>
 <!-- INCLUDE PAGE -->
 <body>
-<%@ include file="../headerfooter/Header.jsp" %>
-<div style="min-height: 30em; padding-top: 3em;" class  ="home">
-
-
-<div class="col-lg-3 col-md-offset-1">
-<h2>LISTA ULTIMI GRUPPi</h2>
-<p>al posto di nulla non è male</p>
-
-</div>
-<div class="col-lg-3 col-md-offset-1">
+	<%@ include file="../headerfooter/Header.jsp"%>
+	<div class="container ">
+		<div class="col-lg-3 col-md-offset-4 row down7">
 			<form action="Registrazione" method="post" name="formReg">
 				<h2>REGISTRATI!</h2>
 				<div class="testo">
@@ -58,37 +57,11 @@
 				</div>
 
 			</form>
-	
-</div>
-<div id = "col-dx" style=" border-left: 1px solid red;" class = "col-lg-4">
-
-		
-			<div class="container-fluid login" ">
-			<div>
-				<label class="creaaccount">Accedi a Student place:</label><br />
-
-				<form action="login" method="post" onsubmit="return validateForm()">
-
-					<label>E-mail:&nbsp;</label><label id="resMail"></label><br />
-					<input type="text" name="email" id="email"
-						placeholder="email"
-						style="width: 90%; clear: both;"><br /> <br /> 
-						
-						<label>Password:&nbsp;</label><label id="resPass"></label><br/> 
-						<input type="password" name="password" id="password"
-						placeholder="password" style="width: 90%; clear: both;"><br /><br />
-					
-					
-					<input type="submit" class="button" value="Accedi"></input>
-				</form>
-			</div>
 		</div>
+	</div>
 
-</div>
 
-</div>
-
-<%@ include file="../headerfooter/Footer.html"%>
+	<%@ include file="../headerfooter/Footer.html"%>
 
 </body>
 </html>
