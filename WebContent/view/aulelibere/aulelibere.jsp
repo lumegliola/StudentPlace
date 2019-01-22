@@ -38,6 +38,13 @@
 			<% 
 //lista delle aula divisa per giorno e fasce orarie
  ArrayList <listaAuleLibere> lista =(ArrayList <listaAuleLibere>)request.getAttribute("lista");
+ List <String> giorni= new ArrayList<>();
+	giorni.add("Lunedì");
+	giorni.add("Martedì");
+	giorni.add("Mercoledì");
+	giorni.add("Giovedì");
+	giorni.add("Venerdì");
+	int s=0,k=1;
 
 %>
 			<thead>
@@ -56,64 +63,65 @@
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Lunedì") && lista.get(i).getFasciaoraria()==1){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s++;
 						}
  	%>
  </td>
 					<td>
-					<%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Martedì") && lista.get(i).getFasciaoraria()==1){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
-
-						
 					
- 		}
-						}
- 	%>
+					<%
+					if(lista.size() != 0) {
+						for (int i =0; i<lista.size(); i++) {
+							if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
+								%> <%=lista.get(i).getNomeaula()%>, <%
+							}
+
+					
+				
+		}s++;
+					}
+	%>
 					</td>
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Mercoledì") && lista.get(i).getFasciaoraria()==1){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s++;
 						}
  	%></td>
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Giovedì") && lista.get(i).getFasciaoraria()==1){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s++;
 						}
  	%></td>
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Venerdì") && lista.get(i).getFasciaoraria()==1){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s=0;k++;
 						}
  	%></td>
 				</tr>
@@ -122,61 +130,61 @@
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Lunedì") && lista.get(i).getFasciaoraria()==2){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s++;
 						}
  	%></td>
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Martedì") && lista.get(i).getFasciaoraria()==2){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s++;
 						}
  	%></td>
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Mercoledì") && lista.get(i).getFasciaoraria()==2){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s++;
 						}
  	%></td>
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Giovedì") && lista.get(i).getFasciaoraria()==2){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s++;
 						}
  	%></td>
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Venerdì") && lista.get(i).getFasciaoraria()==2){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s=0;k++;
 						}
  	%></td>
 				</tr>
@@ -185,61 +193,61 @@
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Lunedì") && lista.get(i).getFasciaoraria()==3){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s++;
 						}
  	%></td>
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Martedì") && lista.get(i).getFasciaoraria()==3){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s++;
 						}
  	%></td>
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Mercoledì") && lista.get(i).getFasciaoraria()==3){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s++;
 						}
  	%></td>
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Giovedì") && lista.get(i).getFasciaoraria()==3){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s++;
 						}
  	%></td>
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Venerdì") && lista.get(i).getFasciaoraria()==3){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s=0;k++;
 						}
  	%></td>
 				</tr>
@@ -248,61 +256,61 @@
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Lunedì") && lista.get(i).getFasciaoraria()==4){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s++;
 						}
  	%></td>
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Martedì") && lista.get(i).getFasciaoraria()==4){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s++;
 						}
  	%></td>
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Mercoledì") && lista.get(i).getFasciaoraria()==4){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s++;
 						}
  	%></td>
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Giovedì") && lista.get(i).getFasciaoraria()==4){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s++;
 						}
  	%></td>
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Venerdì") && lista.get(i).getFasciaoraria()==4){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s=0;k++;
 						}
  	%></td>
 				</tr>
@@ -311,61 +319,61 @@
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Lunedì") && lista.get(i).getFasciaoraria()==5){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s++;
 						}
  	%></td>
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Martedì") && lista.get(i).getFasciaoraria()==5){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s++;
 						}
  	%></td>
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Mercoledì") && lista.get(i).getFasciaoraria()==5){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s++;
 						}
  	%></td>
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Giovedì") && lista.get(i).getFasciaoraria()==5){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s++;
 						}
  	%></td>
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Venerdì") && lista.get(i).getFasciaoraria()==5){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s=0;k++;
 						}
  	%></td>
 				</tr>
@@ -374,61 +382,61 @@
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Lunedì") && lista.get(i).getFasciaoraria()==6){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s++;
 						}
  	%></td>
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Martedì") && lista.get(i).getFasciaoraria()==6){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s++;
 						}
  	%></td>
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Mercoledì") && lista.get(i).getFasciaoraria()==6){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s++;
 						}
  	%></td>
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Giovedì") && lista.get(i).getFasciaoraria()==6){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s++;
 						}
  	%></td>
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Venerdì") && lista.get(i).getFasciaoraria()==6){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s=0;k++;
 						}
  	%></td>
 				</tr>
@@ -437,61 +445,61 @@
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Lunedì") && lista.get(i).getFasciaoraria()==7){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s++;
 						}
  	%></td>
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Martedì") && lista.get(i).getFasciaoraria()==7){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s++;
 						}
  	%></td>
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Mercoledì") && lista.get(i).getFasciaoraria()==7){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s++;
 						}
  	%></td>
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Giovedì") && lista.get(i).getFasciaoraria()==7){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s++;
 						}
  	%></td>
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Venerdì") && lista.get(i).getFasciaoraria()==7){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s=0;k++;
 						}
  	%></td>
 				</tr>
@@ -500,61 +508,61 @@
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Lunedì") && lista.get(i).getFasciaoraria()==8){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s++;
 						}
  	%></td>
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Martedì") && lista.get(i).getFasciaoraria()==8){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s++;
 						}
  	%></td>
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Mercoledì") && lista.get(i).getFasciaoraria()==8){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s++;
 						}
  	%></td>
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Giovedì") && lista.get(i).getFasciaoraria()==8){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s++;
 						}
  	%></td>
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Venerdì") && lista.get(i).getFasciaoraria()==8){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s=0;k++;
 						}
  	%></td>
 				</tr>
@@ -563,61 +571,61 @@
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Lunedì") && lista.get(i).getFasciaoraria()==9){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s++;
 						}
  	%></td>
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Martedì") && lista.get(i).getFasciaoraria()==9){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s++;
 						}
  	%></td>
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Mercoledì") && lista.get(i).getFasciaoraria()==9){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s++;
 						}
  	%></td>
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Giovedì") && lista.get(i).getFasciaoraria()==9){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s++;
 						}
  	%></td>
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Venerdì") && lista.get(i).getFasciaoraria()==9){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s=0;k++;
 						}
  	%></td>
 				</tr>
@@ -626,61 +634,61 @@
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Lunedì") && lista.get(i).getFasciaoraria()==10){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s++;
 						}
  	%></td>
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Martedì") && lista.get(i).getFasciaoraria()==10){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s++;
 						}
  	%></td>
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Mercoledì") && lista.get(i).getFasciaoraria()==10){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s++;
 						}
  	%></td>
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Giovedì") && lista.get(i).getFasciaoraria()==10){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s++;
 						}
  	%></td>
 					<td><%
 						if(lista.size() != 0) {
 							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals("Venerdì") && lista.get(i).getFasciaoraria()==10){
+								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
 									%> <%=lista.get(i).getNomeaula()%>, <%
 								}
 
 						
 					
- 		}
+ 		}s=0;k++;
 						}
  	%></td>
 				</tr>
