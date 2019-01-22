@@ -52,7 +52,7 @@ public class ServletRegistrazione extends HttpServlet {
 		boolean valore=false;
 		valore=DAOFactory.getUserDAO().doSave(utente);
 		if(valore) {
-			System.out.println("Salvato");
+			System.out.println("Salvato"+utente);
 
 			HttpSession session=request.getSession();
 			session.setAttribute("utente",utente);

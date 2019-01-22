@@ -39,6 +39,7 @@ public class ServletvisualizzaAuleLibere extends HttpServlet {
 
 
 		HttpSession session = request.getSession();
+		if(session!=null) {
 		ArrayList <listaAuleLibere> lista=new ArrayList<>();
 		List <AulaLibera> elenco = new ArrayList<>();
 		List <String> giorni= new ArrayList<>();
@@ -63,8 +64,7 @@ public class ServletvisualizzaAuleLibere extends HttpServlet {
 					{
 						if(lista.size()!=0) {
 						for(int c=0;c <lista.size() ;c++) {
-							if(lista.get(c).getNomeaula().equals(elenco.get(i).getAula().getNomeAula())&&
-									lista.get(c).getGiorno().equals(giorni.get(g))	&&lista.get(c).getFasciaoraria()==o-9)
+							if(lista.get(c).getNomeaula().equals(elenco.get(i).getAula().getNomeAula()) && lista.get(c).getGiorno().equals(giorni.get(g))	&&lista.get(c).getFasciaoraria()==o-9)
 							{
 								break;
 							}
@@ -86,11 +86,13 @@ public class ServletvisualizzaAuleLibere extends HttpServlet {
 		
 
 		request.setAttribute("lista",lista);
-		RequestDispatcher view = request.getRequestDispatcher("view/aulelibere/aulelibere.jsp");
-		view.forward(request, response);
+		request.getRequestDispatcher("aulelibere/aulelibere.jsp").forward(request, response);
 
 
 
+	}else {
+		request.getRequestDispatcher("aulelibere/aulelibere.jsp").forward(request, response);
+	}
 	}
 
 
