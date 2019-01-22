@@ -53,10 +53,11 @@ public class ServletEliminaOrario extends HttpServlet {
 				request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
 			}
 			else {
+				DAOFactory.getAulaLiberaDAO().doDeleteByOrario(or.getIdOrario());
 				DAOFactory.getOrarioDAO().doDelete(or);
 				System.out.println("l`orario viene eliminato dall`amministratore");
 				session.setAttribute("esito", "ok");
-				request.getRequestDispatcher("ProvaOutput.jsp");
+				request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
 			}
 		}else {
 			session = request.getSession(true);

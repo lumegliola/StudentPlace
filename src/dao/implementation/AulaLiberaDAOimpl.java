@@ -118,11 +118,11 @@ public class AulaLiberaDAOimpl implements AulaLiberaDAO{
 			String giorno = aula.getGiorno();
 			int id = aula.getOrario().getIdOrario();
 			
-			return doDelete(nome, giorno, id);
+			return doDeleteByKey(nome, giorno, id);
 		}
 
 		@Override
-		public boolean doDelete(String nomeAula, String giorno, int idOrario) {
+		public boolean doDeleteByKey(String nomeAula, String giorno, int idOrario) {
 
 			Connection connection = null;
 			PreparedStatement ps = null;
@@ -136,6 +136,37 @@ public class AulaLiberaDAOimpl implements AulaLiberaDAO{
 				ps.setString(1, nomeAula);
 				ps.setString(2, giorno);
 				ps.setInt(3, idOrario);
+
+				//esegue lo statement
+				result = ps.executeUpdate();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				if(connection != null) {
+					try {
+						ps.close();
+						DriverManagerConnectionPool.releaseConnection(connection);
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			return (result == 1);
+		}
+		
+		public boolean doDeleteByOrario(int idOrario) {
+
+			Connection connection = null;
+			PreparedStatement ps = null;
+			int result = 0;
+
+			try {
+
+				connection = DriverManagerConnectionPool.getConnection();
+				//dichiara lo statement
+				ps = connection.prepareStatement("delete from libera where orario = ?;");
+				ps.setInt(1, idOrario);
 
 				//esegue lo statement
 				result = ps.executeUpdate();
