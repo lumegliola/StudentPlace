@@ -11,3 +11,10 @@ th, td {
 	border :1px solid #000000 !important;
 	
 }
+.tabella  td{
+	background-color:#e65d5d; 
+}
+.tabella .orario{
+	background-color:#a01313; 
+	font-weight: bold;
+}
