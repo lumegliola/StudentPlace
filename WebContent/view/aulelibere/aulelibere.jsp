@@ -52,7 +52,7 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td>09/10</td>
+					<td class="orario">09/10</td>
 					<td>
 						<%if(elenco.size()>0){
 for(int i=0;i < elenco.size();i++) {
@@ -153,7 +153,7 @@ else
 %>nessuna aula libera</td>
 				</tr>
 				<tr>
-					<td>10/11</td>
+					<td class="orario">10/11</td>
 					<td><%if(elenco.size()>0){
 for(int i=0;i< elenco.size();i++) {
 	if(elenco.get(i).getGiorno().equals("Lunedì")){
@@ -251,7 +251,7 @@ else
 %>nessuna aula libera</td>
 				</tr>
 				<tr>
-					<td>11/12</td>
+					<td class="orario">11/12</td>
 					<td><%if(elenco.size()>0){
 for(int i=0;i< elenco.size();i++) {
 	if(elenco.get(i).getGiorno().equals("Lunedì")){
@@ -349,7 +349,7 @@ else
 %>nessuna aula libera</td>
 				</tr>
 				<tr>
-					<td>12/13</td>
+					<td class="orario">12/13</td>
 					<td><%if(elenco.size()>0){
 for(int i=0;i< elenco.size();i++) {
 	if(elenco.get(i).getGiorno().equals("Lunedì")){
@@ -447,7 +447,7 @@ else
 %>nessuna aula libera</td>
 				</tr>
 				<tr>
-					<td>13/14</td>
+					<td class="orario">13/14</td>
 					<td><%if(elenco.size()>0){
 for(int i=0;i< elenco.size();i++) {
 	if(elenco.get(i).getGiorno().equals("Lunedì")){
@@ -545,7 +545,7 @@ else
 %>nessuna aula libera</td>
 				</tr>
 				<tr>
-					<td>14/15</td>
+					<td class="orario">14/15</td>
 					<td><%if(elenco.size()>0){
 for(int i=0;i< elenco.size();i++) {
 	if(elenco.get(i).getGiorno().equals("Lunedì")){
@@ -643,7 +643,7 @@ else
 %>nessuna aula libera</td>
 				</tr>
 				<tr>
-					<td>15/16</td>
+					<td class="orario">15/16</td>
 					<td><%if(elenco.size()>0){
 for(int i=0;i< elenco.size();i++) {
 	if(elenco.get(i).getGiorno().equals("Lunedì")){
@@ -741,7 +741,7 @@ else
 %>nessuna aula libera</td>
 				</tr>
 				<tr>
-					<td>16/17</td>
+					<td class="orario">16/17</td>
 					<td><%if(elenco.size()>0){
 for(int i=0;i< elenco.size();i++) {
 	if(elenco.get(i).getGiorno().equals("Lunedì")){
@@ -839,7 +839,7 @@ else
 %>nessuna aula libera</td>
 				</tr>
 				<tr>
-					<td>17/18</td>
+					<td class="orario">17/18</td>
 					<td><%if(elenco.size()>0){
 for(int i=0;i< elenco.size();i++) {
 	if(elenco.get(i).getGiorno().equals("Lunedì")){
@@ -937,7 +937,7 @@ else
 %>nessuna aula libera</td>
 				</tr>
 				<tr>
-					<td>18/19</td>
+					<td class="orario">18/19</td>
 					<td><%if(elenco.size()>0){
 for(int i=0;i< elenco.size();i++) {
 	if(elenco.get(i).getGiorno().equals("Lunedì")){
