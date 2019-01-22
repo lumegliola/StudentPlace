@@ -37,7 +37,56 @@
 		<table class="col-lg-12 tabella">
 			<% 
 
-   List <AulaLibera> elenco = (List <AulaLibera>)request.getAttribute("elenco");
+   List <String> lunedi1 = (List <String>)request.getAttribute("lunedi1");
+List <String> lunedi2 = (List <String>)request.getAttribute("lunedi2");
+List <String> lunedi3 = (List <String>)request.getAttribute("lunedi3");
+List <String> lunedi4 = (List <String>)request.getAttribute("lunedi4");
+List <String> lunedi5 = (List <String>)request.getAttribute("lunedi5");
+List <String> lunedi6 = (List <String>)request.getAttribute("lunedi6");
+List <String> lunedi7 = (List <String>)request.getAttribute("lunedi7");
+List <String> lunedi8 = (List <String>)request.getAttribute("lunedi8");
+List <String> lunedi9 = (List <String>)request.getAttribute("lunedi9");
+List <String> lunedi10 = (List <String>)request.getAttribute("lunedi10");
+List <String> martedi1 = (List <String>)request.getAttribute("martedi1");
+List <String> martedi2 = (List <String>)request.getAttribute("martedi2");
+List <String> martedi3 = (List <String>)request.getAttribute("martedi3");
+List <String> martedi4 = (List <String>)request.getAttribute("martedi4");
+List <String> martedi5 = (List <String>)request.getAttribute("martedi5");
+List <String> martedi6 = (List <String>)request.getAttribute("martedi6");
+List <String> martedi7 = (List <String>)request.getAttribute("martedi7");
+List <String> martedi8 = (List <String>)request.getAttribute("martedi8");
+List <String> martedi9 = (List <String>)request.getAttribute("martedi9");
+List <String> martedi10 = (List <String>)request.getAttribute("martedi10");
+List <String> mercoledi1 = (List <String>)request.getAttribute("mercoledi1");
+List <String> mercoledi2 = (List <String>)request.getAttribute("mercoledi2");
+List <String> mercoledi3 = (List <String>)request.getAttribute("mercoledi3");
+List <String> mercoledi4 = (List <String>)request.getAttribute("mercoledi4");
+List <String> mercoledi5 = (List <String>)request.getAttribute("mercoledi5");
+List <String> mercoledi6 = (List <String>)request.getAttribute("mercoledi6");
+List <String> mercoledi7 = (List <String>)request.getAttribute("mercoledi7");
+List <String> mercoledi8 = (List <String>)request.getAttribute("mercoledi8");
+List <String> mercoledi9 = (List <String>)request.getAttribute("mercoledi9");
+List <String> mercoledi10 = (List <String>)request.getAttribute("mercoledi10");
+List <String> giovedi1 = (List <String>)request.getAttribute("giovedi1");
+List <String> giovedi2 = (List <String>)request.getAttribute("giovedi2");
+List <String> giovedi3 = (List <String>)request.getAttribute("giovedi3");
+List <String> giovedi4 = (List <String>)request.getAttribute("giovedi4");
+List <String> giovedi5 = (List <String>)request.getAttribute("giovedi5");
+List <String> giovedi6 = (List <String>)request.getAttribute("giovedi6");
+List <String> giovedi7 = (List <String>)request.getAttribute("giovedi7");
+List <String> giovedi8 = (List <String>)request.getAttribute("giovedi8");
+List <String> giovedi9 = (List <String>)request.getAttribute("giovedi9");
+List <String> giovedi10 = (List <String>)request.getAttribute("giovedi10");
+List <String> venerdi1 = (List <String>)request.getAttribute("venerdi1");
+List <String> venerdi2 = (List <String>)request.getAttribute("venerdi2");
+List <String> venerdi3 = (List <String>)request.getAttribute("venerdi3");
+List <String> venerdi4 = (List <String>)request.getAttribute("venerdi4");
+List <String> venerdi5 = (List <String>)request.getAttribute("venerdi5");
+List <String> venerdi6 = (List <String>)request.getAttribute("venerdi6");
+List <String> venerdi7 = (List <String>)request.getAttribute("venerdi7");
+List <String> venerdi8 = (List <String>)request.getAttribute("venerdi8");
+List <String> venerdi9 = (List <String>)request.getAttribute("venerdi9");
+List <String> venerdi10 = (List <String>)request.getAttribute("venerdi10");
    
 %>
 			<thead>
@@ -52,987 +101,680 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td class="orario">09/10</td>
+					<td>09/10</td>
 					<td>
-						<%if(elenco.size()>0){
-for(int i=0;i < elenco.size();i++) {
-	if(elenco.get(i).getOrario().getGiorno().equals("Lunedì")){
+						<%
+					
+if(lunedi1.size()!=0){for(int i=0;i< lunedi1.size();i++) {
 	
-	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==9){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=10)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=lunedi1.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera
+	}
+}}
+%>
+
 					</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Martedì")){
-		
+					<td>
+					<%
+					
+if(martedi1.size()!=0){for(int i=0;i< martedi1.size();i++) {
 	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==9){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=10)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=martedi1.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera
+	}
+}}
+%>
 					</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Mercoledì")){
+					<td><%
+					
+if(mercoledi1.size()!=0){for(int i=0;i< mercoledi1.size();i++) {
 	
-	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==9){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=10)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=mercoledi1.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Giovedì")){
-		
+	}
+}}
+%></td>
+					<td><%
+					
+if(giovedi1.size()!=0){for(int i=0;i< giovedi1.size();i++) {
 	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==9){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=10)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=giovedi1.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Venerdì")){
-		
+	}
+}}
+%></td>
+					<td><%
+					
+if(venerdi1.size()!=0){for(int i=0;i< venerdi1.size();i++) {
 	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==9){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=10)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=venerdi1.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera</td>
+	}
+}}
+%></td>
 				</tr>
 				<tr>
-					<td class="orario">10/11</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Lunedì")){
-		
+					<td>10/11</td>
+					<td><%
+if(lunedi2.size()!=0){for(int i=0;i< lunedi2.size();i++) {
 	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==10){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=11)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=lunedi2.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Martedì")){
-		
+	}
+}}
+%></td>
+					<td>	<%
+					
+if(martedi2.size()!=0){for(int i=0;i< martedi2.size();i++) {
 	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==10){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=11)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=martedi2.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Mercoledì")){
-		
+	}
+}}
+%></td>
+					<td><%
+					
+if(mercoledi2.size()!=0){for(int i=0;i< mercoledi2.size();i++) {
 	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==10){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=11)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=mercoledi2.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Giovedì")){
-		
+	}
+}}
+%></td>
+					<td><%
+					
+if(giovedi2.size()!=0){for(int i=0;i< giovedi2.size();i++) {
 	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==10){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=11)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=giovedi2.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Venerdì")){
-		
+	}
+}}
+%></td>
+					<td><%
+					
+if(venerdi2.size()!=0){for(int i=0;i< venerdi2.size();i++) {
 	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==10){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=11)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=venerdi2.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera</td>
+	}
+}}
+%></td>
 				</tr>
 				<tr>
-					<td class="orario">11/12</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Lunedì")){
-		
+					<td>11/12</td>
+					<td><%
+if(lunedi3.size()!=0){for(int i=0;i< lunedi3.size();i++) {
 	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==11){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=12)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=lunedi3.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Martedì")){
-		
+	}
+}}
+%></td>
+					<td>	<%
+					
+if(martedi3.size()!=0){for(int i=0;i< martedi3.size();i++) {
 	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==11){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=12)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=martedi3.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Mercoledì")){
-		
+	}
+}}
+%></td>
+					<td><%
+					
+if(mercoledi3.size()!=0){for(int i=0;i< mercoledi3.size();i++) {
 	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==11){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=12)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=mercoledi3.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Giovedì")){
-		
+	}
+}}
+%></td>
+					<td><%
+					
+if(giovedi3.size()!=0){for(int i=0;i< giovedi3.size();i++) {
 	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==11){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=12)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=giovedi3.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Venerdì")){
-		
+	}
+}}
+%></td>
+					<td><%
+					
+if(venerdi3.size()!=0){for(int i=0;i< venerdi3.size();i++) {
 	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==11){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=12)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=venerdi3.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera</td>
+	}
+}}
+%></td>
 				</tr>
 				<tr>
-					<td class="orario">12/13</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Lunedì")){
-		
+					<td>12/13</td>
+					<td><%
+if(lunedi4.size()!=0){for(int i=0;i< lunedi4.size();i++) {
 	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==12){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=13)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=lunedi4.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Martedì")){
-		
+	}
+}}
+%></td>
+					<td>	<%
+					
+if(martedi4.size()!=0){for(int i=0;i< martedi4.size();i++) {
 	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==12){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=13)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=martedi4.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Mercoledì")){
-		
+	}
+}}
+%></td>
+					<td><%
+					
+if(mercoledi4.size()!=0){for(int i=0;i< mercoledi4.size();i++) {
 	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==12){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=13)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=mercoledi4.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Giovedì")){
-		
+	}
+}}
+%></td>
+					<td><%
+					
+if(giovedi4.size()!=0){for(int i=0;i< giovedi4.size();i++) {
 	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==12){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=13)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=giovedi4.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Venerdì")){
-		
+	}
+}}
+%></td>
+					<td><%
+					
+if(venerdi4.size()!=0){for(int i=0;i< venerdi4.size();i++) {
 	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==12){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=13)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=venerdi4.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera</td>
+	}
+}}
+%></td>
 				</tr>
 				<tr>
-					<td class="orario">13/14</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Lunedì")){
-		
+					<td>13/14</td>
+					<td><%
+if(lunedi5.size()!=0){for(int i=0;i< lunedi5.size();i++) {
 	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==13){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=14)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=lunedi5.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Martedì")){
-		
+	}
+}}
+%></td>
+					<td>	<%
+					
+if(martedi5.size()!=0){for(int i=0;i< martedi5.size();i++) {
 	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==13){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=14)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=martedi5.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Mercoledì")){
-		
+	}
+}}
+%></td>
+					<td><%
+					
+if(mercoledi5.size()!=0){for(int i=0;i< mercoledi5.size();i++) {
 	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==13){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=14)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=mercoledi5.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Giovedì")){
-		
+	}
+}}
+%></td>
+					<td><%
+					
+if(giovedi5.size()!=0){for(int i=0;i< giovedi5.size();i++) {
 	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==13){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=14)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=giovedi5.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Venerdì")){
-		
+	}
+}}
+%></td>
+					<td><%
+					
+if(venerdi5.size()!=0){for(int i=0;i< venerdi5.size();i++) {
 	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==13){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=14)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=venerdi5.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera</td>
+	}
+}}
+%></td>
 				</tr>
 				<tr>
-					<td class="orario">14/15</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Lunedì")){
-		
+					<td>14/15</td>
+					<td><%
+if(lunedi6.size()!=0){for(int i=0;i< lunedi6.size();i++) {
 	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==14){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=15)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=lunedi6.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Martedì")){
-		
+	}
+}}
+%></td>
+					<td>	<%
+					
+if(martedi6.size()!=0){for(int i=0;i< martedi6.size();i++) {
 	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==14){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=15)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=martedi6.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Mercoledì")){
-		
+	}
+}}
+%></td>
+					<td><%
+					
+if(mercoledi6.size()!=0){for(int i=0;i< mercoledi6.size();i++) {
 	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==14){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=15)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=mercoledi6.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Giovedì")){
-		
+	}
+}}
+%></td>
+					<td><%
+					
+if(giovedi6.size()!=0){for(int i=0;i< giovedi6.size();i++) {
 	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==14){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=15)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=giovedi6.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Venerdì")){
-		
+	}
+}}
+%></td>
+					<td><%
+					
+if(venerdi6.size()!=0){for(int i=0;i< venerdi6.size();i++) {
 	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==14){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=15)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=venerdi6.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera</td>
+	}
+}}
+%></td>
 				</tr>
 				<tr>
-					<td class="orario">15/16</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Lunedì")){
-		
+					<td>15/16</td>
+					<td><%
+if(lunedi7.size()!=0){for(int i=0;i< lunedi7.size();i++) {
 	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==15){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=16)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=lunedi7.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Martedì")){
-		
+	}
+}}
+%></td>
+					<td>	<%
+					
+if(martedi7.size()!=0){for(int i=0;i< martedi7.size();i++) {
 	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==15){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=16)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=martedi7.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Mercoledì")){
-		
+	}
+}}
+%></td>
+					<td><%
+					
+if(mercoledi7.size()!=0){for(int i=0;i< mercoledi7.size();i++) {
 	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==15){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=16)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=mercoledi7.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Giovedì")){
-		
+	}
+}}
+%></td>
+					<td><%
+					
+if(giovedi7.size()!=0){for(int i=0;i< giovedi7.size();i++) {
 	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==15){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=16)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=giovedi7.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Venerdì")){
-		
+	}
+}}
+%></td>
+					<td><%
+					
+if(venerdi7.size()!=0){for(int i=0;i< venerdi7.size();i++) {
 	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==15){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=16)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=venerdi7.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera</td>
+	}
+}}
+%></td>
 				</tr>
 				<tr>
-					<td class="orario">16/17</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Lunedì")){
-		
+					<td>16/17</td>
+					<td><%
+if(lunedi8.size()!=0){for(int i=0;i< lunedi8.size();i++) {
 	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==16){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=17)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=lunedi8.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Martedì")){
-		
+	}
+}}
+%></td>
+					<td>	<%
+					
+if(martedi8.size()!=0){for(int i=0;i< martedi8.size();i++) {
 	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==16){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=17)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=martedi8.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Mercoledì")){
-		
+	}
+}}
+%></td>
+					<td><%
+					
+if(mercoledi8.size()!=0){for(int i=0;i< mercoledi8.size();i++) {
 	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==16){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=17)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=mercoledi8.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Giovedì")){
-		
+	}
+}}
+%></td>
+					<td><%
+					
+if(giovedi8.size()!=0){for(int i=0;i< giovedi8.size();i++) {
 	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==16){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=17)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=giovedi8.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Venerdì")){
-		
+	}
+}}
+%></td>
+					<td><%
+					
+if(venerdi8.size()!=0){for(int i=0;i< venerdi8.size();i++) {
 	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==16){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=17)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=venerdi8.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera</td>
+	}
+}}
+%></td>
 				</tr>
 				<tr>
-					<td class="orario">17/18</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Lunedì")){
-		
+					<td>17/18</td>
+					<td><%
+if(lunedi9.size()!=0){for(int i=0;i< lunedi9.size();i++) {
 	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==17){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=18)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=lunedi9.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Martedì")){
-		
+	}
+}}
+%></td>
+					<td>	<%
+					
+if(martedi9.size()!=0){for(int i=0;i< martedi9.size();i++) {
 	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==17){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=18)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=martedi9.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Mercoledì")){
-		
+	}
+}}
+%></td>
+					<td><%
+					
+if(mercoledi9.size()!=0){for(int i=0;i< mercoledi9.size();i++) {
 	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==17){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=18)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=mercoledi9.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Giovedì")){
-		
+	}
+}}
+%></td>
+					<td><%
+					
+if(giovedi9.size()!=0){for(int i=0;i< giovedi9.size();i++) {
 	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==17){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=18)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=giovedi9.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Venerdì")){
-		
+	}
+}}
+%></td>
+					<td><%
+					
+if(venerdi9.size()!=0){for(int i=0;i< venerdi9.size();i++) {
 	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==17){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=18)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=venerdi9.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera</td>
+	}
+}}
+%></td>
 				</tr>
 				<tr>
-					<td class="orario">18/19</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Lunedì")){
-		
+					<td>18/19</td>
+					<td><%
+if(lunedi10.size()!=0){for(int i=0;i< lunedi10.size();i++) {
 	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==18){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=19)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=lunedi10.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Martedì")){
-		
+	}
+}}
+%></td>
+					<td>	<%
+					
+if(martedi10.size()!=0){for(int i=0;i< martedi10.size();i++) {
 	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==18){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=19)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=martedi10.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Mercoledì")){
-		
+	}
+}}
+%></td>
+					<td><%
+					
+if(mercoledi10.size()!=0){for(int i=0;i< mercoledi10.size();i++) {
 	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==18){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=19)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=mercoledi10.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Giovedì")){
-		
+	}
+}}
+%></td>
+					<td><%
+					
+if(giovedi10.size()!=0){for(int i=0;i< giovedi10.size();i++) {
 	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==18){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=19)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=giovedi10.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera</td>
-					<td><%if(elenco.size()>0){
-for(int i=0;i< elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("Venerdì")){
-		
+	}
+}}
+%></td>
+					<td><%
+					
+if(venerdi10.size()!=0){for(int i=0;i< venerdi10.size();i++) {
 	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==18){
-				 
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=19)
 	{
 		%>
 						<p>
-							 <%=elenco.get(i).getAula().getNomeAula() %>
-							edificio <%=elenco.get(i).getAula().getEdificio()%></p>
+							<%=venerdi10.get(i) %>,
+							</p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera</td>
+	}
+}}
+%></td>
 				</tr>
 			</tbody>
 		</table>
