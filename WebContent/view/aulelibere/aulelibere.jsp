@@ -12,7 +12,6 @@
 
 <!-- IMPORT BOOTSTRAP-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet"
@@ -60,6 +59,7 @@
 			<%for(int cont=0;cont<10;cont++){ %>
 				<tr>
 					<td><%=intervallo%>/<%=intervallo + 1%></td>
+					<%for(int t =0;t<5;t++){%>
 					<td>
 						<%
 							if (lista.size() != 0) {
@@ -71,68 +71,12 @@
  		}
  		s++;
  	}
- %>
-					</td>
-					<td>
-						<%
-							if (lista.size() != 0) {
-								for (int i = 0; i < lista.size(); i++) {
-									if (lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria() == k) {
-						%> <%=lista.get(i).getNomeaula()%>, <%
- 	}
-
- 		}
- 		s++;
- 	}
- %>
-					</td>
-					<td>
-						<%
-							if (lista.size() != 0) {
-								for (int i = 0; i < lista.size(); i++) {
-									if (lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria() == k) {
-						%> <%=lista.get(i).getNomeaula()%>, <%
- 	}
-
- 		}
- 		s++;
- 	}
- %>
-					</td>
-					<td>
-						<%
-							if (lista.size() != 0) {
-								for (int i = 0; i < lista.size(); i++) {
-									if (lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria() == k) {
-						%> <%=lista.get(i).getNomeaula()%>, <%
- 	}
-
- 		}
- 		s++;
- 	}
- %>
-					</td>
-					<td>
-						<%
-							if (lista.size() != 0) {
-								for (int i = 0; i < lista.size(); i++) {
-									if (lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria() == k) {
-						%> <%=lista.get(i).getNomeaula()%>, <%
- 	}
-
- 		}
- 		s = 0;
- 		k++;intervallo++;
- 	}
- %>
-					</td>
+ %>					</td><%}s = 0;
+			 		k++;intervallo++;} %>
 				</tr>
-				<% }%>
 			</tbody>
 		</table>
 	</div>
-
-
 	<%@ include file="../headerfooter/Footer.html"%>
 
 </body>
