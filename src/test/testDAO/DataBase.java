@@ -25,7 +25,8 @@ public class DataBase {
 		Class driverClass = Class.forName("com.mysql.cj.jdbc.Driver");
         Connection jdbcConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentplacedb?serverTimezone = EST5EDT", "root", "root");
         IDatabaseConnection connection = new DatabaseConnection(jdbcConnection);
-    /*    QueryDataSet partialDataSet = new QueryDataSet(connection);
+    /*  
+        QueryDataSet partialDataSet = new QueryDataSet(connection);
         partialDataSet.addTable("Aula","SELECT * FROM Aula ");
         partialDataSet.addTable("utente", "SELECT * FROM utente");
         partialDataSet.addTable("gds","SELECT * FROM gds");
@@ -36,8 +37,7 @@ public class DataBase {
         
         FlatXmlDataSet.write(partialDataSet, new FileOutputStream("database.xml"));
         FlatXmlDataSet.write(partialDataSet, new FileOutputStream("aula.xml"));
-
-      */  
+*/  
         loadedDataSer =   new FlatXmlDataSetBuilder().build(new FileInputStream("database.xml"));
         DatabaseOperation.CLEAN_INSERT.execute(connection, loadedDataSer);
         
