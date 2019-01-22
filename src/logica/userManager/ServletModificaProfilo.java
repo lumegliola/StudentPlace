@@ -6,6 +6,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import bean.Utente;
+import dao.DAOFactory;
 
 /**
  * Servlet implementation class ServletModificaProfilo
@@ -27,15 +31,42 @@ public class ServletModificaProfilo extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
+doPost(request, response);	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		String newpassword= request.getParameter("password") ;
+		
+		HttpSession session=request.getSession();
+       if(session!=null) {
+    	   boolean log=(boolean) session.getAttribute("logged");
+       		if(!log) {
+       		request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
+       		System.out.println("non loggato");
+       		return;
+       		}else{
+       		String email=(String)session.getAttribute("email");
+       		String password=(String)session.getAttribute("password");
+       		Utente utente	= DAOFactory.getUserDAO().doRetrieveByMailAndPass(email, password);
+       		if(utente!=null ) {
+       		boolean valore=DAOFactory.getUserDAO().doSaveOrUpdate(utente, newpassword);
+        
+       		if(valore) {
+       			System.out.println("ok");
+       		}else {
+       		System.out.println("not ok");
+       		}
+       		request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
+       		}
+       		}
+       	}else {
+    	   request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
+       }
+	
+	
 	}
 
 }
