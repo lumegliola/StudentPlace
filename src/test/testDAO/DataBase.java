@@ -34,10 +34,8 @@ public class DataBase {
         FlatXmlDataSet.write(partialDataSet, new FileOutputStream("database.xml"));
         FlatXmlDataSet.write(partialDataSet, new FileOutputStream("aula.xml"));
 
-       FlatXmlDataSet FlatloadedDataSer =   new FlatXmlDataSetBuilder().build(new FileInputStream("database.xml"));
+        
        
-       
-       IDataSet dataSet = getDataSet();
         
 	}
 
