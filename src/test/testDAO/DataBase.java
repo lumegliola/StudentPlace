@@ -1,14 +1,19 @@
 package test.testDAO;
 
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
 import org.dbunit.database.DatabaseConnection;
+import org.dbunit.database.DatabaseDataSet;
 import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.database.QueryDataSet;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSet;
+import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
+import org.dbunit.DBTestCase;
+
 
 public class DataBase {
 
@@ -26,9 +31,14 @@ public class DataBase {
         partialDataSet.addTable("orario","SELECT * FROM orario");
         partialDataSet.addTable("libera","SELECT * FROM libera");
         
-        FlatXmlDataSet.write(partialDataSet, new FileOutputStream("database.  xml"));
+        FlatXmlDataSet.write(partialDataSet, new FileOutputStream("database.xml"));
         FlatXmlDataSet.write(partialDataSet, new FileOutputStream("aula.xml"));
 
+       FlatXmlDataSet FlatloadedDataSer =   new FlatXmlDataSetBuilder().build(new FileInputStream("database.xml"));
+       
+       
+       IDataSet dataSet = getDataSet();
+        
 	}
 
 }
