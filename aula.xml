@@ -58,12 +58,21 @@
   <iscrizione utente="0512102665" gruppo="2"/>
   <iscrizione utente="0512103853" gruppo="2"/>
   <giorno giorno="Domenica"/>
-  <giorno giorno="Gioveì"/>
+  <giorno giorno="Giovedì"/>
   <giorno giorno="Lunedì"/>
   <giorno giorno="Martedì"/>
   <giorno giorno="Mercoledì"/>
   <giorno giorno="Sabato"/>
   <giorno giorno="Venerdì"/>
   <orario id="6" inizio="2018-12-21 17:30:00.0" fine="2018-12-21 17:30:00.0"/>
-  <libera/>
+  <orario id="7" inizio="2019-01-21 17:00:00.0" fine="2019-01-21 19:00:00.0"/>
+  <orario id="8" inizio="2019-02-21 15:00:00.0" fine="2019-02-21 16:00:00.0"/>
+  <orario id="9" inizio="2019-02-21 19:00:00.0" fine="2019-02-21 20:00:00.0"/>
+  <orario id="10" inizio="2019-01-13 15:00:00.0" fine="2019-01-13 17:00:00.0"/>
+  <orario id="11" inizio="2019-01-12 17:00:00.0" fine="2019-01-12 19:00:00.0"/>
+  <libera aula="P3" giorno="venerdì" orario="6"/>
+  <libera aula="P7" giorno="lunedì" orario="7"/>
+  <libera aula="F3" giorno="giovedì" orario="8"/>
+  <libera aula="P4" giorno="giovedì" orario="9"/>
+  <libera aula="F8" giorno="sabato" orario="11"/>
 </dataset>
