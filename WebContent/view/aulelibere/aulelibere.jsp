@@ -35,21 +35,20 @@
 	<%@ include file="../headerfooter/Header.jsp"%>
 	<div class="container">
 		<table class="col-lg-12 tabella">
-			<% 
-//lista delle aula divisa per giorno e fasce orarie
- ArrayList <listaAuleLibere> lista =(ArrayList <listaAuleLibere>)request.getAttribute("lista");
- List <String> giorni= new ArrayList<>();
-	giorni.add("Lunedì");
-	giorni.add("Martedì");
-	giorni.add("Mercoledì");
-	giorni.add("Giovedì");
-	giorni.add("Venerdì");
-	int s=0,k=1;
-
-%>
+			<%
+				//lista delle aula divisa per giorno e fasce orarie
+				ArrayList<listaAuleLibere> lista = (ArrayList<listaAuleLibere>) request.getAttribute("lista");
+				List<String> giorni = new ArrayList<>();
+				giorni.add("Lunedì");
+				giorni.add("Martedì");
+				giorni.add("Mercoledì");
+				giorni.add("Giovedì");
+				giorni.add("Venerdì");
+				int s = 0, k = 1, intervallo = 9;
+			%>
 			<thead>
 				<tr>
-					<th>Orario </th>
+					<th>Orario</th>
 					<th>Lunedì</th>
 					<th>Martedì</th>
 					<th>Mercoledì</th>
@@ -58,640 +57,77 @@
 				</tr>
 			</thead>
 			<tbody>
+			<%for(int cont=0;cont<10;cont++){ %>
 				<tr>
-					<td>09/10</td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
-
-						
-					
- 		}s++;
-						}
- 	%>
- </td>
+					<td><%=intervallo%>/<%=intervallo + 1%></td>
 					<td>
-					
-					<%
-					if(lista.size() != 0) {
-						for (int i =0; i<lista.size(); i++) {
-							if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-								%> <%=lista.get(i).getNomeaula()%>, <%
-							}
+						<%
+							if (lista.size() != 0) {
+								for (int i = 0; i < lista.size(); i++) {
+									if (lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria() == k) {
+						%> <%=lista.get(i).getNomeaula()%>, <%
+ 	}
 
-					
-				
-		}s++;
-					}
-	%>
+ 		}
+ 		s++;
+ 	}
+ %>
 					</td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
+					<td>
+						<%
+							if (lista.size() != 0) {
+								for (int i = 0; i < lista.size(); i++) {
+									if (lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria() == k) {
+						%> <%=lista.get(i).getNomeaula()%>, <%
+ 	}
 
-						
-					
- 		}s++;
-						}
- 	%></td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
+ 		}
+ 		s++;
+ 	}
+ %>
+					</td>
+					<td>
+						<%
+							if (lista.size() != 0) {
+								for (int i = 0; i < lista.size(); i++) {
+									if (lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria() == k) {
+						%> <%=lista.get(i).getNomeaula()%>, <%
+ 	}
 
-						
-					
- 		}s++;
-						}
- 	%></td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
+ 		}
+ 		s++;
+ 	}
+ %>
+					</td>
+					<td>
+						<%
+							if (lista.size() != 0) {
+								for (int i = 0; i < lista.size(); i++) {
+									if (lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria() == k) {
+						%> <%=lista.get(i).getNomeaula()%>, <%
+ 	}
 
-						
-					
- 		}s=0;k++;
-						}
- 	%></td>
+ 		}
+ 		s++;
+ 	}
+ %>
+					</td>
+					<td>
+						<%
+							if (lista.size() != 0) {
+								for (int i = 0; i < lista.size(); i++) {
+									if (lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria() == k) {
+						%> <%=lista.get(i).getNomeaula()%>, <%
+ 	}
+
+ 		}
+ 		s = 0;
+ 		k++;intervallo++;
+ 	}
+ %>
+					</td>
 				</tr>
-				<tr>
-					<td>10/11</td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
-
-						
-					
- 		}s++;
-						}
- 	%></td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
-
-						
-					
- 		}s++;
-						}
- 	%></td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
-
-						
-					
- 		}s++;
-						}
- 	%></td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
-
-						
-					
- 		}s++;
-						}
- 	%></td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
-
-						
-					
- 		}s=0;k++;
-						}
- 	%></td>
-				</tr>
-				<tr>
-					<td>11/12</td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
-
-						
-					
- 		}s++;
-						}
- 	%></td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
-
-						
-					
- 		}s++;
-						}
- 	%></td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
-
-						
-					
- 		}s++;
-						}
- 	%></td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
-
-						
-					
- 		}s++;
-						}
- 	%></td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
-
-						
-					
- 		}s=0;k++;
-						}
- 	%></td>
-				</tr>
-				<tr>
-					<td>12/13</td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
-
-						
-					
- 		}s++;
-						}
- 	%></td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
-
-						
-					
- 		}s++;
-						}
- 	%></td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
-
-						
-					
- 		}s++;
-						}
- 	%></td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
-
-						
-					
- 		}s++;
-						}
- 	%></td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
-
-						
-					
- 		}s=0;k++;
-						}
- 	%></td>
-				</tr>
-				<tr>
-					<td>13/14</td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
-
-						
-					
- 		}s++;
-						}
- 	%></td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
-
-						
-					
- 		}s++;
-						}
- 	%></td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
-
-						
-					
- 		}s++;
-						}
- 	%></td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
-
-						
-					
- 		}s++;
-						}
- 	%></td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
-
-						
-					
- 		}s=0;k++;
-						}
- 	%></td>
-				</tr>
-				<tr>
-					<td>14/15</td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
-
-						
-					
- 		}s++;
-						}
- 	%></td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
-
-						
-					
- 		}s++;
-						}
- 	%></td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
-
-						
-					
- 		}s++;
-						}
- 	%></td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
-
-						
-					
- 		}s++;
-						}
- 	%></td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
-
-						
-					
- 		}s=0;k++;
-						}
- 	%></td>
-				</tr>
-				<tr>
-					<td>15/16</td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
-
-						
-					
- 		}s++;
-						}
- 	%></td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
-
-						
-					
- 		}s++;
-						}
- 	%></td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
-
-						
-					
- 		}s++;
-						}
- 	%></td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
-
-						
-					
- 		}s++;
-						}
- 	%></td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
-
-						
-					
- 		}s=0;k++;
-						}
- 	%></td>
-				</tr>
-				<tr>
-					<td>16/17</td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
-
-						
-					
- 		}s++;
-						}
- 	%></td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
-
-						
-					
- 		}s++;
-						}
- 	%></td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
-
-						
-					
- 		}s++;
-						}
- 	%></td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
-
-						
-					
- 		}s++;
-						}
- 	%></td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
-
-						
-					
- 		}s=0;k++;
-						}
- 	%></td>
-				</tr>
-				<tr>
-					<td>17/18</td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
-
-						
-					
- 		}s++;
-						}
- 	%></td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
-
-						
-					
- 		}s++;
-						}
- 	%></td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
-
-						
-					
- 		}s++;
-						}
- 	%></td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
-
-						
-					
- 		}s++;
-						}
- 	%></td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
-
-						
-					
- 		}s=0;k++;
-						}
- 	%></td>
-				</tr>
-				<tr>
-					<td>18/19</td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
-
-						
-					
- 		}s++;
-						}
- 	%></td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
-
-						
-					
- 		}s++;
-						}
- 	%></td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
-
-						
-					
- 		}s++;
-						}
- 	%></td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
-
-						
-					
- 		}s++;
-						}
- 	%></td>
-					<td><%
-						if(lista.size() != 0) {
-							for (int i =0; i<lista.size(); i++) {
-								if(lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria()==k){
-									%> <%=lista.get(i).getNomeaula()%>, <%
-								}
-
-						
-					
- 		}s=0;k++;
-						}
- 	%></td>
-				</tr>
+				<% }%>
 			</tbody>
 		</table>
 	</div>
