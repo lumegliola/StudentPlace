@@ -36,7 +36,7 @@
 	<div class="container">
 		<table class="col-lg-12 tabella">
 			<% 
-
+//lista delle aula divisa per giorno e fasce orarie
    List <String> lunedi1 = (List <String>)request.getAttribute("lunedi1");
 List <String> lunedi2 = (List <String>)request.getAttribute("lunedi2");
 List <String> lunedi3 = (List <String>)request.getAttribute("lunedi3");
