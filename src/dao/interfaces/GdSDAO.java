@@ -24,5 +24,6 @@ public interface GdSDAO {
 	public GruppoDiStudio doRetrieveById(int id);
 
 	public List<GruppoDiStudio> doRetrieveAll();//metodo di ricerca per ricavare tutti gli oggetti gds 
-		
+
+	public List<GruppoDiStudio> doSearch(String subString);//metodo di ricerca(anche substring)
 }

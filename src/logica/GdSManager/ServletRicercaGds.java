@@ -32,17 +32,16 @@ public class ServletRicercaGds extends HttpServlet {
 			String input = request.getParameter("inputGruppo");
 
 			GdSDAO dao = DAOFactory.getGdSDAO();
-			List<GruppoDiStudio> listNom = new ArrayList<>();
-			List<GruppoDiStudio> listMat = new ArrayList<>();
-			listNom = dao.doRetrieveByName(input);
-			listMat = dao.doRetrieveBySubject(input);
-			listNom.addAll(listMat);
+			List<GruppoDiStudio> list = new ArrayList<>();
+			
+			list = dao.doSearch(input);
+			
 			response.setContentType("text/html");
 			PrintWriter out = response.getWriter();
 
 			int i=0;
 
-			for (GruppoDiStudio p : listNom) {
+			for (GruppoDiStudio p : list) {
 				out.print("	<div class=\"row gds_row\">\r\n" + 
 						"			<div class=\"col-sm-2\">\r\n" + 
 						"				<img class=\"async_nome\" alt=\"GruppoDIStudio\"  style=\"max-height: 5em;\" src="+p.getNomeGruppo()+">\r\n" + 
@@ -60,7 +59,7 @@ public class ServletRicercaGds extends HttpServlet {
 				i++;
 				if(i==3)
 					break;
-				request.setAttribute("gruppi", listNom);
+				request.setAttribute("gruppi", list);
 				request.getRequestDispatcher("/view/GdS/ListaGruppi.jsp").forward(request, response);
 			}
 		}

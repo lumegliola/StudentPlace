@@ -19,6 +19,7 @@ import db_connection.DriverManagerConnectionPool;
 
 
 
+
 public class GdSDAOimpl implements GdSDAO {
 
 	@Override
@@ -374,5 +375,46 @@ public class GdSDAOimpl implements GdSDAO {
 		return null;
 
 	}	
+	public List<GruppoDiStudio> doSearch(String subString) {
+		Connection connection = null;
+		PreparedStatement ps = null;
+		List<GruppoDiStudio> gruppi = new ArrayList<>();
+
+		try {
+
+			connection = DriverManagerConnectionPool.getConnection();
+			ps = connection.prepareStatement("SELECT * FROM gds where nome like ? or materia like ?;");
+
+			ps.setString(1, "%" + subString + "%");
+			ps.setString(2, "%" + subString + "%");
+
+
+			ResultSet result = ps.executeQuery();
+
+			while (result.next()) {
+				GruppoDiStudio b = new GruppoDiStudio();
+				
+				b.setId(result.getInt("id"));
+				b.setNomeGruppo(result.getString("nome"));
+				b.setCreatore(DAOFactory.getUserDAO().doRetrieveByKey(result.getString("creatore")));
+				b.setMateria(result.getString("materia"));
+				b.setOrario(result.getTimestamp("oraInizio"), result.getTimestamp("oraFine"));
+				b.setGiorno(b.getOrario().getGiorno());
+				b.setAula(DAOFactory.getAulaDAO().doRetrieveByKey(result.getString("aula")));
+				gruppi.add(b);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				ps.close();
+				DriverManagerConnectionPool.releaseConnection(connection);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return gruppi;
+	}
 
 }
