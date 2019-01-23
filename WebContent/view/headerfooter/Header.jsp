@@ -97,11 +97,12 @@
 				%>
 				
 					<li class="nav-item"><a href="#"><%=utente.getNome() %></a></li>
-					<li class="nav-item"><a href="#"><span
+					<li class="nav-item"><a href="logout"><span
 							class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 							<%}
-				%>
-				
+				else if(logged==false){%>
+				 <a href="ShowHome">Login</a>
+				 <%} %>
 				</ul>
 			</div>
 		</nav>
