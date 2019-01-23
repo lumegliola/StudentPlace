@@ -47,7 +47,7 @@ public class TestServletEliminaOrario {
 	
 	when(request.getSession(false)).thenReturn(session);
     
-	when(session.getAttribute("logged")).thenReturn("admin");
+	when(session.getAttribute("admin")).thenReturn(true);
 	
 	when(request.getRequestDispatcher("ProvaOutput.jsp")).thenReturn(dispatcher);
 
