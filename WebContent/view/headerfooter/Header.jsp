@@ -31,7 +31,8 @@
 		<div class="row row_loghi">
 			<!-- COLONNA LOGO UNISA-->
 			<div class="col-md-3 column_logoUnisa">
-				<img class="logoHeaderFirst" alt="Logo Unisa" src="view/images/logoUnisa.png">
+				<img class="logoHeaderFirst" alt="Logo Unisa"
+					src="view/images/logoUnisa.png">
 			</div>
 
 			<!-- COLONNA LOGO STUDENTPLACE-->
@@ -40,9 +41,12 @@
 					<img class="logoSPxl" alt="Logo StudentPlace"
 						src="view/images/logoSPxl.png">
 					<p class="iconsocial">
-						<i style="font-size:3em;color:#a01313;margin-right: 0.5em;" class="fa">&#xf09a;</i>
-						 <i style="font-size:3em;color:#a01313;margin-right: 0.5em;" class="fa">&#xf099;</i>
-						 <i style="font-size:3em;color:#a01313;margin-right: 0.5em;" class="fa">&#xf16d;</i>
+						<i style="font-size: 3em; color: #a01313; margin-right: 0.5em;"
+							class="fa">&#xf09a;</i> <i
+							style="font-size: 3em; color: #a01313; margin-right: 0.5em;"
+							class="fa">&#xf099;</i> <i
+							style="font-size: 3em; color: #a01313; margin-right: 0.5em;"
+							class="fa">&#xf16d;</i>
 					</p>
 				</div>
 			</div>
@@ -77,6 +81,10 @@
 					<li class="nav-item"><a class="nav-link" href="#">Contatti</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Chi
 							Siamo</a></li>
+					<li class="nav-item"><input type="text" class="form-control"
+						placeholder="Cerca gruppo" aria-label="Cerca gruppo"
+						aria-describedby="basic-addon1"></li>
+
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="nav-item"><a href="#">Ciao! Nome Utente</a></li>
