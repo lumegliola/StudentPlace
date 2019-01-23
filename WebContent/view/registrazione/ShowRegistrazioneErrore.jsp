@@ -39,8 +39,8 @@ function redirect()
 
 <div id="home">
 			<h2>Errore!</h2>
-			<h3>Fra pochi secondi, sarai reindirizzato alla <a href="ShowRegistrazione">Home</a>!</h3>
-			<h4>Clicca su <a href="ShowRegistrazione">Home</a> se non dovesse accadere in automatico.</h4>
+			<h3>Fra pochi secondi, sarai reindirizzato alla <a href="ShowRegistrazione">Registrazione</a>!</h3>
+			<h4>Clicca su <a href="ShowRegistrazione">Registrazione</a> se non dovesse accadere in automatico.</h4>
 			
 	</div>
 

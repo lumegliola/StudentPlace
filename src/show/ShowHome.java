@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class ShowHome
@@ -27,6 +28,8 @@ public class ShowHome extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher d = request.getRequestDispatcher("/view/homepage/Home.jsp");
+		HttpSession session=request.getSession();
+		session.setAttribute("logged", false);
 		d.forward(request, response);
 	}
 

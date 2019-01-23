@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import bean.Utente;
+import bean.*;
 import dao.DAOFactory;
 
 
@@ -42,16 +42,16 @@ public class ServletLogin extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//String email = request.getParameter("email").toLowerCase();
 		//String password = request.getParameter("password");
-		String email = "f.megliola1@studenti.unisa.it";
-		String password = "123456";
-		Utente b = DAOFactory.getUserDAO().doRetrieveByMailAndPass(email, password);
+		String password= request.getParameter("password") ;
+		String email=request.getParameter("email");
+		Utente user = DAOFactory.getUserDAO().doRetrieveByMailAndPass(email, password);
 
-		if(b == null) { // Utente Non trovato, credenziali errate.
+		if(user == null) { // Utente Non trovato, credenziali errate.
 			//System.out.println("null");
 			request.setAttribute("is_error", true);
 			request.setAttribute("title", "Login Fallita");
 			request.setAttribute("message", "Controlla di aver inserito i dati di accesso correttamente.");
-			RequestDispatcher d = request.getRequestDispatcher("/view/results/Message.jsp");
+			RequestDispatcher d = request.getRequestDispatcher("/view/errore/Errore.jsp");
 			d.forward(request, response);
 			return;
 
@@ -61,18 +61,17 @@ public class ServletLogin extends HttpServlet {
 			//Setto i cookie per i prossimi accessi al sito.
 			System.out.println("Tutt appost");
 			if(session != null){ //L'utente che si è appena loggato ha già una sessione.
-				session.setAttribute("utente", b);
+				session.setAttribute("utente", user);
 				session.setAttribute("logged", true);	
 			} else { //L'Utente che si è appena loggato non ha ancora una sessione, quindi dobbiamo creargliela.
 				session = request.getSession(true); 
-				session.setAttribute("utente", b);
+				session.setAttribute("utente",user);
 				session.setAttribute("logged", true);
 			}
 
-			/* Reindiriziamo alla home.
-			RequestDispatcher d = request.getRequestDispatcher("index.html");
-			d.forward(request, response);
-			 */
+			//Reindiriziamo alla home.
+			request.getRequestDispatcher("/view/homepage/Home.jsp").forward(request, response);
+			
 		}
 
 	}

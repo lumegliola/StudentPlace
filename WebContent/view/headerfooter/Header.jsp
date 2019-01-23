@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@page import="bean.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -64,8 +65,8 @@
 
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav nav nav-pills nav-fill">
-					<li class="nav-item active"><a class="nav-link" href="#">
-							<span class="glyphicon glyphicon-home"></span> Home
+					<li class="nav-item active"><a class="nav-link" href="ShowHome">
+							<span class="glyphicon glyphicon-home"></span>
 					</a></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
@@ -87,9 +88,20 @@
 
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li class="nav-item"><a href="#">Ciao! Nome Utente</a></li>
+				
+				<%boolean logged=(boolean)session.getAttribute("logged");
+				if(logged){
+				Utente utente=(Utente)session.getAttribute("utente");
+				
+				
+				%>
+				
+					<li class="nav-item"><a href="#"><%=utente.getNome() %></a></li>
 					<li class="nav-item"><a href="#"><span
 							class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+							<%}
+				else if(logged==false)%>
+				 <a href="ShowHome">Login</a>
 				</ul>
 			</div>
 		</nav>
