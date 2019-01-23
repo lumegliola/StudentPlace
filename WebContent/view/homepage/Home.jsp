@@ -22,7 +22,24 @@
 	type="text/css">
 <link rel="stylesheet" href="view/headerfooter/Footer.css"
 	type="text/css">
-	
+	<script>
+ $(document).ready(function() {
+	 console.log("Ciao");
+	 	$("#log").show();
+    	$("#reg").hide();
+     
+	 $("#pulsanteReg").click(function(){
+	    	$("#reg").show();
+	    	$("#log").hide();
+	    	
+	    });
+	 $("#pulsanteLog").click(function(){
+	    	$("#log").show();
+	    	$("#reg").hide();
+	    	
+	    });
+   });
+ </script>
 </head>
 <!-- INCLUDE PAGE -->
 <body>
@@ -48,11 +65,8 @@
 		<%
 				if(logged==false){
 				%>
-			<div class="container-fluid login" ">
-			<div>
-				<label class="creaaccount">Accedi a Student place:</label><br />
-
-				<form action="login" method="post" >
+			<div class="container-fluid login" n="login" method="post" >
+			<form action="login" method="post" name="formLog" id="log">
 
 					<label>E-mail:&nbsp;</label><label id="resMail"></label><br />
 					<input type="text" name="email" id="email"
@@ -65,9 +79,41 @@
 					
 					
 					<span><input type="submit" class="button" value="Accedi" ></input>
-					<sub>o <a href="ShowRegistrazione">Registrati</a></sub>
+					<sub>o <a id="pulsanteReg">Registrati</a></sub>
 					</span>
 					</form>
+						
+			<form action="ServletRegistrazione" method="post" name="formReg" id="reg">
+				<h2>REGISTRATI!</h2>
+				<div class="testo">
+					Nome: <input class="input" type="text" name="nome"
+						placeholder="Nome" required="required"">
+				</div>
+				<div class="testo">
+					Cognome: <input class="input" type="text" name="cognome"
+						placeholder="cognome" required="required"">
+				</div>
+				<p style="color: red"></p>
+				<div class="testo">
+					Password: <input class="input" type="password" name="password"
+						placeholder="password" required="required"">
+				</div>
+				<p style="color: red"></p>
+				<div class="testo">
+					E-mail: <input class="input" type="email" name="email"
+						placeholder="esempio@gmail.com" required="required"">
+				</div>
+				<div class="testo">
+					Matricola: <input class="input" type="text" name="matricola"
+						placeholder="0512100000" required="required"">
+				</div>
+				<p style="color: red"></p>
+				<div class="testo">
+					<span><input id="bottone" type="submit" value="Iscriviti!"> <a id="pulsanteLog">Sei registrato?</a></span>
+				</div>
+
+			</form>
+	
 					<% }%>
 					
 					

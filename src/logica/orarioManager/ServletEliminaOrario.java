@@ -41,7 +41,7 @@ public class ServletEliminaOrario extends HttpServlet {
 
 		HttpSession session = request.getSession(false);
 		// solo l'amministratore può cancellare un orario
-		if(session != null && session.getAttribute("logged").equals((String) "admin")) {
+		if(session != null && session.getAttribute("admin").equals((true) )) {
 			System.out.println("inizio if");
 			int idOrario = Integer.parseInt(request.getParameter("idOrario"));
 			
