@@ -57,18 +57,18 @@ public class ServletRegistrazione extends HttpServlet {
 			HttpSession session=request.getSession();
 			session.setAttribute("utente",utente);
 			session.setAttribute("logged", true);
-       		request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
+       		request.getRequestDispatcher("/view/homepage/Home.jsp").forward(request, response);
        		return;
 		}else {
 			System.out.println("Non salvato");
 
-			request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
+			request.getRequestDispatcher("ShowRegistrazioneErrore.jsp").forward(request, response);
        		return;
 		}
 		}else {
 			System.out.println("Parametri null");
 
-			request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
+			request.getRequestDispatcher("/view/registrazione/ShowRegistrazioneErrore.jsp").forward(request, response);
        		return;		
 		}
 	}

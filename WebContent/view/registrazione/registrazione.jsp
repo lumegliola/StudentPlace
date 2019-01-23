@@ -35,7 +35,7 @@
 	<%@ include file="../headerfooter/Header.jsp"%>
 	<div class="container ">
 		<div class="col-lg-3 col-md-offset-4 row down7">
-			<form action="Registrazione" method="post" name="formReg">
+			<form action="ServletRegistrazione" method="post" name="formReg">
 				<h2>REGISTRATI!</h2>
 				<div class="testo">
 					Nome: <input class="input" type="text" name="nome"
@@ -47,7 +47,7 @@
 				</div>
 				<p style="color: red"></p>
 				<div class="testo">
-					Password: <input class="input" type="password" name="pass"
+					Password: <input class="input" type="password" name="password"
 						placeholder="password" required="required"">
 				</div>
 				<p style="color: red"></p>
