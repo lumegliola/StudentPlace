@@ -38,8 +38,12 @@
 			<form action="Registrazione" method="post" name="formReg">
 				<h2>REGISTRATI!</h2>
 				<div class="testo">
-					Username: <input class="input" type="text" name="user"
-						placeholder="username" required="required"">
+					Nome: <input class="input" type="text" name="nome"
+						placeholder="Nome" required="required"">
+				</div>
+				<div class="testo">
+					Cognome: <input class="input" type="text" name="cognome"
+						placeholder="cognome" required="required"">
 				</div>
 				<p style="color: red"></p>
 				<div class="testo">
@@ -50,6 +54,10 @@
 				<div class="testo">
 					E-mail: <input class="input" type="email" name="email"
 						placeholder="esempio@gmail.com" required="required"">
+				</div>
+				<div class="testo">
+					Matricola: <input class="input" type="text" name="matricola"
+						placeholder="0512100000" required="required"">
 				</div>
 				<p style="color: red"></p>
 				<div class="testo">
