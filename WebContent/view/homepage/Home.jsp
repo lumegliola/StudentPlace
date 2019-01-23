@@ -30,37 +30,13 @@
 <div style="min-height: 30em; padding-top: 3em;" class  ="home">
 
 
-<div class="col-lg-3 col-md-offset-1">
-<h2>LISTA ULTIMI GRUPPi</h2>
+<div class="col-lg-5 col-md-offset-1">
+<h2>Immagine carina e coccolosa</h2>
 <p>al posto di nulla non è male</p>
 
 </div>
-<div class="col-lg-3 col-md-offset-1">
-			<form action="Registrazione" method="post" name="formReg">
-				<h2>REGISTRATI!</h2>
-				<div class="testo">
-					Username: <input class="input" type="text" name="user"
-						placeholder="username" required="required"">
-				</div>
-				<p style="color: red"></p>
-				<div class="testo">
-					Password: <input class="input" type="password" name="pass"
-						placeholder="password" required="required"">
-				</div>
-				<p style="color: red"></p>
-				<div class="testo">
-					E-mail: <input class="input" type="email" name="email"
-						placeholder="esempio@gmail.com" required="required"">
-				</div>
-				<p style="color: red"></p>
-				<div class="testo">
-					<input id="bottone" type="submit" value="Iscriviti!">
-				</div>
 
-			</form>
-	
-</div>
-<div id = "col-dx" style=" border-left: 1px solid red;" class = "col-lg-4">
+<div id = "col-dx" style=" border-left: 1px solid red;" class = "col-lg-6">
 
 		
 			<div class="container-fluid login" ">
@@ -80,6 +56,11 @@
 					
 					
 					<input type="submit" class="button" value="Accedi"></input>
+					</form>
+					 o <br>
+					
+					<form action="showregistrazione" method="get" >
+					<input type="submit" class="button" value="Registrati"></input>
 				</form>
 			</div>
 		</div>
