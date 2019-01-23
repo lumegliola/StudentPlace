@@ -77,7 +77,7 @@
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" href="#">Modifica</a>
 						</div></li>
-					<li class="nav-item"><a class="nav-link" href="#">Cerca
+					<li class="nav-item"><a class="nav-link" href="visualizzaAuleLibere">Cerca
 							aule libere</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Contatti</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Chi
