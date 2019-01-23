@@ -44,6 +44,17 @@ public class OrarioDAOimplTest extends TestCase{
       System.out.println("End test");
   }
 
+  @Test
+  public void testDoRetrieveByKey() {
+    System.out.println("Start test");
+      OrarioDAO orarioDao=DAOFactory.getOrarioDAO();
+      assertNotNull(orarioDao);
+      Orario orario=orarioDao.doRetrieveByKey(4);
+      Orario controllo = new Orario(new Timestamp(118, 11, 21, 11, 0, 0, 0), new Timestamp(118, 11, 21, 12, 0, 0, 0));
+      controllo.setIdOrario(4);
+      assertTrue(orario.equals(controllo));
+      System.out.println("End test");
+      }
   
 @Test
  public void testDoSaveOrUpdate() {
@@ -99,18 +110,7 @@ public class OrarioDAOimplTest extends TestCase{
 
       System.out.println("End test");  }
 
-  @Test
-  public void testDoRetrieveByKey() {
-    System.out.println("Start test");
-      OrarioDAO orarioDao=DAOFactory.getOrarioDAO();
-      assertNotNull(orarioDao);
-      Orario orario=null;
-      orario=orarioDao.doRetrieveByKey(6);
-      assertNotNull(orario.getIdOrario());
-      assertNotNull(orario.getInizio());
-      assertNotNull(orario.getFine());
-      System.out.println("End test");
-      }
+ 
 
   @Test
  public  void testDoRetrieveByStart() {

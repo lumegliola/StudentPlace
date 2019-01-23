@@ -69,13 +69,14 @@ public class AulaLiberaDAOimplTest extends DBTestCase{
 		Timestamp fine = new Timestamp(119, 0, 21, 0, 10, 0, 0);
 		Orario or = new Orario(inizio, fine);
 		DAOFactory.getOrarioDAO().doSave(or);
+		or = DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(inizio, fine);
 
 		//orario2
 		Timestamp inizio1 = new Timestamp(119, 0, 7, 15, 14, 0, 0);
 		Timestamp fine1 = new Timestamp(119, 0, 17, 15, 30, 0, 0);
 		Orario or2 = new Orario(inizio1, fine1);
 		DAOFactory.getOrarioDAO().doSave(or2);
-
+		or2 = DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(inizio1, fine1);
 		//salva l'aula nel db per ricavere l'idOrario dall'auto increment
 		AulaLibera al = new AulaLibera(aula, or,or.getGiorno());
 		DAOFactory.getAulaLiberaDAO().doSave(al);
@@ -128,7 +129,7 @@ public class AulaLiberaDAOimplTest extends DBTestCase{
 	}
 
 	@Test
-	public void testDoDeleteStringStringInt() {
+	public void testDoDeleteByKey() {
 		System.out.println("test metodo 4");
 
 		//settaggi iniziali
@@ -145,7 +146,7 @@ public class AulaLiberaDAOimplTest extends DBTestCase{
 		AulaLibera inserimento= DAOFactory.getAulaLiberaDAO().doRetrieveByKey(al.getAula().getNomeAula(), al.getGiorno(), DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(inizio, fine).getIdOrario());
 		al.getOrario().setIdOrario(DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(inizio, fine).getIdOrario());
 		//elimina
-		assertTrue(DAOFactory.getAulaLiberaDAO().doDelete(al.getAula().getNomeAula(), al.getGiorno(), al.getOrario().getIdOrario()));
+		assertTrue(DAOFactory.getAulaLiberaDAO().doDeleteByKey(al.getAula().getNomeAula(), al.getGiorno(), al.getOrario().getIdOrario()));
 
 		AulaLibera controllo = DAOFactory.getAulaLiberaDAO().doRetrieveByKey(inserimento.getAula().getNomeAula(), inserimento.getGiorno(), inserimento.getOrario().getIdOrario());
 
@@ -156,6 +157,36 @@ public class AulaLiberaDAOimplTest extends DBTestCase{
 		System.out.println("successo");
 
 	}
+	public void testDoDeleteByOrario()
+	{
+		System.out.println("test metodo 4");
+
+		//settaggi iniziali
+		Aula aula = new Aula("P5", "F3");
+		Timestamp inizio = new Timestamp(119, 0, 21, 0, 0, 0, 0);
+		Timestamp fine = new Timestamp(119, 0, 21, 0, 10, 0, 0);
+		Orario or = new Orario(inizio, fine);
+		DAOFactory.getOrarioDAO().doSave(or);
+		AulaLibera al = new AulaLibera(aula, or, or.getGiorno());
+
+		//salva l'aula nel db per ricavere l'idOrario dall'auto increment
+		Boolean res = DAOFactory.getAulaLiberaDAO().doSave(al);
+		assertTrue(res);
+		AulaLibera inserimento= DAOFactory.getAulaLiberaDAO().doRetrieveByKey(al.getAula().getNomeAula(), al.getGiorno(), DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(inizio, fine).getIdOrario());
+		al.getOrario().setIdOrario(DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(inizio, fine).getIdOrario());
+		//elimina
+		assertTrue(DAOFactory.getAulaLiberaDAO().doDeleteByOrario(al.getOrario().getIdOrario()));
+
+		AulaLibera controllo = DAOFactory.getAulaLiberaDAO().doRetrieveByKey(inserimento.getAula().getNomeAula(), inserimento.getGiorno(), inserimento.getOrario().getIdOrario());
+
+		//genero l'oracolo vuoto
+		AulaLibera oracolo = new AulaLibera();
+
+		assertTrue(oracolo.equals(controllo));
+		System.out.println("successo");
+
+	}
+	
 
 	@Test
 	public void testDoRetrieveByName() {
@@ -313,7 +344,9 @@ public class AulaLiberaDAOimplTest extends DBTestCase{
 		listaOracolo.add(oracolo3);
 		
 		//confronto
-		assertTrue(listaOracolo.containsAll(listaRisultati));
+		assertTrue(listaRisultati.contains(oracolo));
+		assertTrue(listaRisultati.contains(oracolo2));
+		assertTrue(listaRisultati.contains(oracolo3));
 		System.out.println("successo");
 	}
 	@Before

@@ -28,37 +28,18 @@
 <body>
 <%@ include file="../headerfooter/Header.jsp" %>
 <div style="min-height: 30em; padding-top: 3em;" class  ="home">
-<div class = "col-lg-1" style="min-height: 30em;"></div>
 
-<div id= "col-sx" class = "col-lg-5">
-CIAO! non sappiamo cosa mettere qui, 
-quindi per adesso ci limitiamo a scrivere questo
 
-CIAO! non sappiamo cosa mettere qui, 
-quindi per adesso ci limitiamo a scrivere questo
-
-CIAO! non sappiamo cosa mettere qui, 
-quindi per adesso ci limitiamo a scrivere questo
-
-CIAO! non sappiamo cosa mettere qui, 
-quindi per adesso ci limitiamo a scrivere questo
-
-CIAO! non sappiamo cosa mettere qui, 
-quindi per adesso ci limitiamo a scrivere questo
-
-CIAO! non sappiamo cosa mettere qui, 
-quindi per adesso ci limitiamo a scrivere questo
-
-CIAO! non sappiamo cosa mettere qui, 
-quindi per adesso ci limitiamo a scrivere questo
+<div class="col-lg-7 col-md-offset-1">
+<h2>Immagine carina e coccolosa</h2>
+<p>al posto di nulla non è male</p>
 
 </div>
-<div class = "col-lg-2">
-</div>
+
 <div id = "col-dx" style=" border-left: 1px solid red;" class = "col-lg-4">
 
 		
-			<div class="container-fluid login" style="margin-left: 5em; margin-right: 5em;">
+			<div class="container-fluid login" ">
 			<div>
 				<label class="creaaccount">Accedi a Student place:</label><br />
 
@@ -74,8 +55,13 @@ quindi per adesso ci limitiamo a scrivere questo
 						placeholder="password" style="width: 90%; clear: both;"><br /><br />
 					
 					
-					<input type="submit" class="button" value="Accedi"></input>
-				</form>
+					<span><input type="submit" class="button" value="Accedi"></input>
+					<sub>o <a href="ShowRegistrazione">Registrati</a></sub>
+					</span>
+					</form>
+					
+					
+					
 			</div>
 		</div>
 

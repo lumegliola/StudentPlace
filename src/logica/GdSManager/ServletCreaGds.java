@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import bean.Aula;
 import bean.GruppoDiStudio;
+import bean.Orario;
 import bean.Utente;
 import dao.DAOFactory;
 
@@ -49,9 +50,9 @@ public class ServletCreaGds extends HttpServlet {
 					Utente creatore = DAOFactory.getUserDAO().doRetrieveByKey("0512102865");
 			
 					@SuppressWarnings("deprecation")
-					Timestamp inizio = new Timestamp(124, 11, 16, 15, 00, 00, 00);
+					Timestamp inizio = new Timestamp(118, 11, 21, 11, 0, 0, 0);
 					@SuppressWarnings("deprecation")
-					Timestamp fine = new Timestamp(124, 11, 16, 15, 01, 00, 00);
+					Timestamp fine = new Timestamp(118, 11, 21, 12, 0, 0, 0);
 					Aula aula = DAOFactory.getAulaDAO().doRetrieveByKey((String)request.getParameter("aula"));
 			
 			
@@ -79,7 +80,7 @@ public class ServletCreaGds extends HttpServlet {
 			}
 		else {
 			//messagggio: utente non loggato
-		//	session.setAttribute("esito", "errore");
+			session.setAttribute("esito", "errore");
 			request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
 		}
 		}

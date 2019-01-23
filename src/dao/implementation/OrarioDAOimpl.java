@@ -196,9 +196,13 @@ public class OrarioDAOimpl implements OrarioDAO {
 			//ricava i risultati
 			while (result.next()) {
 				Orario b = new Orario();
+				Timestamp inizio = result.getTimestamp("inizio");
+				Timestamp fine = result.getTimestamp("fine");
+				inizio.setYear(inizio.getYear()+1900);
+				fine.setYear(fine.getYear()+1900);
 				b.setIdOrario(result.getInt("id"));
-				b.setInizio(start);
-				b.setFine(result.getTimestamp("fine"));
+				b.setInizio(inizio);
+				b.setFine(fine);
 
 			// aggiunge l'oggetto alla lista
 				orari.add(b);
@@ -239,10 +243,13 @@ public class OrarioDAOimpl implements OrarioDAO {
 
 			//ricava i risultati
 			if (result.next()) {
-				
+				Timestamp inizio = result.getTimestamp("inizio");
+				Timestamp fine = result.getTimestamp("fine");
+				inizio.setYear(inizio.getYear()+1900);
+				fine.setYear(fine.getYear()+1900);
 				b.setIdOrario(result.getInt("id"));
-				b.setInizio(result.getTimestamp("inizio"));
-				b.setFine(result.getTimestamp("fine"));
+				b.setInizio(inizio);
+				b.setFine(fine);
 			}
 
 		} catch (SQLException e) {
@@ -281,9 +288,13 @@ public class OrarioDAOimpl implements OrarioDAO {
 			//ricava i risultati
 			while (result.next()) {
 				Orario b = new Orario();
+				Timestamp inizio = result.getTimestamp("inizio");
+				Timestamp fine = result.getTimestamp("fine");
+				inizio.setYear(inizio.getYear()+1900);
+				fine.setYear(fine.getYear()+1900);
 				b.setIdOrario(result.getInt("id"));
-				b.setInizio(result.getTimestamp("inizio"));
-				b.setFine(result.getTimestamp("fine"));
+				b.setInizio(inizio);
+				b.setFine(fine);
 
 			// aggiunge l'oggetto alla lista
 				orari.add(b);

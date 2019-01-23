@@ -57,33 +57,16 @@ public class ServletLogin extends HttpServlet {
 
 		} else { // Utente trovato, le credenziali sono giuste!
 			HttpSession session = request.getSession(false);
-
 			//System.out.println("ok");
 			//Setto i cookie per i prossimi accessi al sito.
-			Cookie emailCookie = new Cookie("email", email);
-			Cookie passwordCookie = new Cookie("password", password);
-			
-			//Setto la durata massima dei cookies, un mese
-			emailCookie.setMaxAge(60 * 60 * 24 * 30);
-			passwordCookie.setMaxAge(60 * 60 * 24 * 30);
-
-			response.addCookie(emailCookie);
-			response.addCookie(passwordCookie);
 			System.out.println("Tutt appost");
-
-			if(session != null) { //L'utente che si è appena loggato ha già una sessione.
-				session.setAttribute("email", b.getMail());
-				session.setAttribute("nome", b.getNome());
-				session.setAttribute("matricola", b.getMatricola());
-
-				session.setAttribute("logged", true);
-				
+			if(session != null){ //L'utente che si è appena loggato ha già una sessione.
+				session.setAttribute("utente", b);
+				session.setAttribute("logged", true);	
 			} else { //L'Utente che si è appena loggato non ha ancora una sessione, quindi dobbiamo creargliela.
 				session = request.getSession(true); 
-				session.setAttribute("email", b.getMail());
-				session.setAttribute("nome", b.getNome());
-				session.setAttribute("matricola", b.getMatricola());
-				session.setAttribute("logged", true);	
+				session.setAttribute("utente", b);
+				session.setAttribute("logged", true);
 			}
 
 			/* Reindiriziamo alla home.

@@ -18,8 +18,10 @@ public interface AulaLiberaDAO {
 			  
 		public boolean doDelete(AulaLibera aula);//metodo per cancellare un'aula nel database passando oggetto (GruppoDiStudio)
 			  
-		public boolean doDelete(String nomeAula, String giorno, int idOrario);//metodo per cancellare un'aula nel database passando il nome(String)
+		public boolean doDeleteByKey(String nomeAula, String giorno, int idOrario);//metodo per cancellare un'aula nel database passando il nome(String)
 			
+		public boolean doDeleteByOrario(int idOrario);//metodo per cancellare un'aula nel database passando l`orario
+		
 		public AulaLibera doRetrieveByKey(String nomeAula, String giorno, int idOrario);//ricerca tramite chiave
 		
 		public List<AulaLibera> doRetrieveByName(String nomeAula);//metodo di ricerca aula tramite nome(String)

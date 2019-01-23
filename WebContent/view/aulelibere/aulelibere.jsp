@@ -12,7 +12,6 @@
 
 <!-- IMPORT BOOTSTRAP-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet"
@@ -35,128 +34,49 @@
 	<%@ include file="../headerfooter/Header.jsp"%>
 	<div class="container">
 		<table class="col-lg-12 tabella">
-			<% 
-
-   List <AulaLibera> elenco = (List <AulaLibera>)request.getAttribute("elenco");
-   
-%>
+			<%
+				//lista delle aula divisa per giorno e fasce orarie
+				ArrayList<listaAuleLibere> lista = (ArrayList<listaAuleLibere>) request.getAttribute("lista");
+				List<String> giorni = new ArrayList<>();
+				giorni.add("Lunedì");
+				giorni.add("Martedì");
+				giorni.add("Mercoledì");
+				giorni.add("Giovedì");
+				giorni.add("Venerdì");
+				int s = 0, k = 1, intervallo = 9;
+			%>
 			<thead>
 				<tr>
-					<th>Orario </th>
-					<th>Lunedi</th>
-					<th>Martedi</th>
-					<th>Mercoledi</th>
-					<th>Giovedi</th>
-					<th>Venerdi</th>
+					<th>Orario</th>
+					<th>Lunedì</th>
+					<th>Martedì</th>
+					<th>Mercoledì</th>
+					<th>Giovedì</th>
+					<th>Venerdì</th>
 				</tr>
 			</thead>
 			<tbody>
+			<%for(int cont=0;cont<10;cont++){ %>
 				<tr>
-					<td>09/10</td>
+					<td><%=intervallo%>/<%=intervallo + 1%></td>
+					<%for(int t =0;t<5;t++){%>
 					<td>
-						<%if(elenco.size()>0){
-for(int i=0;i<= elenco.size();i++) {
-	if(elenco.get(i).getGiorno().equals("lunedi")){
-		%>è lunedi<%
-	
-			if((int)elenco.get(i).getOrario().getInizio().getHours()==9){
-				%>sono le 9<%
-			if((int)elenco.get(i).getOrario().getFine().getHours()>=10)
-	{
-		%>
-						<p>
-							sono vivo<%=elenco.get(i).getAula().getNomeAula() %>
-							<%=elenco.get(i).getAula().getEdificio()%></p>
 						<%
-	}}}
-}
-}
-else
-%>nessuna aula libera
-					</td>
-					<td>
-					</td>
-					<td>Valore</td>
-					<td>Valore</td>
-					<td>Valore</td>
-				</tr>
-				<tr>
-					<td>10/11</td>
-					<td>Valore</td>
-					<td>Valore</td>
-					<td>Valore</td>
-					<td>Valore</td>
-					<td>Valore</td>
-				</tr>
-				<tr>
-					<td>11/12</td>
-					<td>Valore</td>
-					<td>Valore</td>
-					<td>Valore</td>
-					<td>Valore</td>
-					<td>Valore</td>
-				</tr>
-				<tr>
-					<td>12/13</td>
-					<td>Valore</td>
-					<td>Valore</td>
-					<td>Valore</td>
-					<td>Valore</td>
-					<td>Valore</td>
-				</tr>
-				<tr>
-					<td>13/14</td>
-					<td>Valore</td>
-					<td>Valore</td>
-					<td>Valore</td>
-					<td>Valore</td>
-					<td>Valore</td>
-				</tr>
-				<tr>
-					<td>14/15</td>
-					<td>Valore</td>
-					<td>Valore</td>
-					<td>Valore</td>
-					<td>Valore</td>
-					<td>Valore</td>
-				</tr>
-				<tr>
-					<td>15/16</td>
-					<td>Valore</td>
-					<td>Valore</td>
-					<td>Valore</td>
-					<td>Valore</td>
-					<td>Valore</td>
-				</tr>
-				<tr>
-					<td>16/17</td>
-					<td>Valore</td>
-					<td>Valore</td>
-					<td>Valore</td>
-					<td>Valore</td>
-					<td>Valore</td>
-				</tr>
-				<tr>
-					<td>17/18</td>
-					<td>Valore</td>
-					<td>Valore</td>
-					<td>Valore</td>
-					<td>Valore</td>
-					<td>Valore</td>
-				</tr>
-				<tr>
-					<td>18/19</td>
-					<td>Valore</td>
-					<td>Valore</td>
-					<td>Valore</td>
-					<td>Valore</td>
-					<td>Valore</td>
+							if (lista.size() != 0) {
+								for (int i = 0; i < lista.size(); i++) {
+									if (lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria() == k) {
+						%> <%=lista.get(i).getNomeaula()%>, <%
+ 	}
+
+ 		}
+ 		s++;
+ 	}
+ %>					</td><%}s = 0;
+			 		k++;intervallo++;} %>
 				</tr>
 			</tbody>
 		</table>
 	</div>
-
-
 	<%@ include file="../headerfooter/Footer.html"%>
 
 </body>
