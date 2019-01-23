@@ -22,6 +22,8 @@
 	type="text/css">
 <link rel="stylesheet" href="view/headerfooter/Footer.css"
 	type="text/css">
+<link rel="stylesheet" href="view/headerfooter/Home.css"
+	type="text/css">
 	
 </head>
 <!-- INCLUDE PAGE -->
@@ -31,8 +33,19 @@
 
 
 <div class="col-lg-7 col-md-offset-1">
-<h2>Immagine carina e coccolosa</h2>
-<p>al posto di nulla non � male</p>
+<img id="groupStudyImg" alt="img group study" src="view/images/studygroup.jpg">
+<p>Quante volte ti è capitato di sentirti il solo a non riuscire a superare quell’esamone? 
+Quante volte hai pensato di abbandonare proprio per mancanza di aiuto? 
+Dispende incomprensibili, tutor introvabili, professori non reperibili, questi sono gli ingredienti che bastano per farti pensare di non potercela fare, di essere l’unico ad avere grossi problemi. 
+Tranquillo, non sei solo!
+Hai avuto solo la sfortuna di cercare nel posto sbagliato al momento sbagliato! 
+Ora, grazie a StudentPlace, non dovrai più preoccuparti di questo.  
+Grazie alla nostra piattaforma potrai facilmente metterti in contatto con studenti con le tue stesse difficoltà: potrai rapidamente creare e/o cercare un gruppo di studio che ti permetterà finalmente di trovare qualcuno che ti aiuti a superare quell’esame. Lo studio di gruppo può essere il primo passo verso il successo e verso… la laurea! Riuscirai a superare quell’esame confrontandoti con altri studenti. Perché come dice il detto: “L’unione fa la forza!” 
+E per chi invece è un lupo solitario e preferisce studiare da solo ed in tranquillità, nessun problema! 
+Grazie a StudentPlace potrà cercare un’aula libera in cui studiare. 
+
+StudentPlace nasce proprio per soccombere alle esigenze in ambito universitario che molti ragazzi provano durante il proprio percorso di laurea. Questa piattaforma aiuta lo studente nell’organizzazione dello studio di gruppo e/o individuale. Esso offre allo studente la possibilità di creare un gruppo di studio inerente ad una materia in particolare a cui altri studenti potranno iscriversi per partecipare. Stabilita l’aula in cui si terrà l’incontro, l’ora e la materia di studio non resta da fare altro che dare il via allo studio! 
+</p>
 
 </div>
 
