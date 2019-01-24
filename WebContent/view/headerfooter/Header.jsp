@@ -25,6 +25,29 @@
 	type="text/css">
 
 <title>Header</title>
+<script type="text/javascript">
+	function showResult(str) {
+		if (str.length == 0) {
+			document.getElementById("livesearch").innerHTML = "";
+			document.getElementById("livesearch").style.border = "0px";
+			return;
+		}
+		if (window.XMLHttpRequest) {
+			// per IE7+, Firefox, Chrome, Opera, Safari
+			xmlhttp = new XMLHttpRequest();
+		} else { // per IE6, IE5
+			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xmlhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				document.getElementById("livesearch").innerHTML = this.responseText;
+				document.getElementById("livesearch").style.border = "1px solid #A5ACB2";
+			}
+		}
+		xmlhttp.open("GET", "RicercaGds?inputGruppo=" + str, true);
+		xmlhttp.send();
+	}
+</script>
 
 </head>
 <body>
@@ -82,9 +105,19 @@
 					<li class="nav-item"><a class="nav-link" href="#">Contatti</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Chi
 							Siamo</a></li>
-					<li class="nav-item"><input type="text" class="form-control"
-						placeholder="Cerca gruppo" aria-label="Cerca gruppo"
-						aria-describedby="basic-addon1"></li>
+					<li class="nav-item"><form action="RicercaGds" method="post" autocomplete="off">
+
+							<input id=search_input type="text" class="bar" name="inputGruppo"
+								placeholder="cerca un gruppo di studio" onkeyup="showResult(this.value)">
+
+							
+								<button id=submit_search class="btn btn-info submit search "
+									type="submit">
+									<i class="glyphicon glyphicon-search"></i>
+								</button>
+							
+						
+					</form></li>
 
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
@@ -104,6 +137,8 @@
 				 <a href="ShowHome">Login</a>
 				 <%} %>
 				</ul>
+				<div class="col-lg-6"></div>
+				<div id="livesearch" class="col-lg-6 column-center result"></div>
 			</div>
 		</nav>
 	</div>

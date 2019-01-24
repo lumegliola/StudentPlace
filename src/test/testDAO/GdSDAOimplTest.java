@@ -250,6 +250,16 @@ public class GdSDAOimplTest extends TestCase {
 		
 		System.out.println("funziona");
 	}
+	
+	@Test
+	public void testDoSearch() {
+		List<GruppoDiStudio>controllo = DAOFactory.getGdSDAO().doRetrieveBySubject("analisi");
+		List<GruppoDiStudio> test = DAOFactory.getGdSDAO().doSearch("lisi");
+		
+		assertTrue(test.containsAll(controllo));
+		
+	}
+	
 	private   IDataSet dataSet;
 	private  IDatabaseConnection dbconnection;
 	private FlatXmlDataSet loadedDataSer;

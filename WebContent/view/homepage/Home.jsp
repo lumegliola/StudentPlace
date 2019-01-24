@@ -39,7 +39,7 @@
 			<p style="text-align: justify; font-family: Century Gothic;">Quante
 				volte ti &#232 capitato di sentirti il solo a non riuscire a superare
 				quell&#8217esamone? Quante volte hai pensato di abbandonare proprio per
-				mancanza di aiuto? Dispende incomprensibili, tutor introvabili,
+				mancanza di aiuto? Dispense incomprensibili, tutor introvabili,
 				professori non reperibili, questi sono gli ingredienti che bastano
 				per farti pensare di non potercela fare, di essere l&#8217unico ad avere
 				grossi problemi. Tranquillo, non sei solo! Hai avuto solo la
