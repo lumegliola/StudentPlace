@@ -44,7 +44,7 @@
 				document.getElementById("livesearch").style.border = "1px solid #A5ACB2";
 			}
 		}
-		xmlhttp.open("GET", "AsyncSearch?cosa=" + str, true);
+		xmlhttp.open("GET", "RicercaGds?inputGruppo=" + str, true);
 		xmlhttp.send();
 	}
 </script>
@@ -137,6 +137,7 @@
 				 <a href="ShowHome">Login</a>
 				 <%} %>
 				</ul>
+				<div id="livesearch" class="col-md-12 column-center result"></div>
 			</div>
 		</nav>
 	</div>

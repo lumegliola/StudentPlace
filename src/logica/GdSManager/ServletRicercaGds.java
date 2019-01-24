@@ -44,23 +44,22 @@ public class ServletRicercaGds extends HttpServlet {
 			for (GruppoDiStudio p : list) {
 				out.print("	<div class=\"row gds_row\">\r\n" + 
 						"			<div class=\"col-sm-2\">\r\n" + 
-						"				<img class=\"async_nome\" alt=\"GruppoDIStudio\"  style=\"max-height: 5em;\" src="+p.getNomeGruppo()+">\r\n" + 
+						"				<span>"+p.getId()+"\r\n" + 
 						"			</div>\r\n" + 
 						"\r\n" + 
 						"			<div class=\"col-sm-8\">\r\n" + 
-						"				<a class=\"async_orario\" href=\"gdsinfo.jsp?idGruppo="+p.getId()+"\"></a><br />\r\n" + 
+						"				<a class=\"async_orario\" href=\"view/GdS/GdSinfo.jsp?gds="+p.getId()+"\">"+p.getNomeGruppo()+"</a><br />\r\n" + 
 						"				<span>inizio:"+p.getOrario().getInizio().toGMTString()+"</span>\r\n" + 
 						"			</div>\r\n" + 
 						"\r\n" + 
 						"			<div class=\"col-sm-2\">\r\n" + 
-						"				<span class=\"async_aula\">"+p.getAula().getNomeAula()+" &#8364;</span>\r\n" + 
+						"				<span class=\"async_aula\">"+p.getAula().getNomeAula()+"</span>\r\n" + 
 						"			</div>\r\n" + 
 						"		</div>");
 				i++;
 				if(i==3)
 					break;
-				request.setAttribute("gruppi", list);
-				request.getRequestDispatcher("/view/GdS/ListaGruppi.jsp").forward(request, response);
+				
 			}
 		}
 	}

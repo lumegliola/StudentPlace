@@ -70,21 +70,21 @@ public class GdSDAOimpl implements GdSDAO {
 		try {
 			//dichiara lo statement
 			connection = DriverManagerConnectionPool.getConnection();
-			
 
-		//se gruppo è vuota e (Aula no,inizio e fine != null)
-				Orario or=new Orario(inizio, fine);
-				
-				ps = connection.prepareStatement("update gds set  aula = ? ,oraInizio=? ,oraFine = ?,giorno=? where nome =? and materia=? ;");
-				ps.setString(1,nomeAula);
-				ps.setTimestamp(2, inizio);
-				ps.setTimestamp(3, fine);
-				ps.setString(4, or.getGiorno());
-				ps.setString(5, gds.getNomeGruppo());
-				ps.setString(6, gds.getMateria());
-				
-					result = ps.executeUpdate();
-			
+
+			//se gruppo è vuota e (Aula no,inizio e fine != null)
+			Orario or=new Orario(inizio, fine);
+
+			ps = connection.prepareStatement("update gds set  aula = ? ,oraInizio=? ,oraFine = ?,giorno=? where nome =? and materia=? ;");
+			ps.setString(1,nomeAula);
+			ps.setTimestamp(2, inizio);
+			ps.setTimestamp(3, fine);
+			ps.setString(4, or.getGiorno());
+			ps.setString(5, gds.getNomeGruppo());
+			ps.setString(6, gds.getMateria());
+
+			result = ps.executeUpdate();
+
 			//esegue lo statement
 
 
@@ -117,7 +117,7 @@ public class GdSDAOimpl implements GdSDAO {
 
 		//ricava l'id del gruppo e elimina le iscrizioni
 		GruppoDiStudio a = DAOFactory.getGdSDAO().doRetrieveByNameAndSubject(nomeGruppo, materia);	
-		
+
 		Connection connection = null;
 		PreparedStatement ps = null;
 		int result = 0;
@@ -155,7 +155,7 @@ public class GdSDAOimpl implements GdSDAO {
 		List<GruppoDiStudio> res = new ArrayList<>();
 
 		try {
-			
+
 
 			connection = DriverManagerConnectionPool.getConnection();
 			//dichiara lo statement
@@ -173,8 +173,8 @@ public class GdSDAOimpl implements GdSDAO {
 				b.setCreatore(a);
 				b.setMateria(result.getString("materia"));
 				DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(result.getTimestamp("oraInizio"), result.getTimestamp("oraFine"));
-                b.setOrario(result.getTimestamp("oraInizio"), result.getTimestamp("oraFine"));
-                b.setId(result.getInt("id"));
+				b.setOrario(result.getTimestamp("oraInizio"), result.getTimestamp("oraFine"));
+				b.setId(result.getInt("id"));
 				b.setGiorno();
 				b.setAula(DAOFactory.getAulaDAO().doRetrieveByKey(result.getString("aula")));
 				res.add(b);
@@ -347,7 +347,7 @@ public class GdSDAOimpl implements GdSDAO {
 			ps = connection.prepareStatement("select * from gds where id = ? ;");
 
 			ps.setInt(1, id);
-			
+
 			//esegue lo statement
 			ResultSet result = ps.executeQuery();
 			//ricava i risultati
@@ -393,7 +393,7 @@ public class GdSDAOimpl implements GdSDAO {
 
 			while (result.next()) {
 				GruppoDiStudio b = new GruppoDiStudio();
-				
+
 				b.setId(result.getInt("id"));
 				b.setNomeGruppo(result.getString("nome"));
 				b.setCreatore(DAOFactory.getUserDAO().doRetrieveByKey(result.getString("creatore")));
@@ -407,11 +407,13 @@ public class GdSDAOimpl implements GdSDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				ps.close();
-				DriverManagerConnectionPool.releaseConnection(connection);
-			} catch (SQLException e) {
-				e.printStackTrace();
+			if(connection != null) {
+				try {
+					ps.close();
+					DriverManagerConnectionPool.releaseConnection(connection);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		return gruppi;
