@@ -30,7 +30,7 @@ import org.mockito.MockitoAnnotations;
 import junit.framework.TestCase;
 import logica.GdSManager.ServletEliminaGdS;
 
-public class ServletModificaProfiloTest  extends TestCase{
+public class TestServletModificaProfilo  extends TestCase{
 
 	 @Mock
 	 	ServletContext context= mock(ServletContext.class);

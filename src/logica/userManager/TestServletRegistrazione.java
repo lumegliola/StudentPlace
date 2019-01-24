@@ -30,7 +30,7 @@ import org.mockito.MockitoAnnotations;
 
 import junit.framework.TestCase;
 
-public class ServletRegistrazioneTest extends TestCase {
+public class TestServletRegistrazione extends TestCase {
 
 	 @Mock
 	 	ServletContext context= mock(ServletContext.class);

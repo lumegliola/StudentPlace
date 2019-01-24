@@ -64,13 +64,13 @@ public class OrarioDAOimplTest extends TestCase{
       Orario orario=new Orario();
       orario.setInizio(new Timestamp(2019,11,2,12,0,0,0));
       orario.setFine(new Timestamp(2019,11,2, 14,0,0,0));
-     
-      DAOFactory.getOrarioDAO().doSave(orario);
       
+      DAOFactory.getOrarioDAO().doSave(orario);
+      orario = DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(orario.getInizio(), orario.getFine());
     
      
          
-      boolean valore=orarioDao.doSaveOrUpdate(orario, new Timestamp(2019,11,3,15,0,0,0), new Timestamp(2019,11,3 ,16,0,0,0));
+      boolean valore=orarioDao.doSaveOrUpdate(orario, new Timestamp(119,11,3,15,0,0,0), new Timestamp(119,11,3 ,16,0,0,0));
       assertTrue(valore);
 
       System.out.println("End test");

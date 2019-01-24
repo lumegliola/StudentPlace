@@ -35,13 +35,26 @@ public class TestServletRicercaGdS {
     HttpServletResponse response;
  
     @Mock
-    HttpSession session;
+    HttpSession session=mock(HttpSession.class);
     
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);        
    }
 
+    
+    @Test
+    public void testDoGetHttpServletRequestHttpServletResponse() throws ServletException, IOException {
+    	
+    	when(request.getSession(false)).thenReturn(session);
+    	
+    	when(session.getAttribute("logged")).thenReturn("logged");
+    	
+    	when(request.getParameter("inputGruppo")).thenReturn("prog");
+    	
+    	new ServletRicercaGds().doGet(request, response);
+    }
+    
     @Test
 	public void testDoPostHttpServletRequestHttpServletResponse() throws ServletException, IOException {
   
@@ -50,9 +63,8 @@ public class TestServletRicercaGdS {
     
 	when(session.getAttribute("logged")).thenReturn("logged");
 	
-	when(request.getAttribute("input")).thenReturn("matematica");
+	when(request.getParameter("inputGruppo")).thenReturn("prog");
 
-	
 	when(session.getAttribute("matricola")).thenReturn("0512102865");
 	
 	when(request.getRequestDispatcher("ProvaOutput.jsp")).thenReturn(dispatcher);
@@ -60,6 +72,7 @@ public class TestServletRicercaGdS {
 	new ServletRicercaGds().doPost(request, response);
 	
 	verify(dispatcher).forward(request, response);
+    
     }
 
 }
