@@ -33,9 +33,9 @@ public class ServletRicercaGds extends HttpServlet {
 
 			GdSDAO dao = DAOFactory.getGdSDAO();
 			List<GruppoDiStudio> list = new ArrayList<>();
-			
+
 			list = dao.doSearch(input);
-			
+
 			response.setContentType("text/html");
 			PrintWriter out = response.getWriter();
 
@@ -47,9 +47,14 @@ public class ServletRicercaGds extends HttpServlet {
 						"				<span>"+p.getId()+"\r\n" + 
 						"			</div>\r\n" + 
 						"\r\n" + 
-						"			<div class=\"col-sm-8\">\r\n" + 
+						"			<div class=\"col-sm-4\">\r\n" + 
 						"				<a class=\"async_orario\" href=\"view/GdS/GdSinfo.jsp?gds="+p.getId()+"\">"+p.getNomeGruppo()+"</a><br />\r\n" + 
 						"				<span>inizio:"+p.getOrario().getInizio().toGMTString()+"</span>\r\n" + 
+						"			</div>\r\n" + 
+						"\r\n" + 
+						"			<div class=\"col-sm-4\">\r\n" + 
+						"			<span></span>\r\n"+
+						"				<span>Materia: \t"+p.getMateria()+"</span>\r\n" + 
 						"			</div>\r\n" + 
 						"\r\n" + 
 						"			<div class=\"col-sm-2\">\r\n" + 
@@ -59,7 +64,7 @@ public class ServletRicercaGds extends HttpServlet {
 				i++;
 				if(i==3)
 					break;
-				
+
 			}
 		}
 	}
@@ -67,19 +72,21 @@ public class ServletRicercaGds extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		doGet(request, response);
 
-		/*	
-			List<GruppoDiStudio> elenco = new ArrayList<>();
-			elenco = DAOFactory.getGdSDAO().doRetrieveBySubject(input);
-			elenco.addAll(DAOFactory.getGdSDAO().doRetrieveByName(input));
+		HttpSession session = request.getSession();
+		if(session != null && session.getAttribute("logged") != null) {
+			String input = request.getParameter("inputGruppo");
 
-			session.setAttribute("elencoGruppi", elenco);
-			request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
-		 */
+			GdSDAO dao = DAOFactory.getGdSDAO();
+			List<GruppoDiStudio> list = new ArrayList<>();
+
+			list = dao.doSearch(input);		
+
+			request.setAttribute("gruppi", list);
+			request.getRequestDispatcher("view/GdS/ListaGruppi.jsp").forward(request, response);
 
 
+		}
 
 	}
-
 }

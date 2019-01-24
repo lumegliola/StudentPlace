@@ -105,7 +105,7 @@
 					<li class="nav-item"><a class="nav-link" href="#">Contatti</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Chi
 							Siamo</a></li>
-					<li class="nav-item"><form action="RicercaGds" autocomplete="off">
+					<li class="nav-item"><form action="RicercaGds" method="post" autocomplete="off">
 
 							<input id=search_input type="text" class="bar" name="inputGruppo"
 								placeholder="cerca un gruppo di studio" onkeyup="showResult(this.value)">
@@ -137,7 +137,8 @@
 				 <a href="ShowHome">Login</a>
 				 <%} %>
 				</ul>
-				<div id="livesearch" class="col-md-12 column-center result"></div>
+				<div class="col-lg-6"></div>
+				<div id="livesearch" class="col-lg-6 column-center result"></div>
 			</div>
 		</nav>
 	</div>
