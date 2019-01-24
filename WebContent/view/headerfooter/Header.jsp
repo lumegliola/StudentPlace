@@ -136,7 +136,7 @@
 							class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 							<%}
 				else if(logged==false){%>
-				 <a href="ShowHome">Login</a>
+				 <li class="nav-item"><a href="ShowHome">Login</a></li>
 				 <%} %>
 				</ul>
 				<div class="col-lg-6"></div>
