@@ -52,15 +52,11 @@ public class ServletModificaOrario extends HttpServlet {
 		//solo l`amministratore può inserire un orario
 		if(session != null ) {
 			if(  ((boolean)session.getAttribute("admin")==true)){
-			System.out.println("Amministratore");
 			Orario modOr= DAOFactory.getOrarioDAO().doRetrieveByKey(Integer.parseInt(request.getParameter("id")));
 			Orario or = new Orario();
 			SimpleDateFormat sdf;
-			
-	
 		     sdf= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		     Date date2=new Date(),date1=new Date();
-				 
+		     Date date2=new Date(),date1=new Date();	 
 		     try {
 			 date1=sdf.parse(request.getParameter("inizio"));
 		     date2=sdf.parse(request.getParameter("fine"));
@@ -68,23 +64,11 @@ public class ServletModificaOrario extends HttpServlet {
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
-		     
-				 
-				 
-				 
-		//	System.out.println(date1.getTime()+date1.toString());
+			}	 
 			or.setInizio(new Timestamp(date1.getTime()));
 			or.setFine(new Timestamp(date2.getTime()));
-
-			System.out.println(or.getInizio());
-		 // System.out.println(or.getFine());
-			Timestamp dat1= new Timestamp(or.getInizio().getYear()+1900, or.getInizio().getMonth(),  or.getInizio().getDay(),  or.getInizio().getHours(),  or.getInizio().getMinutes(),or.getInizio().getSeconds(), or.getInizio().getNanos());
-			Timestamp dat2=new Timestamp(or.getFine().getYear()+1900, or.getFine().getMonth(),  or.getFine().getDay(),  or.getFine().getHours(),  or.getFine().getMinutes(),or.getFine().getSeconds(), or.getFine().getNanos());
-			System.out.println(dat1.toString() +" "+dat2.toString());
 		    DAOFactory.getOrarioDAO().doSaveOrUpdate(modOr, or.getInizio(),or.getFine());
-			request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);;
-
+			request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
 			}else {
 			System.out.println("Non Amministratore");
 			session.setAttribute("esito", "errore");

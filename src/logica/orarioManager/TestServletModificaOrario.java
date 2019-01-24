@@ -5,7 +5,10 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -14,13 +17,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.dbunit.database.DatabaseConnection;
+import org.dbunit.dataset.IDataSet;
+import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
+import org.dbunit.operation.DatabaseOperation;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-public class TestServletModificaOrario {
+import junit.framework.TestCase;
+
+public class TestServletModificaOrario extends TestCase{
 
 	@Mock
  	ServletContext context= mock(ServletContext.class);
@@ -36,11 +45,36 @@ public class TestServletModificaOrario {
  
     @Mock
     HttpSession session=mock(HttpSession.class);
+
+
+	private IDataSet loadedDataSer;
+
+	private Connection connection;
+
+	private DatabaseConnection dbconnection;
+
+	private IDataSet dataSet;
     
     @Before
     public void setUp() throws Exception {
-        MockitoAnnotations.initMocks(this);        
+        MockitoAnnotations.initMocks(this);
+        Class driverClass = Class.forName("com.mysql.cj.jdbc.Driver");
+        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentplacedb?serverTimezone = EST5EDT", "root", "root");
+	    dbconnection = new DatabaseConnection(connection);
+	    dataSet = getDataSet(); 
    }
+	@Before
+	protected IDataSet getDataSet() throws Exception {
+		// TODO Auto-generated method stub
+     loadedDataSer =   new FlatXmlDataSetBuilder().build(new FileInputStream("database.xml"));
+     return loadedDataSer;
+	}
+	
+    @After
+    protected void tearDown() throws Exception {
+		// TODO Auto-generated method stub
+    		 DatabaseOperation.CLEAN_INSERT.execute(dbconnection, getDataSet());
+        }
 
 
 	@Test

@@ -31,6 +31,8 @@ public class OrarioDAOimpl implements OrarioDAO {
 			ps = connection.prepareStatement("insert into orario (inizio, fine) values (?, ?);");
 			
 			//inserisce i campi
+			or.getInizio().setYear(or.getInizio().getYear()+1900);
+			or.getFine().setYear(or.getFine().getYear()+1900);
 			ps.setTimestamp(1, or.getInizio());
 			ps.setTimestamp(2, or.getFine());
 			
@@ -235,6 +237,8 @@ public class OrarioDAOimpl implements OrarioDAO {
 			
 			//dichiara lo statement
 			ps = connection.prepareStatement("select * from orario where inizio = ? and fine = ?;");
+			start.setYear(start.getYear()+1900);
+			finish.setYear(finish.getYear()+1900);
 			ps.setTimestamp(1, start);
 			ps.setTimestamp(2, finish);
 			

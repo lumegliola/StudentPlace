@@ -44,7 +44,6 @@ public class ServletEliminaOrario extends HttpServlet {
 		if(session != null && session.getAttribute("admin").equals((true) )) {
 			System.out.println("inizio if");
 			int idOrario = Integer.parseInt(request.getParameter("idOrario"));
-			
 			Orario or = DAOFactory.getOrarioDAO().doRetrieveByKey(idOrario);
 			//orario non trovato
 			if (or == null) {
