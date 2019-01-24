@@ -36,8 +36,9 @@ public class ServletLogout extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession(false);
-		session.setAttribute("logged", false);
+		HttpSession session = request.getSession();
+		
+		session.invalidate();
 		request.getRequestDispatcher("/view/homepage/Home.jsp").forward(request, response);
 	}
 
