@@ -39,7 +39,7 @@ public class ServletvisualizzaAuleLibere extends HttpServlet {
 
 
 		HttpSession session = request.getSession();
-		if(session!=null) {
+		
 		ArrayList <listaAuleLibere> lista=new ArrayList<>();
 		List <AulaLibera> elenco = new ArrayList<>();
 		List <String> giorni= new ArrayList<>();
@@ -48,18 +48,16 @@ public class ServletvisualizzaAuleLibere extends HttpServlet {
 		giorni.add("Mercoledì");
 		giorni.add("Giovedì");
 		giorni.add("Venerdì");
-		elenco.addAll(DAOFactory.getAulaLiberaDAO().doRetrieveAll());
-		
-		
-		
+		elenco.addAll(DAOFactory.getAulaLiberaDAO().doRetrieveAll());		
+		if(session.getAttribute("logged")==null) {
+			System.out.println("setta attribute");
+			session.setAttribute("logged",false);
+		}
 		for(int g=0;g<5;g++) {
 			for(int o =10;o<20;o++) {
 		for(int i =0;i<elenco.size();i++) {
 			if(elenco.get(i).getOrario().getGiorno().equals(giorni.get(g))){
-
-
 				if((int)elenco.get(i).getOrario().getInizio().getHours()<=o){
-
 					if((int)elenco.get(i).getOrario().getFine().getHours()>=o+1)
 					{
 						if(lista.size()!=0) {
@@ -68,31 +66,25 @@ public class ServletvisualizzaAuleLibere extends HttpServlet {
 							{
 								break;
 							}
-						}}
+						}
+						}
 						listaAuleLibere l= new listaAuleLibere((elenco.get(i).getAula().getNomeAula()),giorni.get(g),(o-9));
-								lista.add(l);
-
-
-							
-
+								lista.add(l);	
 						}
 
 					}
-			}}
+			}
+			}
 			}
 		}
+		session.setAttribute("lista",lista);
+
+		System.out.println(session.getAttribute("lista"));
+		System.out.println(session.getAttribute("logged"));
 		
-		
-		
-
-		request.setAttribute("lista",lista);
-		request.getRequestDispatcher("aulelibere/aulelibere.jsp").forward(request, response);
-
-
-
-	}else {
-		request.getRequestDispatcher("aulelibere/aulelibere.jsp").forward(request, response);
-	}
+		getServletContext().getRequestDispatcher("/view/aulelibera/aulelibere.jsp").forward(request, response);
+	
+	
 	}
 
 

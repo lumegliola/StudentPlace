@@ -36,7 +36,7 @@
 		<table class="col-lg-12 tabella">
 			<%
 				//lista delle aula divisa per giorno e fasce orarie
-				ArrayList<listaAuleLibere> lista = (ArrayList<listaAuleLibere>) request.getAttribute("lista");
+				ArrayList<listaAuleLibere> lista = (ArrayList<listaAuleLibere>) session.getAttribute("lista");
 				List<String> giorni = new ArrayList<>();
 				giorni.add("Lunedì");
 				giorni.add("Martedì");
