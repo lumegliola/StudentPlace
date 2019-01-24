@@ -38,7 +38,7 @@ public class TestServletCreaGds {
 	    HttpServletResponse response;
 	 
 	    @Mock
-	    HttpSession session;
+	    HttpSession session=mock(HttpSession.class);
 	    
 	    @Before
 	    public void setUp() throws Exception {

@@ -57,8 +57,8 @@ public class OrarioDAOimpl implements OrarioDAO {
 		Connection connection = null;
 		PreparedStatement ps = null;
 		int result = 0;
-         start.setYear(start.getYear()-1900);
-         end.setYear(end.getYear()-1900);
+      start.setYear(start.getYear()+1900);
+         end.setYear(end.getYear()+1900);
 		try {
 			Orario or2 = doRetrieveByStartAndFinish(or.getInizio(), or.getFine());
 			int id = 0;

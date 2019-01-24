@@ -41,7 +41,7 @@ public class ServletInserisciOrario extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session = request.getSession(false);
+		HttpSession session = request.getSession(true);
 		//solo l`amministratore può inserire un orario
 		if(session != null && session.getAttribute("logged").equals("admin")){
 			

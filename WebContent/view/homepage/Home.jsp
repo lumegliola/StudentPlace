@@ -17,24 +17,7 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-	<script>
- $(document).ready(function() {
-	 console.log("Ciao");
-	 	$("#log").show();
-    	$("#reg").hide();
-     
-	 $("#pulsanteReg").click(function(){
-	    	$("#reg").show();
-	    	$("#log").hide();
-	    	
-	    });
-	 $("#pulsanteLog").click(function(){
-	    	$("#log").show();
-	    	$("#reg").hide();
-	    	
-	    });
-   });
- </script>
+
 </head>
 <!-- INCLUDE PAGE -->
 <body>

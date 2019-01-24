@@ -45,7 +45,7 @@ public class ServletLogin extends HttpServlet {
 		String password= request.getParameter("password") ;
 		String email=request.getParameter("email");
 		Utente user = DAOFactory.getUserDAO().doRetrieveByMailAndPass(email, password);
-
+        System.out.println(user.getNome());
 		if(user == null) { // Utente Non trovato, credenziali errate.
 			//System.out.println("null");
 			request.setAttribute("is_error", true);
@@ -56,18 +56,14 @@ public class ServletLogin extends HttpServlet {
 			return;
 
 		} else { // Utente trovato, le credenziali sono giuste!
-			HttpSession session = request.getSession(false);
+			HttpSession session = request.getSession();
 			//System.out.println("ok");
 			//Setto i cookie per i prossimi accessi al sito.
 			System.out.println("Tutt appost");
 			if(session != null){ //L'utente che si è appena loggato ha già una sessione.
 				session.setAttribute("utente", user);
 				session.setAttribute("logged", true);	
-			} else { //L'Utente che si è appena loggato non ha ancora una sessione, quindi dobbiamo creargliela.
-				session = request.getSession(true); 
-				session.setAttribute("utente",user);
-				session.setAttribute("logged", true);
-			}
+			} 
 
 			//Reindiriziamo alla home.
 			request.getRequestDispatcher("/view/homepage/Home.jsp").forward(request, response);

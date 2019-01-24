@@ -29,9 +29,25 @@
 	type="text/css">
 <link rel="stylesheet" href="view\registrazione\loginregistrazione.css"
 	type="text/css">
+<script >
+$(window).on("load",function() {
+
+ $("#pulsanteReg").click(function(){
+    	$("#reg").show();
+    	$("#log").hide();
+    	
+    });
+ $("#pulsanteLog").click(function(){
+    	$("#log").show();
+    	$("#reg").hide();
+    	
+    });
+});</script>
+	
 </head>
 <!-- INCLUDE PAGE -->
 <body>
+
 	<div class="container-fluid login" n="login" method="post">
 		<form action="login" method="post" name="formLog" id="log">
 		<h4 style="color: #a01313">Login</h4>
@@ -47,7 +63,7 @@
 		</form>
 
 		<form action="ServletRegistrazione" method="post" name="formReg"
-			id="reg">
+			id="reg" style="display:none;">
 			<h4 style="color: #a01313">Registrazione</h4>
 			<label>Nome:&nbsp;</label> <input
 				type="text" name="nome" id="nome" placeholder="Inserisci il tuo nome"
@@ -58,11 +74,11 @@
 				style="width: 90%; clear: both; margin-bottom: 0.5em;"> 
 				
 						<label>E-mail:&nbsp;</label><input
-				type="text" name="email" id="email" placeholder="Inserisci la tua email"
+				type="text" name="email" id="cemail" placeholder="Inserisci la tua email"
 				style="width: 90%; clear: both; margin-bottom: 0.5em;"> 
 				
 							<label>Password:&nbsp;</label><input
-				type="password" name="password" id="password" placeholder="Scegli una password"
+				type="password" name="password" id="cpassword" placeholder="Scegli una password"
 				style="width: 90%; clear: both; margin-bottom: 0.5em;"> 
 				
 							<label>Matricola:&nbsp;</label><input
