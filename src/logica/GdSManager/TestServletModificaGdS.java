@@ -47,9 +47,9 @@ public class TestServletModificaGdS {
     
     when(request.getParameter("materia")).thenReturn("Ingegneria del software");
 	
-	when(request.getSession(false)).thenReturn(session);
+	when(request.getSession()).thenReturn(session);
 	
-	when(session.getAttribute("logged")).thenReturn("logged");
+	when(session.getAttribute("logged")).thenReturn(true);
     
 	when(session.getAttribute("matricola")).thenReturn("0512102865");
 	

@@ -71,7 +71,9 @@ public class TestServletRegistrazione extends TestCase {
 		when(request.getParameter("matricola")).thenReturn("0512101000");
 		when(request.getParameter("nome")).thenReturn("ciao");
 		when(request.getParameter("cognome")).thenReturn("mondo");
-	    when(request.getRequestDispatcher("ProvaOutput.jsp")).thenReturn(dispatcher);
+		when(request.getSession()).thenReturn(session);
+		
+	    when(request.getRequestDispatcher("/view/homepage/Home.jsp")).thenReturn(dispatcher);
 
 		new ServletRegistrazione().doPost(request, response);
 		verify(dispatcher).forward(request, response);

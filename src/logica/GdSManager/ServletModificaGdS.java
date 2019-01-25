@@ -42,9 +42,9 @@ public class ServletModificaGdS extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 			System.out.println("Funziona");	
-			HttpSession session = request.getSession(false);
+			HttpSession session = request.getSession();
 			//Controllo esistenza sessione 
-			if(session != null && session.getAttribute("logged") != null) {//Se esiste 
+			if(session.getAttribute("logged") != null && (session.getAttribute("logged").equals(true))) {//Se esiste 
 				System.out.println("Inzio if");
 						String nomeGruppo = (String)request.getParameter("nomeGruppo");
 						String materia = (String) request.getParameter("materia");			        

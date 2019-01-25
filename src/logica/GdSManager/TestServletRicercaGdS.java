@@ -46,28 +46,29 @@ public class TestServletRicercaGdS {
     @Test
     public void testDoGetHttpServletRequestHttpServletResponse() throws ServletException, IOException {
     	
-    	when(request.getSession(false)).thenReturn(session);
+    	when(request.getSession()).thenReturn(session);
     	
-    	when(session.getAttribute("logged")).thenReturn("logged");
+    	when(session.getAttribute("logged")).thenReturn(true);
     	
     	when(request.getParameter("inputGruppo")).thenReturn("prog");
     	
     	new ServletRicercaGds().doGet(request, response);
+    	
     }
     
     @Test
 	public void testDoPostHttpServletRequestHttpServletResponse() throws ServletException, IOException {
   
 	
-	when(request.getSession(false)).thenReturn(session);
+	when(request.getSession()).thenReturn(session);
     
-	when(session.getAttribute("logged")).thenReturn("logged");
+	when(session.getAttribute("logged")).thenReturn(true);
 	
 	when(request.getParameter("inputGruppo")).thenReturn("prog");
 
 	when(session.getAttribute("matricola")).thenReturn("0512102865");
 	
-	when(request.getRequestDispatcher("ProvaOutput.jsp")).thenReturn(dispatcher);
+	when(request.getRequestDispatcher("/view/GdS/ListaGruppi.jsp")).thenReturn(dispatcher);
 
 	new ServletRicercaGds().doPost(request, response);
 	

@@ -29,7 +29,7 @@ public class ServletRicercaGds extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		if(session != null && session.getAttribute("logged") != null) {
+		if(session.getAttribute("logged") != null  && (session.getAttribute("logged").equals(true))) {
 			String input = request.getParameter("inputGruppo");
 
 			GdSDAO dao = DAOFactory.getGdSDAO();
@@ -75,7 +75,7 @@ public class ServletRicercaGds extends HttpServlet {
 
 
 		HttpSession session = request.getSession();
-		if(session != null && session.getAttribute("logged") != null) {
+		if( session.getAttribute("logged") != null && (session.getAttribute("logged").equals(true))) {
 			String input = request.getParameter("inputGruppo");
 
 			GdSDAO dao = DAOFactory.getGdSDAO();
@@ -85,7 +85,7 @@ public class ServletRicercaGds extends HttpServlet {
 
 			request.setAttribute("gruppi", list);
 			
-			RequestDispatcher dispatcher = request.getRequestDispatcher("view/GdS/ListaGruppi.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/view/GdS/ListaGruppi.jsp");
 			dispatcher.forward(request, response);
 
 		}

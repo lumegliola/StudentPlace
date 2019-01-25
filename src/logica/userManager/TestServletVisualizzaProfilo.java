@@ -1,11 +1,14 @@
 package logica.userManager;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -14,14 +17,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.dbunit.database.DatabaseConnection;
+import org.dbunit.dataset.IDataSet;
+import org.dbunit.dataset.xml.FlatXmlDataSet;
+import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
+import org.dbunit.operation.DatabaseOperation;
+import org.junit.After;
 import org.junit.Before;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import dao.DAOFactory;
+import junit.framework.TestCase;
 
-class TestServletVisualizzaProfilo {
+public class TestServletVisualizzaProfilo extends TestCase{
 
 	@Mock
  	ServletContext context= mock(ServletContext.class);
@@ -46,11 +56,12 @@ class TestServletVisualizzaProfilo {
     @Test
  	public void testDoPostHttpServletRequestHttpServletResponse() throws ServletException, IOException {
    
-    when(request.getSession(false)).thenReturn(session);
+    when(request.getSession()).thenReturn(session);
     
     when(session.getAttribute("utente")).thenReturn(DAOFactory.getUserDAO().doRetrieveByKey("0512102765"));
  	
- 	when(request.getRequestDispatcher("ProvaOutput.jsp")).thenReturn(dispatcher);
+ //	when(request.getRequestDispatcher("/view/utente/Profilo.jsp")).thenReturn(dispatcher);
+ 	when(request.getRequestDispatcher("/view/utente/Profilo.jsp")).thenReturn(dispatcher);
 
  	new ServletVisualizzaProfilo().doPost(request, response);
  	
