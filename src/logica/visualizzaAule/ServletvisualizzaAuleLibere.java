@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -49,11 +48,14 @@ public class ServletvisualizzaAuleLibere extends HttpServlet {
 		giorni.add("Mercoledì");
 		giorni.add("Giovedì");
 		giorni.add("Venerdì");
-		elenco.addAll(DAOFactory.getAulaLiberaDAO().doRetrieveAll());		
+		elenco.addAll(DAOFactory.getAulaLiberaDAO().doRetrieveAll());
+		
 		if(session.getAttribute("logged")==null) {
 			System.out.println("setta attribute");
 			session.setAttribute("logged",false);
 		}
+		
+		
 		for(int g=0;g<5;g++) {
 			for(int o =10;o<20;o++) {
 		for(int i =0;i<elenco.size();i++) {
@@ -82,8 +84,8 @@ public class ServletvisualizzaAuleLibere extends HttpServlet {
 
 		System.out.println(session.getAttribute("lista"));
 		System.out.println(session.getAttribute("logged"));
-		ServletContext context=getServletContext(); 
-		request.getSession().getServletContext().getRequestDispatcher("/view/aulelibera/aulelibere.jsp").forward(request, response);
+		
+		request.getRequestDispatcher("/view/auleliber/aulelibere.jsp").forward(request, response);
 	
 	
 	}

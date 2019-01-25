@@ -26,7 +26,7 @@
 	type="text/css">
 <link rel="stylesheet" href="\view\headerfooter\Header.css"
 	type="text/css">
-<link rel="stylesheet" href="view\aulelibere\aulelibere.css"
+<link rel="stylesheet" href="view\auleliber\aulelibere.css"
 	type="text/css">
 </head>
 <!-- INCLUDE PAGE -->
@@ -58,7 +58,7 @@
 			<tbody>
 			<%for(int cont=0;cont<10;cont++){ %>
 				<tr>
-					<td><%=intervallo%>/<%=intervallo + 1%></td>
+					<td><%=intervallo%>:00-<%=intervallo + 1%>:00</td>
 					<%for(int t =0;t<5;t++){%>
 					<td>
 						<%
