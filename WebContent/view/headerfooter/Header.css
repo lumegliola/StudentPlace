@@ -66,3 +66,26 @@
 .navbar-brand {
 	color: white;
 }
+
+
+ .result {
+	width: 65%;
+	border: 1px solid #ff55722;
+	position: absolute;
+	padding-right: 20em;
+	background-color: white;
+	z-index: 3;
+}
+
+#livesearch{
+	margin-top:3%;
+	margin-left: 35%;
+	margin-right: 3%;
+}
+
+.home{
+	z-index: 0;
+}
+.result a{
+	color: red;
+}

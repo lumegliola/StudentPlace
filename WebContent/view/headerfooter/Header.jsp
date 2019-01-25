@@ -94,7 +94,7 @@
 							<span class="glyphicon glyphicon-home"></span>
 					</a></li>
 					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						class="nav-link dropdown-toggle" href="ShowHome" id="navbarDropdown"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false"> Gruppi di Studio</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
