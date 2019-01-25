@@ -197,6 +197,55 @@ public class GdSDAOimpl implements GdSDAO {
 	}
 
 	@Override
+	public List<GruppoDiStudio> doRetrieveByCreator(String matricola) {
+		Connection connection = null;
+		PreparedStatement ps = null;
+		List<GruppoDiStudio> res = new ArrayList<>();
+
+		try {
+
+
+			connection = DriverManagerConnectionPool.getConnection();
+			//dichiara lo statement
+			ps = connection.prepareStatement("select * from gds where creatore = ?;");
+			ps.setString(1, matricola);
+
+			//esegue lo statement
+			ResultSet result = ps.executeQuery();
+
+			//ricava i risultati
+			while(result.next()) {
+				GruppoDiStudio b = new GruppoDiStudio();
+				Utente a = DAOFactory.getUserDAO().doRetrieveByKey(matricola);
+				b.setNomeGruppo(result.getString("nome"));
+				b.setCreatore(a);
+				b.setMateria(result.getString("materia"));
+				DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(result.getTimestamp("oraInizio"), result.getTimestamp("oraFine"));
+				b.setOrario(result.getTimestamp("oraInizio"), result.getTimestamp("oraFine"));
+				b.setId(result.getInt("id"));
+				b.setGiorno();
+				b.setAula(DAOFactory.getAulaDAO().doRetrieveByKey(result.getString("aula")));
+				res.add(b);
+			}
+			return res;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(connection != null) {
+				try {
+					ps.close();
+					DriverManagerConnectionPool.releaseConnection(connection);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return null;
+	}
+
+	
+	@Override
 	public List<GruppoDiStudio> doRetrieveBySubject(String materia) {
 
 		Connection connection = null;

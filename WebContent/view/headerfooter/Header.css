@@ -67,8 +67,7 @@
 	color: white;
 }
 
-
- .result {
+.result {
 	width: 65%;
 	border: 1px solid #ff55722;
 	position: absolute;
@@ -77,15 +76,18 @@
 	z-index: 3;
 }
 
-#livesearch{
-	margin-top:3%;
+#livesearch {
+	margin-top: 3%;
 	margin-left: 35%;
-	margin-right: 3%;
+	margin-right: 4%;
+	min-height: 0PX;
+	position: absolute;
 }
 
-.home{
+.home {
 	z-index: 0;
 }
-.result a{
+
+.result a {
 	color: red;
 }

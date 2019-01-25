@@ -26,4 +26,6 @@ public interface GdSDAO {
 	public List<GruppoDiStudio> doRetrieveAll();//metodo di ricerca per ricavare tutti gli oggetti gds 
 
 	public List<GruppoDiStudio> doSearch(String subString);//metodo di ricerca(anche substring)
+	
+	public List<GruppoDiStudio> doRetrieveByCreator(String matricola);//metodo di ricerca per creatore
 }

@@ -21,6 +21,7 @@
 %>
 </head>
 <body>
+<%@ include file="../headerfooter/Header.jsp"%>
 <table>
   <tr>
     <th><h2><%=g.getNomeGruppo()%></h2></th>
@@ -50,6 +51,6 @@
 
 
 
-
+<%@ include file="../headerfooter/Footer.html"%>
 </body>
 </html>
