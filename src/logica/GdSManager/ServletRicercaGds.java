@@ -44,21 +44,21 @@ public class ServletRicercaGds extends HttpServlet {
 
 			for (GruppoDiStudio p : list) {
 				out.print("	<div class=\"row gds_row\">\r\n" + 
-						"			<div class=\"col-sm-2\">\r\n" + 
+						"			<div class=\"col-lg-2\">\r\n" + 
 						"				<span>"+p.getId()+"\r\n" + 
 						"			</div>\r\n" + 
 						"\r\n" + 
-						"			<div class=\"col-sm-4\">\r\n" + 
+						"			<div class=\"col-lg-4\">\r\n" + 
 						"				<a class=\"async_orario\" href=\"view/GdS/GdSinfo.jsp?gds="+p.getId()+"\">"+p.getNomeGruppo()+"</a><br />\r\n" + 
 						"				<span>inizio:"+p.getOrario().getInizio().toGMTString()+"</span>\r\n" + 
 						"			</div>\r\n" + 
 						"\r\n" + 
-						"			<div class=\"col-sm-4\">\r\n" + 
+						"			<div class=\"col-lg-4\">\r\n" + 
 						"			<span></span>\r\n"+
 						"				<span>Materia: \t"+p.getMateria()+"</span>\r\n" + 
 						"			</div>\r\n" + 
 						"\r\n" + 
-						"			<div class=\"col-sm-2\">\r\n" + 
+						"			<div class=\"col-lg-2\">\r\n" + 
 						"				<span class=\"async_aula\">"+p.getAula().getNomeAula()+"</span>\r\n" + 
 						"			</div>\r\n" + 
 						"		</div>");

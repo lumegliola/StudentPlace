@@ -48,7 +48,7 @@
 					<td></td>
 				</tr>
 				<tr>
-					<td><h3></td>
+					<td><h3> </h3> </td>
 					<td></td>
 				</tr>
 			</table>

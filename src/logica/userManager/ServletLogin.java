@@ -66,7 +66,7 @@ public class ServletLogin extends HttpServlet {
 			} 
 
 			//Reindiriziamo alla home.
-			request.getRequestDispatcher("/view/homepage/Home.jsp").forward(request, response);
+			getServletContext().getRequestDispatcher("/view/homepage/Home.jsp").forward(request, response);
 			
 		}
 
