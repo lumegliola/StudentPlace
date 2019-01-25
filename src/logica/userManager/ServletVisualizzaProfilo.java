@@ -14,7 +14,7 @@ import dao.DAOFactory;
 /**
  * Servlet implementation class SrevletVisualizzaProfilo
  */
-@WebServlet("/SrevletVisualizzaProfilo")
+@WebServlet("/ServletVisualizzaProfilo")
 public class ServletVisualizzaProfilo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -43,6 +43,9 @@ public class ServletVisualizzaProfilo extends HttpServlet {
         if(ssn!=null) {
         	
         Utente	utente=(Utente) ssn.getAttribute("utente");
+        request.setAttribute("utente", utente);
+        request.getRequestDispatcher("/view/utente/Profilo.jsp").forward(request, response);
+        
           	
         }else {
         	

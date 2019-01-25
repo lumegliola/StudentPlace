@@ -27,9 +27,10 @@ public class ShowHome extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher d = request.getRequestDispatcher("/view/homepage/Home.jsp");
+		
 		HttpSession session=request.getSession();
 		session.setAttribute("logged", false);
+		RequestDispatcher d = request.getRequestDispatcher("/view/homepage/Home.jsp");
 		d.forward(request, response);
 	}
 
