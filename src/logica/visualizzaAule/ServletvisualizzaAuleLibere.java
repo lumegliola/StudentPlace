@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -81,8 +82,8 @@ public class ServletvisualizzaAuleLibere extends HttpServlet {
 
 		System.out.println(session.getAttribute("lista"));
 		System.out.println(session.getAttribute("logged"));
-		
-		getServletContext().getRequestDispatcher("/view/aulelibera/aulelibere.jsp").forward(request, response);
+		ServletContext context=getServletContext(); 
+		request.getSession().getServletContext().getRequestDispatcher("/view/aulelibera/aulelibere.jsp").forward(request, response);
 	
 	
 	}

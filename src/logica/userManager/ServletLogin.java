@@ -60,13 +60,10 @@ public class ServletLogin extends HttpServlet {
 			//System.out.println("ok");
 			//Setto i cookie per i prossimi accessi al sito.
 			System.out.println("Tutt appost");
-			if(session != null){ //L'utente che si è appena loggato ha già una sessione.
-				session.setAttribute("utente", user);
-				session.setAttribute("logged", true);	
-			} 
-
+			session.setAttribute("utente", user);
+		     session.setAttribute("logged", true);	
 			//Reindiriziamo alla home.
-			request.getRequestDispatcher("/view/homepage/Home.jsp").forward(request, response);
+			getServletContext().getRequestDispatcher("/view/homepage/Home.jsp").forward(request, response);
 			
 		}
 

@@ -28,7 +28,7 @@ class ServletvisualizzaAuleLibereTest extends TestCase {
         MockitoAnnotations.initMocks(this);
 
 	}
-	 @Mock
+	    @Mock
 	 	ServletContext context= mock(ServletContext.class);
 	 	
 	 	@Mock
@@ -45,10 +45,12 @@ class ServletvisualizzaAuleLibereTest extends TestCase {
 
 	@Test
 	void testDoPostHttpServletRequestHttpServletResponse() throws ServletException, IOException {
-	    when(request.getRequestDispatcher("aulelibere/aulelibere.jsp")).thenReturn(dispatcher);
+	    ServletvisualizzaAuleLibere serv=new ServletvisualizzaAuleLibere();
 	    when(request.getSession()).thenReturn(session);
-	    
-		new ServletvisualizzaAuleLibere().doPost(request, response);
+		when(request.getSession().getServletContext().getRequestDispatcher("aulelibere/aulelibere.jsp")).thenReturn(dispatcher);
+
+		serv.doPost(request, response);
+
 		verify(dispatcher).forward(request, response);
 
 		

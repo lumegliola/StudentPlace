@@ -32,7 +32,7 @@ import junit.framework.TestCase;
 
 public class TestServletRegistrazione extends TestCase {
 
-	 @Mock
+		@Mock
 	 	ServletContext context= mock(ServletContext.class);
 	 	
 	 	@Mock
