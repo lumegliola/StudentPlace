@@ -131,7 +131,7 @@
 				
 				%>
 				
-					<li class="nav-item"><a href="#"><%=utente.getNome() %></a></li>
+					<li class="nav-item"><a href="ServletVisualizzaProfilo"><%=utente.getNome() %></a></li>
 					<li class="nav-item"><a href="logout"><span
 							class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 							<%}

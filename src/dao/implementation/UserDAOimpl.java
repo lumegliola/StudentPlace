@@ -242,6 +242,7 @@ public class UserDAOimpl implements UserDAO {
 			if(result.next()) {
 				b.setNome(result.getString("nome"));
 				b.setCognome(result.getString("cognome"));
+				b.setMatricola(result.getString("matricola"));
 				b.setMail(result.getString("email"));
 				b.setPassword(result.getString("password"));
 				b.setAdmin(result.getBoolean("amministratore"));

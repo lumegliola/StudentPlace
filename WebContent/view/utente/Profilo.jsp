@@ -1,3 +1,4 @@
+<%@page import="dao.DAOFactory"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -22,33 +23,33 @@
 	<%@ include file="../headerfooter/Header.jsp"%>
 	<%
 		Utente u = (Utente) request.getAttribute("utente");
+		Utente completo = DAOFactory.getUserDAO().doRetrieveByMailAndPass(u.getMail(), u.getPassword());
 	%>
 	<div style="min-height: 30em; margin-top: 15px;" class="home">
 		<div class="col-lg-1"></div>
 		<div class="col-lg-6"></div>
-		<-----------------------info profilo------------------------>
-		<div class="col-lg-4">
+		<!-----------------------info profilo------------------------>
+		<div class="col-lg-4" style=" border-left: 1px solid red;">
 			<table>
 				<tr>
 					<th> <img alt="avatar" src="view/images/avatar.jpg"></th>
 				</tr>
 				<tr>
-					<td><h4><%=u.getNome()%> <%=u.getCognome()%></h4></td>
+					<td><h4><%=completo.getNome()%> <%=completo.getCognome()%></h4></td>
 				</tr>
 				<tr>
-					<td><%=u.getMatricola()%></td>
+					<td><%=completo.getMatricola()%></td>
 				</tr>
 				<tr>
-					<td><%=g.getOrario().getGiorno()%></td>
+					<td><%=completo.getMail()%></td>
 				</tr>
 				<tr>
-					<td><h3>Data:</td>
-					<td><%=g.getOrario().getInizio().getDay()%>/<%=g.getOrario().getInizio().getMonth()%>/<%=g.getOrario().getInizio().getYear() + 1900%></td>
+					<td><%=completo.getPassword()%></td>
+					<td></td>
 				</tr>
 				<tr>
-					<td><h3>Orario:</td>
-					<td>dalle: <%=g.getOrario().getInizio().getHours()%>:<%=g.getOrario().getInizio().getMinutes()%>
-						alle:<%=g.getOrario().getFine().getHours()%>:<%=g.getOrario().getFine().getMinutes()%></td>
+					<td><h3></td>
+					<td></td>
 				</tr>
 			</table>
 		</div>
