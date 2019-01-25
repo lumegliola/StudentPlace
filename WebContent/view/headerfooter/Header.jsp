@@ -124,7 +124,14 @@
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 				
-				<%boolean logged=(boolean)session.getAttribute("logged");
+				<%
+				boolean logged;
+				if(session.getAttribute("logged")==null){
+					logged=false;
+				}else{
+				
+				logged=(boolean)session.getAttribute("logged");
+				}
 				if(logged){
 				Utente utente=(Utente)session.getAttribute("utente");
 				
