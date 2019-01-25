@@ -132,9 +132,12 @@
 						<td>Aula: <%=p.getAula().getNomeAula()%>, Edificio: <%=p.getAula().getEdificio()%></td>
 						<td><%=p.getOrario().getInizio().toString().substring(0, 10)%>
 							dalle: <%=p.getOrario().getInizio().toString().substring(10, 16)%></td>
-						<td><form action="">
-								<input name="usr_mat" type="hidden"
-									value="<%=u.getMatricola()%>"> <input name="Group_id"
+						<td><form action="IscrizioneGdS">
+								<input name="operazione" type="hidden"
+									value="cancella"> 
+								<input name="matricola" type="hidden"
+									value="<%=u.getMatricola()%>"> 
+									<input name="idGruppo"
 									type="hidden" value="<%=p.getId()%>">
 								<button type="submit" name="cancella_iscrizione"
 									style="background-color: red; color: white;">Cancella

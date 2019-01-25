@@ -16,24 +16,33 @@ import bean.*;
 @WebServlet("/IscrizioneGdS")
 public class ServletIscrizioneGdS extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-  
-    public ServletIscrizioneGdS() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-     doPost(request, response);
+
+	public ServletIscrizioneGdS() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doPost(request, response);
+	}
+
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-			System.out.println("Funziona");
-			HttpSession session=request.getSession(false);
+
+		HttpSession session=request.getSession(false);
+		String op = request.getParameter("operazione");
+		if(op.equals("cancella")) {
+			int idGruppo =Integer.parseInt(request.getParameter("idGruppo"));
+			String matricola = request.getParameter("matricola");
+			DAOFactory.getIscrizioneDAO().doDeleteByUserAndGroup(matricola, idGruppo);
+			request.setAttribute("redirect", "/view/utente/Profilo.jsp");
+			request.getRequestDispatcher("/view/OpEffettuata.jsp").forward(request, response);
+			
+		}else {
 			int idGds=Integer.parseInt(request.getParameter("idGds"));
 			String matricola=(String) request.getParameter("matricola");
 			if(session!=null) {
@@ -46,21 +55,22 @@ public class ServletIscrizioneGdS extends HttpServlet {
 					return;	
 				}
 				Iscrizione iscrizione=new Iscrizione(user,gds);
-				
+
 				DAOFactory.getIscrizioneDAO().doSave(iscrizione);
-				
+
 				session.setAttribute("esito", "ok");
 				request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
 				return;
-				
+
 			}else {
 				System.out.println("Inizio Else");
 				//messagggio: utente non loggato
-				session=request.getSession(true);
+
 				session.setAttribute("esito", "errore");
 				request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
 				return;
 			}
+		}
 
 	}
 
