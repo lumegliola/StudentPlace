@@ -2,6 +2,9 @@ package logica.GdSManager;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,7 +27,6 @@ public class ServletCreaGds extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
-	GruppoDiStudio nuovo = new GruppoDiStudio();
 	
 	
     public ServletCreaGds() {
@@ -40,43 +42,50 @@ public class ServletCreaGds extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession(true);						//
+		HttpSession session = request.getSession();						//
 		if(session.getAttribute("logged").equals(true) && session.getAttribute("logged") != null) {
 			
 			String nomeGruppo = request.getParameter("nomeGruppo");
 			String materia = request.getParameter("materia");
+			String par_aula= request.getParameter("aula");
+			String data_inizio=request.getParameter("inizio");
+		    String data_fine=request.getParameter("fine");
+		
 				if(DAOFactory.getGdSDAO().doRetrieveByNameAndSubject(nomeGruppo, materia) == null){
+					GruppoDiStudio nuovo = new GruppoDiStudio();
+					Utente creatore =(Utente) session.getAttribute("utente");
 			
-					Utente creatore = DAOFactory.getUserDAO().doRetrieveByKey("0512102865");
-			
-					@SuppressWarnings("deprecation")
-					Timestamp inizio = new Timestamp(118, 11, 21, 11, 0, 0, 0);
-					@SuppressWarnings("deprecation")
-					Timestamp fine = new Timestamp(118, 11, 21, 12, 0, 0, 0);
-					Aula aula = DAOFactory.getAulaDAO().doRetrieveByKey((String)request.getParameter("aula"));
-			
-			
-					DAOFactory.getGdSDAO().doRetrieveByNameAndSubject(request.getParameter("nomegruppo"), request.getParameter(""));
-			
+					SimpleDateFormat sdf;
+				     sdf= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				     Date date2=new Date(),date1=new Date();	 
+				     try {
+					 date1=sdf.parse(data_inizio);
+				     date2=sdf.parse(data_fine);	
+					} catch (ParseException e) {
+						e.printStackTrace();
+					}	 		    
+					
+					
+					
+					Aula aula = DAOFactory.getAulaDAO().doRetrieveByKey(par_aula);
 					nuovo.setNomeGruppo(nomeGruppo);
 					nuovo.setCreatore(creatore);
 					nuovo.setMateria(materia);
-					//prendi ora inizio
-					nuovo.setOrario(inizio, fine);
+					nuovo.setOrario(new Timestamp(date1.getTime()), new Timestamp(date2.getTime()));
 					nuovo.setGiorno();
-					//System.out.println("giorno: "+nuovo.getGiorno());
 					nuovo.setAula(aula);
 					
-					//DAOFactory.getGdSDAO().doSave(nuovo);
+					DAOFactory.getGdSDAO().doSave(nuovo);
 					
 			
 					session.setAttribute("esito", true);
 				}
 				else {
 					session.setAttribute("esito", "errore");
+					request.getRequestDispatcher("/view/errore/errore.jsp").forward(request, response);
+
 			
 				}
-				request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
 			}
 		else {
 			//messagggio: utente non loggato

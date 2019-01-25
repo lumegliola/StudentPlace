@@ -59,8 +59,8 @@ public class TestServletVisualizzaProfilo extends TestCase{
     when(request.getSession()).thenReturn(session);
     
     when(session.getAttribute("utente")).thenReturn(DAOFactory.getUserDAO().doRetrieveByKey("0512102765"));
+    when(session.getAttribute("logged")).thenReturn(true);
  	
- //	when(request.getRequestDispatcher("/view/utente/Profilo.jsp")).thenReturn(dispatcher);
  	when(request.getRequestDispatcher("/view/utente/Profilo.jsp")).thenReturn(dispatcher);
 
  	new ServletVisualizzaProfilo().doPost(request, response);

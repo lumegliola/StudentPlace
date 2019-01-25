@@ -40,12 +40,14 @@ public class ServletVisualizzaProfilo extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
         HttpSession ssn=request.getSession();
-        if(ssn.getAttribute("logged")!=null && ssn.getAttribute("logged").equals(false)) {	
+        if(ssn.getAttribute("logged")!=null && ssn.getAttribute("logged").equals(true)) {	
         Utente	utente=(Utente) ssn.getAttribute("utente");
         request.setAttribute("utente", utente);
         request.getRequestDispatcher("/view/utente/Profilo.jsp").forward(request, response);
         
           	
+        }else {
+        	 request.getRequestDispatcher("/view/homepage/Home.jsp").forward(request, response);
         }
 	}
 
