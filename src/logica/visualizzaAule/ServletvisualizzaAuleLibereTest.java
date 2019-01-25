@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import junit.framework.TestCase;
@@ -28,11 +29,11 @@ class ServletvisualizzaAuleLibereTest extends TestCase {
         MockitoAnnotations.initMocks(this);
 
 	}
-	    @Mock
-	 	ServletContext context= mock(ServletContext.class);
+	 @Mock
+	 	ServletContext context;
 	 	
 	 	@Mock
-	 	RequestDispatcher dispatcher;
+	 	RequestDispatcher dispatcher= Mockito.mock(RequestDispatcher.class);;
 
 	 	@Mock
 	    HttpServletRequest request;
@@ -42,15 +43,14 @@ class ServletvisualizzaAuleLibereTest extends TestCase {
 	 
 	    @Mock
 	    HttpSession session;
-
+        
 	@Test
 	void testDoPostHttpServletRequestHttpServletResponse() throws ServletException, IOException {
-	    ServletvisualizzaAuleLibere serv=new ServletvisualizzaAuleLibere();
+		  ServletContext context = Mockito.mock(ServletContext.class);
+	    when(request.getRequestDispatcher("/view/auleliber/aulelibere.jsp")).thenReturn(dispatcher);
 	    when(request.getSession()).thenReturn(session);
-		when(request.getSession().getServletContext().getRequestDispatcher("aulelibere/aulelibere.jsp")).thenReturn(dispatcher);
-
-		serv.doPost(request, response);
-
+	    
+		new ServletvisualizzaAuleLibere().doPost(request, response);
 		verify(dispatcher).forward(request, response);
 
 		
