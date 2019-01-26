@@ -12,22 +12,27 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class ShowCreaGruppo
  */
-@WebServlet("/ShowCreaGruppo")
-public class ShowCreaGruppo extends HttpServlet {
+@WebServlet("/CreaModificaGruppo")
+public class ShowFormGruppo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ShowCreaGruppo() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public ShowFormGruppo() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher d = request.getRequestDispatcher("/view/creagruppo/CreaGruppo.jsp");
-		d.forward(request, response);
+		String op = request.getParameter("operazione");
+		if(op.equals("crea")) {
+			RequestDispatcher d = request.getRequestDispatcher("/view/GdS/CreaGruppo.jsp");
+			d.forward(request, response);
+		}else if(op.equals("modifica")) {
+			
+		}
 	}
 
 

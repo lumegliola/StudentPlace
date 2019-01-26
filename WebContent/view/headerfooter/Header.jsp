@@ -95,13 +95,15 @@
 					</a></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="ShowHome" id="navbarDropdown"
-						role="button" data-toggle="dropdown" aria-haspopup="true"
+						role="button" data-toggle="dropdown" href="#" aria-haspopup="true"
 						aria-expanded="false"> Gruppi di Studio</a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="#">Crea</a>
+						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+							
+							<a class="dropdown-item" href="CreaModificaGruppo?operazione=crea">Crea</a>
 							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="#">Modifica</a>
-						</div></li>
+							<a class="dropdown-item" href="CreaModificaGruppo?operazione=crea">Modifica</a>
+							</ul>
+						</li>
 					<li class="nav-item"><a class="nav-link" href="visualizzaAuleLibere">Cerca
 							aule libere</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Contatti</a></li>
