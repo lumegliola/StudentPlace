@@ -125,11 +125,10 @@
 				<ul class="nav navbar-nav navbar-right">
 				
 				<%
-				boolean logged;
+				boolean logged=false;
 				if(session.getAttribute("logged")==null){
 					logged=false;
 				}else{
-				
 				logged=(boolean)session.getAttribute("logged");
 				}
 				if(logged){

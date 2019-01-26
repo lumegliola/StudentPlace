@@ -62,7 +62,12 @@ public class ServletLogin extends HttpServlet {
 			System.out.println("Tutt appost");
 			session.setAttribute("utente", user);
 		    session.setAttribute("logged", true);	
-			//Reindiriziamo alla home.
+		    Cookie mail=new Cookie("utente", user.getMail());
+            Cookie logged=new Cookie("logged","true");
+            response.addCookie(mail);
+            response.addCookie(logged);
+           
+           //Reindiriziamo alla home.
 			request.getRequestDispatcher("/view/homepage/Home.jsp").forward(request, response);
 			
 		}
