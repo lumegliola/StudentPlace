@@ -60,9 +60,10 @@ public class ServletModificaGdS extends HttpServlet {
 						 String matricolaCretore=gds.getCreatore().getMatricola();
 	                     Utente utente=(Utente)session.getAttribute("utente");
 						if(utente.getMatricola().equals(matricolaCretore)) { // se la matricola di chi sta modificando è uguale a creatore elimina
-							System.out.println("Gruppo di Studio viene modificato dal creatore!");
+						
 							String data_inizio=request.getParameter("inizio");
 							String data_fine=request.getParameter("fine");
+							String nuova_aula = request.getParameter("aula");
 							SimpleDateFormat sdf;
 						     sdf= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 						     Date date2=new Date(),date1=new Date();	 
@@ -73,7 +74,7 @@ public class ServletModificaGdS extends HttpServlet {
 								e.printStackTrace();
 							}	 		    
 							
-                            DAOFactory.getGdSDAO().doSaveOrUpdate(gds, "F8", new Timestamp(date1.getTime()),new Timestamp (date2.getTime()));
+                            DAOFactory.getGdSDAO().doSaveOrUpdate(gds, nuova_aula, new Timestamp(date1.getTime()),new Timestamp (date2.getTime()));
 						    request.getRequestDispatcher("/view/Opeffettuata.jsp").forward(request, response);
 						     return;
 						}else {//altrimento no

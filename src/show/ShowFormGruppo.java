@@ -31,7 +31,8 @@ public class ShowFormGruppo extends HttpServlet {
 			RequestDispatcher d = request.getRequestDispatcher("/view/GdS/CreaGruppo.jsp");
 			d.forward(request, response);
 		}else if(op.equals("modifica")) {
-			
+			RequestDispatcher d = request.getRequestDispatcher("/view/GdS/ModificaGruppo.jsp");
+			d.forward(request, response);
 		}
 	}
 
