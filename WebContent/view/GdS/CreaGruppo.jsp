@@ -49,16 +49,16 @@
 					</tr>
 					<tr>
 						<td>Data:</td>
-						<td><input type="date" id="data"></td>
+						<td><input type="date" name="data"></td>
 					</tr>
 					<tr>
 						<td>Orario inizio:</td>
-						<td><input id="inizio" type="time" min="9:00" max="18:00"
+						<td><input name="inizio" type="time" min="9:00" max="18:00"
 							required="required" step="1800"></td>
 					</tr>
 					<tr>
 						<td>Orario fine:</td>
-						<td><input  id="fine"type="time" min="9:00" max="18:00"
+						<td><input  name="fine"type="time" min="9:00" max="18:00"
 							required="required" step="1800"></td>
 					</tr>
 					
