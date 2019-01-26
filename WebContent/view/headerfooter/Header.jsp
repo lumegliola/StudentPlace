@@ -125,17 +125,17 @@
 						
 					</form></li>
 
-					<% if(session != null && session.getAttribute("logged")!=null){
-						boolean admin = false;
+					<% //if(session != null && session.getAttribute("logged")!=null){
+					//	boolean admin = false;
 						
-						admin = (boolean) session.getAttribute("admin");
+						//admin = (boolean) session.getAttribute("admin");
 					
-						if(admin==true){ %>
+						//if(admin==true){ %>
 
-					<li class="nav-item"><a href="#">Gestione orari</a></li>
+					<!-- ---- --><li class="nav-item"><a href="#">Gestione orari</a></li>
 
-					<%}
-						} %>
+					<%//}
+					//	} %>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 
