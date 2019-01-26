@@ -43,42 +43,40 @@ public class ServletEliminaGdS extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session = request.getSession(false);
+		HttpSession session = request.getSession();
 		//Controllo esistenza sessione 
-		if(session != null && session.getAttribute("logged") != null) {//Se esiste 
+		if(session.getAttribute("logged") != null && session.getAttribute("logged").equals(true)) {//Se esiste 
 			System.out.println("Inzio if");
 					String nomeGruppo = (String) request.getParameter("nomeGruppo");
-					String materia = (String) request.getParameter("materia");
-								        
+					String materia = (String) request.getParameter("materia");			        
 					GruppoDiStudio gds=DAOFactory.getGdSDAO().doRetrieveByNameAndSubject(nomeGruppo, materia);
 					if(gds==null) {//inizo if verifica :se l'oggetto gds non è null allora il gruppo di studio non esiste 
 						System.out.println("Gruppo di Studio non esiste!");
 						session.setAttribute("esito", "errore");
-						request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
+						request.getRequestDispatcher("/view/errore/Errore.jsp").forward(request, response);
 						return;
 					}
+					
 					 String matricolaCreatore=gds.getCreatore().getMatricola();
-                     String matricola=(String)session.getAttribute("matricola");
+                     Utente utente=(Utente)session.getAttribute("utente");
 
-					if(matricola.equals(matricolaCreatore)) { // se la matricola di chi sta eliminando è uguale a creatore elimina
+					if(utente.getMatricola().equals(matricolaCreatore)) { // se la matricola di chi sta eliminando è uguale a creatore elimina
 						System.out.println("Gruppo di Studio viene eliminato dal creatore!");
-						DAOFactory.getIscrizioneDAO().doDeleteByGroup(gds.getId());
-						DAOFactory.getGdSDAO().doDeleteByNameAndSubjet(gds.getNomeGruppo(),gds.getMateria());
-						session.setAttribute("esito","ok");
-					    request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
+						boolean deleteIscr=DAOFactory.getIscrizioneDAO().doDeleteByGroup(gds.getId());
+						boolean deleteGds=DAOFactory.getGdSDAO().doDeleteByNameAndSubjet(gds.getNomeGruppo(),gds.getMateria());
+						if(deleteIscr==false && deleteGds==true) {
+							System.out.println("Eliminazione ok");	
+						}
+						request.getRequestDispatcher("/view/Opeffettuata.jsp").forward(request, response);
 					
 					}else {//altrimento no
-						session.setAttribute("esito", "errore");
-						request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);		
+						request.getRequestDispatcher("/view/errore/Errore.jsp").forward(request, response);
 					}
 					
 			}
 		else {
-			//messagggio: utente non loggato
-			session=request.getSession(true);
-			session.setAttribute("esito", "errore");
-			request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
-		}
+			request.getRequestDispatcher("/view/errore/Errore.jsp").forward(request, response);
+	}
 	}
 
 }

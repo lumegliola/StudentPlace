@@ -1,3 +1,4 @@
+
 package logica.orarioManager;
 
 import static org.mockito.Mockito.mock;
@@ -81,6 +82,7 @@ public class TestServletInserisciOrario extends TestCase{
 	public void testDoPostHttpServletRequestHttpServletResponse() throws ServletException, IOException {
 		when(request.getSession()).thenReturn(session);
 		when(session.getAttribute("admin")).thenReturn(true);
+		when(session.getAttribute("logged")).thenReturn(true);
 		when(request.getParameter("inizio")).thenReturn("2018-11-22 90:00:00.000");
 		when(request.getParameter("fine")).thenReturn("2018-11-22 11:00:00.000");
 		when(request.getRequestDispatcher("ProvaOutput.jsp")).thenReturn(dispatcher);

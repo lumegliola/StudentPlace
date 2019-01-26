@@ -23,6 +23,8 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import dao.DAOFactory;
+
 public class TestServletCreaGds {
 	 	
 	    @Mock
@@ -52,9 +54,18 @@ public class TestServletCreaGds {
     
 	when(request.getParameter("materia")).thenReturn("Ingegneria_del_software");
   
-	when(request.getSession(false)).thenReturn(session);
-    
-    when(request.getRequestDispatcher("ProvaOutput.jsp")).thenReturn(dispatcher);
+	when(request.getSession()).thenReturn(session);
+	when(session.getAttribute("utente")).thenReturn(DAOFactory.getUserDAO().doRetrieveByMail("b.ello@studenti.unisa.it"));
+
+	when(session.getAttribute("logged")).thenReturn(true);
+	when(request.getParameter("inizio")).thenReturn("2018-11-21 11:00:00.000");
+	
+	when(request.getParameter("fine")).thenReturn("2018-11-21 12:00:00.000");
+
+	when(request.getParameter("aula")).thenReturn("P3");
+
+	
+    when(request.getRequestDispatcher("/view/OpEffettuata.jsp")).thenReturn(dispatcher);
 
 	new ServletCreaGds().doPost(request, response);
 	

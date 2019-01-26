@@ -50,8 +50,7 @@ public class ServletModificaOrario extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		//solo l`amministratore può inserire un orario
-		if(session != null ) {
-			if(  ((boolean)session.getAttribute("admin")==true)){
+		if(session.getAttribute("logged").equals(true) && session.getAttribute("admin").equals(true)){
 			Orario modOr= DAOFactory.getOrarioDAO().doRetrieveByKey(Integer.parseInt(request.getParameter("id")));
 			Orario or = new Orario();
 			SimpleDateFormat sdf;
@@ -70,11 +69,10 @@ public class ServletModificaOrario extends HttpServlet {
 		    DAOFactory.getOrarioDAO().doSaveOrUpdate(modOr, or.getInizio(),or.getFine());
 			request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
 			}else {
-			System.out.println("Non Amministratore");
-			session.setAttribute("esito", "errore");
+			
 			request.getRequestDispatcher("ProvaOutput.jsp");
 			}	
 		}
-	}
+	
 
 }
