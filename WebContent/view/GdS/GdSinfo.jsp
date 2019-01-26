@@ -19,6 +19,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <%
 	GruppoDiStudio g = (GruppoDiStudio) request.getAttribute("gds");
+	Utente u = (Utente) session.getAttribute("utente");
 	
 %>
 </head>
@@ -48,6 +49,17 @@
   <tr>
   		<td><h3>Orario:</td>
   		<td>dalle: <%=g.getOrario().getInizio().getHours()%>:<%=g.getOrario().getInizio().getMinutes()%> alle:<%=g.getOrario().getFine().getHours()%>:<%=g.getOrario().getFine().getMinutes()%></td>
+  </tr>
+  <tr>
+  	<td>
+  		<form action="IscrizioneGdS" method="post">
+  		<input type="hidden" name="operazione" value="iscrivi">
+  		<input type="hidden" name="idGds" value="<%=g.getId()%>">
+  		<input type="hidden" name="matricola" value=<%=u.getMatricola()%>>
+  		<button type="submit">Iscriviti</button>
+  		
+  		</form>
+  	</td>
   </tr>
 </table>
 

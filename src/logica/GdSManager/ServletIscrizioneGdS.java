@@ -42,7 +42,7 @@ public class ServletIscrizioneGdS extends HttpServlet {
 			request.setAttribute("redirect", "/view/utente/Profilo.jsp");
 			request.getRequestDispatcher("/view/OpEffettuata.jsp").forward(request, response);
 			
-		}else {
+		}else if(op.equals("iscrivi")) {
 			int idGds=Integer.parseInt(request.getParameter("idGds"));
 			String matricola=(String) request.getParameter("matricola");
 			if(session!=null) {
@@ -59,7 +59,8 @@ public class ServletIscrizioneGdS extends HttpServlet {
 				DAOFactory.getIscrizioneDAO().doSave(iscrizione);
 
 				session.setAttribute("esito", "ok");
-				request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
+				request.setAttribute("redirect", "/view/utente/Profilo.jsp");
+				request.getRequestDispatcher("view/OpEffettuata.jsp").forward(request, response);
 				return;
 
 			}else {

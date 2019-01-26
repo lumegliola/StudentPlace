@@ -7,11 +7,14 @@
 <% String url = request.getParameter("redirect"); %>
 <script type="text/javascript">
 function byebye(){
-	   var newWin = window.open(<%=url%>);
+	
+	   window.location.replace("ServletVisualizzaProfilo");
+
 	}
 </script>
 </head>
-<body onload="byebye()">
+<body onload="setTimeout(byebye, 3000)">
 	<h1>Operazione effettuata!</h1>
+	tra un momento sarai reindirizzato al profilo
 </body>
 </html>

@@ -125,7 +125,7 @@
 								GruppoDiStudio p = iscrizioni.get(i);
 					%>
 
-				<div class="row">
+			
 
 					<tr>
 						<td><%=p.getNomeGruppo()%></td>
@@ -145,14 +145,14 @@
 									iscrizione</button>
 							</form></td>
 					</tr>
-</div>
+
 					<%
 							}
 						%>
 				
 			</table>
 			<div class="col-lg-2"></div>
-		</div>
+		
 		<%
 				} catch (IndexOutOfBoundsException e) {
 
@@ -162,7 +162,7 @@
 				<h4>Non sei iscritto a nessun gruppo</h4>
 			</div>
 			<% }%>
-			
+	</div>		
 
 		<!-----------------------info profilo------------------------>
 

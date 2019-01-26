@@ -31,7 +31,7 @@ public class ShowGdS extends HttpServlet {
 
 		try {
 			//proviamo a convertire l'id del prodotto da stringa ad intero.
-			int id = Integer.parseInt(request.getParameter("id_gruppo"));
+			int id = Integer.parseInt(request.getParameter("idGruppo"));
 
 			//Cerchiamo il prodotto richiesto.
 			GruppoDiStudio b = dao.DAOFactory.getGdSDAO().doRetrieveById(id);

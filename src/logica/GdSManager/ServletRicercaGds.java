@@ -49,7 +49,7 @@ public class ServletRicercaGds extends HttpServlet {
 						"			</div>\r\n" + 
 						"\r\n" + 
 						"			<div class=\"col-lg-4\">\r\n" + 
-						"				<a class=\"async_orario\" href=\"view/GdS/GdSinfo.jsp?gds="+p.getId()+"\">"+p.getNomeGruppo()+"</a><br />\r\n" + 
+						"				<a class=\"async_orario\" href=\"ShowGdS?idGruppo="+p.getId()+"\">"+p.getNomeGruppo()+"</a><br />\r\n" + 
 						"				<span>inizio:"+p.getOrario().getInizio().toGMTString()+"</span>\r\n" + 
 						"			</div>\r\n" + 
 						"\r\n" + 
