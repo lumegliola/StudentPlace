@@ -1,7 +1,10 @@
 package logica.orarioManager;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -9,6 +12,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.mysql.cj.xdevapi.JsonArray;
+import com.mysql.cj.xdevapi.JsonValue;
 
 import bean.AulaLibera;
 import bean.Orario;
@@ -51,12 +57,18 @@ public class ServletAulaLibera extends HttpServlet {
 		
 	
 		
-		
+		List<AulaLibera> aule = null;
 		if(or!=null) {
-			List<AulaLibera> aule = DAOFactory.getAulaLiberaDAO().doRetrieveByDate(orIn);
+			 aule = DAOFactory.getAulaLiberaDAO().doRetrieveByDate(orIn);
 		}
-		
-		
+		 JsonArray arrayObj=new JsonArray();
+         arrayObj.addAll((Collection<? extends JsonValue>) aule);
+		//response con json
+         	PrintWriter out = response.getWriter();
+	        response.setContentType("application/json");
+	        response.setCharacterEncoding("UTF-8");
+	        out.print(arrayObj);
+	        out.flush();   
 	}
 
 }

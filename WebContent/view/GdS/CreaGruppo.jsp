@@ -73,6 +73,20 @@
 
 
 	</div>
+	<script >
+	
+	 $.post("/ServletAulaLibera",
+			  {
+			    inizio: "",
+			    fine: "",
+			    data:""
+			  },
+			  function(data, status){
+			    alert("Data: " + data + "\nStatus: " + status);
+			  });
+	
+	
+	</script>
 	<%@ include file="../headerfooter/Footer.html"%>
 </body>
 </html>
