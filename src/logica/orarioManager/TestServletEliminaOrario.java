@@ -78,9 +78,11 @@ public class TestServletEliminaOrario extends TestCase{
   
 	when(request.getParameter("idOrario")).thenReturn("6");
 	
-	when(request.getSession(false)).thenReturn(session);
+	when(request.getSession()).thenReturn(session);
     
 	when(session.getAttribute("admin")).thenReturn(true);
+	
+	when(session.getAttribute("logged")).thenReturn(true);
 	
 	when(request.getRequestDispatcher("ProvaOutput.jsp")).thenReturn(dispatcher);
 

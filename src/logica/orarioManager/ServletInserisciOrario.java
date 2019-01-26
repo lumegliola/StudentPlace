@@ -46,7 +46,7 @@ public class ServletInserisciOrario extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		//solo l`amministratore può inserire un orario
-		if(session != null && session.getAttribute("admin").equals(true)){
+		if(session.getAttribute("logged").equals(true)  && session.getAttribute("admin").equals(true)){
 			SimpleDateFormat sdf;
 		     sdf= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		     Date date2=new Date(),date1=new Date();	 

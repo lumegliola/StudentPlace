@@ -2,6 +2,9 @@ package logica.GdSManager;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bean.GruppoDiStudio;
+import bean.Utente;
 import dao.DAOFactory;
 
 /**
@@ -45,29 +49,35 @@ public class ServletModificaGdS extends HttpServlet {
 			HttpSession session = request.getSession();
 			//Controllo esistenza sessione 
 			if(session.getAttribute("logged") != null && (session.getAttribute("logged").equals(true))) {//Se esiste 
-				System.out.println("Inzio if");
 						String nomeGruppo = (String)request.getParameter("nomeGruppo");
 						String materia = (String) request.getParameter("materia");			        
 						GruppoDiStudio gds=DAOFactory.getGdSDAO().doRetrieveByNameAndSubject(nomeGruppo, materia);
 						if(gds==null) {//inizo if verifica :se l'oggetto gds non è null allora il gruppo di studio non esiste 
 							System.out.println("Gruppo di Studio non esiste!");
-							session.setAttribute("esito", "errore");
-							request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
+							request.getRequestDispatcher("/view/errore/Errore.jsp").forward(request, response);
 							return;
 						}
 						 String matricolaCretore=gds.getCreatore().getMatricola();
-	                     String matricola=(String)session.getAttribute("matricola");
-                        System.out.println("matricola"+matricola +" & matricola"+matricolaCretore );
-						if(matricola.equals(matricolaCretore)) { // se la matricola di chi sta modificando è uguale a creatore elimina
+	                     Utente utente=(Utente)session.getAttribute("utente");
+						if(utente.getMatricola().equals(matricolaCretore)) { // se la matricola di chi sta modificando è uguale a creatore elimina
 							System.out.println("Gruppo di Studio viene modificato dal creatore!");
-                            DAOFactory.getGdSDAO().doSaveOrUpdate(gds, "F8", new Timestamp(118,10,23, 15,0,0,0),new Timestamp (118,10,23, 16,0,0,0));
+							String data_inizio=request.getParameter("inizio");
+							String data_fine=request.getParameter("fine");
+							SimpleDateFormat sdf;
+						     sdf= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+						     Date date2=new Date(),date1=new Date();	 
+						     try {
+							 date1=sdf.parse(data_inizio);
+						     date2=sdf.parse(data_fine);	
+							} catch (ParseException e) {
+								e.printStackTrace();
+							}	 		    
 							
-							session.setAttribute("esito","ok");
-						    request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
+                            DAOFactory.getGdSDAO().doSaveOrUpdate(gds, "F8", new Timestamp(date1.getTime()),new Timestamp (date2.getTime()));
+						    request.getRequestDispatcher("/view/Opeffettuata.jsp").forward(request, response);
 						     return;
 						}else {//altrimento no
-							session.setAttribute("esito", "errore");
-							request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
+							request.getRequestDispatcher("/view/errore/Errore.jsp ").forward(request, response);
 							return;
 							
 						}

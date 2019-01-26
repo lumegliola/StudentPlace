@@ -39,16 +39,14 @@ public class ServletEliminaOrario extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		HttpSession session = request.getSession(false);
+		HttpSession session = request.getSession();
 		// solo l'amministratore può cancellare un orario
-		if(session != null && session.getAttribute("admin").equals((true) )) {
+		if(session.getAttribute("logged").equals(true)  && session.getAttribute("admin").equals((true) )) {
 			System.out.println("inizio if");
 			int idOrario = Integer.parseInt(request.getParameter("idOrario"));
 			Orario or = DAOFactory.getOrarioDAO().doRetrieveByKey(idOrario);
 			//orario non trovato
 			if (or == null) {
-				System.out.println("Orario non esistente");
-				session.setAttribute("esito", "errore");
 				request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
 			}
 			else {
@@ -59,8 +57,6 @@ public class ServletEliminaOrario extends HttpServlet {
 				request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
 			}
 		}else {
-			session = request.getSession(true);
-			session.setAttribute("esito", "errore");
 			request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
 		}
 	}

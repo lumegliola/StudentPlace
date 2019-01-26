@@ -4,7 +4,10 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -13,12 +16,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.dbunit.database.DatabaseConnection;
+import org.dbunit.dataset.IDataSet;
+import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
+import org.dbunit.operation.DatabaseOperation;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-public class TestServletModificaGdS {
+import dao.DAOFactory;
+import junit.framework.TestCase;
+
+public class TestServletModificaGdS  extends TestCase{
 	
 	@Mock
  	ServletContext context= mock(ServletContext.class);
@@ -34,11 +45,38 @@ public class TestServletModificaGdS {
  
     @Mock
     HttpSession session;
-    
-    @Before
-    public void setUp() throws Exception {
-        MockitoAnnotations.initMocks(this);        
-   }
+	 
+
+		private IDataSet loadedDataSer;
+
+		private Connection connection;
+
+		private DatabaseConnection dbconnection;
+
+		private IDataSet dataSet;
+	    
+		 
+	    @Before
+	    public void setUp() throws Exception {
+	        MockitoAnnotations.initMocks(this);
+	        Class driverClass = Class.forName("com.mysql.cj.jdbc.Driver");
+	        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentplacedb?serverTimezone = EST5EDT", "root", "root");
+		    dbconnection = new DatabaseConnection(connection);
+		    dataSet = getDataSet(); 
+	   }
+		@Before
+		protected IDataSet getDataSet() throws Exception {
+			// TODO Auto-generated method stub
+	     loadedDataSer =   new FlatXmlDataSetBuilder().build(new FileInputStream("database.xml"));
+	     return loadedDataSer;
+		}
+		
+	    @After
+	    protected void tearDown() throws Exception {
+			// TODO Auto-generated method stub
+	    		 DatabaseOperation.CLEAN_INSERT.execute(dbconnection, getDataSet());
+	        }
+
 
     @Test
 	public void testDoPostHttpServletRequestHttpServletResponse() throws ServletException, IOException {
@@ -51,9 +89,14 @@ public class TestServletModificaGdS {
 	
 	when(session.getAttribute("logged")).thenReturn(true);
     
-	when(session.getAttribute("matricola")).thenReturn("0512102865");
 	
-	when(request.getRequestDispatcher("ProvaOutput.jsp")).thenReturn(dispatcher);
+	when(session.getAttribute("utente")).thenReturn(DAOFactory.getUserDAO().doRetrieveByKey("0512102865"));
+   
+	when(request.getParameter("inizio")).thenReturn("2018-11-21 11:00:00.000");
+	
+	when(request.getParameter("fine")).thenReturn("2018-11-21 12:00:00.000");
+	
+	when(request.getRequestDispatcher("/view/Opeffettuata.jsp")).thenReturn(dispatcher);
 	
 	new ServletModificaGdS().doPost(request, response);
 	

@@ -83,6 +83,8 @@ public class TestServletModificaOrario extends TestCase{
 		when(request.getParameter("id")).thenReturn("4");
 		when(request.getSession()).thenReturn(session);
 		when(session.getAttribute("admin")).thenReturn(true);
+		when(session.getAttribute("logged")).thenReturn(true);
+
 		when(request.getParameter("inizio")).thenReturn("2018-11-21 10:00:00.000");
 		when(request.getParameter("fine")).thenReturn("2018-11-21 12:00:00.000");
 		when(request.getRequestDispatcher("ProvaOutput.jsp")).thenReturn(dispatcher);

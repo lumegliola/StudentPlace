@@ -64,9 +64,6 @@ public class ServletCreaGds extends HttpServlet {
 					} catch (ParseException e) {
 						e.printStackTrace();
 					}	 		    
-					
-					
-					
 					Aula aula = DAOFactory.getAulaDAO().doRetrieveByKey(par_aula);
 					nuovo.setNomeGruppo(nomeGruppo);
 					nuovo.setCreatore(creatore);
@@ -74,11 +71,10 @@ public class ServletCreaGds extends HttpServlet {
 					nuovo.setOrario(new Timestamp(date1.getTime()), new Timestamp(date2.getTime()));
 					nuovo.setGiorno();
 					nuovo.setAula(aula);
-					
 					DAOFactory.getGdSDAO().doSave(nuovo);
-					
-			
 					session.setAttribute("esito", true);
+					request.getRequestDispatcher("/view/OpEffettuata.jsp").forward(request, response);
+
 				}
 				else {
 					session.setAttribute("esito", "errore");
@@ -90,7 +86,7 @@ public class ServletCreaGds extends HttpServlet {
 		else {
 			//messagggio: utente non loggato
 			session.setAttribute("esito", "errore");
-			request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
+			request.getRequestDispatcher("/view/Homepage/home.jsp").forward(request, response);
 		}
 		}
 		
