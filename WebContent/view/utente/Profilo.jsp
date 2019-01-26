@@ -71,11 +71,12 @@
 						<td>Edificio: <%=p.getAula().getEdificio()%>,Aula: <%=p.getAula().getNomeAula()%></td>
 						<td><%=p.getOrario().getInizio().toGMTString().substring(0, 21)%>
 							fino alle: <%=p.getOrario().getFine().toString().substring(11, 19)%></td>
-						<td><form action="">
-								<input name="usr_mat" type="hidden"
-									value="<%=u.getMatricola()%>"> <input name="Group_id"
-									type="hidden" value="<%=p.getId()%>">
-								<button type="submit" name="cancella_iscrizione"
+						<td><form action="EliminaGdS" method="post">
+								<input name="materia" type="hidden"
+									value="<%=p.getMateria()%>"> 
+									<input name="nomeGruppo"
+									type="hidden" value="<%=p.getNomeGruppo()%>">
+								<button type="submit" name="cancella_gruppo"
 									style="background-color: red; color: white;">Elimina</button>
 							</form></td>
 					</tr>

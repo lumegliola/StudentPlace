@@ -7,6 +7,8 @@
 <head>
 <meta charset="ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet"
@@ -15,14 +17,15 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<% int id =Integer.parseInt(request.getParameter("gds"));
-	GruppoDiStudio g = DAOFactory.getGdSDAO().doRetrieveById(id);
+<%
+	GruppoDiStudio g = (GruppoDiStudio) request.getAttribute("gds");
 	
 %>
 </head>
 <body>
 <%@ include file="../headerfooter/Header.jsp"%>
-<table>
+
+<table style="margin-left: 37%; margin-right: 37%; margin-top: 5%; margin-bottom: 5%">
   <tr>
     <th><h2><%=g.getNomeGruppo()%></h2></th>
   </tr>
@@ -47,6 +50,7 @@
   		<td>dalle: <%=g.getOrario().getInizio().getHours()%>:<%=g.getOrario().getInizio().getMinutes()%> alle:<%=g.getOrario().getFine().getHours()%>:<%=g.getOrario().getFine().getMinutes()%></td>
   </tr>
 </table>
+
 
 
 

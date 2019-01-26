@@ -39,8 +39,8 @@ public class ShowGdS extends HttpServlet {
 			if (b != null) { 
 				//Il prodotto è stato trovato, lo aggiungiamo alla request e deleghiamo la visualizzazione
 				//alla jsp nella view.
-				request.setAttribute("gruppo", b);
-				RequestDispatcher d = request.getRequestDispatcher("/view/GdS/Gruppi.jsp");
+				request.setAttribute("gds", b);
+				RequestDispatcher d = request.getRequestDispatcher("/view/GdS/GdSinfo.jsp");
 				d.forward(request, response);
 			} else {
 				//l'id è stato inserito correttamente, ma nel database non risulta presente un 
