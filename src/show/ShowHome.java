@@ -35,19 +35,22 @@ public class ShowHome extends HttpServlet {
 		Cookie []cookie=request.getCookies();
 		if(cookie.length==1) cookie=null;
 		if(cookie!=null ) {
-			
-			session.setAttribute("user",DAOFactory.getUserDAO().doRetrieveByMail(cookie[0].toString()));
-			if(cookie[1].toString().equals("true")) {
+			String mail=cookie[1].getValue();
+			String logged=cookie[2].getValue();
+			System.out.println(mail+" "+logged);
+			session.setAttribute("user",DAOFactory.getUserDAO().doRetrieveByMail(cookie[0].getValue()));
+			if(cookie[1].getValue().toLowerCase().equals("true")) {
 				session.setAttribute("logged", true);
-
+System.out.println("setta true");
 			}else {
 				session.setAttribute("logged", false);
-
+				System.out.println("setta false");
 			}
 		}
 		if(session.getAttribute("logged") == null) {
 			session.setAttribute("logged", false);
 		}
+	
 		 getServletContext().getRequestDispatcher("/view/homepage/Home.jsp").forward(request, response);
 	}
 
