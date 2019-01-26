@@ -1,5 +1,6 @@
+<%@page import="javax.swing.text.Document"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,88 +18,61 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+
 <!-- IMPORT CSS-->
 <link rel="stylesheet" href="view/headerfooter/Header.css"
 	type="text/css">
 <link rel="stylesheet" href="view/headerfooter/Footer.css"
 	type="text/css">
-	<link rel="stylesheet" href="view/GdS/CreaGruppo.css"
-	type="text/css">
+<link rel="stylesheet" href="view/GdS/CreaGruppo.css" type="text/css">
 </head>
 <!-- INCLUDE PAGE -->
 <body>
-<%@ include file="../headerfooter/Header.jsp" %>
+	<%@ include file="../headerfooter/Header.jsp"%>
 
-<div class="container generale">
-<div class=" col-lg-8 col-md-offset-2">
+	<div class="container generale">
+		<div class=" col-lg-8 col-md-offset-2">
+			<h2>Crea Gruppo!</h2>
 			<form action="Registrazione" method="post" name="formReg">
-				<h2>Crea Gruppo!</h2>
-				<div >
-					Nome Gruppo: <input class="input" type="text" name="name"
-						placeholder="Nome Gruppo" required="required"">
-				</div>
-				<div><input type="hidden" name="autore" value="<%=session.getAttribute("matricola")%>">
-				</div>
-				<div >
-					Materia <input class="input" type="text" name="materia"
-						placeholder="Materia" required="required"">
-				</div>
-				
-				<p style="color: red"></p>
-				<div > Ora Inizio: <select class="input" name="inizio" required="required"> 
-				<option value="09">09</option>
-				<option value="10">10</option>
-				<option value="11">11</option>
-				<option value="12">12</option>
-				<option value="13">13</option>
-				<option value="14">14</option>
-				<option value="15">15</option>
-				<option value="16">16</option>
-				<option value="17">17</option>
-				<option value="18">18</option>
-				</select>
-				</div>
-				<div > Ora Fine: <select class="input" name="fine" required="required"> 
-				<option value="09">09</option>
-				<option value="10">10</option>
-				<option value="11">11</option>
-				<option value="12">12</option>
-				<option value="13">13</option>
-				<option value="14">14</option>
-				<option value="15">15</option>
-				<option value="16">16</option>
-				<option value="17">17</option>
-				<option value="18">18</option>
-			
-				
-				</select>
-			</div>
-			<div > Giorno: <select class="input" name="giorno" required="required"> 
-				<option value="Lunedi">Lunedi</option>
-				<option value="Martedi">Martedi</option>
-				<option value="Mercoledi">Mercoledi</option>
-				<option value="Giovedi">Giovedi</option>
-				<option value="Venerdi">Venerdi</option>
-				</select>
-			</div>
-			<div > Aula: <select class="input" name="Aula" required="required"> 
-				<option value="P1">P1 </option>
-				<option value="P2">P2</option>
-				<option value="P3">P3</option>
-				<option value="P4">P4</option>
-				<option value="P5">P5</option>
-				</select>
-			</div>
-			<div class="testo"> <input id="bottone"type="submit" value="Iscriviti!"> </div>
-
+				<input type="hidden" name="autore"
+					value="<%=session.getAttribute("matricola")%>">
+				<table>
+					<tr>
+						<td>Nome Gruppo:</td>
+						<td><input class="input" type="text" name="name"
+							placeholder="Nome Gruppo" required="required""></td>
+					</tr>
+					<tr>
+						<td>Materia</td>
+						<td><input class="input" type="text" name="materia"
+							placeholder="Materia" required="required""></td>
+					</tr>
+					<tr>
+						<td>Data:</td>
+						<td><input type="date" id="data"></td>
+					</tr>
+					<tr>
+						<td>Orario inizio:</td>
+						<td><input id="inizio" type="time" min="9:00" max="18:00"
+							required="required" step="1800"></td>
+					</tr>
+					<tr>
+						<td>Orario fine:</td>
+						<td><input  id="fine"type="time" min="9:00" max="18:00"
+							required="required" step="1800"></td>
+					</tr>
+					
+					<tr>
+						<td><input id="bottone" type="submit" value="Iscriviti!">
+						</td>
+					</tr>
+				</table>
 			</form>
-	
-</div>
+
+		</div>
 
 
-</div>
-
-<%@ include file="../headerfooter/Footer.html"%>
-
+	</div>
+	<%@ include file="../headerfooter/Footer.html"%>
 </body>
 </html>

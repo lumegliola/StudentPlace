@@ -94,10 +94,10 @@
 							<span class="glyphicon glyphicon-home"></span>
 					</a></li>
 					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="ShowHome" id="navbarDropdown"
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-toggle="dropdown" href="#" aria-haspopup="true"
 						aria-expanded="false"> Gruppi di Studio</a>
-						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<ul style="z-index: 3" class="dropdown-menu" aria-labelledby="navbarDropdown">
 							
 							<a class="dropdown-item" href="CreaModificaGruppo?operazione=crea">Crea</a>
 							<div class="dropdown-divider"></div>
