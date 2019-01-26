@@ -57,13 +57,7 @@
 							required="required" step="1800"></td>
 					</tr>
 					<tr>
-						<td>Orario fine:</td>
-						<td><input  name="fine"type="time" min="9:00" max="18:00"
-							required="required" step="1800"></td>
-					</tr>
-					
-					<tr>
-						<td><input id="bottone" type="submit" value="Iscriviti!">
+						<td><input id="bottone" type="submit" value="Crea">
 						</td>
 					</tr>
 				</table>

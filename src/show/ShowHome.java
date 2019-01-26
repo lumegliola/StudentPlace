@@ -33,7 +33,7 @@ public class ShowHome extends HttpServlet {
 		
 		HttpSession session=request.getSession();
 		Cookie []cookie=request.getCookies();
-		if(cookie.length==1) cookie=null;
+		if(cookie.length==2) cookie=null;
 		if(cookie!=null ) {
 			String mail=cookie[1].getValue();
 			String logged=cookie[2].getValue();

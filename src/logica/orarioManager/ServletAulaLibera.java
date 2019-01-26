@@ -48,20 +48,19 @@ public class ServletAulaLibera extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String inizio = request.getParameter("inizio");
-		String fine = request.getParameter("fine");
 		String giorno = request.getParameter("data");
 		Timestamp orIn =  Timestamp.valueOf(giorno+" "+inizio+":00:00");
-		Timestamp orFin =  Timestamp.valueOf(giorno+" "+fine+":00:00");
-		
-		Orario or = DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(orIn, orFin);
 		
 	
 		
 		List<AulaLibera> aule = null;
-		if(or!=null) {
 			 aule = DAOFactory.getAulaLiberaDAO().doRetrieveByDate(orIn);
-		}
-		 JsonArray arrayObj=new JsonArray();
+		
+			 //ho ricavato una lista di aule libere a partire dall'orario di inserimento fino alla fine della gioranta scelta
+			 
+			 //non ho la piu' pallida idea di cosa hai scritto qua sotto
+			 //quindi per adesso lascio stare e mi spieghi domani mattina
+			 JsonArray arrayObj=new JsonArray();
          arrayObj.addAll((Collection<? extends JsonValue>) aule);
 		//response con json
          	PrintWriter out = response.getWriter();
