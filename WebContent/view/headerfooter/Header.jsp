@@ -105,26 +105,25 @@
 							<a class="dropdown-item"
 								href="CreaModificaGruppo?operazione=crea">Modifica</a>
 						</ul></li>
+						
 					<li class="nav-item"><a class="nav-link"
 						href="visualizzaAuleLibere">Cerca aule libere</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Contatti</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Chi
 							Siamo</a></li>
-					<li class="nav-item"><form action="RicercaGds" method="post"
-							autocomplete="off">
+					<li style="padding: 3px;" class="nav-item "><form class="form-inline" action="RicercaGds" method="post" autocomplete="off">
 
-							<input id=search_input type="text" class="bar" name="inputGruppo"
-								placeholder="cerca un gruppo di studio"
-								onkeyup="showResult(this.value)">
+							<input class="form-control mr-sm-2" id=search_input type="text" class="bar" name="inputGruppo"
+								placeholder="Cerca un gruppo di studio" onkeyup="showResult(this.value)">
 
-
-							<button id=submit_search class="btn btn-info submit search "
-								type="submit">
-								<i class="glyphicon glyphicon-search"></i>
-							</button>
-
-
-						</form></li>
+							
+								<button class="btn btn-outline-success my-2 my-sm-0" id=submit_search class="btn btn-info submit search "
+									type="submit">
+									<i class="glyphicon glyphicon-search"></i>
+								</button>
+							
+						
+					</form></li>
 
 					<% if(session != null && session.getAttribute("logged")!=null){
 						boolean admin = false;
