@@ -85,10 +85,13 @@ public class TestServletModificaGdS  extends TestCase{
     
     when(request.getParameter("materia")).thenReturn("Ingegneria del software");
 	
+    when(request.getParameter("aula")).thenReturn("F8");
+	
 	when(request.getSession()).thenReturn(session);
 	
 	when(session.getAttribute("logged")).thenReturn(true);
     
+	
 	
 	when(session.getAttribute("utente")).thenReturn(DAOFactory.getUserDAO().doRetrieveByKey("0512102865"));
    

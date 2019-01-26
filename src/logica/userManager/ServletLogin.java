@@ -61,15 +61,23 @@ public class ServletLogin extends HttpServlet {
 			//Setto i cookie per i prossimi accessi al sito.
 			System.out.println("Tutt appost");
 			session.setAttribute("utente", user);
-		    session.setAttribute("logged", true);	
+		    session.setAttribute("logged", true);
+		    session.setAttribute("admin", user.isAdmin());
 		    Cookie mail=new Cookie("utente", user.getMail());
             Cookie logged=new Cookie("logged","true");
+            Cookie admin=new Cookie("admin", "");
+            if(user.isAdmin()) {
+             admin.setValue("true");
+            }else{
+            	admin.setValue("false");
+
+            }
             response.addCookie(mail);
             response.addCookie(logged);
-           
+            response.addCookie(admin);
            //Reindiriziamo alla home.
 			request.getRequestDispatcher("/view/homepage/Home.jsp").forward(request, response);
-			
+			return;
 		}
 
 	}
