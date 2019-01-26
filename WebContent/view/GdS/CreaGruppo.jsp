@@ -22,7 +22,7 @@
 	type="text/css">
 <link rel="stylesheet" href="view/headerfooter/Footer.css"
 	type="text/css">
-	<link rel="stylesheet" href="view\creagruppo\creagruppo.css"
+	<link rel="stylesheet" href="view/GdS/CreaGruppo.css"
 	type="text/css">
 </head>
 <!-- INCLUDE PAGE -->
