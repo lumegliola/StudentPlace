@@ -17,6 +17,7 @@
 }
 
 .widgets.footer-widgets .widget-title {
+	text-align: left;
 	color: #ffffff;
 	font-family: "Raleway", sans-serif;
 	font-weight: 700;
@@ -27,6 +28,7 @@
 }
 
 .widgets.footer-widgets .widget-title::after {
+	
 	content: "";
 	position: absolute;
 	left: 0;
@@ -50,6 +52,7 @@
 }
 
 .widgets.footer-widgets .widget-quick-links ul li a {
+	
 	display: block;
 	font-size: 13px;
 	color: #ffffff;
@@ -59,11 +62,13 @@
 
 .widgets.footer-widgets .widget-quick-links ul li a:hover {
 	color: red;
+	
 }
 
 .widgets.footer-widgets .single-widget ul li {
 	list-style: none;
 	font-family: "Raleway", sans-serif;
+	text-align: left;
 }
 
 .widgets.footer-widgets .widget-contact ul li {
@@ -76,9 +81,12 @@
 	-webkit-box-align: center;
 	-ms-flex-align: center;
 	align-items: center;
+	text-align: left;
+	
 }
 
 .widgets.footer-widgets .widget-contact ul li span {
+	
 	font-size: 14px;
 	color: #ffffff;
 	border: 2px solid #cccccc;
@@ -94,10 +102,12 @@
 
 .widgets.footer-widgets .widget-contact ul li.phone, .widgets.footer-widgets .widget-contact
 	{
+	text-align: left;
 	font-size: 15px;
 }
 
 .widgets.footer-widgets .widget-contact ul li+li {
+	
 	margin-top: 20px;
 }
 
