@@ -33,7 +33,7 @@
 	<div class="container generale">
 		<div class=" col-lg-8 col-md-offset-2">
 			<h2>Crea Gruppo!</h2>
-			<form action="Registrazione" method="post" name="formReg">
+			<form action="AulaLibera" method="post" name="formReg">
 				<input type="hidden" name="autore"
 					value="<%=session.getAttribute("matricola")%>">
 				<table>

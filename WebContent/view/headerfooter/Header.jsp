@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@page import="bean.*"
-%>
-<%@page session="true" %>
+<%@page import="bean.*"%>
+<%@page session="true"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -90,43 +89,58 @@
 
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav nav nav-pills nav-fill">
-					<li class="nav-item active"><a class="nav-link" href="ShowHome">
-							<span class="glyphicon glyphicon-home"></span>
+					<li class="nav-item active"><a class="nav-link"
+						href="ShowHome"> <span class="glyphicon glyphicon-home"></span>
 					</a></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-toggle="dropdown" href="#" aria-haspopup="true"
 						aria-expanded="false"> Gruppi di Studio</a>
-						<ul style="z-index: 3" class="dropdown-menu" aria-labelledby="navbarDropdown">
-							
-							<a class="dropdown-item" href="CreaModificaGruppo?operazione=crea">Crea</a>
+						<ul style="z-index: 3" class="dropdown-menu"
+							aria-labelledby="navbarDropdown">
+
+							<a class="dropdown-item"
+								href="CreaModificaGruppo?operazione=crea">Crea</a>
 							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="CreaModificaGruppo?operazione=crea">Modifica</a>
-							</ul>
-						</li>
-					<li class="nav-item"><a class="nav-link" href="visualizzaAuleLibere">Cerca
-							aule libere</a></li>
+							<a class="dropdown-item"
+								href="CreaModificaGruppo?operazione=crea">Modifica</a>
+						</ul></li>
+					<li class="nav-item"><a class="nav-link"
+						href="visualizzaAuleLibere">Cerca aule libere</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Contatti</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Chi
 							Siamo</a></li>
-					<li class="nav-item"><form action="RicercaGds" method="post" autocomplete="off">
+					<li class="nav-item"><form action="RicercaGds" method="post"
+							autocomplete="off">
 
 							<input id=search_input type="text" class="bar" name="inputGruppo"
-								placeholder="cerca un gruppo di studio" onkeyup="showResult(this.value)">
+								placeholder="cerca un gruppo di studio"
+								onkeyup="showResult(this.value)">
 
-							
-								<button id=submit_search class="btn btn-info submit search "
-									type="submit">
-									<i class="glyphicon glyphicon-search"></i>
-								</button>
-							
+
+							<button id=submit_search class="btn btn-info submit search "
+								type="submit">
+								<i class="glyphicon glyphicon-search"></i>
+							</button>
+
+
+						</form></li>
+
+					<% if(session != null && session.getAttribute("logged")!=null){
+						boolean admin = false;
 						
-					</form></li>
+						admin = (boolean) session.getAttribute("admin");
+					
+						if(admin==true){ %>
 
+					<li class="nav-item"><a href="#">Gestione orari</a></li>
+
+					<%}
+						} %>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-				
-				<%
+
+					<%
 				boolean logged=false;
 				if(session.getAttribute("logged")==null){
 					logged=false;
@@ -138,14 +152,14 @@
 				
 				
 				%>
-				
+
 					<li class="nav-item"><a href="ServletVisualizzaProfilo"><%=utente.getNome() %></a></li>
 					<li class="nav-item"><a href="logout"><span
 							class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-							<%}
+					<%}
 				else if(logged==false){%>
-				 <li class="nav-item"><a href="ShowHome">Login</a></li>
-				 <%} %>
+					<li class="nav-item"><a href="ShowHome">Login</a></li>
+					<%} %>
 				</ul>
 				<div class="col-lg-6"></div>
 				<div id="livesearch" class="col-lg-6 column-center result"></div>
