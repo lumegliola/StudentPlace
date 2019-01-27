@@ -97,7 +97,7 @@
 				%>
 			<div style="text-align: center; border-bottom: 1px solid #a01313; padding: 2%; color:  #a01313">
 				<h3>Nessun gruppo creato</h3>
-				<a href="###">Crea un nuovo gruppo</a>
+				<a href="CreaModificaGruppo?operazione=crea">Crea un nuovo gruppo</a>
 			</div>
 			<% }%>
 			
