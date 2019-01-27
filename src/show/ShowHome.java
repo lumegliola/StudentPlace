@@ -36,10 +36,21 @@ public class ShowHome extends HttpServlet {
 		Cookie []cookie=request.getCookies();
 		if(cookie.length<=1) cookie=null;
 		if(cookie!=null ) {
-			String mail=cookie[0].getValue();
-			String logged=cookie[1].getValue();
-			System.out.println(mail+" "+logged
-					+" "+cookie[1].getValue());
+			String mail="",logged="",admin="";
+			for(int i=0;i<cookie.length;i++) {
+				if(cookie[i].getName().equals("utente")) {
+					mail=cookie[i].getValue();
+				}
+				if(cookie[i].getName().equals("logged")) {
+				logged=cookie[i].getValue();				
+				}
+				if(cookie[i].getName().equals("admin")) {
+					admin=cookie[i].getValue();				
+					}
+				
+			}
+			
+			System.out.println(" "+mail+" "+logged+" "+admin);
 			Utente utente=DAOFactory.getUserDAO().doRetrieveByMail(mail);
 			session.setAttribute("utente",utente);
 			if(logged.equals("true")) {
