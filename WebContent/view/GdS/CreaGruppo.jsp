@@ -61,6 +61,7 @@
 						<label>Orario fine:</label>
 						<input style="margin-bottom: 0.7em;" name="fine"type="time" min="9:00" max="18:00"
 							required="required" step="1800"><br>
+							<input type="hidden" name="operazione" value="crea">
 				<input style="margin: 3em; background-color: #a01313; color: white; " id="bottone" type="submit" value="Crea Gruppo">
 
 
