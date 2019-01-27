@@ -93,7 +93,7 @@
 						href="ShowHome"> <span class="glyphicon glyphicon-home"></span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="CreaModificaGruppo?operazione=crea">nuovo gruppo di studio</a></li>
+						href="CreaModificaGruppo?operazione=crea">Crea gruppo di studio</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="visualizzaAuleLibere">Cerca aule libere</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Contatti</a></li>
