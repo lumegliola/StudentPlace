@@ -23,7 +23,7 @@ function byebye(){
 
 <div class="alert alert-success" role="alert" style="text-align: center; padding: 2%; margin: 5%">
 	<img style="width: 20%" class="logoSPxl" alt="Logo StudentPlace"
-		src="images/logoSPxl.png">
+		src="view/images/logoSPxl.png">
 	<h1 class="alert-heading">Operazione effettuata!</h1>
 	<p class="mb-0">Tra un momento sarai reindirizzato al profilo</p></div>
 </body>
