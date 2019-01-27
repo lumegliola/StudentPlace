@@ -39,10 +39,10 @@
 		</span> <span style="font-size: x-large;"> Data </span> <span><%=g.getOrario().getInizio().getDay()%>/<%=g.getOrario().getInizio().getMonth()%>/<%=g.getOrario().getInizio().getYear() + 1900%>
 		</span> <br>
 		 <span style="font-size: x-large;">dalle:</span>
-		<span style="margin-right: 1em;"> <%=g.getOrario().getInizio().getHours()%>:<%=g.getOrario().getInizio().getMinutes()%>
+		<span style="margin-right: 1em;"> <%=g.getOrario().getInizio().getHours()%>:<%=g.getOrario().getInizio().getMinutes()%>0
 		</span>
 		 <span style="font-size: x-large;">alle:</span>
-		<span> <%=g.getOrario().getFine().getHours()%>:<%=g.getOrario().getFine().getMinutes()%>
+		<span> <%=g.getOrario().getFine().getHours()%>:<%=g.getOrario().getFine().getMinutes()%>0
 		</span>
 		<form action="IscrizioneGdS" method="post">
 			<input type="hidden" name="operazione" value="iscrivi"> <input
