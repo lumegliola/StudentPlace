@@ -10,7 +10,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<% String url = request.getParameter("redirect"); %>
+<% String url = (String)request.getAttribute("redirect"); %>
 <script type="text/javascript">
 function byebye(){
 	
@@ -23,7 +23,7 @@ function byebye(){
 <script type="text/javascript">
 function byebye2(){
 	
-	   window.location.replace("Gestione orario");
+	   window.location.replace("GestioneOrario");
 
 	}
 </script>
