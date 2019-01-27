@@ -44,7 +44,7 @@
 				</tr>
 				<%
 					for (int i = 0; i < auleLibere.size(); i++) {
-						String link = "ShowOrario?aula="+auleLibere.get(i).getAula().getNomeAula()+"&giorno="+auleLibere.get(i).getGiorno()+"&orario="+auleLibere.get(i).getOrario().getIdOrario();			
+						String link = "ShowOrario?aula="+auleLibere.get(i).getAula().getNomeAula()+"&giorno="+auleLibere.get(i).getGiorno().toLowerCase()+"&orario="+auleLibere.get(i).getOrario().getIdOrario();			
 				%>
 				
 				<tr onclick="document.location='<%=link %>'">

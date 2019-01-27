@@ -25,8 +25,11 @@
 <link rel="stylesheet" href="view/GdS/CreaGruppo.css" type="text/css">
 </head>
 <body>
-<% AulaLibera al = (AulaLibera)request.getAttribute("aulaLibera");
-	Orario or = (Orario)request.getAttribute("orario");
+
+<% 	AulaLibera al = (AulaLibera)session.getAttribute("aulaLibera");
+	Orario or = (Orario)session.getAttribute("orario");
+	if(or==null || al==null)
+		System.out.println("strunz");
 %>
 	<%@ include file="../headerfooter/Header.jsp"%>
 	<div class="container-fluid" style="padding: 3%">
@@ -37,7 +40,7 @@
   
   <tr>
     <td><h3>Aula </h3></td>
-    <td><%= al.getAula().getNomeAula()%></td>
+    <td><%=al.getAula().getNomeAula()%></td>
   </tr>
   <tr>
   		<td> <h3>Edificio: </h3></td>

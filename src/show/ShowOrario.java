@@ -2,10 +2,12 @@ package show;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import bean.AulaLibera;
 import bean.Orario;
@@ -39,15 +41,16 @@ public class ShowOrario extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		HttpSession session = request.getSession(true);
 		String aula = request.getParameter("aula");
 		String giorno = request.getParameter("giorno");
 		int idOrario = Integer.parseInt(request.getParameter("orario"));
 		
 		AulaLibera al = DAOFactory.getAulaLiberaDAO().doRetrieveByKey(aula, giorno, idOrario);
 		Orario or = DAOFactory.getOrarioDAO().doRetrieveByKey(idOrario);
-		request.setAttribute("aulaLibera", al);
-		request.setAttribute("orario", or);
-		request.getRequestDispatcher("/view/orario/InfoOrario.jsp");
+		session.setAttribute("aulaLibera", al);
+		session.setAttribute("orario", or);
+		request.getRequestDispatcher("/view/orari/InfoOrario.jsp").forward(request, response);;
 	}
 
 }
