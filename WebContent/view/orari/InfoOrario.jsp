@@ -69,9 +69,10 @@
 		</div>
 		<div class="col-lg-6" style="border-left: 1px solid red">
 		
-		<form action="ModificaOrario" method="post" name="formOr">
+		<form action="ModificaAulaLibera" method="post" name="formOr">
 					<h3>Modifica l'orario</h3>
 					<label>Giorno:&nbsp;</label>
+					<input type="hudden" name ="operazione" value="modifica">
 					 <input type="select" name="giorno" class="name"  required="required">
 					 <select name="giorno" form = "formOr">
 					 <option>lunedì</option>

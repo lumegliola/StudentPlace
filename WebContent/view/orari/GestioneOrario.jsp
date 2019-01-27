@@ -62,7 +62,8 @@
 						<td><%=auleLibere.get(i).getOrario().getGiorno()%></td>
 						<td><%=auleLibere.get(i).getOrario().getInizio().toString().substring(10, 16)%></td>
 						<td><%=auleLibere.get(i).getOrario().getFine().toString().substring(10, 16)%></td>
-						<td><form action="ModificaOrario">
+						<td><form action="ModificaAulaLibera">
+								<input type="hidden" name="operazione" value="elimina">
 								<input type="hidden" name="aula" value="<%=auleLibere.get(i).getAula().getNomeAula()%>">
 								<input type="hidden" name="giorno" value="<%=auleLibere.get(i).getGiorno()%>">
 								<input type="hidden" name="idOrario" value="<%=auleLibere.get(i).getOrario().getIdOrario()%>">
