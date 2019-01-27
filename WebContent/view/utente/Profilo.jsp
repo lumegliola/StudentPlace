@@ -71,6 +71,16 @@
 						<td>Edificio: <%=p.getAula().getEdificio()%>,Aula: <%=p.getAula().getNomeAula()%></td>
 						<td><%=p.getOrario().getInizio().toGMTString().substring(0, 21)%>
 							fino alle: <%=p.getOrario().getFine().toString().substring(11, 19)%></td>
+							<td><form action="ShowModificaGruppo" method="post">
+								<input name="materia" type="hidden"
+									value="<%=p.getMateria()%>"> 
+									<input name="matricola" type="hidden"
+									value="<%=u.getMatricola()%>"> 
+									<input name="nomeGruppo"
+									type="hidden" value="<%=p.getNomeGruppo()%>">
+								<button type="submit" name="modifica"
+									style="background-color: red; color: white;">modifica</button>
+							</form></td>
 						<td><form action="EliminaGdS" method="post">
 								<input name="materia" type="hidden"
 									value="<%=p.getMateria()%>"> 
