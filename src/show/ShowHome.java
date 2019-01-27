@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import bean.Utente;
 import dao.DAOFactory;
 
 /**
@@ -33,15 +34,17 @@ public class ShowHome extends HttpServlet {
 		
 		HttpSession session=request.getSession();
 		Cookie []cookie=request.getCookies();
-		if(cookie.length==2) cookie=null;
+		if(cookie.length==1) cookie=null;
 		if(cookie!=null ) {
-			String mail=cookie[1].getValue();
-			String logged=cookie[2].getValue();
+			String mail=cookie[0].getValue();
+			String logged=cookie[1].getValue();
 			System.out.println(mail+" "+logged);
-			session.setAttribute("user",DAOFactory.getUserDAO().doRetrieveByMail(cookie[0].getValue()));
-			if(cookie[1].getValue().toLowerCase().equals("true")) {
+			Utente utente=DAOFactory.getUserDAO().doRetrieveByMail(mail);
+			System.out.println(utente.getMail());
+			session.setAttribute("utente",utente);
+			if(logged.equals("true")) {
 				session.setAttribute("logged", true);
-System.out.println("setta true");
+				System.out.println("setta true");
 			}else {
 				session.setAttribute("logged", false);
 				System.out.println("setta false");
