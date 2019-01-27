@@ -56,7 +56,7 @@
 				</tr>
 			</thead>
 			
-			<%for(int cont=0;cont<10;cont++){ %>
+			<%for(int cont=0;cont<10;cont++){%>
 				<tr>
 					<td style="font-weight: bold; padding: 0.5em;"><%=intervallo%>:00-<%=intervallo + 1%>:00</td>
 					<%for(int t =0;t<5;t++){%>
@@ -66,10 +66,9 @@
 								for (int i = 0; i < lista.size(); i++) {
 									if (lista.get(i).getGiorno().equals(giorni.get(s)) && lista.get(i).getFasciaoraria() == k) {
 						%> <%=lista.get(i).getNomeaula()%> <%
- 	}
-
- 		}
- 		s++;
+ 				}
+			}
+			s++;
  	}
  %>					</td><%}s = 0;
 			 		k++;intervallo++;} %>
