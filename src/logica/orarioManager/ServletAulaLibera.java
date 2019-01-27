@@ -84,7 +84,13 @@ public class ServletAulaLibera extends HttpServlet {
 	        out.append("[");
 	        
 	        for(int i=0;i<aule.size();i++) {
-	        	out.append("{\"aula\":\""+aule.get(i).getAula().getNomeAula()+"\",\"giorno\":\""+aule.get(i).getGiorno()+"\"}");
+	        	out.append("{"
+	        			+ "\"aula\":\""+aule.get(i).getAula().getNomeAula()+"\","
+	        			+ "\"giorno\":\""+aule.get(i).getGiorno()+"\","
+	        			+ "\"id\":\""+i+"\","
+    					+ "\"inizio\":\""+(aule.get(i).getOrario().getInizio().getHours()-1)+"\","
+    				    + "\"fine\":\""+(aule.get(i).getOrario().getFine().getHours()-1)+"\""
+    					+ "}");
 	        	if(i<aule.size()-1) {
 	        		out.append(",");
 	        	}
