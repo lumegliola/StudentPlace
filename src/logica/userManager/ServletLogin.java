@@ -67,9 +67,9 @@ public class ServletLogin extends HttpServlet {
             Cookie logged=new Cookie("logged","true");
             Cookie admin=new Cookie("admin", "");
             if(user.isAdmin()) {
-             admin.setValue("true");
+            admin.setValue("true");
             }else{
-            	admin.setValue("false");
+            admin.setValue("false");
 
             }
             response.addCookie(mail);
