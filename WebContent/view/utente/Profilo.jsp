@@ -71,7 +71,7 @@
 						<td>Edificio: <%=p.getAula().getEdificio()%>,Aula: <%=p.getAula().getNomeAula()%></td>
 						<td><%=p.getOrario().getInizio().toGMTString().substring(0, 21)%>
 							fino alle: <%=p.getOrario().getFine().toString().substring(11, 19)%></td>
-							<td><form action="ShowModificaGruppo" method="post">
+							<td><form action="CreaModificaGruppo" method="post">
 								<input name="materia" type="hidden"
 									value="<%=p.getMateria()%>"> 
 									<input name="matricola" type="hidden"
