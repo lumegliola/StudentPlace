@@ -97,7 +97,15 @@
 					<li class="nav-item"><a class="nav-link"
 						href="visualizzaAuleLibere">Cerca aule libere</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Contatti</a></li>
+					
+					<% Utente admin = (Utente) session.getAttribute("utente");
+					System.out.println(admin.isAdmin());
+					if( admin.isAdmin() == true){ %>
+					
 					<li class="nav-item"><a class="nav-link" href="GestioneOrario">Gestione orari</a></li>
+					
+					<%} %>
+					
 					<li style="padding: 3px;" class="nav-item "><form class="form-inline" action="RicercaGds" method="post" autocomplete="off">
 
 							<input class="form-control mr-sm-2" id=search_input type="text" class="bar" name="inputGruppo"
