@@ -45,14 +45,12 @@ public class ServletCreaGds extends HttpServlet {
 		HttpSession session = request.getSession();						//
 		if(session.getAttribute("logged").equals(true) && session.getAttribute("logged") != null) {
 			
-			String nomeGruppo = request.getParameter("name");
+			String nomeGruppo = request.getParameter("nomeGruppo");
 			String materia = request.getParameter("materia");
 			String par_aula= request.getParameter("aula");
-			int data_inizio=Integer.parseInt(request.getParameter("inizio"));
-			int anno=Integer.parseInt(request.getParameter("anno"))-1900;
-			int mese=Integer.parseInt(request.getParameter("mese"));
-			int giorno=Integer.parseInt(request.getParameter("giorno"));
-			int data_fine=Integer.parseInt(request.getParameter("fine"));
+			String data_inizio=request.getParameter("inizio");
+		    String data_fine=request.getParameter("fine");
+			
 		
 				if(DAOFactory.getGdSDAO().doRetrieveByNameAndSubject(nomeGruppo, materia) == null){
 					GruppoDiStudio nuovo = new GruppoDiStudio();
@@ -60,7 +58,7 @@ public class ServletCreaGds extends HttpServlet {
 					
 					
 				   
-				/*	SimpleDateFormat sdf;
+					SimpleDateFormat sdf;
 				     sdf= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 				     Date date2=new Date(),date1=new Date();	 
 				     try {
@@ -69,20 +67,17 @@ public class ServletCreaGds extends HttpServlet {
 					} catch (ParseException e) {
 						e.printStackTrace();
 					}	 		    
-				     */
+				     
 					Aula aula = DAOFactory.getAulaDAO().doRetrieveByKey(par_aula);
-					Timestamp i=new Timestamp(anno,mese,giorno,data_inizio,0,0,0);
-					Timestamp f=new Timestamp(anno,mese,giorno,data_inizio,0,0,0);
-					System.out.println(i.getYear()+i.getMonth()+i.getDay()+i.getHours()+i.getMinutes()+i.getSeconds()+i.getNanos());
-					Orario o=new Orario(i,f);
+					
 					nuovo.setNomeGruppo(nomeGruppo);
 					nuovo.setCreatore(creatore);
 					nuovo.setMateria(materia);
-					nuovo.setOrario(i,f);
-					nuovo.setGiorno(o.getGiorno());
+					nuovo.setOrario(new Timestamp(date1.getTime()), new Timestamp(date2.getTime()));
+					nuovo.setGiorno();
 					nuovo.setAula(aula);
-					if(DAOFactory.getGdSDAO().doSave(nuovo)) {
-					session.setAttribute("esito", true);}
+					DAOFactory.getGdSDAO().doSave(nuovo);
+					session.setAttribute("esito", true);
 					request.getRequestDispatcher("/view/OpEffettuata.jsp").forward(request, response);
 
 				}
