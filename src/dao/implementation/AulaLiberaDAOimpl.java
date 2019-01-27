@@ -70,11 +70,11 @@ public class AulaLiberaDAOimpl implements AulaLiberaDAO{
 	}
 
 	@Override
-	public boolean doSaveOrUpdate(AulaLibera aula, Orario o) {
+	public boolean doSaveOrUpdate(AulaLibera aula, String giorno,  Orario o) {
 		Connection connection = null;
 		PreparedStatement ps = null;
 		int result = 0;
-		Orario or = DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(o.getInizio(), o.getFine());
+		Orario or = DAOFactory.getOrarioDAO().doRetrieveByKey(o.getIdOrario());
 		if(or.getIdOrario() <= 0) {
 			System.out.println("orario è null");
 			or = new Orario(o.getInizio(), o.getFine());
@@ -86,10 +86,10 @@ public class AulaLiberaDAOimpl implements AulaLiberaDAO{
 			connection = DriverManagerConnectionPool.getConnection();
 			ps = connection.prepareStatement("update libera set giorno = ?, orario = ? where aula = ? and giorno =? and orario = ?;");
 
-			ps.setString(1, or.getGiorno());
+			ps.setString(1, giorno);
 			ps.setInt(2, or.getIdOrario());
 			ps.setString(3, aula.getAula().getNomeAula());
-			ps.setString(4, aula.getOrario().getGiorno());
+			ps.setString(4, aula.getGiorno());
 			ps.setInt(5, aula.getOrario().getIdOrario());
 
 			//esegue lo statement
