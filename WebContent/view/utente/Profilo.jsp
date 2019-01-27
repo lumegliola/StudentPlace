@@ -157,8 +157,12 @@
 
 				}}else{
 			%>
-			<div class="col-lg-9">
-				<h4>Non sei iscritto a nessun gruppo</h4>
+			
+				
+		
+		<div style="text-align: center; margin-top:1em; padding: 2%; color:  #a01313">
+				<h3 style="text-align: center;">Non sei iscritto a nessun gruppo</h3>
+				<a href="CreaModificaGruppo?operazione=cerca">Lista gruppi di studio</a>
 			</div>
 			<% }%>
 	</div>		
