@@ -277,26 +277,31 @@ public class AulaLiberaDAOimpl implements AulaLiberaDAO{
 			Connection connection = null;
 			PreparedStatement ps = null;
 			List<AulaLibera> aule = new ArrayList<>();
+		
+			data.setYear(data.getYear()+1900);
+			data.setMonth(data.getMonth()+1);
+			System.out.println(data.getDate() +" "+data.getYear()+" "+data.getMonth());
 			Timestamp data1= new Timestamp(data.getYear(), data.getMonth(), data.getDay()+1, data.getHours(), data.getMinutes(), data.getSeconds(), data.getNanos());
-
+            System.out.println(data1.getYear()+" "+data1.getMonth());
 			try {
 
 				connection = DriverManagerConnectionPool.getConnection();
 
 				//dichiara lo statement
-				ps = connection.prepareStatement("select * from libera join orario where orario.inizio >= ? and orario.inizio < ?;");
-				ps.setTimestamp(1, data);
-				ps.setTimestamp(2, data1);
+				ps = connection.prepareStatement("select * from libera join orario on  orario.id=libera.orario where orario.inizio >= '2019-2-21 9:00:00' and orario.inizio < '2019-2-21 10:00:00';");
+			//	ps.setTimestamp(1, data);
+			//	ps.setTimestamp(2, data1);
 				//esegue lo statement
 				ResultSet result = ps.executeQuery();
 
 				//ricava i risultati
 				while (result.next()) {
 					AulaLibera b = new AulaLibera();
-					b.setAula(DAOFactory.getAulaDAO().doRetrieveByKey(result.getString("aula")));
-					b.setOrario(DAOFactory.getOrarioDAO().doRetrieveByKey(result.getInt("orario")));
-					b.setGiorno(b.getOrario().getGiorno());
-					
+				//	System.out.println(result.getString("aula")+" "+result.getInt("id"));
+				b.setAula(DAOFactory.getAulaDAO().doRetrieveByKey(result.getString("aula")));
+				b.setOrario(DAOFactory.getOrarioDAO().doRetrieveByKey(result.getInt("id")));
+				b.setGiorno(b.getOrario().getGiorno());
+				//	System.out.println(b.getAula().getNomeAula()+" "+b.getOrario().getInizio());
 					// aggiunge l'oggetto alla lista
 					aule.add(b);
 				}
