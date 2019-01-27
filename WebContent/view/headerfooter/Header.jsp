@@ -98,9 +98,19 @@
 						href="visualizzaAuleLibere">Cerca aule libere</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Contatti</a></li>
 					
-					<% Utente admin = (Utente) session.getAttribute("utente");
-					System.out.println(admin.isAdmin());
-					if( admin.isAdmin() == true){ %>
+					<% boolean admin=false;
+					if(session.getAttribute("admin")==null){
+						admin=false;
+					}else{
+						if(session.getAttribute("admin").equals(true)){
+						admin=true;
+						}else{
+							admin=false;
+										
+						}
+					}
+					System.out.println(admin);
+					if( admin == true){ %>
 					
 					<li class="nav-item"><a class="nav-link" href="GestioneOrario">Gestione orari</a></li>
 					

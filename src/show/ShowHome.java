@@ -60,6 +60,13 @@ public class ShowHome extends HttpServlet {
 				session.setAttribute("logged", false);
 				System.out.println("setta false");
 			}
+			if(admin.equals("true")) {
+				session.setAttribute("admin", true);
+				System.out.println("setta true");
+			}else {
+				session.setAttribute("admin", false);
+				System.out.println("setta false");
+			}
 		}
 		if(session.getAttribute("logged") == null) {
 			session.setAttribute("logged", false);
