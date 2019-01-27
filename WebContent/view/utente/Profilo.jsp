@@ -95,12 +95,11 @@
 					}
 				}else{
 				%>
-			<div class="col-lg-9">
-				<h4>Non hai creato gruppi</h4>
+			<div style="text-align: center; border-bottom: 1px solid #a01313; padding: 2%; color:  #a01313">
+				<h3>Nessun gruppo creato</h3>
+				<a href="###">Crea un nuovo gruppo</a>
 			</div>
 			<% }%>
-
-			<br> <br> <br> <br><br> <br>
 			
 
 			<!----------------------- Iscrizioni dell'utente ----------------------->
@@ -108,7 +107,7 @@
 
 			<% if(!iscrizioni.isEmpty()){%>
 
-			<h4 style="border-top: 1px solid red; padding-top: 5%;">Le tue iscrizioni</h4><br>
+			<h3 style="text-align: center; color:  #a01313">Gruppi a cui sei iscritto:</h3><br>
 
 			<table style="width: 100%;padding-top: 5%">
 				<tr>
@@ -141,7 +140,7 @@
 									<input name="idGruppo"
 									type="hidden" value="<%=p.getId()%>">
 								<button type="submit" name="cancella_iscrizione"
-									style="background-color: red; color: white;">Cancella
+									style="background-color: #a01313; color: white;">Cancella
 									iscrizione</button>
 							</form></td>
 					</tr>
@@ -167,7 +166,7 @@
 		<!-----------------------info profilo------------------------>
 
 		<div class="col-lg-3"
-			style="border-left: 1px solid red; padding-bottom: 10%">
+			style="border-left: 1px solid #a01313; padding-bottom: 10%">
 			<table style="text-align: center">
 				<tr>
 					<th style="text-align: center"><img alt="avatar"
