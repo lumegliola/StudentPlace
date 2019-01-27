@@ -66,8 +66,9 @@ public class ServletEliminaGdS extends HttpServlet {
 						boolean deleteGds=DAOFactory.getGdSDAO().doDeleteByNameAndSubjet(gds.getNomeGruppo(),gds.getMateria());
 						if(deleteIscr==false && deleteGds==true) {
 							System.out.println("Eliminazione ok");
-							request.setAttribute("redirect", "profilo");
+							
 						}
+						request.setAttribute("redirect", "profilo");
 						request.getRequestDispatcher("/view/OpEffettuata.jsp").forward(request, response);
 					
 					}else {//altrimento no
