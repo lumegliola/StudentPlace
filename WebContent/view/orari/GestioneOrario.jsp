@@ -65,7 +65,7 @@
 						<td><form action="ModificaAulaLibera">
 								<input type="hidden" name="operazione" value="elimina">
 								<input type="hidden" name="aula" value="<%=auleLibere.get(i).getAula().getNomeAula()%>">
-								<input type="hidden" name="giorno" value="<%=auleLibere.get(i).getGiorno()%>">
+								<input type="hidden" name="giorno" value="<%=auleLibere.get(i).getGiorno().replace('ì','i')%>">
 								<input type="hidden" name="idOrario" value="<%=auleLibere.get(i).getOrario().getIdOrario()%>">
     							<input type="submit" value="Elimina"/>
 							</form>

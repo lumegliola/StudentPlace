@@ -40,6 +40,7 @@ public class ServletModificaAulaLibera extends HttpServlet {
 		String op = request.getParameter("operazione");
 		String aula = request.getParameter("aula");
 		String giorno = request.getParameter("giorno");
+		giorno.replace('i', 'ì');
 		int idOrario=Integer.parseInt(request.getParameter("idOrario"));
 		
 		if(op.equals("elimina")) {
