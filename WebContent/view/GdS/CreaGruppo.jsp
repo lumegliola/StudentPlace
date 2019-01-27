@@ -1,4 +1,4 @@
-<%@page import="javax.swing.text.Document"%>
+ <%@page import="javax.swing.text.Document"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -48,11 +48,11 @@
 				style="width: 70%; clear: both; margin-bottom: 0.7em;"> <br>
 					
 					<label>Data:</label>
-						<input style="margin-bottom: 0.5em;" type="date" id="data">
+						<input style="margin-bottom: 0.5em;" type="date" id="data" onchange="setdata()">
 					
 					<label>Orario inizio:</label>
 					<input style="margin-bottom: 0.7em;" id="inizio" type="time" min="9:00" max="18:00"
-							required="required" step="1800">
+							required="required" step="1800" onchange="setinizio()">
 													
 						<label>Orario fine:</label>
 						<input style="margin-bottom: 0.7em;" id="fine"type="time" min="9:00" max="18:00"
@@ -70,17 +70,41 @@
 	</div>
 	<script >
 	
-	 $.post("/ServletAulaLibera",
+	var valoreData="";
+	var valoreInizio="";
+	function setdata(){
+		setData=true;
+		valoreData=document.getElementById('data').value;
+		if(valoreData.length>0){
+		console.log(valoreData);
+		}
+	}
+	function setinizio(){
+		setData=true;
+		valoreInizio=document.getElementById('inizio').value;
+		if(valoreInizio.length>0){
+		console.log(valoreInizio);
+		}
+	}
+	var valore=true;
+		
+ $("#inizio,#data").change(function(){
+	 if(valoreInizio.length>0 && valoreData.length>0){
+	 $.post("AulaLibera",
 			  {
-			    inizio: "",
-			    fine: "",
-			    data:""
+			    inizio:valoreInizio,
+			    data:valoreData
 			  },
 			  function(data, status){
-			    alert("Data: " + data + "\nStatus: " + status);
-			  });
-	
-	
+				  var num=data.length  ;
+				  var i=0;
+				  for(i=0;i<num;i++){
+			       console.log("Aula libera: " + data[i].aula+data[i].giorno+ "\nStatus: ");
+				  }
+				  });
+	 valore=false;
+		}
+		});
 	</script>
 	<%@ include file="../headerfooter/Footer.html"%>
 </body>

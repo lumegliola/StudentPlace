@@ -3,8 +3,11 @@ package logica.orarioManager;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -47,27 +50,48 @@ public class ServletAulaLibera extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String inizio = request.getParameter("inizio");
-		String giorno = request.getParameter("data");
-		Timestamp orIn =  Timestamp.valueOf(giorno+" "+inizio+":00:00");
-		
+	String inizio = request.getParameter("inizio");
+	String giorno = request.getParameter("data");
+	String data=giorno.concat(" "+inizio.concat(":00:00"));
+    SimpleDateFormat sdf;
+    sdf= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    Date date2=new Date(),date1=new Date();	 
+    try {
+	 date1=sdf.parse(data);	
+	} catch (ParseException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}	
+    Timestamp orIn = new  Timestamp(date1.getTime());
 	
+	System.out.println(data);
 		
-		List<AulaLibera> aule = null;
-			 aule = DAOFactory.getAulaLiberaDAO().doRetrieveByDate(orIn);
+	      List<AulaLibera> aule = DAOFactory.getAulaLiberaDAO().doRetrieveByDate(orIn);
+	      System.out.println(aule.get(0).getAula());
 		
 			 //ho ricavato una lista di aule libere a partire dall'orario di inserimento fino alla fine della gioranta scelta
 			 
 			 //non ho la piu' pallida idea di cosa hai scritto qua sotto
 			 //quindi per adesso lascio stare e mi spieghi domani mattina
-			 JsonArray arrayObj=new JsonArray();
-         arrayObj.addAll((Collection<? extends JsonValue>) aule);
-		//response con json
+			
+		//response con json String objectToReturn = "{ key1: 'value1', key2: 'value2' }";
+           String objectReturn="[{\"nome\":\"Alessandro\",\"cognome\":\"Capodanno\"},"
+           		+ "{\"nome\":\"Pasquale\",\"cognome\":\"O'pegg\"}]";
+            
          	PrintWriter out = response.getWriter();
 	        response.setContentType("application/json");
 	        response.setCharacterEncoding("UTF-8");
-	        out.print(arrayObj);
-	        out.flush();   
+	        out.append("[");
+	        
+	        for(int i=0;i<aule.size();i++) {
+	        	out.append("{\"aula\":\""+aule.get(i).getAula().getNomeAula()+"\",\"giorno\":\""+aule.get(i).getGiorno()+"\"}");
+	        	if(i<aule.size()-1) {
+	        		out.append(",");
+	        	}
+	        }
+	        out.append("]");
+	        //out.flush();
+	        //out.close();
 	}
 
 }
