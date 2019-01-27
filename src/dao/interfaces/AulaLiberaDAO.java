@@ -14,7 +14,7 @@ public interface AulaLiberaDAO {
 
 		public boolean doSave(AulaLibera aula); //metodo per inserire l'aula nel database
 			  
-		public boolean doSaveOrUpdate(AulaLibera aula, Orario o);//metodo per modificare un'aula nel database
+		public boolean doSaveOrUpdate(AulaLibera aula, String giorno, Orario o);//metodo per modificare un'aula nel database
 			  
 		public boolean doDelete(AulaLibera aula);//metodo per cancellare un'aula nel database passando oggetto (GruppoDiStudio)
 			  

@@ -75,6 +75,7 @@ public class AulaLiberaDAOimplTest extends DBTestCase{
 		Timestamp inizio1 = new Timestamp(119, 0, 7, 15, 14, 0, 0);
 		Timestamp fine1 = new Timestamp(119, 0, 17, 15, 30, 0, 0);
 		Orario or2 = new Orario(inizio1, fine1);
+		String giorno ="lunedì";
 		DAOFactory.getOrarioDAO().doSave(or2);
 		or2 = DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(inizio1, fine1);
 		//salva l'aula nel db per ricavere l'idOrario dall'auto increment
@@ -84,7 +85,7 @@ public class AulaLiberaDAOimplTest extends DBTestCase{
 		al.getOrario().setIdOrario( DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(al.getOrario().getInizio(), al.getOrario().getFine()).getIdOrario());
 
 		//modifica l'aula libera con un nuovo orario
-		boolean res = DAOFactory.getAulaLiberaDAO().doSaveOrUpdate(al, or2);
+		boolean res = DAOFactory.getAulaLiberaDAO().doSaveOrUpdate(al, giorno, or2);
 		assertTrue(res);
 		//Richiedo al DB l'aula appena modificata
 		AulaLibera risultato = DAOFactory.getAulaLiberaDAO().doRetrieveByKey(al.getAula().getNomeAula(), al.getGiorno(), DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(inizio1, fine1).getIdOrario());

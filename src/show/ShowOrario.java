@@ -1,6 +1,8 @@
 package show;
 
 import java.io.IOException;
+import java.security.AlgorithmConstraints;
+
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import bean.Aula;
 import bean.AulaLibera;
 import bean.Orario;
 import dao.DAOFactory;
@@ -45,11 +48,16 @@ public class ShowOrario extends HttpServlet {
 		String aula = request.getParameter("aula");
 		String giorno = request.getParameter("giorno");
 		int idOrario = Integer.parseInt(request.getParameter("orario"));
+		giorno.replace('i', 'ì');
+		
 		
 		AulaLibera al = DAOFactory.getAulaLiberaDAO().doRetrieveByKey(aula, giorno, idOrario);
 		Orario or = DAOFactory.getOrarioDAO().doRetrieveByKey(idOrario);
+		Aula a = DAOFactory.getAulaDAO().doRetrieveByKey(aula);
 		session.setAttribute("aulaLibera", al);
 		session.setAttribute("orario", or);
+		session.setAttribute("aula", a);
+		System.out.println(giorno);
 		request.getRequestDispatcher("/view/orari/InfoOrario.jsp").forward(request, response);;
 	}
 

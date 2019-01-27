@@ -25,6 +25,7 @@
 <link rel="stylesheet" href="view/headerfooter/Footer.css"
 	type="text/css">
 <link rel="stylesheet" href="view/GdS/CreaGruppo.css" type="text/css">
+<link rel="stylesheet" href="view/GdS/ListaGruppi.css">
 </head>
 <body>
 	<%
@@ -36,22 +37,38 @@
 		<div class="col-lg-6" style="overflow: auto; min-height: 20em;">
 			<h4 style="text-align: center;">Lista completa delle aule libere</h4>
 			<table style="width: 100%">
-				<tr>
+				<tr style="background-color: #a01313; color: white;">
 					<th style="text-align: center">Aula</th>
 					<th style="text-align: center">Libera il giorno:</th>
 					<th style="text-align: center">Dalle:</th>
 					<th style="text-align: center">Fino alle:</th>
+					<th style="text-align: center"></th>
 				</tr>
 				<%
 					for (int i = 0; i < auleLibere.size(); i++) {
-						String link = "ShowOrario?aula="+auleLibere.get(i).getAula().getNomeAula()+"&giorno="+auleLibere.get(i).getGiorno().toLowerCase()+"&orario="+auleLibere.get(i).getOrario().getIdOrario();			
-				%>
+						String link = "ShowOrario?aula="+auleLibere.get(i).getAula().getNomeAula()+"&giorno="+auleLibere.get(i).getGiorno().replace('ì','i')+"&orario="+auleLibere.get(i).getOrario().getIdOrario();			
+			
+						
+						String color;
+								if (i % 2 == 0)
+									color = "#DCDCDC";
+								else
+									color = "white";
+					%>		
+			
 				
-				<tr onclick="document.location='<%=link %>'">
+				<tr class="gds" style="background-color: <%=color%>" onclick="document.location='<%=link %>'">
 						<td><%=auleLibere.get(i).getAula().getNomeAula()%></td>
 						<td><%=auleLibere.get(i).getOrario().getGiorno()%></td>
 						<td><%=auleLibere.get(i).getOrario().getInizio().toString().substring(10, 16)%></td>
 						<td><%=auleLibere.get(i).getOrario().getFine().toString().substring(10, 16)%></td>
+						<td><form action="ModificaOrario">
+								<input type="hidden" name="aula" value="<%=auleLibere.get(i).getAula().getNomeAula()%>">
+								<input type="hidden" name="giorno" value="<%=auleLibere.get(i).getGiorno()%>">
+								<input type="hidden" name="idOrario" value="<%=auleLibere.get(i).getOrario().getIdOrario()%>">
+    							<input type="submit" value="Elimina"/>
+							</form>
+						</td>
 					</tr>
 
 				<%
