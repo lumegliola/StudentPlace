@@ -38,9 +38,12 @@ function redirect()
 		</script>
 
 <div id="home">
-			<h2>La pagina richiesta non esiste o non è valida!</h2>
-			<h3>Fra pochi secondi, sarai reindirizzato alla <a href="ShowHome">Home</a>!</h3>
-			<h4>Clicca su <a href="ShowHome">Home</a> se non dovesse accadere in automatico.</h4>
+
+<div class="alert alert-warning" role="alert" style="text-align: center; padding: 2%; margin: 5%">
+	<h1 class="alert-heading">La pagina richiesta non esiste o non è valida!</h1>
+	<p style="margin-bottom: 0.5em;" class="mb-0">Fra pochi secondi, sarai reindirizzato alla <a href="ShowHome">Home</a>!</p>
+	<h4>Clicca su <a href="ShowHome">Home</a> se non dovesse accadere in automatico.</h4>
+	</div>
 			
 	</div>
 
