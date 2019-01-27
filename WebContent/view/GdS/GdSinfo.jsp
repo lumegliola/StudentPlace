@@ -1,7 +1,7 @@
 <%@page import="dao.DAOFactory"%>
 <%@page import="bean.GruppoDiStudio"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,56 +17,45 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
 <%
 	GruppoDiStudio g = (GruppoDiStudio) request.getAttribute("gds");
 	Utente u = (Utente) session.getAttribute("utente");
-	
 %>
 </head>
 <body>
-<%@ include file="../headerfooter/Header.jsp"%>
+	<%@ include file="../headerfooter/Header.jsp"%>
 
-<table style="margin-left: 37%; margin-right: 37%; margin-top: 5%; margin-bottom: 5%">
-  <tr>
-    <th><h2><%=g.getNomeGruppo()%></h2></th>
-  </tr>
-  <tr>
-    <td><h3>Aula </h3></td>
-    <td><%= g.getAula().getNomeAula()%></td>
-  </tr>
-  <tr>
-  		<td> <h3>Edificio: </h3></td>
-  		<td><%=g.getAula().getEdificio()%>
-  </tr>
-  <tr>
-		<td><h3>Giorno: </h3></td>
-		<td> <%=g.getOrario().getGiorno()%></td>  	
-  </tr>
-  <tr>
-  		<td><h3>Data:</td>
-  		<td> <%=g.getOrario().getInizio().getDay()%>/<%=g.getOrario().getInizio().getMonth()%>/<%=g.getOrario().getInizio().getYear()+1900%></td>
-  </tr>
-  <tr>
-  		<td><h3>Orario:</td>
-  		<td>dalle: <%=g.getOrario().getInizio().getHours()%>:<%=g.getOrario().getInizio().getMinutes()%> alle:<%=g.getOrario().getFine().getHours()%>:<%=g.getOrario().getFine().getMinutes()%></td>
-  </tr>
-  <tr>
-  	<td>
-  		<form action="IscrizioneGdS" method="post">
-  		<input type="hidden" name="operazione" value="iscrivi">
-  		<input type="hidden" name="idGds" value="<%=g.getId()%>">
-  		<input type="hidden" name="matricola" value=<%=u.getMatricola()%>>
-  		<button type="submit">Iscriviti</button>
-  		
-  		</form>
-  	</td>
-  </tr>
-</table>
+	<div style="text-align: center;">
+
+		<h1 style="color: #a01313;"><%=g.getNomeGruppo()%></h1>
+
+		<span style="font-size: x-large;">Si svolge nell'aula: </span> <span
+			style="margin-right: 1em;"><%=g.getAula().getNomeAula()%></span> <span
+			style="font-size: x-large;">edificio:</span> <span> <%=g.getAula().getEdificio()%>
+		</span><br> <span style="font-size: x-large;">Giorno </span> <span style="margin-right: 1em;">
+			<%=g.getOrario().getGiorno()%>
+		</span> <span style="font-size: x-large;"> Data </span> <span><%=g.getOrario().getInizio().getDay()%>/<%=g.getOrario().getInizio().getMonth()%>/<%=g.getOrario().getInizio().getYear() + 1900%>
+		</span> <br>
+		 <span style="font-size: x-large;">dalle:</span>
+		<span style="margin-right: 1em;"> <%=g.getOrario().getInizio().getHours()%>:<%=g.getOrario().getInizio().getMinutes()%>
+		</span>
+		 <span style="font-size: x-large;">alle:</span>
+		<span> <%=g.getOrario().getFine().getHours()%>:<%=g.getOrario().getFine().getMinutes()%>
+		</span>
+		<form action="IscrizioneGdS" method="post">
+			<input type="hidden" name="operazione" value="iscrivi"> <input
+				type="hidden" name="idGds" value="<%=g.getId()%>"> <input
+				type="hidden" name="matricola" value=<%=u.getMatricola()%>>
+			<button style="margin: 2em; background-color: #a01313; color: white; " type="submit">Iscriviti al gruppo</button>
+			
+
+		</form>
+	</div>
 
 
 
-
-
-<%@ include file="../headerfooter/Footer.html"%>
+	<%@ include file="../headerfooter/Footer.html"%>
 </body>
 </html>
