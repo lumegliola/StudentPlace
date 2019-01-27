@@ -36,7 +36,7 @@
 			<form action="AulaLibera" method="post" name="formReg">
 				<input type="hidden" name="autore"
 					value="<%=session.getAttribute("matricola")%>">
-<<<<<<< HEAD
+
 					
 					<label>Nome Gruppo:&nbsp;</label><br>
 					 <input
@@ -60,33 +60,8 @@
 
 						<input style="margin: 3em; background-color: #a01313; color: white; " id="bottone" type="submit" value="Crea Gruppo">
 
-=======
-				<table>
-					<tr>
-						<td>Nome Gruppo:</td>
-						<td><input class="input" type="text" name="name"
-							placeholder="Nome Gruppo" required="required""></td>
-					</tr>
-					<tr>
-						<td>Materia</td>
-						<td><input class="input" type="text" name="materia"
-							placeholder="Materia" required="required""></td>
-					</tr>
-					<tr>
-						<td>Data:</td>
-						<td><input type="date" name="data"></td>
-					</tr>
-					<tr>
-						<td>Orario inizio:</td>
-						<td><input name="inizio" type="time" min="9:00" max="18:00"
-							required="required" step="1800"></td>
-					</tr>
-					<tr>
-						<td><input id="bottone" type="submit" value="Crea">
-						</td>
-					</tr>
-				</table>
->>>>>>> branch 'master' of https://github.com/lumegliola/StudentPlace.git
+
+
 			</form>
 
 		</div>
