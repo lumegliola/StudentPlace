@@ -37,7 +37,19 @@ public class ServletLogout extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		
+		Cookie []ck=request.getCookies();
+		for(int i=0;i<ck.length;i++) {
+			if(ck[i].getName().equals("utente")) {
+				ck[i].setValue("");
+			}
+			if(ck[i].getName().equals("logged")) {
+				ck[i].setValue("");
+					}
+			if(ck[i].getName().equals("admin")) {
+				ck[i].setValue("");
+				}
+			
+		}
 		session.invalidate();
 		request.getRequestDispatcher("/view/homepage/Home.jsp").forward(request, response);
 	}

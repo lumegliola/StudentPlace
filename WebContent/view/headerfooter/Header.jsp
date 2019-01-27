@@ -92,25 +92,30 @@
 					<li class="nav-item active"><a class="nav-link"
 						href="ShowHome"> <span class="glyphicon glyphicon-home"></span>
 					</a></li>
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-						role="button" data-toggle="dropdown" href="#" aria-haspopup="true"
-						aria-expanded="false"> Gruppi di Studio</a>
-						<ul style="z-index: 3" class="dropdown-menu"
-							aria-labelledby="navbarDropdown">
-
-							<a class="dropdown-item"
-								href="CreaModificaGruppo?operazione=crea">Crea</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item"
-								href="CreaModificaGruppo?operazione=crea">Modifica</a>
-						</ul></li>
-						
+					<li class="nav-item"><a class="nav-link"
+						href="CreaModificaGruppo?operazione=crea">nuovo gruppo di studio</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="visualizzaAuleLibere">Cerca aule libere</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Contatti</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Chi
-							Siamo</a></li>
+					
+					<% boolean admin=false;
+					if(session.getAttribute("admin")==null){
+						admin=false;
+					}else{
+						if(session.getAttribute("admin").equals(true)){
+						admin=true;
+						}else{
+							admin=false;
+										
+						}
+					}
+					System.out.println(admin);
+					if( admin == true){ %>
+					
+					<li class="nav-item"><a class="nav-link" href="GestioneOrario">Gestione orari</a></li>
+					
+					<%} %>
+					
 					<li style="padding: 3px;" class="nav-item "><form class="form-inline" action="RicercaGds" method="post" autocomplete="off">
 
 							<input class="form-control mr-sm-2" id=search_input type="text" class="bar" name="inputGruppo"
@@ -132,7 +137,7 @@
 					
 						//if(admin==true){ %>
 
-					<!-- ---- --><li class="nav-item"><a href="#">Gestione orari</a></li>
+					
 
 					<%//}
 					//	} %>

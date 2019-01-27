@@ -32,7 +32,7 @@
 				
 				}%>
 
-<div  class="col-lg-<%=larghezza %> col-md-offset-1">
+<div style="margin: 1.5em;"  class="col-lg-<%=larghezza %> col-md-offset-1">
 			<img style="width: 30%; float: left; margin: 5px;"
 				id="groupStudyImg" alt="img group study"
 				src="view/images/studygroup.jpg">
