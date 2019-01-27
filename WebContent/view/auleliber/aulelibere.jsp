@@ -46,7 +46,7 @@
 				int s = 0, k = 1, intervallo = 9;
 			%>
 			<thead>
-				<tr>
+				<tr style="color: white;">
 					<th>Orario</th>
 					<th>Lunedì</th>
 					<th>Martedì</th>
@@ -55,7 +55,7 @@
 					<th>Venerdì</th>
 				</tr>
 			</thead>
-			<tbody>
+			
 			<%for(int cont=0;cont<10;cont++){ %>
 				<tr>
 					<td><%=intervallo%>:00-<%=intervallo + 1%>:00</td>
@@ -74,9 +74,8 @@
  %>					</td><%}s = 0;
 			 		k++;intervallo++;} %>
 				</tr>
-			</tbody>
-		</table>
-	</div>
+		</table></div>	</body>
+	
 	<%@ include file="../headerfooter/Footer.html"%>
 
 </body>

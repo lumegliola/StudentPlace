@@ -1,14 +1,13 @@
 .tabella{
 	background-color: #a01313;
-	color: #000000;
 	border-collapse: collapse !important;
-	border :1px solid #ffffff !important;
+	border :1px solid #000000!important;
 	margin-bottom: 10px !important;
 }
 
 th, td {
 	text-align: center !important;
-	border :1px solid #000000 !important;
+	border :1px solid #000000!important;
 	
 }
 .tabella  td{
