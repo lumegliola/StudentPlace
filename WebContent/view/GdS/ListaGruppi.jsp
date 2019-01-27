@@ -5,7 +5,7 @@
 <%@page import="java.util.List"%>
 <%@page import="bean.*"%>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href = "view/GdS/ListaGruppi.css">
+<link rel="stylesheet" href="view/GdS/ListaGruppi.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet"
@@ -23,59 +23,63 @@
 	<%@ include file="../headerfooter/Header.jsp"%>
 
 	<%!List<GruppoDiStudio> list;%>
-<div class="container-fluid" style="padding: 3%;">
-	<table style="width: 100%">
-				<tr style="background-color: red; color: white">
-					<th style="text-align: center">Nome</th>
-					<th style="text-align: center">Materia</th>
-					<th style="text-align: center">Luogo</th>
-					<th style="text-align: center">Giorno e ora</th>
-				</tr>
-
-	
-	<div>
-
-		<%
-			list = (List<GruppoDiStudio>) request.getAttribute("gruppi");
-		%>
-		<%
-			try {
-				for (int i = 0; i < list.size(); i++) {
-					GruppoDiStudio p = list.get(i);
-		%>
-		<!-- -------------------------- product row --------------------------- -->
+	<div class="container-fluid" style="padding: 3%;">
+		<table style="width: 100%">
+			<tr style="background-color: #a01313; color: white; font-size: large;">
+				<th style="text-align: center">Nome</th>
+				<th style="text-align: center">Materia</th>
+				<th style="text-align: center">Luogo</th>
+				<th style="text-align: center">Giorno e ora</th>
+			</tr>
 
 
-	<% String color;
-	if(i%2==0)
-		color = "grey";
-	else
-		color = "white";
-	%>
+
+				<%
+					list = (List<GruppoDiStudio>) request.getAttribute("gruppi");
+				%>
+				<%
+					try {
+						for (int i = 0; i < list.size(); i++) {
+							GruppoDiStudio p = list.get(i);
+				%>
+				<!-- -------------------------- product row --------------------------- -->
 
 
-		<div class="row">
-		
-		<%String link ="ShowGdS?idGruppo="+p.getId(); %>
-			<tr class ="gds" style="background-color: <%=color%>" onclick="document.location ='<%=link%>'">
-						<td><%=p.getNomeGruppo()%></td>
+				<%
+					String color;
+							if (i % 2 == 0)
+								color = "#DCDCDC";
+							else
+								color = "white";
+				%>
+
+
+				<div class="row">
+
+					<%
+						String link = "ShowGdS?idGruppo=" + p.getId();
+					%>
+					<tr class="gds" style="background-color: <%=color%>"
+						onclick="document.location ='<%=link%>'">
+						<td style="font-size: medium; font-weight: 600;"><%=p.getNomeGruppo()%></td>
 						<td><%=p.getMateria()%></td>
-						<td>Aula: <%=p.getAula().getNomeAula()%>, Edificio: <%=p.getAula().getEdificio()%></td>
+						<td><span style="font-size: medium; font-weight: 600;">Aula:</span>
+							<span style="margin-right: 1em;"> <%=p.getAula().getNomeAula()%>
+						</span><span style="font-size: medium; font-weight: 600;">Edificio:</span>
+							<%=p.getAula().getEdificio()%></td>
 						<td><%=p.getOrario().getInizio().toString().substring(0, 10)%>
-							dalle: <%=p.getOrario().getInizio().toString().substring(10, 16)%></td>
+							<span style="font-size: medium; font-weight: 600;">dalle: </span> <%=p.getOrario().getInizio().toString().substring(10, 16)%></td>
+					
 					</tr>
-		</div>
-		<%
-			}
-			} catch (IndexOutOfBoundsException e) {
+				</div> </div>
+				<%
+					}
+					} catch (IndexOutOfBoundsException e) {
 
-			}
-		%>
-
-
-
-</table>
-	</div>
+					}
+				%>
+			
+		</table>
 	</div>
 	<%@ include file="../headerfooter/Footer.html"%>
 </body>
