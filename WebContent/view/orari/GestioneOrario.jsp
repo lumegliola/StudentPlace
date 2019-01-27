@@ -44,10 +44,10 @@
 				</tr>
 				<%
 					for (int i = 0; i < auleLibere.size(); i++) {
-						String link = "ShowOrario?aula="+auleLibere.get(i).getAula().getNomeAula()+"&giorno="+auleLibere.get(i).getOrario().getGiorno()+"&orario="+auleLibere.get(i).getOrario().getIdOrario();			
+						String link = "ShowOrario?aula="+auleLibere.get(i).getAula().getNomeAula()+"&giorno="+auleLibere.get(i).getGiorno()+"&orario="+auleLibere.get(i).getOrario().getIdOrario();			
 				%>
 				
-				<tr onclick=document.location.replace(<%=link %>)><tr>
+				<tr onclick="document.location='<%=link %>'">
 						<td><%=auleLibere.get(i).getAula().getNomeAula()%></td>
 						<td><%=auleLibere.get(i).getOrario().getGiorno()%></td>
 						<td><%=auleLibere.get(i).getOrario().getInizio().toString().substring(10, 16)%></td>
