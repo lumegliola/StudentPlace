@@ -73,13 +73,13 @@
 					<label>Orario inizio:</label>
 					<select class="input" name="inizio" required="required">
 					<%for(int i=8;i<19;i++){ %>
-						<option value="<%=i+1%>"><%=i+1%></option>
+						<option value="<%=i+2%>"><%=i+1%></option>
 						<%} %>
 					</select>
 					
 					 <label>Orario fine:</label> <select class="input" name="fine" required="required">
 					<%for(int i=8;i<20;i++){ %>
-						<option value="<%=i+1%>"><%=i+1%></option>
+						<option value="<%=i+2%>"><%=i+1%></option>
 						<%} %>
 					</select><br>
 				<div class="testo">
