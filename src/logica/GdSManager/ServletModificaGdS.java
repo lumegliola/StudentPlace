@@ -52,20 +52,10 @@ public class ServletModificaGdS extends HttpServlet {
 			//Controllo esistenza sessione 
 			
 			if(session.getAttribute("logged") != null && (session.getAttribute("logged").equals(true))) {//Se esiste 
-						String nomeGruppo = (String)request.getParameter("name");
-						String materia = (String) request.getParameter("materia");	
-						System.out.println(nomeGruppo+materia);
-						String par_aula= request.getParameter("aula");
-						int data_inizio=Integer.parseInt(request.getParameter("inizio"));
-						int anno=Integer.parseInt(request.getParameter("anno"))-1900;
-						int mese=Integer.parseInt(request.getParameter("mese"));
-						int giorno=Integer.parseInt(request.getParameter("giorno"));
-						int data_fine=Integer.parseInt(request.getParameter("fine"));
-					
-						String nomeGruppov = (String)request.getParameter("nomeGruppov");
-						String materiav = (String) request.getParameter("materiav");	
-						System.out.println(nomeGruppov+materiav);
-						GruppoDiStudio gds=DAOFactory.getGdSDAO().doRetrieveByNameAndSubject(nomeGruppov, materiav);
+				String nomeGruppo = (String)request.getParameter("nomeGruppo");
+				String materia = (String) request.getParameter("materia");			        
+				GruppoDiStudio gds=DAOFactory.getGdSDAO().doRetrieveByNameAndSubject(nomeGruppo, materia);
+						
 						if(gds==null) {//inizo if verifica :se l'oggetto gds non è null allora il gruppo di studio non esiste 
 							System.out.println("Gruppo di Studio non esiste!");
 							request.getRequestDispatcher("/view/errore/Errore.jsp").forward(request, response);
@@ -75,8 +65,11 @@ public class ServletModificaGdS extends HttpServlet {
 	                     Utente utente=(Utente)session.getAttribute("utente");
 						if(utente.getMatricola().equals(matricolaCretore)) { // se la matricola di chi sta modificando è uguale a creatore elimina
 						
-							Aula aula = DAOFactory.getAulaDAO().doRetrieveByKey(par_aula);
-							/*SimpleDateFormat sdf;
+							String data_inizio=request.getParameter("inizio");
+							String data_fine=request.getParameter("fine");
+							String nuova_aula = request.getParameter("aula");
+							SimpleDateFormat sdf;
+							
 						     sdf= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 						     Date date2=new Date(),date1=new Date();	 
 						     try {
@@ -85,13 +78,7 @@ public class ServletModificaGdS extends HttpServlet {
 							} catch (ParseException e) {
 								e.printStackTrace();
 							}	 		    
-							*/
-							Timestamp i=new Timestamp(anno,mese,giorno,data_inizio,0,0,0);
-							Timestamp f=new Timestamp(anno,mese,giorno,data_inizio,0,0,0);
-							gds.setOrario(i, f);
-							System.out.println(i.getYear()+i.getMonth()+i.getDay()+i.getHours()+i.getMinutes()+i.getSeconds()+i.getNanos());
-							Orario o=new Orario(i,f);
-                            DAOFactory.getGdSDAO().doSaveOrUpdate(gds,aula.getNomeAula(), i,f);
+						   request.setAttribute("redirect", "profilo");
 						    request.getRequestDispatcher("/view/Opeffettuata.jsp").forward(request, response);
 						     return;
 						}else {//altrimento no
