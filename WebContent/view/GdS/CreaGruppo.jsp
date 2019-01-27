@@ -107,6 +107,43 @@
 
 
 	</div>
+<script>
+    var valoreData="";
+    var valoreInizio="";
+    function setdata(){
+        setData=true;
+        valoreData=document.getElementById('data').value;
+        if(valoreData.length>0){
+        console.log(valoreData);
+        }
+    }
+    function setinizio(){
+        setData=true;
+        valoreInizio=document.getElementById('inizio').value;
+        if(valoreInizio.length>0){
+        console.log(valoreInizio);
+        }
+    }
+    var valore=true;
+
+ $("#inizio,#data").change(function(){
+     if(valoreInizio.length>0 && valoreData.length>0){
+     $.post("AulaLibera",
+              {
+                inizio:valoreInizio,
+                data:valoreData
+              },
+              function(data, status){
+                  var num=data.length  ;
+                  var i=0;
+                  for(i=0;i<num;i++){
+                   console.log("Aula libera:" + data[i].aula+",Giorno "+data[i].giorno+ " ");
+                  }
+                  });
+     valore=false;
+        }
+        });
+</script>
 
 	<%@ include file="../headerfooter/Footer.html"%>
 </body>
