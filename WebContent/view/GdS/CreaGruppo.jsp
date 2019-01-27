@@ -39,7 +39,7 @@
 		style="text-align: center; align-content: center;">
 		<div class=" col-lg-8 col-md-offset-2">
 			<h2 style="color: #a01313; margin: 1em;">Crea Gruppo</h2>
-			<form action="AulaLibera" method="post" name="formReg">
+			<form action="CreaModificaGruppo" method="post" name="formReg">
 				<input type="hidden" name="autore"
 					value="<%=session.getAttribute("matricola")%>">
 				<label>Nome Gruppo:&nbsp;</label><br>
