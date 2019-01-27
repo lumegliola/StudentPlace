@@ -67,7 +67,7 @@ public class ServletEliminaGdS extends HttpServlet {
 						if(deleteIscr==false && deleteGds==true) {
 							System.out.println("Eliminazione ok");	
 						}
-						request.getRequestDispatcher("/view/Opeffettuata.jsp").forward(request, response);
+						request.getRequestDispatcher("/view/OpEffettuata.jsp").forward(request, response);
 					
 					}else {//altrimento no
 						request.getRequestDispatcher("/view/errore/Errore.jsp").forward(request, response);
