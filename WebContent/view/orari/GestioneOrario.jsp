@@ -31,6 +31,16 @@
 	<%
 		List<AulaLibera> auleLibere = (List<AulaLibera>) request.getAttribute("auleLibere");
 	%>
+	<script>
+    var valoreData="";
+    var valoreInizio="";
+    function setdata(){
+        setData=true;
+        valoreData=document.getElementById('data').value;
+        if(valoreData.length>0){
+        console.log(valoreData);
+        }
+    }</script>
 	<%@ include file="../headerfooter/Header.jsp"%>
 	<div class="container-fluid" style="padding: 3%">
 	
@@ -80,22 +90,31 @@
 		</div>
 		<div class="col-lg-6" style="border-left: 1px solid red">
 			<h4 style="text-align: center;">inserisci una nuova aula libera</h4>
-			<form action="AulaLibera" method="post" name="formReg">
+			<form action="inserisciOrario" method="post" name="formReg">
 				<table style="margin-left: 25%">
 					<tr>
 						<td>Aula</td>
-						<td><input class="input" type="select" name="aula"
-							placeholder="aula" required="required"></td>
+						<td><div class="testo">
+					<select class="input" name="aula" required="required">
+					<%for(int i=0;i<21;i++){ %>
+						<option value="P<%=i+1%>F3">P<%=i+1%></option>
+						
+						<%} %>
+				<%for(int  i=0;i<8;i++){ %>
+						<option value="F<%=i+1%>F2">F<%=i+1%></option>
+						
+						<%} %>
+						<%for(int i=0;i<6;i++){ %>
+						<option value="S<%=i+1%>F">S<%=i+1%></option>
+						
+						<%} %>
+				
+					</select>
+				</div>
 					</tr>
 					<tr>
-						<td>Giorno</td>
-						<td><select>
-								<option value="lunedì">lunedì</option>
-								<option value="martedì">martedì</option>
-								<option value="mercoledì">mercoledì</option>
-								<option value="giovedì">giovedì</option>
-								<option value="venerdì">venerdì</option>
-						</select></td>
+						<label>Data:</label>
+						<input style="margin-bottom: 0.5em;" type="date" name="data" onchange="setdata()" id="data">
 					</tr>
 					<tr>
 						<td>Orario inizio:</td>
@@ -104,7 +123,7 @@
 					</tr>
 					<tr>
 						<td>Orario fine:</td>
-						<td><input name="inizio" type="time" min="9:00" max="18:00"
+						<td><input name="fine" type="time" min="9:00" max="18:00"
 							required="required" step="1800"></td>
 					</tr>
 

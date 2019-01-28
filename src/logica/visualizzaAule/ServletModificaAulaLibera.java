@@ -47,7 +47,7 @@ public class ServletModificaAulaLibera extends HttpServlet {
 			
 			if(DAOFactory.getAulaLiberaDAO().doDeleteByKey(aula, giorno, idOrario)==true) {
 				request.setAttribute("redirect", "orario");
-				request.getRequestDispatcher("/view/OpEffettuata.jsp").forward(request, response);
+				request.getRequestDispatcher("GestioneOrario").forward(request, response);
 			}else
 				request.getRequestDispatcher("/view/errore/Errore.jsp").forward(request, response);
 		}
