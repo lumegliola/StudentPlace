@@ -94,7 +94,7 @@ public class ServletCreaGds extends HttpServlet {
 		else {
 			//messagggio: utente non loggato
 			session.setAttribute("esito", "errore");
-			request.getRequestDispatcher("/view/Homepage/home.jsp").forward(request, response);
+			request.getRequestDispatcher("/view/errore/Errore.jsp").forward(request, response);
 		}
 		}
 		
