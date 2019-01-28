@@ -60,7 +60,7 @@ public class ServletEliminaGdS extends HttpServlet {
 					 String matricolaCreatore=gds.getCreatore().getMatricola();
                      Utente utente=(Utente)session.getAttribute("utente");
 
-					if(utente.getMatricola().equals(matricolaCreatore)) { // se la matricola di chi sta eliminando è uguale a creatore elimina
+					if(utente.getMatricola().equals(matricolaCreatore)||utente.isAdmin()==true) { // se la matricola di chi sta eliminando è uguale a creatore elimina
 						System.out.println("Gruppo di Studio viene eliminato dal creatore!");
 						boolean deleteIscr=DAOFactory.getIscrizioneDAO().doDeleteByGroup(gds.getId());
 						boolean deleteGds=DAOFactory.getGdSDAO().doDeleteByNameAndSubjet(gds.getNomeGruppo(),gds.getMateria());

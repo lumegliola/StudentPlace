@@ -36,6 +36,9 @@
 			iscrizioni.add(p);
 
 		}
+		if(u.isAdmin()){
+			 creatore = DAOFactory.getGdSDAO().doRetrieveAll();
+		}
 	%>
 	<div style="min-height: 30em; margin-top: 15px;">
 
