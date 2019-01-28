@@ -95,36 +95,17 @@ public class ServletInserisciOrario extends HttpServlet {
 			
 			//controlla che l`orario non sia presente
 			Orario controllo = DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(or.getInizio(), or.getFine());
-			if(controllo.getInizio() != null && controllo.getFine()!=null) {
-				System.out.println("Orario già presente!");
-				System.out.println("intervallo Orario inserito precedentemente dall`amministratore");
-				
-				
-				
-			
-				System.out.println(controllo.getIdOrario()+controllo.getGiorno());
-				System.out.println(controllo.getInizio()+"l'inizio è");
-				 //se l'orario è gia presente , crea un oggetto aula libera , ci mette l'aula creata in precedenza e poi la salva
-				 AulaLibera aula=new AulaLibera();
-				 System.out.println("l'aula è "+a.getNomeAula()+"l'edificio è"+a.getEdificio());
-				 //vostruisce l'aula
-				 aula.setOrario(controllo);
-				 aula.setAula(a);
-				
-				 //salva l'aula
-				DAOFactory.getAulaLiberaDAO().doSave(aula);
-				session.setAttribute("esito", true);
-				 request.getRequestDispatcher("GestioneOrario").forward(request, response);
-				
-			
-			}
-			
-			
-			//se non trova l'orario
-			else {
+		
+				if(controllo.getInizio() != null && controllo.getFine()!=null) {
+					System.out.println("Orario gia presente");
+					
+					
+				}
+				else {
 				DAOFactory.getOrarioDAO().doSave(or);//se non trova l'orario ne db lo salva e poi salva l'aula
+				System.out.println("Orario inserito ");
 				
-				System.out.println("Orario inserito dall`amministratore");
+				}
 				
 				
 				Orario controllo2 = DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(or.getInizio(),or.getFine());
@@ -149,7 +130,7 @@ public class ServletInserisciOrario extends HttpServlet {
 				request.getRequestDispatcher("view/errore/Errore.jsp").forward(request, response);
 			}
 				
-			}
+			
 			
 		}
 		
