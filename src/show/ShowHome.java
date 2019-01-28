@@ -40,6 +40,7 @@ public class ShowHome extends HttpServlet {
 			for(int i=0;i<cookie.length;i++) {
 				if(cookie[i].getName().equals("utente")) {
 					mail=cookie[i].getValue();
+			
 				}
 				if(cookie[i].getName().equals("logged")) {
 				logged=cookie[i].getValue();				

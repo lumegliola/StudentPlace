@@ -67,7 +67,6 @@ public class ServletAulaLibera extends HttpServlet {
 	System.out.println(data);
 		
 	      List<AulaLibera> aule = DAOFactory.getAulaLiberaDAO().doRetrieveByDate(orIn);
-	      System.out.println(aule.get(0).getAula());
 		
 			 //ho ricavato una lista di aule libere a partire dall'orario di inserimento fino alla fine della gioranta scelta
 			 
@@ -84,26 +83,35 @@ public class ServletAulaLibera extends HttpServlet {
 	        out.append("[");
 		      List<AulaLibera> naule = new ArrayList<AulaLibera>();
               List<Integer> listaIndice=new ArrayList<Integer>();
+              List<Integer> listaIncrementi=new ArrayList<Integer>();
 	        //Capire orario se è consecutivo
 	       for(int i=0;i<aule.size();i++) {
+	    	   int j=0,k=0;
               if(i+1>=aule.size()) {
             	  break;
               }
 	    	  if(aule.get(i).getAula().getNomeAula().equals(aule.get(i+1).getAula().getNomeAula())){
 	    		  System.out.println("Entro primo controllo");
 	    		 if( aule.get(i).getOrario().getFine().getHours()==aule.get(i+1).getOrario().getInizio().getHours()){
-		    		  System.out.println("Entro secondo controllo");
-	    			 aule.get(i+1).getOrario().getInizio().setHours(aule.get(i).getOrario().getInizio().getHours());
-	    			
+	    			 System.out.println(aule.get(i).getOrario().getInizio());
 	    			 System.out.println(aule.get(i+1).getOrario().getInizio());
-	    			 listaIndice.add(i);
+	    			 listaIndice.add(i+1);
+		               j=j+1;
+	    		 }else {
+	    			 j=0;
 	    		 }
 	    	  }
 	    	   
 	       }
 	        
 	        System.out.println(aule.size());
-	    //    for(int i=0;i<)
+	     for(int i=0;i<listaIndice.size();i++) {
+	    	aule.remove(listaIndice.get(i));
+	    	
+	     }
+	     for(int i=0;i<aule.size();i++) {
+		    	System.out.println(aule.get(i));
+		     }
 	        
 	        for(int i=0;i<aule.size();i++) {
 	        	out.append("{"
@@ -121,5 +129,6 @@ public class ServletAulaLibera extends HttpServlet {
 	        //out.flush();
 	        //out.close();
 	}
+	
 
 }

@@ -97,7 +97,7 @@
     var valore=true;
     var auleLibere;
  	$("#inizio,#data").change(function(){
- 		$("#aule").html();
+ 		$("#aule").html("<option value=\" \">---</option>");
  		
      if(valoreInizio.length>0 && valoreData.length>0){
      $.post("AulaLibera",
