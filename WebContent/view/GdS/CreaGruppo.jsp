@@ -66,10 +66,15 @@
 							  <option value=" ">---</option>
 							
 							</select></span><br>
+							<%if(logged){ %>
 							<input type="hidden" name="operazione" value="crea">
 				<input style="margin: 3em; background-color: #a01313; color: white; " id="bottone" type="submit" value="Crea Gruppo">
 
+<%}else{ %>
+<a  style="margin: 3em; background-color: #a01313; color: white; " href="ShowHome">Iscriviti per creare Gruppi</a>
 
+<%} %>
+	
 
 			</form>
 

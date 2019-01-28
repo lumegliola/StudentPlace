@@ -97,7 +97,19 @@
 					<li class="nav-item"><a class="nav-link"
 						href="visualizzaAuleLibere">Cerca aule libere</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Contatti</a></li>
+					<%
+				boolean logged=false;
+				if(session.getAttribute("logged")==null){
+					logged=false;
 					
+				}else{
+				logged=(boolean)session.getAttribute("logged");
+				}
+				if(logged){
+				Utente utente=(Utente)session.getAttribute("utente");
+				
+				
+				%>
 					<% boolean admin=false;
 					if(session.getAttribute("admin")==null){
 						admin=false;
@@ -114,7 +126,7 @@
 					
 					<li class="nav-item"><a class="nav-link" href="GestioneOrario">Gestione orari</a></li>
 					
-					<%} %>
+					<%}if(logged){ %>
 					
 					<li style="padding: 3px;" class="nav-item "><form class="form-inline" action="RicercaGds" method="post" autocomplete="off">
 
@@ -130,7 +142,7 @@
 						
 					</form></li>
 
-					<% //if(session != null && session.getAttribute("logged")!=null){
+					<% }//if(session != null && session.getAttribute("logged")!=null){
 					//	boolean admin = false;
 						
 						//admin = (boolean) session.getAttribute("admin");
@@ -144,24 +156,14 @@
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 
-					<%
-				boolean logged=false;
-				if(session.getAttribute("logged")==null){
-					logged=false;
-				}else{
-				logged=(boolean)session.getAttribute("logged");
-				}
-				if(logged){
-				Utente utente=(Utente)session.getAttribute("utente");
-				
-				
-				%>
+					
 
 					<li class="nav-item"><a href="ServletVisualizzaProfilo"><%=utente.getNome() %></a></li>
 					<li class="nav-item"><a href="logout"><span
 							class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 					<%}
-				else if(logged==false){%>
+				else if(logged==false){
+				%>
 					<li class="nav-item"><a href="ShowHome">Login</a></li>
 					<%} %>
 				</ul>
