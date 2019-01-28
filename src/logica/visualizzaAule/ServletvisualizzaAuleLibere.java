@@ -40,38 +40,38 @@ public class ServletvisualizzaAuleLibere extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		
-		ArrayList <listaAuleLibere> lista=new ArrayList<>();
-		List <AulaLibera> elenco = new ArrayList<>();
-		List <String> giorni= new ArrayList<>();
+		ArrayList <listaAuleLibere> lista=new ArrayList<>();//crea un arraylist vuoto di aule da caricare e tornare alla jsp di visualizza aule
+		List <AulaLibera> elenco = new ArrayList<>();//crea l'elenco da caricare con i risultati nel db
+		List <String> giorni= new ArrayList<>();//crea un elenco per controllare i giorni con quelli liberi nel db
 		giorni.add("Lunedì");
 		giorni.add("Martedì");
 		giorni.add("Mercoledì");
 		giorni.add("Giovedì");
 		giorni.add("Venerdì");
-		elenco.addAll(DAOFactory.getAulaLiberaDAO().doRetrieveAll());
+		elenco.addAll(DAOFactory.getAulaLiberaDAO().doRetrieveAll());//carica l'elenco delle aule libere
 		
-		if(session.getAttribute("logged")==null) {
+		if(session.getAttribute("logged")==null) {//controlla sessione e ne setta gli attributi
 			System.out.println("setta attribute");
 			session.setAttribute("logged",false);
 		}
 		
 		
-		for(int g=0;g<5;g++) {
-			for(int o =10;o<20;o++) {
-		for(int i =0;i<elenco.size();i++) {
-			if(elenco.get(i).getOrario().getGiorno().equals(giorni.get(g))){
-				if((int)elenco.get(i).getOrario().getInizio().getHours()<=o){
+		for(int g=0;g<5;g++) {//for che scorre nei 5 gg
+			for(int o =10;o<20;o++) {// for che scorre le fasce orarie
+		for(int i =0;i<elenco.size();i++) {//for che scorre l'elenco dei risultati tante volte quante sono le fasce orarie
+			if(elenco.get(i).getOrario().getGiorno().equals(giorni.get(g))){//controlla se il giorno del primo for corrisponde con quelli nell'elenco
+				if((int)elenco.get(i).getOrario().getInizio().getHours()<=o){//controlla l'intervallo se è compreso tra o e o+1
 					if((int)elenco.get(i).getOrario().getFine().getHours()>=o+1)
 					{
 						if(lista.size()!=0) {
-						for(int c=0;c <lista.size() ;c++) {
+						for(int c=0;c <lista.size() ;c++) {//controlla se c'è qualche elemento nella lista da mandare alla jsp e vede se ha trovato aule libere uguali quindi nel caso si ferma
 							if(lista.get(c).getNomeaula().equals(elenco.get(i).getAula().getNomeAula()) && lista.get(c).getGiorno().equals(giorni.get(g))	&&lista.get(c).getFasciaoraria()==o-9)
 							{
 								break;
 							}
 						}
 						}
-						listaAuleLibere l= new listaAuleLibere((elenco.get(i).getAula().getNomeAula()),giorni.get(g),(o-9));
+						listaAuleLibere l= new listaAuleLibere((elenco.get(i).getAula().getNomeAula()),giorni.get(g),(o-9));  //se non trova duplicati aggiunge l'aula all'elenco 
 								lista.add(l);	
 						}
 
@@ -82,7 +82,7 @@ public class ServletvisualizzaAuleLibere extends HttpServlet {
 		}
 		session.setAttribute("lista",lista);
 
-		System.out.println(session.getAttribute("lista"));
+		System.out.println(session.getAttribute("lista"));//ritorna l'elenco alla jsp
 		System.out.println(session.getAttribute("logged"));
 		
 		request.getRequestDispatcher("/view/auleliber/aulelibere.jsp").forward(request, response);

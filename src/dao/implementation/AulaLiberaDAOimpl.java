@@ -278,19 +278,17 @@ public class AulaLiberaDAOimpl implements AulaLiberaDAO{
 			PreparedStatement ps = null;
 			List<AulaLibera> aule = new ArrayList<>();
 		
-			data.setYear(data.getYear()+1900);
-			data.setMonth(data.getMonth()+1);
 			System.out.println(data.getDate() +" "+data.getYear()+" "+data.getMonth());
-			Timestamp data1= new Timestamp(data.getYear(), data.getMonth(), data.getDay()+1, data.getHours(), data.getMinutes(), data.getSeconds(), data.getNanos());
-            System.out.println(data1.getYear()+" "+data1.getMonth());
 			try {
 
 				connection = DriverManagerConnectionPool.getConnection();
 
 				//dichiara lo statement
-				ps = connection.prepareStatement("select * from libera join orario on  orario.id=libera.orario where orario.inizio >= '2019-2-21 9:00:00' and orario.inizio < '2019-2-21 10:00:00';");
-			//	ps.setTimestamp(1, data);
-			//	ps.setTimestamp(2, data1);
+				ps = connection.prepareStatement("select * from libera join orario on  orario.id=libera.orario where orario.inizio >= ? and orario.inizio < ?;");
+				ps.setTimestamp(1, data);
+				data.setHours(data.getHours()+10);
+                System.out.println(data.getDay());
+				ps.setTimestamp(2, data);
 				//esegue lo statement
 				ResultSet result = ps.executeQuery();
 

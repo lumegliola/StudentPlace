@@ -82,9 +82,37 @@ public class ServletAulaLibera extends HttpServlet {
 	        response.setContentType("application/json");
 	        response.setCharacterEncoding("UTF-8");
 	        out.append("[");
+		      List<AulaLibera> naule = new ArrayList<AulaLibera>();
+              List<Integer> listaIndice=new ArrayList<Integer>();
+	        //Capire orario se è consecutivo
+	       for(int i=0;i<aule.size();i++) {
+              if(i+1>=aule.size()) {
+            	  break;
+              }
+	    	  if(aule.get(i).getAula().getNomeAula().equals(aule.get(i+1).getAula().getNomeAula())){
+	    		  System.out.println("Entro primo controllo");
+	    		 if( aule.get(i).getOrario().getFine().getHours()==aule.get(i+1).getOrario().getInizio().getHours()){
+		    		  System.out.println("Entro secondo controllo");
+	    			 aule.get(i+1).getOrario().getInizio().setHours(aule.get(i).getOrario().getInizio().getHours());
+	    			
+	    			 System.out.println(aule.get(i+1).getOrario().getInizio());
+	    			 listaIndice.add(i);
+	    		 }
+	    	  }
+	    	   
+	       }
+	        
+	        System.out.println(aule.size());
+	    //    for(int i=0;i<)
 	        
 	        for(int i=0;i<aule.size();i++) {
-	        	out.append("{\"aula\":\""+aule.get(i).getAula().getNomeAula()+"\",\"giorno\":\""+aule.get(i).getGiorno()+"\"}");
+	        	out.append("{"
+	        			+ "\"aula\":\""+aule.get(i).getAula().getNomeAula()+"\","
+	        			+ "\"giorno\":\""+aule.get(i).getGiorno()+"\","
+	        			+ "\"id\":\""+i+"\","
+    					+ "\"inizio\":\""+(aule.get(i).getOrario().getInizio().getHours()-1)+"\","
+    				    + "\"fine\":\""+(aule.get(i).getOrario().getFine().getHours()-1)+"\""
+    					+ "}");
 	        	if(i<aule.size()-1) {
 	        		out.append(",");
 	        	}

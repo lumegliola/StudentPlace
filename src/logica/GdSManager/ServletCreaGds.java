@@ -48,10 +48,13 @@ public class ServletCreaGds extends HttpServlet {
 			String nomeGruppo = request.getParameter("nomeGruppo");
 			String materia = request.getParameter("materia");
 			String par_aula= request.getParameter("aula");
-			String data_inizio=request.getParameter("inizio");
-		    String data_fine=request.getParameter("fine");
-			
+			String data=request.getParameter("data");
+			String inizio=request.getParameter("inizio");
+		    String fine=request.getParameter("fine");
 		
+		    String data_inizio=data.concat(" "+inizio);
+		    String data_fine=data.concat(" "+fine);
+		    System.out.println(data_inizio);
 				if(DAOFactory.getGdSDAO().doRetrieveByNameAndSubject(nomeGruppo, materia) == null){
 					GruppoDiStudio nuovo = new GruppoDiStudio();
 					Utente creatore =(Utente) session.getAttribute("utente");
