@@ -55,16 +55,22 @@ public class ServletInserisciOrario extends HttpServlet {
 	    String fine=request.getParameter("fine");
 	    
 	    Aula a=new Aula();
+	    //salva sia nome aula che edificio relativo
 	    String nomeaula=par_aula.substring(0, 2);
 	    String nomeedificio=par_aula.substring(2, 4);
+	    //crea l'aula da aggiungere
 	    a.setEdificio(nomeedificio);
 		a.setNomeAula(nomeaula);
+		//debug
 	    System.out.println(inizio+"fine"+fine);
+	    //crea la stringa da inserire nel timestamp
 	    String data_inizio=data.concat(" "+inizio);
+	    //aggiunge 0 mancanti timestamp
 	    data_inizio.concat(":00:00");
-	    
+	    //stesso sopra
 	    String data_fine=data.concat(" "+fine);
 	    data_fine.concat(":00:00");
+	    //debug
 	    System.out.println(data_inizio+"data fine"+data_fine);
 	    
 		//solo l`amministratore può inserire un orario
@@ -77,11 +83,13 @@ public class ServletInserisciOrario extends HttpServlet {
 		     date2=sdf.parse(data_fine);	
 			} catch (ParseException e) {
 				e.printStackTrace();
-			}	 		    		    
+			}	 	//fino a qui converte i dati presi in input	    		    
 			Orario or = new Orario();
 			System.out.println(date1 +"la data passata è "+data);
+			//vengono usati i dati convertiti prima per creare timestamp
 			or.setInizio(new Timestamp(date1.getTime()));
 			or.setFine(new Timestamp(date2.getTime()));
+			//viene settato  l'anno 119perche nel bean viene autmaticamente aggiunto 1900 per motivi relativi al timestamp
 			or.getInizio().setYear(119);
 			or.getFine().setYear(119);
 			
@@ -96,7 +104,7 @@ public class ServletInserisciOrario extends HttpServlet {
 			
 				System.out.println(controllo.getIdOrario()+controllo.getGiorno());
 				System.out.println(controllo.getInizio()+"l'inizio è");
-				 
+				 //se l'orario è gia presente , crea un oggetto aula libera , ci mette l'aula creata in precedenza e poi la salva
 				 AulaLibera aula=new AulaLibera();
 				 System.out.println("l'aula è "+a.getNomeAula()+"l'edificio è"+a.getEdificio());
 				 //vostruisce l'aula
