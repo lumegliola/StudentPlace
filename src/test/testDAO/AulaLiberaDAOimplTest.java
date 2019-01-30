@@ -274,8 +274,8 @@ public class AulaLiberaDAOimplTest extends DBTestCase{
 		System.out.println("test metodo 6");
 		//settaggi iniziali 1
 		Aula aula = new Aula("P2", "F3");
-		Timestamp inizio = new Timestamp(119, 0, 1, 0, 0, 0, 0);
-		Timestamp fine = new Timestamp(119, 0, 1, 0, 10, 0, 0);
+		Timestamp inizio = new Timestamp(119, 0, 1, 9, 0, 0, 0);
+		Timestamp fine = new Timestamp(119, 0, 1, 11, 0, 0, 0);
 		Orario or = new Orario(inizio, fine);
 		DAOFactory.getOrarioDAO().doSave(or);
 		AulaLibera al = new AulaLibera(aula, or,or.getGiorno());
@@ -295,8 +295,8 @@ public class AulaLiberaDAOimplTest extends DBTestCase{
 
 		//settaggi iniziali 2
 		Aula aula2 = new Aula("P2", "F3");
-		Timestamp inizio2 = new Timestamp(119, 0, 22, 0, 0, 0, 0);
-		Timestamp fine2 = new Timestamp(119, 0, 22, 0, 10, 0, 0);
+		Timestamp inizio2 = new Timestamp(119, 0, 1, 10, 0, 0, 0);
+		Timestamp fine2 = new Timestamp(119, 0, 1, 11, 0, 0, 0);
 		Orario or2 = new Orario(inizio2, fine2);
 		DAOFactory.getOrarioDAO().doSave(or2);
 		AulaLibera al2 = new AulaLibera(aula2, or2,or2.getGiorno());
@@ -316,8 +316,8 @@ public class AulaLiberaDAOimplTest extends DBTestCase{
 
 		//settaggi iniziali 3
 		Aula aula3 = new Aula("P2", "F3");
-		Timestamp inizio3= new Timestamp(119, 0, 4, 0, 0, 0, 0);
-		Timestamp fine3 = new Timestamp(119, 0, 4, 0, 10, 0, 0);
+		Timestamp inizio3= new Timestamp(119, 0, 1, 10, 0, 0, 0);
+		Timestamp fine3 = new Timestamp(119, 0, 1, 13, 0, 0, 0);
 		Orario or3 = new Orario(inizio3, fine3);
 		DAOFactory.getOrarioDAO().doSave(or3);
 		AulaLibera al3 = new AulaLibera(aula3, or3,or3.getGiorno());
@@ -345,9 +345,7 @@ public class AulaLiberaDAOimplTest extends DBTestCase{
 		listaOracolo.add(oracolo3);
 		
 		//confronto
-		assertTrue(listaRisultati.contains(oracolo));
-		assertTrue(listaRisultati.contains(oracolo2));
-		assertTrue(listaRisultati.contains(oracolo3));
+		assertTrue(listaRisultati.containsAll(listaOracolo));
 		System.out.println("successo");
 	}
 	@Before
