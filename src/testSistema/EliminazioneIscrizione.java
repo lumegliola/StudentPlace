@@ -27,12 +27,8 @@ public class EliminazioneIscrizione {
 
   @Test
   public void testEliminazioneIscrizione() throws Exception {
-    driver.get("http://localhost:8080/StudentPlace/logout");
+    driver.get("http://localhost:8080/StudentPlace/ShowHome");
     driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='StudentPlace'])[1]/following::a[1]")).click();
-    driver.findElement(By.id("cemail")).clear();
-    driver.findElement(By.id("cemail")).sendKeys("a.capodanno5@studenti.unisa.it");
-    driver.findElement(By.id("cpassword")).clear();
-    driver.findElement(By.id("cpassword")).sendKeys("123456");
     driver.findElement(By.id("email")).clear();
     driver.findElement(By.id("email")).sendKeys("a.capodanno5@studenti.unisa.it");
     driver.findElement(By.id("password")).clear();
@@ -52,36 +48,6 @@ public class EliminazioneIscrizione {
     }
   }
 
-  private boolean isElementPresent(By by) {
-    try {
-      driver.findElement(by);
-      return true;
-    } catch (NoSuchElementException e) {
-      return false;
-    }
-  }
 
-  private boolean isAlertPresent() {
-    try {
-      driver.switchTo().alert();
-      return true;
-    } catch (NoAlertPresentException e) {
-      return false;
-    }
-  }
-
-  private String closeAlertAndGetItsText() {
-    try {
-      Alert alert = driver.switchTo().alert();
-      String alertText = alert.getText();
-      if (acceptNextAlert) {
-        alert.accept();
-      } else {
-        alert.dismiss();
-      }
-      return alertText;
-    } finally {
-      acceptNextAlert = true;
-    }
-  }
+  
 }
