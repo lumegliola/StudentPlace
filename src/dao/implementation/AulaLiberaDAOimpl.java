@@ -289,6 +289,7 @@ public class AulaLiberaDAOimpl implements AulaLiberaDAO{
 				data.setHours(data.getHours()+10);
                 System.out.println(data.getDay());
 				ps.setTimestamp(2, data);
+				data.setHours(data.getHours()-10);
 				//esegue lo statement
 				ResultSet result = ps.executeQuery();
 

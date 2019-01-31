@@ -34,7 +34,7 @@ public class ShowHome extends HttpServlet {
 		
 		HttpSession session=request.getSession();
 		Cookie []cookie=request.getCookies();
-		if(cookie.length<=1) cookie=null;
+		
 		if(cookie!=null ) {
 			String mail="",logged="",admin="";
 			for(int i=0;i<cookie.length;i++) {
