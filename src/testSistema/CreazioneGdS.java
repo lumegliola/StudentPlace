@@ -18,7 +18,7 @@ public class CreazioneGdS {
 
 	  @Before
 	  public void setUp() throws Exception {
-		  System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
 		driver = new ChromeDriver();
 	    baseUrl = "https://www.katalon.com/";
 	    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
