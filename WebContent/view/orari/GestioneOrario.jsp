@@ -69,7 +69,7 @@
 				
 				<tr class="gds" style="background-color: <%=color%>" onclick="document.location='<%=link %>'">
 						<td><%=auleLibere.get(i).getAula().getNomeAula()%></td>
-						<td><%=auleLibere.get(i).getOrario().getGiorno()%></td>
+						<td><%=auleLibere.get(i).getOrario().getGiorno()%>   <%=auleLibere.get(i).getOrario().getInizio().toString().substring(0, 10)%></td>
 						<td><%=auleLibere.get(i).getOrario().getInizio().toString().substring(10, 16)%></td>
 						<td><%=auleLibere.get(i).getOrario().getFine().toString().substring(10, 16)%></td>
 						<td><form action="ModificaAulaLibera">
@@ -126,7 +126,20 @@
 						<td><input name="fine" type="time" min="9:00" max="18:00"
 							required="required" step="1800"></td>
 					</tr>
-
+					<tr>
+						<td>Per quante settimane vuoi ripetere il settaggio?
+						</td>
+						<td><div class="testo">
+					<select class="input" name="settimane" required="required">
+					<%for(int i=0;i<24;i++){ %>
+						<option value="<%=i+1%>"><%=i+1%></option>
+						
+						<%} %>
+				
+				
+					</select>
+				</div>
+					</tr>
 					<tr>
 						<td><input id="bottone" type="submit" value="Inserisci">
 						</td>
