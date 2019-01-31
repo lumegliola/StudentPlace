@@ -76,7 +76,7 @@
 							fino alle: <%=p.getOrario().getFine().toString().substring(11, 19)%></td>
 							<td><form action="CreaModificaGruppo" method="post">
 								<input name="operazione" type="hidden"
-									value="Modifica"> 
+									value="modifica"> 
 								<button type="submit" name="modifica"
 									style="background-color: red; color: white;">modifica</button>
 							</form></td>
