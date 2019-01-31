@@ -12,33 +12,40 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
 public class VisualizzaProfilo {
-  private WebDriver driver;
-  private String baseUrl;
-  private boolean acceptNextAlert = true;
-  private StringBuffer verificationErrors = new StringBuffer();
+	private WebDriver driver;
+	private String baseUrl;
+	private boolean acceptNextAlert = true;
+	private StringBuffer verificationErrors = new StringBuffer();
 
-  @Before
-  public void setUp() throws Exception {
-	System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
-	driver = new ChromeDriver();
-    baseUrl = "https://www.katalon.com/";
-    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-  }
+	@Before
+	public void setUp() throws Exception {
+		System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+		driver = new ChromeDriver();
+		baseUrl = "https://www.katalon.com/";
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+	}
 
-  @Test
-  public void testVisualizzaProfilo() throws Exception {
-    driver.get("http://localhost:8080/StudentPlace/ShowHome");
-    driver.findElement(By.linkText("Bautista")).click();
-  }
+	@Test
+	public void testVisualizzaProfilo() throws Exception {
+		driver.get("http://localhost:8080/StudentPlace/ShowHome");
+		driver.findElement(By.id("email")).click();
+		driver.findElement(By.id("email")).clear();
+		driver.findElement(By.id("email")).sendKeys("f.megliola@studenti.unisa.it");
+		driver.findElement(By.id("password")).click();
+		driver.findElement(By.id("password")).clear();
+		driver.findElement(By.id("password")).sendKeys("123456");
+		driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Registrati'])[1]/preceding::input[1]")).click();
+		driver.findElement(By.linkText("Filippo")).click();
+	}
 
-  @After
-  public void tearDown() throws Exception {
-    driver.quit();
-    String verificationErrorString = verificationErrors.toString();
-    if (!"".equals(verificationErrorString)) {
-      fail(verificationErrorString);
-    }
-  }
+	@After
+	public void tearDown() throws Exception {
+		driver.quit();
+		String verificationErrorString = verificationErrors.toString();
+		if (!"".equals(verificationErrorString)) {
+			fail(verificationErrorString);
+		}
+	}
 
-  
+
 }

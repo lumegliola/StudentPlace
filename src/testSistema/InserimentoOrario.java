@@ -37,12 +37,12 @@ public class InserimentoOrario {
 		driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Aula'])[2]/following::select[1]")).click();
 		new Select(driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Aula'])[2]/following::select[1]"))).selectByVisibleText("P20");
 		driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Aula'])[2]/following::select[1]")).click();
-		driver.findElement(By.id("data")).click();
-		driver.findElement(By.id("data")).clear();
-		driver.findElement(By.id("data")).sendKeys("2019-01-17");
+		driver.findElement(By.name("data")).click();
+		driver.findElement(By.name("data")).clear();
+		driver.findElement(By.name("data")).sendKeys("2019-01-17");
 		driver.findElement(By.name("inizio")).click();
 		driver.findElement(By.name("inizio")).clear();
-		driver.findElement(By.name("inizio")).sendKeys("11:00");
+		driver.findElement(By.name("inizio")).sendKeys("12:00");
 		driver.findElement(By.name("fine")).clear();
 		driver.findElement(By.name("fine")).sendKeys("16:00");
 		driver.findElement(By.id("bottone")).click();
