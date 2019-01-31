@@ -53,7 +53,8 @@ public class ServletInserisciOrario extends HttpServlet {
 		String inizio=request.getParameter("inizio");
 		
 	    String fine=request.getParameter("fine");
-	    
+	    String tuttasettimana=request.getParameter("tuttasettimana");
+	    int tsettimana;
 	    Aula a=new Aula();
 	    //salva sia nome aula che edificio relativo
 	    String nomeaula=par_aula.substring(0, par_aula.length()/2);
@@ -79,7 +80,12 @@ public class ServletInserisciOrario extends HttpServlet {
 	    data_fine.concat(":00:00");
 	    //debug
 	    System.out.println(data_inizio+"data fine"+data_fine);
-	    
+	    if(tuttasettimana.equals("si")) {
+	    	tsettimana=7;
+	    }
+	    else {
+	    	tsettimana=1;
+	    }
 		//solo l`amministratore può inserire un orario
 		if(session.getAttribute("logged").equals(true)  && session.getAttribute("admin").equals(true)){
 			SimpleDateFormat sdf;
@@ -99,8 +105,15 @@ public class ServletInserisciOrario extends HttpServlet {
 			//viene settato  l'anno 119perche nel bean viene autmaticamente aggiunto 1900 per motivi relativi al timestamp
 			or.getInizio().setYear(119);
 			or.getFine().setYear(119);
+			Orario orsett=new Orario();
+			orsett.setInizio(or.getInizio());
+			orsett.setFine(or.getFine());
+			int settimaneiniziali=settimane;
+			int giornoiniziale=giornodaaumentare;
 			
+		
 			//controlla che l`orario non sia presente
+			for(int o=0;o<tsettimana;o++) {
 			for(int j =0;j<settimane;j++) {
 			Orario controllo = DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(or.getInizio(), or.getFine());
 			 int giornimassimi;
@@ -186,7 +199,18 @@ public class ServletInserisciOrario extends HttpServlet {
 				
 			
 			
-		} request.getRequestDispatcher("GestioneOrario").forward(request, response);
+		} 
+			giornoiniziale++;
+			giornodaaumentare=giornoiniziale;
+			settimane=settimaneiniziali;
+			orsett.getInizio().setDate(giornodaaumentare);
+			orsett.getFine().setDate(giornodaaumentare);
+			or.setInizio(orsett.getInizio());
+			or.setFine(orsett.getFine());
+			
+			
+			}
+			request.getRequestDispatcher("GestioneOrario").forward(request, response);
 		}
 		
 		//se tutto va male da errore

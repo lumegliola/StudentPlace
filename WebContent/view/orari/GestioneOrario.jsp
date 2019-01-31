@@ -141,6 +141,21 @@
 				</div>
 					</tr>
 					<tr>
+						<td>L'aula è libera tutta la settimana in questo intervallo?
+						</td>
+						<td><div class="testo">
+					<select class="input" name="tuttasettimana" required="required">
+					
+						<option value="si">si</option>
+						<option value="no">no</option>
+						
+					
+				
+				
+					</select>
+				</div>
+					</tr>
+					<tr>
 						<td><input id="bottone" type="submit" value="Inserisci">
 						</td>
 					</tr>
