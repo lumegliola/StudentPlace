@@ -11,7 +11,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class EliminazioneIscrizione {
+public class EliminazioneIscrizione{
   private WebDriver driver;
   private String baseUrl;
   private boolean acceptNextAlert = true;
@@ -19,16 +19,29 @@ public class EliminazioneIscrizione {
 
   @Before
   public void setUp() throws Exception {
-	System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+    System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
 	driver = new ChromeDriver();
     baseUrl = "https://www.katalon.com/";
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
   }
 
   @Test
-  public void testCancellaIscrizione() throws Exception {
-    driver.get("http://localhost:8080/StudentPlace/ServletVisualizzaProfilo");
-    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Logout'])[1]/following::div[5]")).click();
+  public void testCancIscrizione() throws Exception {
+    driver.get("http://localhost:8080/StudentPlace/logout");
+    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='StudentPlace'])[1]/following::span[1]")).click();
+    driver.findElement(By.id("cemail")).clear();
+    driver.findElement(By.id("cemail")).sendKeys("a.capodanno5@studenti.unisa.it");
+    driver.findElement(By.id("cpassword")).clear();
+    driver.findElement(By.id("cpassword")).sendKeys("123456");
+    driver.findElement(By.id("email")).clear();
+    driver.findElement(By.id("email")).sendKeys("a.capodanno5@studenti.unisa.it");
+    driver.findElement(By.id("password")).clear();
+    driver.findElement(By.id("password")).sendKeys("123456");
+    driver.findElement(By.id("email")).click();
+    driver.findElement(By.id("log")).submit();
+    driver.findElement(By.id("password")).clear();
+    driver.findElement(By.id("password")).sendKeys("123456");
+    driver.findElement(By.linkText("Alessandro")).click();
     driver.findElement(By.name("cancella_iscrizione")).click();
   }
 
