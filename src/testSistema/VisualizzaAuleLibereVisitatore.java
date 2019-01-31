@@ -27,7 +27,7 @@ public class VisualizzaAuleLibereVisitatore {
 
   @Test
   public void testVisualizzaAulaLiberaVisitatore() throws Exception {
-    driver.get("http://localhost:8080/StudentPlace/logout");
+    driver.get("http://localhost:8080/StudentPlace/ShowHome");
     driver.findElement(By.linkText("Cerca aule libere")).click();
   }
 
