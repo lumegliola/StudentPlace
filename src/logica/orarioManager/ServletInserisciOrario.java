@@ -49,6 +49,7 @@ public class ServletInserisciOrario extends HttpServlet {
 		HttpSession session = request.getSession();
 		String par_aula= request.getParameter("aula");
 		String data=request.getParameter("data");
+		System.out.println("formato orario passato  "+data);
 		int settimane=Integer.parseInt(request.getParameter("settimane"));
 		String inizio=request.getParameter("inizio");
 		
@@ -67,7 +68,9 @@ public class ServletInserisciOrario extends HttpServlet {
 	    System.out.println("guarda qui l'aula inserita e substringata"+nomeaula+" "+nomeedificio);
 	    //salva l'intero relativo al giorno che ogni volta verrà aumentato di 7 (or.getInizio().setDate(or.getInizio().getDate()+7) non funziona
 	    String giorno =data.substring(8, 10);
-	  
+	    String smese =data.substring(5,7);
+	    int mese=Integer.parseInt(smese);
+	    mese--;
 	    int giornodaaumentare=Integer.parseInt(giorno);
 	  
 	    //crea l'aula da aggiungere
@@ -84,12 +87,11 @@ public class ServletInserisciOrario extends HttpServlet {
 	    data_fine.concat(":00:00");
 	    //debug
 	    System.out.println(data_inizio+"data fine"+data_fine);
+	    tsettimana=1;
 	    if(tuttasettimana.equals("si")) {
 	    	tsettimana=7;
 	    }
-	    else {
-	    	tsettimana=1;
-	    }
+	   
 		//solo l`amministratore può inserire un orario
 		if(session.getAttribute("logged").equals(true)  && session.getAttribute("admin").equals(true)){
 			SimpleDateFormat sdf;
@@ -114,13 +116,8 @@ public class ServletInserisciOrario extends HttpServlet {
 			orsett.setFine(or.getFine());
 			int settimaneiniziali=settimane;
 			int giornoiniziale=giornodaaumentare;
-			
-		
-			//controlla che l`orario non sia presente
-			for(int o=0;o<tsettimana;o++) {
-			for(int j =0;j<settimane;j++) {
-			Orario controllo = DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(or.getInizio(), or.getFine());
-			 int giornimassimi;
+			int app2=giornodaaumentare;
+			int giornimassimi;
 			 if(or.getInizio().getMonth()==10||or.getInizio().getMonth()==3||or.getInizio().getMonth()==5||or.getInizio().getMonth()==8) {
 				 giornimassimi=30;
 			 }
@@ -130,7 +127,21 @@ public class ServletInserisciOrario extends HttpServlet {
 			 else {
 				 giornimassimi=31;
 			 }
-		
+			
+				 
+			//controlla che l`orario non sia presente
+			for(int o=0;o<tsettimana;o++) {
+				or.getInizio().setMonth(mese); 
+				or.getInizio().setDate(orsett.getInizio().getDate());
+				or.getFine().setMonth(mese); 
+				or.getFine().setDate(orsett.getFine().getDate());
+				
+				
+				
+			for(int j =0;j<settimane;j++) {
+			Orario controllo = DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(or.getInizio(), or.getFine());
+			 
+			 	
 				if(controllo.getInizio() != null && controllo.getFine()!=null) {
 					System.out.println("Orario gia presente");
 					
@@ -185,11 +196,9 @@ public class ServletInserisciOrario extends HttpServlet {
 		} 
 			giornoiniziale++;
 			giornodaaumentare=giornoiniziale;
-			settimane=settimaneiniziali;
+			
 			orsett.getInizio().setDate(giornodaaumentare);
 			orsett.getFine().setDate(giornodaaumentare);
-			or.setInizio(orsett.getInizio());
-			or.setFine(orsett.getFine());
 			
 			
 			}
@@ -199,7 +208,7 @@ public class ServletInserisciOrario extends HttpServlet {
 		//se tutto va male da errore
 		else {
 			session.setAttribute("esito", "errore");
-			request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
+			request.getRequestDispatcher("view/errore/Errore.jsp").forward(request, response);
 		}
 	}
 
