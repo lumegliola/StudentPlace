@@ -89,9 +89,26 @@
 
 		</div>
 		<div class="col-lg-6" style="border-left: 1px solid red">
-			<h4 style="text-align: center;">inserisci una nuova aula libera</h4>
+			<h4 style="text-align: center;">Inserisci una nuova aula libera</h4>
 			<form action="inserisciOrario" method="post" name="formReg">
 				<table style="margin-left: 25%">
+					
+					<tr>
+						<td><label>Data:       </label></td>
+						<td><input style="margin-bottom: 0.5em;" type="date" name="data" onchange="setdata()" id="data"></td>
+					</tr>
+					<tr>
+					
+						<td>Orario inizio:</td>
+						<td><input name="inizio" type="time" min="9:00" max="18:00"
+							required="required" step="1800"></td>
+					</tr>
+					<tr>
+						<td>Orario fine:</td>
+						<td><input name="fine" type="time" min="9:00" max="19:00"
+							required="required" step="1800"></td>
+					</tr>
+					<tr>
 					<tr>
 						<td>Aula</td>
 						<td><div class="testo">
@@ -112,22 +129,7 @@
 					</select>
 				</div>
 					</tr>
-					<tr>
-						<label>Data:</label>
-						<input style="margin-bottom: 0.5em;" type="date" name="data" onchange="setdata()" id="data">
-					</tr>
-					<tr>
-						<td>Orario inizio:</td>
-						<td><input name="inizio" type="time" min="9:00" max="18:00"
-							required="required" step="1800"></td>
-					</tr>
-					<tr>
-						<td>Orario fine:</td>
-						<td><input name="fine" type="time" min="9:00" max="19:00"
-							required="required" step="1800"></td>
-					</tr>
-					<tr>
-						<td>Per quante settimane vuoi ripetere il settaggio?
+						<td>Per quante settimane vuoi ripetere il settaggio?*
 						</td>
 						<td><div class="testo">
 					<select class="input" name="settimane" required="required">
@@ -159,7 +161,11 @@
 						<td><input id="bottone" type="submit" value="Inserisci">
 						</td>
 					</tr>
+					
 				</table>
+				<tr>
+						<p>*nota bene , se il numero delle settimane selezionato è superiore ai giorni rimanenti del mese in base al giorno selezionato , l'inserimento verrà limitato al valore di quest'ultimi</p>
+					</tr>
 			</form>
 		</div>
 		
