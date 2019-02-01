@@ -83,9 +83,13 @@ public class TestServletInserisciOrario extends TestCase{
 		when(request.getSession()).thenReturn(session);
 		when(session.getAttribute("admin")).thenReturn(true);
 		when(session.getAttribute("logged")).thenReturn(true);
-		when(request.getParameter("inizio")).thenReturn("2018-11-22 90:00:00.000");
-		when(request.getParameter("fine")).thenReturn("2018-11-22 11:00:00.000");
-		when(request.getRequestDispatcher("ProvaOutput.jsp")).thenReturn(dispatcher);
+		when(request.getParameter("data")).thenReturn("2019-02-01");
+		when(request.getParameter("inizio")).thenReturn("09:00");
+		when(request.getParameter("fine")).thenReturn("19:00");
+		when(request.getParameter("settimane")).thenReturn("2");
+		when(request.getParameter("aula")).thenReturn("P1F3");
+		when(request.getParameter("tuttasettimana")).thenReturn("si");
+		when(request.getRequestDispatcher("GestioneOrario")).thenReturn(dispatcher);
 
 		new ServletInserisciOrario().doPost(request, response);
 		
