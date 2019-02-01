@@ -123,7 +123,7 @@
 					</tr>
 					<tr>
 						<td>Orario fine:</td>
-						<td><input name="fine" type="time" min="9:00" max="18:00"
+						<td><input name="fine" type="time" min="9:00" max="19:00"
 							required="required" step="1800"></td>
 					</tr>
 					<tr>

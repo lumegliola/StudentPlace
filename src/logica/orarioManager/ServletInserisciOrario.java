@@ -45,7 +45,7 @@ public class ServletInserisciOrario extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Prende i parametri in input
+		// Prende i parametri in input e li salva in variabili locali
 		HttpSession session = request.getSession();
 		String par_aula= request.getParameter("aula");
 		String data=request.getParameter("data");
@@ -53,19 +53,18 @@ public class ServletInserisciOrario extends HttpServlet {
 		String inizio=request.getParameter("inizio");
 		
 	    String fine=request.getParameter("fine");
+	    //salva il parametro che regola la ripetizione NELLA settimana dell'orario con l'aula
 	    String tuttasettimana=request.getParameter("tuttasettimana");
 	    int tsettimana;
 	    Aula a=new Aula();
 	    //salva sia nome aula che edificio relativo
 	    String nomeaula=par_aula.substring(0, par_aula.length()/2);
 	    String nomeedificio=par_aula.substring(par_aula.length()/2, par_aula.length());
-	    
+	    //salva l'intero relativo al giorno che ogni volta verrà aumentato di 7 (or.getInizio().setDate(or.getInizio().getDate()+7) non funziona
 	    String giorno =data.substring(8, 10);
-	    System.out.println("leggi qui cazzo guarda come è fatto"+data);
-	    System.out.println("leggi qui cazzo guarda come è fatto"+giorno);
+	  
 	    int giornodaaumentare=Integer.parseInt(giorno);
-	    System.out.println("leggi qui cazzo guarda come è fatto"+giornodaaumentare);
-	
+	  
 	    //crea l'aula da aggiungere
 	    a.setEdificio(nomeedificio);
 		a.setNomeAula(nomeaula);
@@ -143,35 +142,16 @@ public class ServletInserisciOrario extends HttpServlet {
 				
 				Orario controllo2 = DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(or.getInizio(),or.getFine());
 				if(controllo2!=null) {
-				System.out.println(controllo2.getIdOrario()+controllo2.getGiorno());
-				System.out.println(controllo2.getInizio()+"l'inizio è");
+
 				 
 				 AulaLibera aula=new AulaLibera();
-				 System.out.println("l'aula è "+a.getNomeAula()+"l'edificio è"+a.getEdificio());
+				
 				
 				 
 				 //costruisce l'aula
 				 aula.setOrario(controllo2);
 				 aula.setAula(a);
-				//salva l'aulai
-				
-				 System.out.println("   ");
-				 System.out.println("   ");
-				 System.out.println("   ");
-				 System.out.println("giornimassimi  il mese è "+giornimassimi+controllo2.getInizio().getMonth());
-				 System.out.println("   ");
-				 System.out.println("   ");
-				 System.out.println("   ");
-				 
-				 
-				 
-				 
-				 
-				 
-				 
-				 
-				 
-				 
+			
 				 if((giornodaaumentare+7)<=giornimassimi) {
 					 giornodaaumentare=giornodaaumentare+7;
 				 }
@@ -189,9 +169,7 @@ public class ServletInserisciOrario extends HttpServlet {
 					session.setAttribute("esito", true);
 					or.getInizio().setDate(giornodaaumentare);
 					or.getFine().setDate(giornodaaumentare);
-					System.out.println("");
-					System.out.println("nuova data inizio"+or.getInizio());
-					System.out.println("nuova data fine "+ or.getFine());
+				
 			}else {
 				session.setAttribute("esito", "errore");
 				request.getRequestDispatcher("view/errore/Errore.jsp").forward(request, response);
