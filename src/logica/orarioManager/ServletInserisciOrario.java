@@ -117,9 +117,11 @@ public class ServletInserisciOrario extends HttpServlet {
 			int settimaneiniziali=settimane;
 			int giornoiniziale=giornodaaumentare;
 			int app2=giornodaaumentare;
+			app2++;
 			int giornimassimi;
 			 if(or.getInizio().getMonth()==10||or.getInizio().getMonth()==3||or.getInizio().getMonth()==5||or.getInizio().getMonth()==8) {
 				 giornimassimi=30;
+				 
 			 }
 			 else  if(or.getInizio().getMonth()==1) {
 				 giornimassimi=28;
@@ -127,7 +129,10 @@ public class ServletInserisciOrario extends HttpServlet {
 			 else {
 				 giornimassimi=31;
 			 }
-			
+			 if(giornimassimi-app2<settimane) {
+					settimane=(giornimassimi-app2)+2;
+					tsettimana=settimane;
+				}
 				 
 			//controlla che l`orario non sia presente
 			for(int o=0;o<tsettimana;o++) {
@@ -139,6 +144,7 @@ public class ServletInserisciOrario extends HttpServlet {
 				
 				
 			for(int j =0;j<settimane;j++) {
+				
 			Orario controllo = DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(or.getInizio(), or.getFine());
 			 
 			 	
