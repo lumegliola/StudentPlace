@@ -145,9 +145,9 @@
 						</td>
 						<td><div class="testo">
 					<select class="input" name="tuttasettimana" required="required">
-					
+					<option value="no">no</option>
 						<option value="si">si</option>
-						<option value="no">no</option>
+						
 						
 					
 				
