@@ -57,9 +57,14 @@ public class ServletInserisciOrario extends HttpServlet {
 	    String tuttasettimana=request.getParameter("tuttasettimana");
 	    int tsettimana;
 	    Aula a=new Aula();
+	    String nomeaula;
+	    String nomeedificio;
 	    //salva sia nome aula che edificio relativo
-	    String nomeaula=par_aula.substring(0, par_aula.length()/2);
-	    String nomeedificio=par_aula.substring(par_aula.length()/2, par_aula.length());
+	   
+	     nomeaula=par_aula.substring(0, par_aula.length()-2);
+	     nomeedificio=par_aula.substring(par_aula.length()-2, par_aula.length());
+	  
+	    System.out.println("guarda qui l'aula inserita e substringata"+nomeaula+" "+nomeedificio);
 	    //salva l'intero relativo al giorno che ogni volta verrà aumentato di 7 (or.getInizio().setDate(or.getInizio().getDate()+7) non funziona
 	    String giorno =data.substring(8, 10);
 	  
