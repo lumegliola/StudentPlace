@@ -6,6 +6,18 @@ import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+/**
+ * 
+ * GruppoDiStudio.java
+ * 
+ * Definisce l'oggetto gruppoDiStudio
+ * 
+ * @author F. Megliola & A. Capodanno
+ * @since 12-16-2018
+ *
+ * 
+ * */
+
 public class GruppoDiStudio {
 	 
 	private String nomeGruppo;

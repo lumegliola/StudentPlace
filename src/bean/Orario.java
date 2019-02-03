@@ -6,6 +6,17 @@ import static java.util.Calendar.DAY_OF_WEEK;
 import java.sql.Timestamp;
 import java.util.GregorianCalendar;
 
+/**
+ * 
+ * Orario.java
+ * 
+ * Definisce l'oggetto orario
+ * 
+ * @author F. Megliola & A. Capodanno
+ * @since 12-16-2018
+ *
+ * 
+ * */
 
 public class Orario {
 

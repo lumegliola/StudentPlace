@@ -1,5 +1,17 @@
 package bean;
 
+/**
+ * 
+ * AulaLibera.java
+ * 
+ * Definisce l'oggetto aulaLibera
+ * 
+ * @author F. Megliola & A. Capodanno
+ * @since 12-16-2018
+ *
+ * 
+ * */
+
 public class AulaLibera {
 
 	

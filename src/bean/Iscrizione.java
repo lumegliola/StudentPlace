@@ -1,5 +1,17 @@
 package bean;
 
+/**
+ * 
+ * Iscrizione.java
+ * 
+ * Definisce l'oggetto iscrizione
+ * 
+ * @author F. Megliola & A. Capodanno
+ * @since 12-16-2018
+ *
+ * 
+ * */
+
 public class Iscrizione {
 	
 	private Utente iscritto;

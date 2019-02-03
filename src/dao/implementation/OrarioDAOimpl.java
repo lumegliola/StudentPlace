@@ -10,14 +10,36 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import bean.Aula;
 import bean.GruppoDiStudio;
+import bean.Iscrizione;
 import bean.Orario;
 import dao.DAOFactory;
 import dao.interfaces.OrarioDAO;
 import db_connection.DriverManagerConnectionPool;
 
+/**
+ * 
+ * OrarioDAOimpl.java
+ * Gestisce la persistenza degli oggetti di tipo Orario 
+ * tramite interazioni con il database
+ * 
+ * @author F. Megliola & A. Capodanno
+ * @since 12-16-2018
+ *
+ * 
+ * */
+
 public class OrarioDAOimpl implements OrarioDAO {
 
+	/**
+	 * Effettua il salvataggio nel database dell'oggetto orario,
+	 * ritorna un boolean
+	 * @param or l'oggetto da salvare (della classe Orario)
+	 * @return  Boolean
+	 * @see Orario
+	 * */
+	
 	@Override
 	public boolean doSave(Orario or) {
 		Connection connection = null;
@@ -54,6 +76,16 @@ public class OrarioDAOimpl implements OrarioDAO {
 		return (result == 1);
 	}
 
+	/**
+	 * Effettua il salvataggio nel database dell'oggetto Orario, 
+	 * se l'oggetto è già presente, lo modifica con i parametri inseriti, 
+	 * ritorna l'esito dell'operazione
+	 * @param or l'oggetto da salvare (della classe Orario)
+	 * @param start il nuovo orario di inizio(se si modifica)
+	 * @param end il nuovo orario di fine(se si modifica)
+	 * @return  Boolean
+	 * @see Orario
+	 * */
 	@Override
 	public boolean doSaveOrUpdate(Orario or, Timestamp start, Timestamp end) {
 		Connection connection = null;
@@ -97,11 +129,25 @@ public class OrarioDAOimpl implements OrarioDAO {
 		return (result == 1);
 	}
 		
+	/**
+	 * Effettua la cancellazione dal database dell'oggetto orario, 
+	 * ritorna l'esito dell'operazione
+	 * @param 	or l'oggetto da eliminare(della classe Orario)
+	 * @return  Boolean
+	 * @see 	Orario
+	 * */
 	@Override
 	public boolean doDelete(Orario or) {
 		return doDelete(or.getIdOrario());
 	}
 	
+	/**
+	 * Effettua la cancellazione dal database dell'oggetto orario, 
+	 * ritorna l'esito dell'operazione
+	 * @param 	id l'attributo id dell'oggetto da eliminare(della classe Orario)
+	 * @return  Boolean
+	 * @see 	Orario
+	 * */
 	@Override
 	public boolean doDelete(int id) {
 		Connection connection = null;
@@ -133,7 +179,13 @@ public class OrarioDAOimpl implements OrarioDAO {
 		return (result == 1);
 	}
 
-	
+	/**
+	 * Interroga il database per trovare un oggetto Orario 
+	 * in base ai paramentri inseriti, ritorna l'oggetto, se lo trova
+	 * @param 	id l'attributo idOrario dell'oggetto(della classe Orario)
+	 * @return 	Orario
+	 * @see 	Orario
+	 * */
 	@Override
 	public Orario doRetrieveByKey(int id) {
 		Connection connection = null;
@@ -177,6 +229,13 @@ public class OrarioDAOimpl implements OrarioDAO {
 		return null;
 	}
 	
+	/**
+	 * Interroga il database per trovare una lista di oggetti Orario 
+	 * in base ai paramentri inseriti, ritorna la lista, se trova oggetti
+	 * @param 	start l'attributo inizio dell'oggetto(della classe Orario)
+	 * @return 	Orario
+	 * @see 	Orario
+	 * */
 	@Override
 	public List<Orario> doRetrieveByStart(Timestamp start) {
 		Connection connection = null;
@@ -224,6 +283,14 @@ public class OrarioDAOimpl implements OrarioDAO {
 		return orari;
 	}	
 	
+	/**
+	 * Interroga il database per trovare un oggetto Orario 
+	 * in base ai paramentri inseriti, ritorna l'oggetto, se lo trova
+	 * @param 	start l'attributo inizio dell'oggetto(della classe Orario)
+	 * @param 	finish l'attributo fine dell'oggetto(della classe Orario)
+	 * @return 	Orario
+	 * @see 	Orario
+	 * */
 	@Override
 	public Orario doRetrieveByStartAndFinish(Timestamp start, Timestamp finish) {
 		Connection connection = null;
@@ -270,7 +337,12 @@ public class OrarioDAOimpl implements OrarioDAO {
 	}
 
 	
-	
+	/**
+	 * Interroga il database per trovare una lista di tutti gli oggetti Orario
+	 * ritorna la lista, se trova oggetti
+	 * @return 	List<Orario>
+	 * @see 	Orario
+	 * */
 	@Override
 	public List<Orario> doRetrieveAll() {
 		Connection connection = null;

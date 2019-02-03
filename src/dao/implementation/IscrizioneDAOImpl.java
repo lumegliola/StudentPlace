@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import bean.Aula;
 import bean.GruppoDiStudio;
 import bean.Iscrizione;
 import bean.Utente;
@@ -14,8 +15,27 @@ import dao.DAOFactory;
 import dao.interfaces.IscrizioneDAO;
 import db_connection.DriverManagerConnectionPool;
 
+/**
+ * 
+ * IscrizioneDAOimpl.java
+ * Gestisce la persistenza degli oggetti di tipo Iscrizione 
+ * tramite interazioni con il database
+ * 
+ * @author F. Megliola & A. Capodanno
+ * @since 12-16-2018
+ *
+ * 
+ * */
+
 public class IscrizioneDAOImpl implements IscrizioneDAO{
 
+	/**
+	 * Effettua il salvataggio nel database dell'oggetto iscrizione,
+	 * ritorna un boolean
+	 * @param iscrizione l'oggetto da salvare (della classe iscrizione)
+	 * @return  Boolean
+	 * @see Iscrizione
+	 * */
 	@Override
 	public boolean doSave(Iscrizione iscrizione) {
 		Connection connection = null;
@@ -50,13 +70,26 @@ public class IscrizioneDAOImpl implements IscrizioneDAO{
 		return (result == 1);
 	}
 
+	/**
+	 * Effettua la cancellazione dal database dell'oggetto iscrizione, 
+	 * ritorna l'esito dell'operazione
+	 * @param 	iscrizione l'oggetto da eliminare(della classe Iscrizione)
+	 * @return  Boolean
+	 * @see 	Iscrizione
+	 * */
 	@Override
 	public boolean doDelete(Iscrizione iscrizione) {
 		return doDeleteByUserAndGroup(iscrizione.getIscritto().getMatricola(), iscrizione.getGruppo().getId());
 	}
 
 	
-	
+	/**
+	 * Effettua la cancellazione dal database dell'oggetto iscrizione, 
+	 * ritorna l'esito dell'operazione
+	 * @param 	idGruppo l'attributo gruppo dell'oggetto da eliminare(della classe Iscrizione)
+	 * @return  Boolean
+	 * @see 	Iscrizione
+	 * */
 	@Override
 	public boolean doDeleteByGroup( int idGruppo) {
 		Connection connection = null;
@@ -89,7 +122,14 @@ public class IscrizioneDAOImpl implements IscrizioneDAO{
 	}
 
 	
-	
+	/**
+	 * Effettua la cancellazione dal database dell'oggetto iscrizione, 
+	 * ritorna l'esito dell'operazione
+	 * @param 	matricola l'attributo matricola dell'oggetto da eliminare(della classe Iscrizione)
+	 * @param 	idGruppo l'attributo gruppo dell'oggetto da eliminare(della classe Iscrizione)
+	 * @return  Boolean
+	 * @see 	Iscrizione
+	 * */
 	@Override
 	public boolean doDeleteByUserAndGroup(String matricola, int idGruppo) {
 		Connection connection = null;
@@ -122,7 +162,13 @@ public class IscrizioneDAOImpl implements IscrizioneDAO{
 		return (result == 1);
 	}
 
-	
+	/**
+	 * Interroga il database per trovare una lista di oggetti Iscrizione 
+	 * in base ai paramentri inseriti, ritorna la lista, se trova oggetti
+	 * @param 	matricola l'attributo matricola dell'oggetto(della classe Iscrizione)
+	 * @return 	List<Iscrizione>
+	 * @see 	Iscrizione
+	 * */
 	@Override
 	public List<Iscrizione> doRetrieveByUser(String matricola) {
 		Connection connection = null;
@@ -165,6 +211,14 @@ public class IscrizioneDAOImpl implements IscrizioneDAO{
 		return res;
 	}
 
+	/**
+	 * Interroga il database per trovare una lista di oggetti Iscrizione 
+	 * in base ai paramentri inseriti, ritorna la lista, se trova oggetti
+	 * @param 	idGruppo l'attributo id dell'oggetto(della classe GruppoDiStudio) che è attributo di Iscrizione
+	 * @return 	List<Iscrizione>
+	 * @see 	Iscrizione
+	 * @see		GruppoDiStudio
+	 * */
 	@Override
 	public List<Iscrizione> doRetrieveByGroup(int idGruppo) {
 		Connection connection = null;
@@ -207,6 +261,15 @@ public class IscrizioneDAOImpl implements IscrizioneDAO{
 		return res;
 	}
 
+	/**
+	 * Interroga il database per trovare una lista di oggetti Iscrizione 
+	 * in base ai paramentri inseriti, ritorna la lista, se trova oggetti
+	 * @param 	matricola l'attributo matricola dell'oggetto(della classe Utente) che è attributo di Iscrizione 
+	 * @param 	idGruppo l'attributo id dell'oggetto(della classe GruppoDiStudio) che è attributo di Iscrizione
+	 * @return 	List<Iscrizione>
+	 * @see 	Iscrizione
+	 * @see		Utente
+	 * */
 	@Override
 	public Iscrizione doRetrieveByUserAndGroup(String matricola, int idGruppo) {
 		Connection connection = null;
@@ -252,6 +315,12 @@ public class IscrizioneDAOImpl implements IscrizioneDAO{
 
 	}
 
+	/**
+	 * Interroga il database per trovare una lista di tutti gli oggetti Iscrizione
+	 * ritorna la lista, se trova oggetti
+	 * @return 	List<Iscrizione>
+	 * @see 	Iscrizione
+	 * */
 	@Override
 	public List<Iscrizione> doRetrieveAll() {
 		Connection connection = null;

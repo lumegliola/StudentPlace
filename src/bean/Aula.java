@@ -2,6 +2,18 @@ package bean;
 
 import java.util.GregorianCalendar;
 
+/**
+ * 
+ * Aula.java
+ * 
+ * Definisce l'oggetto aula
+ * 
+ * @author F. Megliola & A. Capodanno
+ * @since 12-16-2018
+ *
+ * 
+ * */
+
 public class Aula {
 	private String nomeAula;
 	private String edificio;

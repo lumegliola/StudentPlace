@@ -12,8 +12,27 @@ import dao.DAOFactory;
 import dao.interfaces.UserDAO;
 import db_connection.DriverManagerConnectionPool;
 
+/**
+ * 
+ * UserDAOimpl.java
+ * Gestisce la persistenza degli oggetti di tipo Utente 
+ * tramite interazioni con il database
+ * 
+ * @author F. Megliola & A. Capodanno
+ * @since 12-16-2018
+ *
+ * 
+ * */
+
 public class UserDAOimpl implements UserDAO {
 
+	/**
+	 * Effettua il salvataggio nel database dell'oggetto utente,
+	 * ritorna un boolean
+	 * @param user l'oggetto da salvare (della classe Utente)
+	 * @return  Boolean
+	 * @see Utente
+	 * */
 	@Override
 	public boolean doSave(Utente user) {
 		Connection connection = null;
@@ -53,6 +72,15 @@ public class UserDAOimpl implements UserDAO {
 		return (result == 1);
 	}
 
+	/**
+	 * Effettua il salvataggio nel database dell'oggetto utente, 
+	 * se l'oggetto è già presente, lo modifica con i parametri inseriti, 
+	 * ritorna l'esito dell'operazione
+	 * @param user l'oggetto da salvare (della classe Utente)
+	 * @param password la nuova password dell'utente(se si modifica)
+	 * @return  Boolean
+	 * @see Utente
+	 * */
 	@Override
 	public boolean doSaveOrUpdate(Utente user, String password) {
 		Connection connection = null;
@@ -88,11 +116,25 @@ public class UserDAOimpl implements UserDAO {
 		return (result == 1);
 	}
 
+	/**
+	 * Effettua la cancellazione dal database dell'oggetto utente, 
+	 * ritorna l'esito dell'operazione
+	 * @param 	user l'oggetto da eliminare(della classe Utente)
+	 * @return  Boolean
+	 * @see 	Utente
+	 * */
 	@Override
 	public boolean doDelete(Utente user) {
 		return doDelete(user.getMail());
 	}
 
+	/**
+	 * Effettua la cancellazione dal database dell'oggetto utente, 
+	 * ritorna l'esito dell'operazione
+	 * @param 	mail l'attributo mail dell'oggetto da eliminare(della classe Utente)
+	 * @return  Boolean
+	 * @see 	Utente
+	 * */
 	@Override
 	public boolean doDelete(String mail) {
 		Connection connection = null;
@@ -129,6 +171,13 @@ public class UserDAOimpl implements UserDAO {
 		return (result == 1);
 	}
 
+	/**
+	 * Interroga il database per trovare un oggetto utente 
+	 * in base ai paramentri inseriti, ritorna l'oggetto, se lo trova
+	 * @param 	matricola l'attributo matricola dell'oggetto(della classe Utente)
+	 * @return 	Utente
+	 * @see 	Utente
+	 * */
 	@Override
 	public Utente doRetrieveByKey(String matricola) {
 		Connection connection = null;
@@ -172,6 +221,12 @@ public class UserDAOimpl implements UserDAO {
 		return null;
 	}
 
+	/**
+	 * Interroga il database per trovare una lista di tutti gli oggetti Utente
+	 * ritorna la lista, se trova oggetti
+	 * @return 	List<Utente>
+	 * @see 	Utente
+	 * */
 	@Override
 	public List<Utente> doRetrieveAll() {
 		Connection connection = null;
@@ -218,6 +273,14 @@ public class UserDAOimpl implements UserDAO {
 		return utenti;
 	}
 
+	/**
+	 * Interroga il database per trovare un oggetto utente 
+	 * in base ai paramentri inseriti, ritorna l'oggetto, se lo trova
+	 * @param 	mail l'attributo mail dell'oggetto(della classe Utente)
+	 * @param 	password l'attributo password dell'oggetto(della classe Utente)
+	 * @return 	Utente
+	 * @see 	Utente
+	 * */
 	@Override
 	public Utente doRetrieveByMailAndPass(String mail, String password) {
 		
@@ -263,6 +326,14 @@ public class UserDAOimpl implements UserDAO {
 		}
 		return null;
 	}
+	
+	/**
+	 * Interroga il database per trovare un oggetto utente 
+	 * in base ai paramentri inseriti, ritorna l'oggetto, se lo trova
+	 * @param 	mail l'attributo mail dell'oggetto(della classe Utente)
+	 * @return 	Utente
+	 * @see 	Utente
+	 * */
 	@Override
 	public Utente doRetrieveByMail(String mail) {
 		

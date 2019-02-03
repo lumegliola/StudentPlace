@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import bean.Aula;
+import bean.AulaLibera;
 import bean.GruppoDiStudio;
 import bean.Orario;
 import bean.Utente;
@@ -17,11 +19,28 @@ import dao.DAOFactory;
 import dao.interfaces.GdSDAO;
 import db_connection.DriverManagerConnectionPool;
 
-
+/**
+ * 
+ * GdSDAOimpl.java
+ * Gestisce la persistenza degli oggetti di tipo GruppoDiStudio 
+ * tramite interazioni con il database
+ * 
+ * @author F. Megliola & A. Capodanno
+ * @since 12-16-2018
+ *
+ * 
+ * */
 
 
 public class GdSDAOimpl implements GdSDAO {
 
+	/**
+	 * Effettua il salvataggio nel database dell'oggetto gruppo di studio,
+	 * ritorna un boolean
+	 * @param gds l'oggetto da salvare (della classe GruppoDiStudio)
+	 * @return  Boolean
+	 * @see GruppoDiStudio
+	 * */
 	@Override
 	public boolean doSave(GruppoDiStudio gds) {		//Inserisce nel DB  l'oggetto gds
 		Connection connection = null;
@@ -61,6 +80,17 @@ public class GdSDAOimpl implements GdSDAO {
 		return (result == 1);
 	}
 
+	/**
+	 * Effettua il salvataggio nel database dell'oggetto GruppoDiStudio, 
+	 * se l'oggetto è già presente, lo modifica con i parametri inseriti, 
+	 * ritorna l'esito dell'operazione
+	 * @param gds l'oggetto da salvare (della classe GruppoDiStudio)
+	 * @param nomeAula il nome della nuova aula(se si modifica)
+	 * @param inizio il nuovo orario di inizio dell'evento(se si modifica)
+	 * @param fine il nuovo orario di fine dell'evento(se si modifica)
+	 * @return  Boolean
+	 * @see GruppoDiStudio
+	 * */
 	@Override
 	public boolean doSaveOrUpdate(GruppoDiStudio gds,String nomeAula, Timestamp inizio ,Timestamp fine) {
 		Connection connection = null;
@@ -107,11 +137,26 @@ public class GdSDAOimpl implements GdSDAO {
 		} else return doSave(gds);
 	}
 
+	/**
+	 * Effettua la cancellazione dal database dell'oggetto GruppoDiStudio, 
+	 * ritorna l'esito dell'operazione
+	 * @param 	gds l'oggetto da eliminare (della classe GruppoDiStudio)
+	 * @return  Boolean
+	 * @see 	GruppoDiStudio
+	 * */
 	@Override
 	public boolean doDelete(GruppoDiStudio gds) {
 		return doDeleteByNameAndSubjet(gds.getNomeGruppo(),gds.getMateria());
 	}
 
+	/**
+	 * Effettua la cancellazione dal database dell'oggetto GruppoDiStudio, 
+	 * ritorna l'esito dell'operazione
+	 * @param 	nomeGruppo l'attributo nome dell'oggetto da eliminare(della classe GruppoDiStudio)
+	 * @param 	materia l'attributo materia dell'oggetto da eliminare(della classe GruppoDiStudio)
+	 * @return  Boolean
+	 * @see 	GruppoDiStudio
+	 * */
 	@Override
 	public boolean doDeleteByNameAndSubjet(String nomeGruppo,String materia) {
 
@@ -148,6 +193,13 @@ public class GdSDAOimpl implements GdSDAO {
 		return (result == 1);
 	}
 
+	/**
+	 * Interroga il database per trovare una lista di oggetti GruppoDiStudio 
+	 * in base ai parametri inseriti, ritorna la lista, se trova oggetti
+	 * @param	nomeGruppo l'attributo nome dell'oggetto(della classe GruppoDiStudio)
+	 * @return 	List<GruppoDiStudio>
+	 * @see 	GruppoDiStudio
+	 * */
 	@Override
 	public List<GruppoDiStudio> doRetrieveByName(String nomeGruppo) {
 		Connection connection = null;
@@ -196,6 +248,13 @@ public class GdSDAOimpl implements GdSDAO {
 		return null;
 	}
 
+	/**
+	 * Interroga il database per trovare una lista di oggetti GruppoDiStudio 
+	 * in base ai parametri inseriti, ritorna la lista, se trova oggetti
+	 * @param	matricola l'attributo creatore dell'oggetto(della classe GruppoDiStudio)
+	 * @return 	List<GruppoDiStudio>
+	 * @see 	GruppoDiStudio
+	 * */
 	@Override
 	public List<GruppoDiStudio> doRetrieveByCreator(String matricola) {
 		Connection connection = null;
@@ -244,7 +303,13 @@ public class GdSDAOimpl implements GdSDAO {
 		return null;
 	}
 
-	
+	/**
+	 * Interroga il database per trovare una lista di oggetti GruppoDiStudio 
+	 * in base ai parametri inseriti, ritorna la lista, se trova oggetti
+	 * @param	materia l'attributo materia dell'oggetto(della classe GruppoDiStudio)
+	 * @return 	List<GruppoDiStudio>
+	 * @see 	GruppoDiStudio
+	 * */
 	@Override
 	public List<GruppoDiStudio> doRetrieveBySubject(String materia) {
 
@@ -288,6 +353,14 @@ public class GdSDAOimpl implements GdSDAO {
 		return null;
 	}
 
+	/**
+	 * Interroga il database per trovare una lista di oggetti GruppoDiStudio 
+	 * in base ai parametri inseriti, ritorna la lista, se trova oggetti
+	 * @param	nomeGruppo l'attributo nome dell'oggetto(della classe GruppoDiStudio)
+	 * @param	materia l'attributo materia dell'oggetto(della classe GruppoDiStudio)
+	 * @return 	List<GruppoDiStudio>
+	 * @see 	GruppoDiStudio
+	 * */
 	@Override
 	public GruppoDiStudio doRetrieveByNameAndSubject(String nomeGruppo, String materia) {
 
@@ -381,6 +454,12 @@ public class GdSDAOimpl implements GdSDAO {
 		return gruppi;
 	}
 
+	/**
+	 * Interroga il database per trovare una lista di tutti gli oggetti GruppoDiStudio 
+	 * ritorna la lista, se trova oggetti
+	 * @return 	List<GruppoDiStudio>
+	 * @see 	GruppoDiStudio
+	 * */
 	@Override
 	public GruppoDiStudio doRetrieveById(int id) {
 		// TODO Auto-generated method stub
@@ -424,6 +503,15 @@ public class GdSDAOimpl implements GdSDAO {
 		return null;
 
 	}	
+	
+	/**
+	 * Interroga il database per trovare una lista di oggetti GruppoDiStudio 
+	 * in base alla stringa inserita(anche con riferimento parziale)
+	 *  ritorna la lista, se trova oggetti
+	 * @param	subString l'attributo materia dell'oggetto(della classe GruppoDiStudio)
+	 * @return 	List<GruppoDiStudio>
+	 * @see 	GruppoDiStudio
+	 * */
 	public List<GruppoDiStudio> doSearch(String subString) {
 		Connection connection = null;
 		PreparedStatement ps = null;

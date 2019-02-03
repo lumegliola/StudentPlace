@@ -1,5 +1,17 @@
 package bean;
 
+/**
+ * 
+ * Utente.java
+ * 
+ * Definisce l'oggetto utente
+ * 
+ * @author F. Megliola & A. Capodanno
+ * @since 12-16-2018
+ *
+ * 
+ * */
+
 public class Utente {
 
 

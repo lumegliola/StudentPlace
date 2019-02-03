@@ -1,0 +1,12 @@
+bean
+dao
+dao.implementation
+dao.interfaces
+db_connection
+logica.GdSManager
+logica.orarioManager
+logica.userManager
+logica.visualizzaAule
+show
+test.testDAO
+testSistema

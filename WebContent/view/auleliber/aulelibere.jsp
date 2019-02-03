@@ -36,14 +36,14 @@
 		<table class="col-lg-12 tabella">
 			<%
 				//lista delle aula divisa per giorno e fasce orarie
-				ArrayList<listaAuleLibere> lista = (ArrayList<listaAuleLibere>) session.getAttribute("lista");
-				List<String> giorni = new ArrayList<>();
-				giorni.add("Lunedì");
-				giorni.add("Martedì");
-				giorni.add("Mercoledì");
-				giorni.add("Giovedì");
-				giorni.add("Venerdì");
-				int s = 0, k = 1, intervallo = 9;
+					ArrayList<ListaAuleLibere> lista = (ArrayList<ListaAuleLibere>) session.getAttribute("lista");
+					List<String> giorni = new ArrayList<>();
+					giorni.add("Lunedì");
+					giorni.add("Martedì");
+					giorni.add("Mercoledì");
+					giorni.add("Giovedì");
+					giorni.add("Venerdì");
+					int s = 0, k = 1, intervallo = 9;
 			%>
 			<thead>
 				<tr style="color: white;">

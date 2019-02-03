@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bean.AulaLibera;
-import bean.listaAuleLibere;
+import bean.ListaAuleLibere;
 import dao.DAOFactory;
 
 
@@ -40,7 +40,7 @@ public class ServletvisualizzaAuleLibere extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		
-		ArrayList <listaAuleLibere> lista=new ArrayList<>();//crea un arraylist vuoto di aule da caricare e tornare alla jsp di visualizza aule
+		ArrayList <ListaAuleLibere> lista=new ArrayList<>();//crea un arraylist vuoto di aule da caricare e tornare alla jsp di visualizza aule
 		List <AulaLibera> elenco = new ArrayList<>();//crea l'elenco da caricare con i risultati nel db
 		List <String> giorni= new ArrayList<>();//crea un elenco per controllare i giorni con quelli liberi nel db
 		giorni.add("Lunedì");
@@ -73,7 +73,7 @@ public class ServletvisualizzaAuleLibere extends HttpServlet {
 							}
 						}
 						}if(controllo==0) {
-						listaAuleLibere l= new listaAuleLibere((elenco.get(i).getAula().getNomeAula()),giorni.get(g),(o-8));  //se non trova duplicati aggiunge l'aula all'elenco 
+						ListaAuleLibere l= new ListaAuleLibere((elenco.get(i).getAula().getNomeAula()),giorni.get(g),(o-8));  //se non trova duplicati aggiunge l'aula all'elenco 
 								lista.add(l);	
 						}}
 

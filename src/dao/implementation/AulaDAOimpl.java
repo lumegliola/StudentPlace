@@ -11,12 +11,31 @@ import java.util.List;
 
 
 import bean.Aula;
+import bean.GruppoDiStudio;
 import dao.DAOFactory;
 import dao.interfaces.AulaDAO;
 import db_connection.DriverManagerConnectionPool;
+/**
+ * 
+ * AulaDAOimpl.java
+ * Gestisce la persistenza degli oggetti di tipo Aula 
+ * tramite interazioni con il database
+ * 
+ * @author F. Megliola & A. Capodanno
+ * @since 12-16-2018
+ *
+ * 
+ * */
+
 
 public class AulaDAOimpl implements AulaDAO {
 
+	/**
+	 * Effettua il salvataggio nel database dell'oggetto aula, ritorna un boolean
+	 * @param aula l'oggetto da salvare (della classe Aula)
+	 * @return  Boolean
+	 * @see Aula
+	 * */
 	@Override
 	public boolean doSave(Aula aula) {
 		Connection connection = null;
@@ -51,8 +70,16 @@ public class AulaDAOimpl implements AulaDAO {
 		return (result == 1);
 	}
 
-
-
+	/**
+	 * Effettua il salvataggio nel database dell'oggetto aula, 
+	 * se l'oggetto è già presente, lo modifica con i parametri inseriti, 
+	 * ritorna l'esito dell'operazione
+	 * @param aula l'oggetto da salvare (della classe Aula)
+	 * @param nomeAula il nuovo nome dell'aula(se si modifica)
+	 * @param nomeEdificio il nuovo nome dell'edificio(se si modifica)
+	 * @return  Boolean
+	 * @see Aula
+	 * */
 	@Override
 	public boolean doSaveOrUpdate(Aula aula, String nomeAula,String nomeEdificio) {
 		// TODO Auto-generated method stub
@@ -100,7 +127,13 @@ public class AulaDAOimpl implements AulaDAO {
 		return (result == 1);
 	}
 
-
+	/**
+	 * Effettua la cancellazione dal database dell'oggetto aula, 
+	 * ritorna l'esito dell'operazione
+	 * @param 	aula l'oggetto da eliminare (della classe Aula)
+	 * @return  Boolean
+	 * @see 	Aula
+	 * */
 	@Override
 	public boolean doDelete(Aula aula) {
 		Connection connection = null;
@@ -135,6 +168,13 @@ public class AulaDAOimpl implements AulaDAO {
 		return (result == 1);
 	}
 
+	/**
+	 * Effettua la cancellazione dal database dell'oggetto aula, 
+	 * ritorna l'esito dell'operazione
+	 * @param 	nomeAula l'attributo nome dell'oggetto da eliminare(della classe Aula)
+	 * @return  Boolean
+	 * @see 	Aula
+	 * */
 	@Override
 	public boolean doDelete(String nomeAula) {
 
@@ -169,6 +209,13 @@ public class AulaDAOimpl implements AulaDAO {
 
 	}
 
+	/**
+	 * Interroga il database per trovare l'oggetto aula in base ai parametri inseriti
+	 * ritorna l'oggetto, se trovato
+	 * @param	nomeAula il nome dell'oggetto(della classe Aula)
+	 * @return 	Aula
+	 * @see 	Aula
+	 * */
 	@Override
 	public Aula doRetrieveByKey(String nomeAula) {
 
@@ -219,6 +266,12 @@ public class AulaDAOimpl implements AulaDAO {
 		return null;
 	}
 
+	/**
+	 * Interroga il database per trovare una lista di tutti gli oggetti aula 
+	 * ritorna la lista, se trova oggetti
+	 * @return 	List<Aula>
+	 * @see 	Aula
+	 * */
 	@Override
 	public List<Aula> doRetrieveAll() {
 		// TODO Auto-generated method stub

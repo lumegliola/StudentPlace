@@ -1,8 +1,20 @@
 package bean;
 
-public class listaAuleLibere {
+/**
+ * 
+ * Aula.java
+ * 
+ * Definisce l'oggetto listaAuleLibere
+ * 
+ * @author A. Panico
+ * @since 12-16-2018
+ *
+ * 
+ * */
 
-	public listaAuleLibere(String aula,String giorno,int fasciaoraria) {
+public class ListaAuleLibere {
+
+	public ListaAuleLibere(String aula,String giorno,int fasciaoraria) {
 		this.aula=aula;
 		this.giorno=giorno;
 		this.fasciaoraria=fasciaoraria;
