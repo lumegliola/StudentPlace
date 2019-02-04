@@ -58,9 +58,10 @@ public class TestServletCreaGds {
 	when(session.getAttribute("utente")).thenReturn(DAOFactory.getUserDAO().doRetrieveByMail("b.ello@studenti.unisa.it"));
 
 	when(session.getAttribute("logged")).thenReturn(true);
-	when(request.getParameter("inizio")).thenReturn("2018-11-21 11:00:00.000");
+	when(request.getParameter("data")).thenReturn("2018-11-21");
+	when(request.getParameter("inizio")).thenReturn(" 11:00");
 	
-	when(request.getParameter("fine")).thenReturn("2018-11-21 12:00:00.000");
+	when(request.getParameter("fine")).thenReturn("12:00");
 
 	when(request.getParameter("aula")).thenReturn("P3");
 
