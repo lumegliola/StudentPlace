@@ -45,33 +45,33 @@
 				<label>Nome Gruppo:&nbsp;</label><br>
 					 <input
 				type="text" name="nomeGruppo" class="name" placeholder="Inserisci il nome del gruppo"  required="required"
-				style="width: 70%; clear: both; margin-bottom: 0.5em;"><br>
+				style="width: 70%; clear: both; margin-bottom: 1.5em;"><br>
 
 			<label>Materia:&nbsp;</label><br><input
 				type="text" name="materia" class="materia" placeholder="Materia"
-				style="width: 70%; clear: both; margin-bottom: 0.7em;"> <br>
+				style="width: 70%; clear: both; margin-bottom: 1.5em;"> <br>
 
 					<label>Data:</label>
-						<input style="margin-bottom: 0.5em;" type="date" name="data" onchange="setdata()" id="data">
+						<input style="margin-bottom: 1.5em;" type="date" name="data" onchange="setdata()" id="data">
 					
 					<label>Orario inizio:</label>
-					<input style="margin-bottom: 0.7em;" name="inizio" type="time" min="9:00" max="18:00"
+					<input style="margin-bottom: 1.5em;" name="inizio" type="time" min="9:00" max="18:00"
 							 step="1800" onchange="setinizio()" id="inizio">
 
 						<label>Orario fine:</label>
-						<input style="margin-bottom: 0.7em;" id ="fine" name="fine"type="time" min="9:00" max="18:00"
+						<input style="margin-bottom: 1.5em;" id ="fine" name="fine"type="time" min="9:00" max="18:00"
 							 step="1800" value="10:00"><br>
 						<span>	<label>Aula:</label><select id="aule" name="aula">
 							
-							  <option value=" ">---</option>
+							  <option style="margin-bottom: 1em;" value=" ">---</option>
 							
 							</select></span><br>
 							<%if(logged){ %>
 							<input type="hidden" name="operazione" value="crea">
-				<input style="margin: 3em; background-color: #a01313; color: white; " id="bottone" type="submit" value="Crea Gruppo">
+				<input style="margin: 1em; background-color: #a01313; color: white; " id="bottone" type="submit" value="Crea Gruppo">
 
 <%}else{ %>
-<a  style="margin: 3em; background-color: #a01313; color: white; " href="ShowHome">Iscriviti per creare Gruppi</a>
+<a  style="padding: 2em; font-size:x-large; color: #a01313; " href="ShowHome">Iscriviti per creare Gruppi</a>
 
 <%} %>
 	
