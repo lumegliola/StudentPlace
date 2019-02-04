@@ -63,8 +63,7 @@
 						<input style="margin-bottom: 0.7em;" id ="fine" name="fine"type="time" min="9:00" max="18:00"
 							 step="1800" value="10:00"  onchange="setfine()"><br>
 
-						<input style="margin-bottom: 1.5em;" id ="fine" name="fine"type="time" min="9:00" max="18:00"
-							 step="1800" value="10:00"><br>
+					
 
 						<span>	<label>Aula:</label><select id="aule" name="aula">
 							
