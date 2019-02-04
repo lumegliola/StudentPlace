@@ -96,7 +96,6 @@
 						href="CreaModificaGruppo?operazione=crea">Crea gruppo di studio</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="visualizzaAuleLibere">Cerca aule libere</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Contatti</a></li>
 					<%
 				boolean logged=false;
 				if(session.getAttribute("logged")==null){
