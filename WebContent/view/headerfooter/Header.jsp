@@ -155,20 +155,18 @@
 					//	} %>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-
-					
-
 					<li class="nav-item"><a href="ServletVisualizzaProfilo"><%=utente.getNome() %></a></li>
 					<li class="nav-item"><a href="logout"><span
-							class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+							class="glyphicon glyphicon-log-out"></span> Logout</a></li></ul>
 					<%}
 				else if(logged==false){
 				%>
-					<li class="nav-item"><a href="ShowHome">Login</a></li>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="nav-item"><a href="ShowHome"><span
+							class="glyphicon glyphicon-log-in"></span> Login</a></li>
+							</ul>
 					<%} %>
-				</ul>
-				<div class="col-lg-6"></div>
-				<div id="livesearch" class="col-lg-6 column-center result"></div>
+				
 			</div>
 		</nav>
 	</div>
