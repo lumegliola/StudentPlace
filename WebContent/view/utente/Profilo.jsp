@@ -72,7 +72,7 @@
 						<td><%=p.getNomeGruppo()%></td>
 						<td><%=p.getMateria()%></td>
 						<td>Edificio: <%=p.getAula().getEdificio()%>,Aula: <%=p.getAula().getNomeAula()%></td>
-						<td><%=p.getOrario().getInizio().toGMTString().substring(0, 21)%>
+						<td><%=p.getOrario().getInizio().toString().substring(0, 21)%>
 							fino alle: <%=p.getOrario().getFine().toString().substring(11, 19)%></td>
 						<td><form action="EliminaGdS" method="post">
 								<input name="materia" type="hidden"

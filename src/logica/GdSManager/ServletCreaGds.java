@@ -52,8 +52,8 @@ public class ServletCreaGds extends HttpServlet {
 			String inizio=request.getParameter("inizio");
 		    String fine=request.getParameter("fine");
 		
-		    String data_inizio=data.concat(" "+inizio);
-		    String data_fine=data.concat(" "+fine);
+		    String data_inizio=data.concat(" "+inizio+":00.0");
+		    String data_fine=data.concat(" "+fine+":00.0");
 		    System.out.println(data_inizio);
 				if(DAOFactory.getGdSDAO().doRetrieveByNameAndSubject(nomeGruppo, materia) == null){
 					GruppoDiStudio nuovo = new GruppoDiStudio();
