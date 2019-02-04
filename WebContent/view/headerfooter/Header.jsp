@@ -56,15 +56,15 @@
 		<div class="row row_loghi">
 			<!-- COLONNA LOGO UNISA-->
 			<div class="col-md-3 column_logoUnisa">
-				<img class="logoHeaderFirst" alt="Logo Unisa"
-					src="view/images/logoUnisa.png">
+			<a href="https://www.unisa.it/">	<img class="logoHeaderFirst" alt="Logo Unisa"
+					src="view/images/logoUnisa.png"></a>
 			</div>
 
 			<!-- COLONNA LOGO STUDENTPLACE-->
 			<div class="col-md-6 column_logoSP">
 				<div class="row_StudentPlace">
-					<img class="logoSPxl" alt="Logo StudentPlace"
-						src="view/images/logoSPxl.png">
+				<a href="ShowHome"><img class="logoSPxl" alt="Logo StudentPlace"
+						src="view/images/logoSPxl.png"></a>
 					<p class="iconsocial">
 						<i style="font-size: 3em; color: #a01313; margin-right: 0.5em;"
 							class="fa">&#xf09a;</i> <i
@@ -78,14 +78,14 @@
 
 			<!-- COLONNA LOGO INFORMATICA-->
 			<div class="col-md-3 column_logoInformatica">
-				<img class="logoHeaderSecond" alt="Smart Logo Informatica"
-					src="view/images/logoInformatica.jpg">
+				<a href="http://elearning.informatica.unisa.it/el-platform/"><img class="logoHeaderSecond" alt="Smart Logo Informatica"
+					src="view/images/logoInformatica.jpg"> </a>
 			</div>
 		</div>
 
 		<!-- RIGA NAVBAR-->
 		<nav class="navbar navbar-expand-lg navbar-custom">
-			<span class="navbar-brand"> StudentPlace </span>
+			<span class="navbar-brand"> <a style="text-decoration: none;" href="ShowHome">StudentPlace</a></span>
 
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav nav nav-pills nav-fill">
