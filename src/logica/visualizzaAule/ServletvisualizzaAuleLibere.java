@@ -65,7 +65,7 @@ public class ServletvisualizzaAuleLibere extends HttpServlet {
 			for(int o =9;o<20;o++) {// for che scorre le fasce orarie
 				controllo=0;
 		for(int i =0;i<elenco.size();i++) {//for che scorre l'elenco dei risultati tante volte quante sono le fasce orarie
-			if(elenco.get(i).getOrario().getInizio().getDay()<=oggigiorno&&elenco.get(i).getOrario().getInizio().getMonth()<=oggimese) {
+			if(elenco.get(i).getOrario().getInizio().getDay()>=oggigiorno&&elenco.get(i).getOrario().getInizio().getMonth()>=oggimese) {
 			if(elenco.get(i).getOrario().getGiorno().equals(giorni.get(g))){//controlla se il giorno del primo for corrisponde con quelli nell'elenco
 				if((int)elenco.get(i).getOrario().getInizio().getHours()<=o){//controlla l'intervallo se è compreso tra o e o+1
 					if((int)elenco.get(i).getOrario().getFine().getHours()>=o+1)
