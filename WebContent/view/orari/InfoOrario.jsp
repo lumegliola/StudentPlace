@@ -53,16 +53,16 @@
   </tr>
   <tr>
   		<td><h3>Data:</td>
-  		<td> <%=or.getInizio().getDay()%>/<%=or.getInizio().getMonth()%>/<%=or.getInizio().getYear()+1900%></td>
+  		<td> <%=or.getInizio().getDay()%>/<%=or.getInizio().getMonth()+1%>/<%=or.getInizio().getYear()+1900%></td>
   </tr>
   <tr>
   		<td><h3>dalle: </td>
-  		<td><%=or.getInizio().getHours()%>:<%=or.getInizio().getMinutes()%> </td>
+  		<td><%=or.getInizio().getHours()%>:<%=or.getInizio().getMinutes()%>0 </td>
   </tr>
   
   <tr>
   	<td><h3>alle:</h3></td>
-  	<td><%=or.getFine().getHours()%>:<%=or.getFine().getMinutes()%></td>
+  	<td><%=or.getFine().getHours()%>:<%=or.getFine().getMinutes()%>0</td>
   </tr>
 </table>
 		

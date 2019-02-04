@@ -50,7 +50,10 @@ public class ServletAulaLibera extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("dvr");
 	String inizio = request.getParameter("inizio");
+	String fine = request.getParameter("fine");
+
 	String giorno = request.getParameter("data");
 	String data=giorno.concat(" "+inizio.concat(":00:00"));
     SimpleDateFormat sdf;
@@ -58,61 +61,44 @@ public class ServletAulaLibera extends HttpServlet {
     Date date2=new Date(),date1=new Date();	 
     try {
 	 date1=sdf.parse(data);	
+	 date2=sdf.parse(data);
 	} catch (ParseException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}	
-    Timestamp orIn = new  Timestamp(date1.getTime());
-	
-	System.out.println(data);
+    	Timestamp orIn = new  Timestamp(date1.getTime());
+    	Timestamp orFine = new  Timestamp(date2.getTime());
+			System.out.println(data);
 		
-	      List<AulaLibera> aule = DAOFactory.getAulaLiberaDAO().doRetrieveByDate(orIn);
-		
+	      List<AulaLibera> naule = DAOFactory.getAulaLiberaDAO().doRetrieveAll();
+	      List<AulaLibera> aule = new ArrayList<AulaLibera>();
+
+              for (int i=0;i<naule.size();i++) {
+            	  
+        		  
+            	  if(naule.get(i).getOrario().getInizio().getYear() == orIn.getYear() &&
+            			  naule.get(i).getOrario().getInizio().getMonth() == orIn.getMonth()&&
+            			  naule.get(i).getOrario().getInizio().getDate() == orIn.getDate()&&
+            			  naule.get(i).getOrario().getInizio().getHours() <= orIn.getHours()&&
+            			  naule.get(i).getOrario().getFine().getHours() >= orFine.getHours()) {
+            		
+            		  System.out.println(naule.get(i).getOrario().getInizio()+"|"+naule.get(i).getOrario().getFine());
+            		  aule.add(naule.get(i));
+            		  
+            	  }
+            	  
+            	  
+            	  
+            	  
+            	  
+            	  
+              }		    
 			 //ho ricavato una lista di aule libere a partire dall'orario di inserimento fino alla fine della gioranta scelta
-			 
-			 //non ho la piu' pallida idea di cosa hai scritto qua sotto
-			 //quindi per adesso lascio stare e mi spieghi domani mattina
-			
-		//response con json String objectToReturn = "{ key1: 'value1', key2: 'value2' }";
-           String objectReturn="[{\"nome\":\"Alessandro\",\"cognome\":\"Capodanno\"},"
-           		+ "{\"nome\":\"Pasquale\",\"cognome\":\"O'pegg\"}]";
-            
+	
          	PrintWriter out = response.getWriter();
 	        response.setContentType("application/json");
 	        response.setCharacterEncoding("UTF-8");
-	        out.append("[");
-		      List<AulaLibera> naule = new ArrayList<AulaLibera>();
-              List<Integer> listaIndice=new ArrayList<Integer>();
-              List<Integer> listaIncrementi=new ArrayList<Integer>();
-	        //Capire orario se è consecutivo
-	       for(int i=0;i<aule.size();i++) {
-	    	   int j=0,k=0;
-              if(i+1>=aule.size()) {
-            	  break;
-              }
-	    	  if(aule.get(i).getAula().getNomeAula().equals(aule.get(i+1).getAula().getNomeAula())){
-	    		  System.out.println("Entro primo controllo");
-	    		 if( aule.get(i).getOrario().getFine().getHours()==aule.get(i+1).getOrario().getInizio().getHours()){
-	    			 System.out.println(aule.get(i).getOrario().getInizio());
-	    			 System.out.println(aule.get(i+1).getOrario().getInizio());
-	    			 listaIndice.add(i+1);
-		               j=j+1;
-	    		 }else {
-	    			 j=0;
-	    		 }
-	    	  }
-	    	   
-	       }
-	        
-	        System.out.println(aule.size());
-	     for(int i=0;i<listaIndice.size();i++) {
-	    	aule.remove(listaIndice.get(i));
-	    	
-	     }
-	     for(int i=0;i<aule.size();i++) {
-		    	System.out.println(aule.get(i));
-		     }
-	        
+	        out.append("[");	        
 	        for(int i=0;i<aule.size();i++) {
 	        	out.append("{"
 	        			+ "\"aula\":\""+aule.get(i).getAula().getNomeAula()+"\","

@@ -60,7 +60,7 @@
 
 						<label>Orario fine:</label>
 						<input style="margin-bottom: 0.7em;" id ="fine" name="fine"type="time" min="9:00" max="18:00"
-							 step="1800" value="10:00"><br>
+							 step="1800" value="10:00"  onchange="setfine()"><br>
 						<span>	<label>Aula:</label><select id="aule" name="aula">
 							
 							  <option value=" ">---</option>
@@ -85,6 +85,7 @@
 <script>
     var valoreData="";
     var valoreInizio="";
+    var valoreFine="";
     function setdata(){
         setData=true;
         valoreData=document.getElementById('data').value;
@@ -98,17 +99,26 @@
         if(valoreInizio.length>0){
         console.log(valoreInizio);
         }
+       
+    }
+    function setfine(){
+        setData=true;
+        valoreFine=document.getElementById('fine').value;
+        if(valoreFine.length>0){
+        console.log(valoreFine);
+        }
     }
     var valore=true;
     var auleLibere;
- 	$("#inizio,#data").change(function(){
+ 	$("#inizio,#data,#fine").change(function(){
  		$("#aule").html("<option value=\" \">---</option>");
  		
-     if(valoreInizio.length>0 && valoreData.length>0){
+     if(valoreInizio.length>0 && valoreData.length>0 && valoreFine.length>0){
      $.post("AulaLibera",
               {
                 inizio:valoreInizio,
-                data:valoreData
+                data:valoreData,
+                fine:valoreFine
               },
               function(data, status){
             	  auleLibere=data;
@@ -127,8 +137,12 @@
             console.log(id);
             for(var i=0;i<auleLibere.length;i++){
             	if(auleLibere[i].id==id){
+            		var inizio;	
+            		if(aulaLibere[i].inizio=="9"){
+            			inzio=("0").concat(auleLibere[i].inizio);
+            		}
             		var fine=(auleLibere[i].fine).concat(":00:00");
-            		var inizio=(auleLibere[i].inizio).concat(":00:00");
+            		 inizio=(auleLibere[i].inizio).concat(":00:00");
             		document.getElementById('fine').value=fine;
             		document.getElementById('inizio').value=inizio;
             	}
