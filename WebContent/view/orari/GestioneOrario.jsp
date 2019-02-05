@@ -122,7 +122,7 @@
 						
 						<%} %>
 						<%for(int i=0;i<6;i++){ %>
-						<option value="S<%=i+1%>F">S<%=i+1%></option>
+						<option value="S<%=i+1%>F ">S<%=i+1%></option>
 						
 						<%} %>
 				

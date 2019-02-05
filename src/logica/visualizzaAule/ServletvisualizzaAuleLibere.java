@@ -52,7 +52,7 @@ public class ServletvisualizzaAuleLibere extends HttpServlet {
 		elenco.addAll(DAOFactory.getAulaLiberaDAO().doRetrieveAll());//carica l'elenco delle aule libere
 		GregorianCalendar today=new GregorianCalendar();
 		int oggigiorno=today.getTime().getDate();
-		int oggimese=today.getTime().getMonth()-1;
+		int oggimese=today.getTime().getMonth();
 		System.out.println("giorno e mese"+oggigiorno+"   "+oggimese);
 		if(session.getAttribute("logged")==null) {//controlla sessione e ne setta gli attributi
 			System.out.println("setta attribute");
@@ -66,7 +66,7 @@ public class ServletvisualizzaAuleLibere extends HttpServlet {
 				controllo=0;
 		for(int i =0;i<elenco.size();i++) {//for che scorre l'elenco dei risultati tante volte quante sono le fasce orarie
 
-			System.out.println("giorno e mese "+elenco.get(i).getOrario().getInizio().getDate()+" "+elenco.get(i).getOrario().getInizio().getMonth());
+			System.out.println("giorno e mese "+elenco.get(0).getOrario().getInizio().getDate()+" "+elenco.get(0).getOrario().getInizio().getMonth());
 			
 			if(elenco.get(i).getOrario().getInizio().getDate()>=oggigiorno&&elenco.get(i).getOrario().getInizio().getMonth()>=oggimese) {
 			if(elenco.get(i).getOrario().getGiorno().equals(giorni.get(g))){//controlla se il giorno del primo for corrisponde con quelli nell'elenco
