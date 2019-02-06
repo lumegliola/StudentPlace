@@ -20,16 +20,14 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
-
-import bean.GruppoDiStudio;
-import bean.Iscrizione;
-import bean.Utente;
-import dao.DAOFactory;
-
-import dao.interfaces.GdSDAO;
-import dao.interfaces.IscrizioneDAO;
-import dao.interfaces.UserDAO;
 import junit.framework.TestCase;
+import model.bean.GruppoDiStudio;
+import model.bean.Iscrizione;
+import model.bean.Utente;
+import model.dao.DAOFactory;
+import model.dao.interfaces.GdSDAO;
+import model.dao.interfaces.IscrizioneDAO;
+import model.dao.interfaces.UserDAO;
 
 public class IscrizioneDAOImplTest extends TestCase{
 	private FlatXmlDataSet loadedDataSer;

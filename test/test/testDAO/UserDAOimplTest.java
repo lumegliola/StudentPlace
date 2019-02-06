@@ -25,10 +25,9 @@ import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
 import org.junit.*;
 
-
-import bean.Utente;
-import dao.DAOFactory;
 import junit.framework.TestCase;
+import model.bean.Utente;
+import model.dao.DAOFactory;
 
 public class UserDAOimplTest extends TestCase{
 	public  UserDAOimplTest() {

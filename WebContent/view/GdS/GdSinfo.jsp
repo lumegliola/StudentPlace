@@ -1,5 +1,5 @@
-<%@page import="dao.DAOFactory"%>
-<%@page import="bean.GruppoDiStudio"%>
+<%@page import="model.dao.DAOFactory"%>
+<%@page import="model.bean.GruppoDiStudio"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>

@@ -1,9 +1,9 @@
-<%@page import="dao.DAOFactory"%>
+<%@page import="model.dao.DAOFactory"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <%@page import="java.util.List"%>
-<%@page import="bean.*"%>
+<%@page import="model.bean.*"%>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="view/GdS/ListaGruppi.css">
 <link rel="stylesheet"

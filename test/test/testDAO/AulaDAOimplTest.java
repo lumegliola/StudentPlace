@@ -29,10 +29,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import bean.Aula;
-import dao.DAOFactory;
-import dao.implementation.AulaDAOimpl;
-import dao.interfaces.AulaDAO;
+import model.bean.Aula;
+import model.dao.DAOFactory;
+import model.dao.implementation.AulaDAOimpl;
+import model.dao.interfaces.AulaDAO;
 
 public class AulaDAOimplTest  extends DBTestCase{
 	private   IDataSet dataSet;

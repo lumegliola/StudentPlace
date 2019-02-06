@@ -22,11 +22,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
-
-import bean.Orario;
-import dao.DAOFactory;
-import dao.interfaces.OrarioDAO;
 import junit.framework.TestCase;
+import model.bean.Orario;
+import model.dao.DAOFactory;
+import model.dao.interfaces.OrarioDAO;
 
 public class OrarioDAOimplTest extends TestCase{
 

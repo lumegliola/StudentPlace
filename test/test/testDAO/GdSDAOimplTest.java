@@ -29,12 +29,12 @@ import org.dbunit.operation.DatabaseOperation;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import bean.*;
-import dao.DAOFactory;
-import dao.implementation.GdSDAOimpl;
 
-import dao.interfaces.GdSDAO;
 import junit.framework.TestCase;
+import model.bean.*;
+import model.dao.DAOFactory;
+import model.dao.implementation.GdSDAOimpl;
+import model.dao.interfaces.GdSDAO;
 
 public class GdSDAOimplTest extends TestCase {
 	

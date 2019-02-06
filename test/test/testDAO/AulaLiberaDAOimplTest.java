@@ -20,10 +20,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import bean.*;
-import bean.AulaLibera;
-import dao.DAOFactory;
-import dao.interfaces.AulaLiberaDAO;
+
+import model.bean.*;
+import model.dao.DAOFactory;
+import model.dao.interfaces.AulaLiberaDAO;
 
 public class AulaLiberaDAOimplTest extends DBTestCase{
 	private   IDataSet dataSet;

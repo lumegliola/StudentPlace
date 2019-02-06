@@ -1,5 +1,5 @@
 <%@page import="javax.swing.text.Document"%>
-<%@page import="bean.*"%>
+<%@page import="model.bean.*"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Date"%>
