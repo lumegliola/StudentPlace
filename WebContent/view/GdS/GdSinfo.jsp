@@ -30,7 +30,7 @@
 	<div style="text-align: center;">
 
 		<h1 style="color: #a01313;"><%=g.getNomeGruppo()%></h1>
-
+        <span style="font-size: x-large;">Materia:</span><span style="margin-right: 1em;"><%=g.getMateria()%></span><br>
 		<span style="font-size: x-large;">Si svolge nell'aula: </span> <span
 			style="margin-right: 1em;"><%=g.getAula().getNomeAula()%></span> <span
 			style="font-size: x-large;">edificio:</span> <span> <%=g.getAula().getEdificio()%>
