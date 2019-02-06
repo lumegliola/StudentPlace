@@ -91,7 +91,7 @@ public class TestServletEliminaGds extends TestCase {
 		
 		when(session.getAttribute("utente")).thenReturn(DAOFactory.getUserDAO().doRetrieveByKey("0512102865"));
 		
-		when(request.getRequestDispatcher("/view/Opeffettuata.jsp")).thenReturn(dispatcher);
+		when(request.getRequestDispatcher("/view/OpEffettuata.jsp")).thenReturn(dispatcher);
 
 		new ServletEliminaGdS().doPost(request, response);
 		

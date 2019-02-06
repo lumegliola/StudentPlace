@@ -3,6 +3,7 @@ package controller.userManager;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -57,6 +58,12 @@ public class ServletRegistrazione extends HttpServlet {
 			HttpSession session=request.getSession();
 			session.setAttribute("utente",utente);
 			session.setAttribute("logged", true);
+			Cookie mail=new Cookie("utente", email);
+	        Cookie logged=new Cookie("logged","true");
+	        Cookie admin=new Cookie("admin", "");
+	        response.addCookie(mail);
+            response.addCookie(logged);
+            response.addCookie(admin);
        		request.getRequestDispatcher("/view/homepage/Home.jsp").forward(request, response);
        		return;
 		}else {

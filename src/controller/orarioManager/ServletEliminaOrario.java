@@ -47,14 +47,14 @@ public class ServletEliminaOrario extends HttpServlet {
 			Orario or = DAOFactory.getOrarioDAO().doRetrieveByKey(idOrario);
 			//orario non trovato
 			if (or == null) {
-				request.getRequestDispatcher("GestioneOrario").forward(request, response);
+				request.getRequestDispatcher("showGestioneOrario").forward(request, response);
 			}
 			else {
 				DAOFactory.getAulaLiberaDAO().doDeleteByOrario(or.getIdOrario());
 				DAOFactory.getOrarioDAO().doDelete(or);
 				System.out.println("l`orario viene eliminato dall`amministratore");
 				session.setAttribute("esito", "ok");
-				request.getRequestDispatcher("GestioneOrario").forward(request, response);
+				request.getRequestDispatcher("/GestioneOrario").forward(request, response);
 			}
 		}else {
 			request.getRequestDispatcher("view/errore/Errore.jsp").forward(request, response);

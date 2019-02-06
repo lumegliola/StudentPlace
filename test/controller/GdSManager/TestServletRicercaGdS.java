@@ -5,6 +5,8 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -52,6 +54,7 @@ public class TestServletRicercaGdS {
     	when(session.getAttribute("logged")).thenReturn(true);
     	
     	when(request.getParameter("inputGruppo")).thenReturn("prog");
+    	when(response.getWriter()).thenReturn(new PrintWriter(new StringWriter()));
     	
     	new ServletRicercaGds().doGet(request, response);
     	

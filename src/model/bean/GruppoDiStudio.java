@@ -115,18 +115,6 @@ public class GruppoDiStudio {
 		return this.giorno;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((aula == null) ? 0 : aula.hashCode());
-		result = prime * result + ((creatore == null) ? 0 : creatore.hashCode());
-		result = prime * result + ((giorno == null) ? 0 : giorno.hashCode());
-		result = prime * result + ((materia == null) ? 0 : materia.hashCode());
-		result = prime * result + ((nomeGruppo == null) ? 0 : nomeGruppo.hashCode());
-		result = prime * result + ((orario == null) ? 0 : orario.hashCode());
-		return result;
-	}
 
 	@Override
 	public boolean equals(Object obj) {

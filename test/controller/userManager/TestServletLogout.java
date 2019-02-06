@@ -13,6 +13,7 @@ import java.sql.DriverManager;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -47,7 +48,7 @@ public class TestServletLogout extends TestCase {
  
     @Mock
     HttpSession session;
-    
+
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);        
@@ -55,8 +56,10 @@ public class TestServletLogout extends TestCase {
 	
     @Test
  	public void testDoPostHttpServletRequestHttpServletResponse() throws ServletException, IOException {
-   
+    Cookie []cookies= {new Cookie("utente","qualcosa"),new Cookie("admin","qualcosa"),new Cookie("logged","qualcosa")};
+
     when(request.getSession()).thenReturn(session);
+    when(request.getCookies()).thenReturn(cookies);
  	
  	when(request.getRequestDispatcher("/view/homepage/Home.jsp")).thenReturn(dispatcher);
 
