@@ -55,12 +55,12 @@ $(window).on("load",function() {
 	<div class="container-fluid login" n="login" method="post">
 		<form action="login" method="post" name="formLog" id="log" >
 		<h4 style="color: #a01313">Login</h4>
-			<label>E-mail:&nbsp;</label><label id="resMail"></label><br /> <input onblur="validazione(this)"
+			<label>E-mail:&nbsp;</label><label id="resMail"></label><br /> <input 
 				type="text" name="email" id="email" placeholder="Inserisci email"
 				style="width: 90%; clear: both; margin-bottom: 2em;" required="required"><br/>
 				
 
-			<label>Password:&nbsp;</label><label id="resPass"></label> <input onblur="validazione(this)"
+			<label>Password:&nbsp;</label><label id="resPass"></label> <input
 				type="password" name="password" id="password" placeholder="Inserisci password"
 				style="width: 90%; clear: both; margin-bottom: 2em;" required="required"> <span><input
 				type="submit" class="button" value="Accedi"></input> <sub>o <a
