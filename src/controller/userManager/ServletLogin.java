@@ -47,13 +47,13 @@ public class ServletLogin extends HttpServlet {
 		String password = request.getParameter("password");
 		String email = request.getParameter("email");
 		Utente user = DAOFactory.getUserDAO().doRetrieveByMailAndPass(email, password);
-        System.out.println(user.getNome());
+        
 		if (user == null) { // Utente Non trovato, credenziali errate.
 			//System.out.println("null");
 			request.setAttribute("is_error", true);
 			request.setAttribute("title", "Login Fallita");
 			request.setAttribute("message", "Controlla di aver inserito i dati di accesso correttamente.");
-			RequestDispatcher d = request.getRequestDispatcher("/view/errore/Errore.jsp");
+			RequestDispatcher d = request.getRequestDispatcher("/view/errore/LoginErrata.jsp");
 			d.forward(request, response);
 			return;
 
