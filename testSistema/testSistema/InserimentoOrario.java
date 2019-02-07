@@ -37,13 +37,13 @@ public class InserimentoOrario {
 			    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Aula'])[2]/following::select[1]")).click();
 			    driver.findElement(By.id("data")).click();
 			    driver.findElement(By.id("data")).clear();
-			    driver.findElement(By.id("data")).sendKeys("0002-03-17");
+			    driver.findElement(By.id("data")).sendKeys("0002-05-17");
 			    driver.findElement(By.id("data")).clear();
-			    driver.findElement(By.id("data")).sendKeys("0020-03-17");
+			    driver.findElement(By.id("data")).sendKeys("0020-05-17");
 			    driver.findElement(By.id("data")).clear();
-			    driver.findElement(By.id("data")).sendKeys("0201-03-17");
+			    driver.findElement(By.id("data")).sendKeys("0201-05-17");
 			    driver.findElement(By.id("data")).clear();
-			    driver.findElement(By.id("data")).sendKeys("2019-03-17");
+			    driver.findElement(By.id("data")).sendKeys("2019-05-17");
 			    driver.findElement(By.name("inizio")).click();
 			    driver.findElement(By.name("inizio")).clear();
 			    driver.findElement(By.name("inizio")).sendKeys("12:00");
@@ -51,7 +51,7 @@ public class InserimentoOrario {
 			    driver.findElement(By.name("fine")).clear();
 			    driver.findElement(By.name("fine")).sendKeys("15:00");
 			    driver.findElement(By.name("settimane")).click();
-			    new Select(driver.findElement(By.name("settimane"))).selectByVisibleText("24");
+			    new Select(driver.findElement(By.name("settimane"))).selectByVisibleText("1");
 			    driver.findElement(By.name("settimane")).click();
 			    driver.findElement(By.id("bottone")).click();
 	}
