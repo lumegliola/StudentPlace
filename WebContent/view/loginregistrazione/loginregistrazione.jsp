@@ -58,7 +58,7 @@ if (validateMail(mail.value)) {
 }
 
 return res;
-};
+}
 </script>
 	
 </head>
@@ -66,7 +66,7 @@ return res;
 <body>
 
 	<div class="container-fluid login" n="login" method="post">
-		<form action="login" method="post" name="formLog" id="log">
+		<form action="login" method="post" name="formLog" id="log" onkeyup="return validateMail()">
 		<h4 style="color: #a01313">Login</h4>
 			<label>E-mail:&nbsp;</label><label id="resMail"></label><br /> <input
 				type="text" name="email" id="email" placeholder="Inserisci email"
@@ -79,7 +79,7 @@ return res;
 					id="pulsanteReg">Registrati</a></sub></span>
 		</form>
 
-		<form action="ServletRegistrazione" method="post" name="formReg"
+		<form action="ServletRegistrazione" method="post" name="formReg" onkeyup="return validateMail()"
 			id="reg" style="display:none;">
 			<h4 style="color: #a01313">Registrazione</h4>
 			<label>Nome:&nbsp;</label> <input

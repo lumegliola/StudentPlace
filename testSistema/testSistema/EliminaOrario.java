@@ -34,19 +34,7 @@ public class EliminaOrario {
 		driver.findElement(By.id("password")).sendKeys("123456");
 		driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Registrati'])[1]/preceding::input[1]")).click();
 		driver.findElement(By.linkText("Gestione orari")).click();
-		driver.findElement(By.name("data")).click();
-		driver.findElement(By.name("data")).clear();
-		driver.findElement(By.name("data")).sendKeys("2019-01-16");
-		driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Aula'])[2]/following::select[1]")).click();
-		new Select(driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Aula'])[2]/following::select[1]"))).selectByVisibleText("P20");
-		driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Aula'])[2]/following::select[1]")).click();
-		driver.findElement(By.name("inizio")).click();
-		driver.findElement(By.name("inizio")).clear();
-		driver.findElement(By.name("inizio")).sendKeys("15:00");
-		driver.findElement(By.name("fine")).clear();
-		driver.findElement(By.name("fine")).sendKeys("18:00");
-		driver.findElement(By.name("formReg")).submit();
-		driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Mercoledì'])[1]/following::input[5]")).click();
+		driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='P7'])[1]/following::input[5]")).click();
 	}
 
 	@After
