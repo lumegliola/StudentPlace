@@ -57,7 +57,8 @@ $(window).on("load",function() {
 		<h4 style="color: #a01313">Login</h4>
 			<label>E-mail:&nbsp;</label><label id="resMail"></label><br /> <input onblur="validazione(this)"
 				type="text" name="email" id="email" placeholder="Inserisci email"
-				style="width: 90%; clear: both; margin-bottom: 2em;" required="required"><br />
+				style="width: 90%; clear: both; margin-bottom: 2em;" required="required"><br/>
+				
 
 			<label>Password:&nbsp;</label><label id="resPass"></label> <input onblur="validazione(this)"
 				type="password" name="password" id="password" placeholder="Inserisci password"
