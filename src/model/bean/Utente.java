@@ -14,7 +14,7 @@ package model.bean;
 
 public class Utente {
 
-
+	
 	private String matricola;
 	private String nome;
 	private String cognome;

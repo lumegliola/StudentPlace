@@ -62,13 +62,13 @@ public class Orario {
 
 
 		switch(gc.get(DAY_OF_WEEK)) {
-		case 1 : giorno = "Domenica"; break;
-		case 2 : giorno = "Lunedì";break;
-		case 3 : giorno = "Martedì"; break;
-		case 4 : giorno = "Mercoledì"; break;
-		case 5 : giorno = "Giovedì"; break;
-		case 6 : giorno = "Venerdì"; break;
-		case 7 : giorno = "Sabato"; break;
+		case 2 : giorno = "Domenica"; break;
+		case 3 : giorno = "Lunedì";break;
+		case 4 : giorno = "Martedì"; break;
+		case 5 : giorno = "Mercoledì"; break;
+		case 6 : giorno = "Giovedì"; break;
+		case 7 : giorno = "Venerdì"; break;
+		case 1: giorno = "Sabato"; break;
 
 		}
 		return giorno;
