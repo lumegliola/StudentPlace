@@ -43,7 +43,7 @@ public class AulaDAOimpl implements AulaDAO {
 
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
-            Aula valore=DAOFactory.getAulaDAO().doRetrieveByKey(aula.getNomeAula());
+            Aula valore = DAOFactory.getAulaDAO().doRetrieveByKey(aula.getNomeAula());
             if(valore!=null) {
             	return false;
             }
@@ -70,8 +70,8 @@ public class AulaDAOimpl implements AulaDAO {
 	}
 
 	/**
-	 * Effettua il salvataggio nel database dell'oggetto aula, 
-	 * se l'oggetto è già presente, lo modifica con i parametri inseriti, 
+	 * Effettua il salvataggio nel database dell'oggetto aula,
+	 * se l'oggetto è già presente, lo modifica con i parametri inseriti,
 	 * ritorna l'esito dell'operazione
 	 * @param aula l'oggetto da salvare (della classe Aula)
 	 * @param nomeAula il nuovo nome dell'aula(se si modifica)
@@ -98,7 +98,7 @@ public class AulaDAOimpl implements AulaDAO {
 
 				result = ps.executeUpdate();                                                                                         //Esegue la query e ritorna un oggetto Result set
 
-			}else{ // altrimenti 
+			} else { // altrimenti
 
 				ps = connection.prepareStatement("update aula set nome = ? , edificio = ? where nome = ? and edificio = ?");	//Crea un oggetto PreparedStatement relativo alla stringa SQL passata in input
 
@@ -127,7 +127,7 @@ public class AulaDAOimpl implements AulaDAO {
 	}
 
 	/**
-	 * Effettua la cancellazione dal database dell'oggetto aula, 
+	 * Effettua la cancellazione dal database dell'oggetto aula,
 	 * ritorna l'esito dell'operazione
 	 * @param 	aula l'oggetto da eliminare (della classe Aula)
 	 * @return  Boolean
@@ -168,7 +168,7 @@ public class AulaDAOimpl implements AulaDAO {
 	}
 
 	/**
-	 * Effettua la cancellazione dal database dell'oggetto aula, 
+	 * Effettua la cancellazione dal database dell'oggetto aula,
 	 * ritorna l'esito dell'operazione
 	 * @param 	nomeAula l'attributo nome dell'oggetto da eliminare(della classe Aula)
 	 * @return  Boolean
@@ -186,7 +186,7 @@ public class AulaDAOimpl implements AulaDAO {
 			connection = DriverManagerConnectionPool.getConnection();
 			ps = connection.prepareStatement("delete from aula where nome=? "); 	     //Crea un oggetto PreparedStatement relativo alla stringa SQL passata in input
 			ps.setString(1,nomeAula);                                                    // passiamo indice  e il valore che sarà inserito nel placeholder '?'
-			result = ps.executeUpdate();      											 //Esegue la query e ritorna 1		
+			result = ps.executeUpdate();      											 //Esegue la query e ritorna 1
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -227,16 +227,16 @@ public class AulaDAOimpl implements AulaDAO {
 
 			connection = DriverManagerConnectionPool.getConnection();				    //
 			ps = connection.prepareStatement("select * from aula where nome=?");	    //Crea un oggetto PreparedStatement relativo alla stringa SQL passata in input
-			ps.setString(1, nomeAula);                                                  // passiamo indice  e il valore che sarà inserito nel placeholder 
+			ps.setString(1, nomeAula);                                                  // passiamo indice  e il valore che sarà inserito nel placeholder
 			result = ps.executeQuery();                                                 //Esegue la query e ritorna un oggetto Result set
 			String nome="";														    	//variabile per contenere il risultato query
 			String edificio="";														    //variabile per contenere il risultato query
 
 			/*Per ottenre  i risultati query*/
 
-			while(result.next()) { //inzio ciclo  condizione 
+			while(result.next()) { //inzio ciclo  condizione
 
-				nome=result.getNString(1);										    	//restituisce il risultato della colonna 1 della query 
+				nome = result.getNString(1);										    	//restituisce il risultato della colonna 1 della query
 
 				edificio=result.getNString(2);									      	//restituisce il  risulatato della  colonna 2 della query
 
@@ -266,7 +266,7 @@ public class AulaDAOimpl implements AulaDAO {
 	}
 
 	/**
-	 * Interroga il database per trovare una lista di tutti gli oggetti aula 
+	 * Interroga il database per trovare una lista di tutti gli oggetti aula
 	 * ritorna la lista, se trova oggetti
 	 * @return 	List<Aula>
 	 * @see 	Aula
@@ -289,8 +289,8 @@ public class AulaDAOimpl implements AulaDAO {
 
 			while(result.next()) {//Inzio Ciclo
 
-				String	nome=result.getNString(1);            							   //Istanzia la variabile con  il risultato della colonna 1 della query 
-				String 	edificio=result.getNString(2);          						   //Istanzia la variabile con  il risultato della colonna 2 della query 
+				String	nome = result.getNString(1);            							   //Istanzia la variabile con  il risultato della colonna 1 della query
+				String 	edificio = result.getNString(2);          						   //Istanzia la variabile con  il risultato della colonna 2 della query
 				aula.add(new Aula(nome,edificio));             							   //Istanzia e inserisce nella lista l'oggetto aula
 
 			}//Fine
