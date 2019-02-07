@@ -16,15 +16,15 @@ import model.dao.interfaces.IscrizioneDAO;
 import model.db_connection.DriverManagerConnectionPool;
 
 /**
- * 
+ *
  * IscrizioneDAOimpl.java
- * Gestisce la persistenza degli oggetti di tipo Iscrizione 
+ * Gestisce la persistenza degli oggetti di tipo Iscrizione
  * tramite interazioni con il database
- * 
+ *
  * @author F. Megliola & A. Capodanno
  * @since 12-16-2018
  *
- * 
+ *
  * */
 
 public class IscrizioneDAOImpl implements IscrizioneDAO{
@@ -71,7 +71,7 @@ public class IscrizioneDAOImpl implements IscrizioneDAO{
 	}
 
 	/**
-	 * Effettua la cancellazione dal database dell'oggetto iscrizione, 
+	 * Effettua la cancellazione dal database dell'oggetto iscrizione,
 	 * ritorna l'esito dell'operazione
 	 * @param 	iscrizione l'oggetto da eliminare(della classe Iscrizione)
 	 * @return  Boolean
@@ -82,9 +82,9 @@ public class IscrizioneDAOImpl implements IscrizioneDAO{
 		return doDeleteByUserAndGroup(iscrizione.getIscritto().getMatricola(), iscrizione.getGruppo().getId());
 	}
 
-	
+
 	/**
-	 * Effettua la cancellazione dal database dell'oggetto iscrizione, 
+	 * Effettua la cancellazione dal database dell'oggetto iscrizione,
 	 * ritorna l'esito dell'operazione
 	 * @param 	idGruppo l'attributo gruppo dell'oggetto da eliminare(della classe Iscrizione)
 	 * @return  Boolean
@@ -121,9 +121,9 @@ public class IscrizioneDAOImpl implements IscrizioneDAO{
 		return (result == 1);
 	}
 
-	
+
 	/**
-	 * Effettua la cancellazione dal database dell'oggetto iscrizione, 
+	 * Effettua la cancellazione dal database dell'oggetto iscrizione,
 	 * ritorna l'esito dell'operazione
 	 * @param 	matricola l'attributo matricola dell'oggetto da eliminare(della classe Iscrizione)
 	 * @param 	idGruppo l'attributo gruppo dell'oggetto da eliminare(della classe Iscrizione)
@@ -163,7 +163,7 @@ public class IscrizioneDAOImpl implements IscrizioneDAO{
 	}
 
 	/**
-	 * Interroga il database per trovare una lista di oggetti Iscrizione 
+	 * Interroga il database per trovare una lista di oggetti Iscrizione
 	 * in base ai paramentri inseriti, ritorna la lista, se trova oggetti
 	 * @param 	matricola l'attributo matricola dell'oggetto(della classe Iscrizione)
 	 * @return 	List<Iscrizione>
@@ -176,7 +176,7 @@ public class IscrizioneDAOImpl implements IscrizioneDAO{
 		List<Iscrizione> res = new ArrayList<>();
 
 		try {
-			
+
 
 			connection = DriverManagerConnectionPool.getConnection();
 			//dichiara lo statement
@@ -192,9 +192,9 @@ public class IscrizioneDAOImpl implements IscrizioneDAO{
 				b.setIscritto(DAOFactory.getUserDAO().doRetrieveByKey(matricola));
 				b.setGruppo(DAOFactory.getGdSDAO().doRetrieveById(result.getInt("gruppo")));
 				res.add(b);
-				
+
 			}
-			
+
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -212,7 +212,7 @@ public class IscrizioneDAOImpl implements IscrizioneDAO{
 	}
 
 	/**
-	 * Interroga il database per trovare una lista di oggetti Iscrizione 
+	 * Interroga il database per trovare una lista di oggetti Iscrizione
 	 * in base ai paramentri inseriti, ritorna la lista, se trova oggetti
 	 * @param 	idGruppo l'attributo id dell'oggetto(della classe GruppoDiStudio) che è attributo di Iscrizione
 	 * @return 	List<Iscrizione>
@@ -239,12 +239,11 @@ public class IscrizioneDAOImpl implements IscrizioneDAO{
 
 			//ricava i risultati
 			while(result.next()) {
-			
+
 				b.setIscritto(DAOFactory.getUserDAO().doRetrieveByKey(result.getString("utente")));
 				res.add(b);
-	
+
 			}
-			
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -262,9 +261,9 @@ public class IscrizioneDAOImpl implements IscrizioneDAO{
 	}
 
 	/**
-	 * Interroga il database per trovare una lista di oggetti Iscrizione 
+	 * Interroga il database per trovare una lista di oggetti Iscrizione
 	 * in base ai paramentri inseriti, ritorna la lista, se trova oggetti
-	 * @param 	matricola l'attributo matricola dell'oggetto(della classe Utente) che è attributo di Iscrizione 
+	 * @param 	matricola l'attributo matricola dell'oggetto(della classe Utente) che è attributo di Iscrizione
 	 * @param 	idGruppo l'attributo id dell'oggetto(della classe GruppoDiStudio) che è attributo di Iscrizione
 	 * @return 	List<Iscrizione>
 	 * @see 	Iscrizione
@@ -279,7 +278,7 @@ public class IscrizioneDAOImpl implements IscrizioneDAO{
 			Iscrizione b = new Iscrizione();
 			Utente s = DAOFactory.getUserDAO().doRetrieveByKey(matricola);
 			GruppoDiStudio g = DAOFactory.getGdSDAO().doRetrieveById(idGruppo);
-			
+
 
 			connection = DriverManagerConnectionPool.getConnection();
 			//dichiara lo statement
@@ -292,11 +291,11 @@ public class IscrizioneDAOImpl implements IscrizioneDAO{
 			ResultSet result = ps.executeQuery();
 			//ricava i risultati
 			if(result.next()) {
-				
+
 				b.setIscritto(DAOFactory.getUserDAO().doRetrieveByKey(result.getString("utente")));
 				b.setGruppo(DAOFactory.getGdSDAO().doRetrieveById(result.getInt("gruppo")));
 				return b;
-		
+
 			}
 
 		} catch (SQLException e) {
@@ -342,7 +341,7 @@ public class IscrizioneDAOImpl implements IscrizioneDAO{
 				Iscrizione b = new Iscrizione();
 				b.setIscritto(DAOFactory.getUserDAO().doRetrieveByKey(result.getString("utente")));
 				b.setGruppo(DAOFactory.getGdSDAO().doRetrieveById(result.getInt("gruppo")));
-				
+
 				// aggiunge l'oggetto alla lista
 				res.add(b);
 			}
@@ -350,7 +349,7 @@ public class IscrizioneDAOImpl implements IscrizioneDAO{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if(connection != null) {
+			if (connection != null) {
 				try {
 					ps.close();
 					DriverManagerConnectionPool.releaseConnection(connection);

@@ -25,81 +25,80 @@ import model.dao.DAOFactory;
 @WebServlet("/ModificaGdS")
 public class ServletModificaGdS extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ServletModificaGdS() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public ServletModificaGdS() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	 	// TODO Auto-generated method stub
-            doPost(request, response);
+	protected final void doGet(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doPost(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-			System.out.println("Funziona");	
-			HttpSession session = request.getSession();
-			//Controllo esistenza sessione 
-			
-			if(session.getAttribute("logged") != null && (session.getAttribute("logged").equals(true))) {//Se esiste 
-				String nomeGruppo = (String)request.getParameter("nomeGruppo");
-				String materia = (String) request.getParameter("materia");			        
-				GruppoDiStudio gds=DAOFactory.getGdSDAO().doRetrieveByNameAndSubject(nomeGruppo, materia);
-						
-						if(gds==null) {//inizo if verifica :se l'oggetto gds non è null allora il gruppo di studio non esiste 
-							System.out.println("Gruppo di Studio non esiste!");
-							request.getRequestDispatcher("/view/errore/Errore.jsp").forward(request, response);
-							return;
-						}
-						 String matricolaCretore=gds.getCreatore().getMatricola();
-	                     Utente utente=(Utente)session.getAttribute("utente");
-						if(utente.getMatricola().equals(matricolaCretore)) { // se la matricola di chi sta modificando è uguale a creatore elimina
-						
-							String data_inizio=request.getParameter("inizio");
-							String data_fine=request.getParameter("fine");
-							String nuova_aula = request.getParameter("aula");
-							SimpleDateFormat sdf;
-							
-						     sdf= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-						     Date date2=new Date(),date1=new Date();	 
-						     try {
-							 date1=sdf.parse(data_inizio);
-						     date2=sdf.parse(data_fine);	
-							} catch (ParseException e) {
-								e.printStackTrace();
-							}	 		    
-						   request.setAttribute("redirect", "profilo");
-						    request.getRequestDispatcher("/view/Opeffettuata.jsp").forward(request, response);
-						     return;
-						}else {//altrimento no
-							request.getRequestDispatcher("/view/errore/Errore.jsp ").forward(request, response);
-							return;
-							
-						}
-						
-						
-					
-				}
-			else {
-				System.out.println("Inizio Else");
-				//messagggio: utente non loggato
-				session=request.getSession(true);
-				session.setAttribute("esito", "errore");
-				request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
+		System.out.println("Funziona");
+		HttpSession session = request.getSession();
+		//Controllo esistenza sessione
+
+		if (session.getAttribute("logged") != null && (session.getAttribute("logged").equals(true))) { //Se esiste
+			String nomeGruppo = (String) request.getParameter("nomeGruppo");
+			String materia = (String) request.getParameter("materia");
+			GruppoDiStudio gds = DAOFactory.getGdSDAO().doRetrieveByNameAndSubject(nomeGruppo, materia);
+
+			if (gds == null) { //inizo if verifica :se l'oggetto gds non è null allora il gruppo di studio non esiste
+				System.out.println("Gruppo di Studio non esiste!");
+				request.getRequestDispatcher("/view/errore/Errore.jsp").forward(request, response);
 				return;
-			}		
-	
-	
+			}
+			String matricolaCretore = gds.getCreatore().getMatricola();
+			Utente utente = (Utente) session.getAttribute("utente");
+			if (utente.getMatricola().equals(matricolaCretore)) { // se la matricola di chi sta modificando è uguale a creatore elimina
+
+				String dataInizio = request.getParameter("inizio");
+				String dataFine = request.getParameter("fine");
+				String nuovaAula = request.getParameter("aula");
+				SimpleDateFormat sdf;
+
+				sdf =  new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				Date date2 = new Date(), date1 = new Date();
+				try {
+					date1 = sdf.parse(dataInizio);
+					date2 = sdf.parse(dataFine);
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				request.setAttribute("redirect", "profilo");
+				request.getRequestDispatcher("/view/Opeffettuata.jsp").forward(request, response);
+				return;
+			 } else { //altrimento no
+				request.getRequestDispatcher("/view/errore/Errore.jsp ").forward(request, response);
+				return;
+
+			}
+
+
+
+		} else {
+			System.out.println("Inizio Else");
+			//messagggio: utente non loggato
+			session = request.getSession(true);
+			session.setAttribute("esito", "errore");
+			request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
+			return;
+		}
+
+
 	}
 
 }

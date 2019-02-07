@@ -18,7 +18,7 @@ import model.dao.DAOFactory;
 @WebServlet("/GestioneOrario")
 public class ShowGestioneOrario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -30,7 +30,7 @@ public class ShowGestioneOrario extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected final void doGet(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doPost(request, response);
 	}
@@ -38,7 +38,7 @@ public class ShowGestioneOrario extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected final void doPost(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		List<AulaLibera> lista = DAOFactory.getAulaLiberaDAO().doRetrieveAll();
 		request.setAttribute("auleLibere", lista);

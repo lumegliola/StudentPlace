@@ -1,15 +1,15 @@
 package model.bean;
 
 /**
- * 
+ *
  * Aula.java
- * 
+ *
  * Definisce l'oggetto listaAuleLibere
- * 
+ *
  * @author A. Panico
  * @since 12-16-2018
  *
- * 
+ *
  * */
 
 public class ListaAuleLibere {
@@ -19,7 +19,7 @@ public class ListaAuleLibere {
 		this.giorno=giorno;
 		this.fasciaoraria=fasciaoraria;
 	}
-	
+
 	public String getNomeaula() {
 		return aula;
 	}
@@ -41,6 +41,5 @@ public class ListaAuleLibere {
 
 	private String aula,giorno;
 	private int fasciaoraria;
-	
-	
+
 }

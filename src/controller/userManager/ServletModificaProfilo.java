@@ -17,7 +17,7 @@ import model.dao.DAOFactory;
 @WebServlet("/ServletModificaProfilo")
 public class ServletModificaProfilo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -29,44 +29,41 @@ public class ServletModificaProfilo extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected final void doGet(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 doPost(request, response);	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected final void doPost(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String newpassword= request.getParameter("password") ;
-		
-		HttpSession session=request.getSession();
-       if(session!=null) {
-    	   boolean log=(boolean) session.getAttribute("logged");
-       		if(!log) {
+		String newpassword = request.getParameter("password");
+
+		HttpSession session = request.getSession();
+       if (session != null) {
+    	   boolean log = (boolean) session.getAttribute("logged");
+       		if (!log) {
        		request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
        		System.out.println("non loggato");
        		return;
-       		}else{
-       		String email=(String)session.getAttribute("email");
-       		String password=(String)session.getAttribute("password");
-       		Utente utente	= DAOFactory.getUserDAO().doRetrieveByMailAndPass(email, password);
-       		if(utente!=null ) {
-       		boolean valore=DAOFactory.getUserDAO().doSaveOrUpdate(utente, newpassword);
-        
-       		if(valore) {
+       		} else {
+       		String email = (String) session.getAttribute("email");
+       		String password = (String) session.getAttribute("password");
+       		Utente utente = DAOFactory.getUserDAO().doRetrieveByMailAndPass(email, password);
+       		if (utente != null) {
+       		boolean valore = DAOFactory.getUserDAO().doSaveOrUpdate(utente, newpassword);
+       		if (valore) {
        			System.out.println("ok");
-       		}else {
+       		} else {
        		System.out.println("not ok");
        		}
        		request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
        		}
        		}
-       	}else {
+       	} else {
     	   request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
        }
-	
-	
 	}
 
 }

@@ -27,9 +27,9 @@ public class ServletRicercaGds extends HttpServlet {
 	}
 
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected final void doGet(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		if(session.getAttribute("logged") != null  && (session.getAttribute("logged").equals(true))) {
+		if (session.getAttribute("logged") != null  && (session.getAttribute("logged").equals(true))) {
 			String input = request.getParameter("inputGruppo");
 
 			GdSDAO dao = DAOFactory.getGdSDAO();
@@ -40,51 +40,70 @@ public class ServletRicercaGds extends HttpServlet {
 			response.setContentType("text/html");
 			PrintWriter out = response.getWriter();
 
-			int i=0;
+			int i = 0;
 
 			for (GruppoDiStudio p : list) {
-				out.print("	<div class=\"row gds_row\">\r\n" + 
-						"			<div class=\"col-lg-2\">\r\n" + 
-						"				<span>"+p.getId()+"\r\n" + 
-						"			</div>\r\n" + 
-						"\r\n" + 
-						"			<div class=\"col-lg-4\">\r\n" + 
-						"				<a class=\"async_orario\" href=\"ShowGdS?idGruppo="+p.getId()+"\">"+p.getNomeGruppo()+"</a><br />\r\n" + 
-						"				<span>inizio:"+p.getOrario().getInizio().toGMTString()+"</span>\r\n" + 
-						"			</div>\r\n" + 
-						"\r\n" + 
-						"			<div class=\"col-lg-4\">\r\n" + 
-						"			<span></span>\r\n"+
-						"				<span>Materia: \t"+p.getMateria()+"</span>\r\n" + 
-						"			</div>\r\n" + 
-						"\r\n" + 
-						"			<div class=\"col-lg-2\">\r\n" + 
-						"				<span class=\"async_aula\">"+p.getAula().getNomeAula()+"</span>\r\n" + 
-						"			</div>\r\n" + 
+				out.print("	<div class=\"row gds_row\">\r\n"
+						+
+						"			<div class=\"col-lg-2\">\r\n"
+						+
+						"				<span>" + p.getId() + "\r\n"
+						+
+						"			</div>\r\n"
+						+
+						"\r\n"
+						+
+						"			<div class=\"col-lg-4\">\r\n"
+						+
+						"				<a class=\"async_orario\" href=\"ShowGdS?idGruppo=" + p.getId() + "\">" + p.getNomeGruppo() + "</a><br />\r\n"
+						+
+						"				<span>inizio:" + p.getOrario().getInizio().toGMTString() + "</span>\r\n"
+						+
+						"			</div>\r\n"
+						+
+						"\r\n"
+						+
+						"			<div class=\"col-lg-4\">\r\n"
+						+
+						"			<span></span>\r\n"
+						+
+						"				<span>Materia: \t" + p.getMateria() + "</span>\r\n"
+						+
+						"			</div>\r\n"
+						+
+						"\r\n"
+						+
+						"			<div class=\"col-lg-2\">\r\n"
+						+
+						"				<span class=\"async_aula\">" + p.getAula().getNomeAula() + "</span>\r\n"
+						+
+						"			</div>\r\n"
+						+
 						"		</div>");
 				i++;
-				if(i==3)
+				if (i == 3) {
 					break;
+				}
 
 			}
 		}
 	}
 
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected final void doPost(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
 
 
 		HttpSession session = request.getSession();
-		if( session.getAttribute("logged") != null && (session.getAttribute("logged").equals(true))) {
+		if (session.getAttribute("logged") != null && (session.getAttribute("logged").equals(true))) {
 			String input = request.getParameter("inputGruppo");
 
 			GdSDAO dao = DAOFactory.getGdSDAO();
 			List<GruppoDiStudio> list = new ArrayList<>();
 
-			list = dao.doSearch(input);		
+			list = dao.doSearch(input);
 
 			request.setAttribute("gruppi", list);
-			
+
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/view/GdS/ListaGruppi.jsp");
 			dispatcher.forward(request, response);
 
