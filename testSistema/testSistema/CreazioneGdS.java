@@ -19,8 +19,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class CreazioneGdS {
 
 	private static WebDriver driver;
-	  private String baseUrl;
-	  private boolean acceptNextAlert = true;
+	
 	  private StringBuffer verificationErrors = new StringBuffer();
 	  private static WebDriverWait jsWait;
 	  private static JavascriptExecutor jsExec;
