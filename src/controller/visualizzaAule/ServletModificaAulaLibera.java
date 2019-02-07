@@ -15,19 +15,18 @@ import model.dao.DAOFactory;
 @WebServlet("/ModificaAulaLibera")
 public class ServletModificaAulaLibera extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ServletModificaAulaLibera() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public ServletModificaAulaLibera() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doPost(request, response);
 	}
@@ -35,24 +34,22 @@ public class ServletModificaAulaLibera extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String op = request.getParameter("operazione");
 		String aula = request.getParameter("aula");
 		String giorno = request.getParameter("giorno");
 		giorno.replace('i', 'ì');
-		int idOrario=Integer.parseInt(request.getParameter("idOrario"));
-		
-		if(op.equals("elimina")) {
-			
-			if(DAOFactory.getAulaLiberaDAO().doDeleteByKey(aula, giorno, idOrario)==true) {
+		int idOrario = Integer.parseInt(request.getParameter("idOrario"));
+		if (op.equals("elimina")) {
+			if (DAOFactory.getAulaLiberaDAO().doDeleteByKey(aula, giorno, idOrario)) {
 				request.setAttribute("redirect", "orario");
 				request.getRequestDispatcher("GestioneOrario").forward(request, response);
-			}else
+			} else {
 				request.getRequestDispatcher("/view/errore/Errore.jsp").forward(request, response);
+			}
 		}
 		//funzionalità modifica
-		
 	}
 
 }
