@@ -80,7 +80,7 @@ public class ServletCreaGds extends HttpServlet {
 
 			    } else {
 				session.setAttribute("esito", "errore");
-				request.getRequestDispatcher("/view/errore/errore.jsp").forward(request, response);
+				request.getRequestDispatcher("/view/errore/Errore.jsp").forward(request, response);
 
 
 				}
