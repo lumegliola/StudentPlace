@@ -16,11 +16,11 @@ public class DriverManagerConnectionPool  {
 			Class.forName("com.mysql.cj.jdbc.Driver");						//		in questo momento passiamo il nome del driver
 		} catch (ClassNotFoundException e) {
 			System.out.println("DB driver not found:"+ e.getMessage());
-		} 
+}
 	}
-	
+
 	private static synchronized Connection createDBConnection() throws SQLException {				//passiamo l'url contenetne il nome del db, Utente , password e parametri vari
-		Connection newConnection = null;	
+		Connection newConnection = null;
 		String ip = "localhost";
 		String port = "3306";
 		String db = "StudentPlaceDB";
@@ -28,7 +28,7 @@ public class DriverManagerConnectionPool  {
 		String password = "root";
 
 		newConnection = DriverManager.getConnection("jdbc:mysql://"+ ip + ":" + port + "/" + db + "?useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", username, password);
-        
+
 		newConnection.setAutoCommit(true);			//preserva l'integrità dei dati, inviando un unico pacchetto di informazioni
 		return newConnection;
 	}
@@ -36,7 +36,7 @@ public class DriverManagerConnectionPool  {
 	public static synchronized Connection getConnection() throws SQLException {
 		Connection connection;
 
-		if (!freeDbConnections.isEmpty()) {										//se la lista di connessioni non è vuota, preleva la prima
+		if (!freeDbConnections.isEmpty()) {	 									//se la lista di connessioni non è vuota, preleva la prima
 			connection = (Connection) freeDbConnections.get(0);
 			freeDbConnections.remove(0);
 
@@ -55,6 +55,6 @@ public class DriverManagerConnectionPool  {
 	}
 
 	public static synchronized void releaseConnection(Connection connection) throws SQLException {
-		if(connection != null) freeDbConnections.add(connection);									//rimette la connessione in lista, se esiste				
+		if(connection != null) freeDbConnections.add(connection);									//rimette la connessione in lista, se esiste
 	}
 }
