@@ -15,64 +15,64 @@ import model.dao.DAOFactory;
  */
 @WebServlet("/IscrizioneGdS")
 public class ServletIscrizioneGdS extends HttpServlet {
-  private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
 
-  public ServletIscrizioneGdS() {
-    super();
-    // TODO Auto-generated constructor stub
-  }
+	public ServletIscrizioneGdS() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 
-  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    // TODO Auto-generated method stub
-    doPost(request, response);
-  }
+	protected final void doGet(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doPost(request, response);
+	}
 
 
-  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    // TODO Auto-generated method stub
+	protected final void  doPost(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 
-    HttpSession session=request.getSession(false);
-    String op = request.getParameter("operazione");
-    if(op.equals("cancella")) {
-      int idGruppo =Integer.parseInt(request.getParameter("idGruppo"));
-      String matricola = request.getParameter("matricola");
-      DAOFactory.getIscrizioneDAO().doDeleteByUserAndGroup(matricola, idGruppo);
-      request.setAttribute("redirect", "/view/utente/Profilo.jsp");
-      request.getRequestDispatcher("/view/OpEffettuata.jsp").forward(request, response);
-      
-    }else if(op.equals("iscrivi")) {
-      int idGds=Integer.parseInt(request.getParameter("idGds"));
-      String matricola=(String) request.getParameter("matricola");
-      if( session!=null) {
-        System.out.println("Inizio if");
-        Utente user = DAOFactory.getUserDAO().doRetrieveByKey(matricola);
-        GruppoDiStudio gds = DAOFactory.getGdSDAO().doRetrieveById(idGds);
-        if (user == null || gds == null) {
-          session.setAttribute("esito", "errore");
-          request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
-          return;  
-        }
-        Iscrizione iscrizione = new Iscrizione(user,gds);
+		HttpSession session = request.getSession(false);
+		String op = request.getParameter("operazione");
+		if (op.equals("cancella")) {
+			int idGruppo = Integer.parseInt(request.getParameter("idGruppo"));
+			String matricola = request.getParameter("matricola");
+			DAOFactory.getIscrizioneDAO().doDeleteByUserAndGroup(matricola, idGruppo);
+			request.setAttribute("redirect", "/view/utente/Profilo.jsp");
+			request.getRequestDispatcher("/view/OpEffettuata.jsp").forward(request, response);
 
-        DAOFactory.getIscrizioneDAO().doSave(iscrizione);
+		} else if (op.equals("iscrivi")) {
+			int idGds = Integer.parseInt(request.getParameter("idGds"));
+			String matricola = (String) request.getParameter("matricola");
+			if (session != null) {
+				System.out.println("Inizio if");
+				Utente user = DAOFactory.getUserDAO().doRetrieveByKey(matricola);
+				GruppoDiStudio gds = DAOFactory.getGdSDAO().doRetrieveById(idGds);
+				if (user == null || gds == null) {
+					session.setAttribute("esito", "errore");
+					request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
+					return;
+				}
+				Iscrizione iscrizione = new Iscrizione(user, gds);
 
-        session.setAttribute("esito", "ok");
-        request.setAttribute("redirect", "/view/utente/Profilo.jsp");
-        request.getRequestDispatcher("view/OpEffettuata.jsp").forward(request, response);
-        return;
+				DAOFactory.getIscrizioneDAO().doSave(iscrizione);
 
-      } else {
-        System.out.println("Inizio Else");
-        //messagggio: utente non loggato
+				session.setAttribute("esito", "ok");
+				request.setAttribute("redirect", "/view/utente/Profilo.jsp");
+				request.getRequestDispatcher("view/OpEffettuata.jsp").forward(request, response);
+				return;
 
-        session.setAttribute("esito", "errore");
-        request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
-        return;
-      }
-    }
+			} else {
+				System.out.println("Inizio Else");
+				//messagggio: utente non loggato
 
-  }
+				session.setAttribute("esito", "errore");
+				request.getRequestDispatcher("ProvaOutput.jsp").forward(request, response);
+				return;
+			}
+		}
+
+	}
 
 }

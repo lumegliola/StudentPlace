@@ -1,15 +1,15 @@
 package model.bean;
 
 /**
- * 
+ *
  * Utente.java
- * 
+ *
  * Definisce l'oggetto utente
- * 
+ *
  * @author F. Megliola & A. Capodanno
  * @since 12-16-2018
  *
- * 
+ *
  * */
 
 public class Utente {
@@ -24,7 +24,7 @@ public class Utente {
 
 	public Utente() {}
 	public Utente(String unaMatricola, String unNome,String unCognome, String mail, String password) {
-		
+
 		this.setNome(unNome);
 		this.setCognome(unCognome);
 		this.setMatricola(unaMatricola);
@@ -135,6 +135,5 @@ public class Utente {
 		return true;
 	}
 
-	
-	
+
 }

@@ -22,7 +22,7 @@ import model.dao.DAOFactory;
 @WebServlet("/ShowOrario")
 public class ShowOrario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -34,7 +34,7 @@ public class ShowOrario extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected final void doGet(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doPost(request, response);
 	}
@@ -42,15 +42,14 @@ public class ShowOrario extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected final void doPost(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(true);
 		String aula = request.getParameter("aula");
 		String giorno = request.getParameter("giorno");
 		int idOrario = Integer.parseInt(request.getParameter("orario"));
 		giorno.replace('i', 'ì');
-		
-		
+
 		AulaLibera al = DAOFactory.getAulaLiberaDAO().doRetrieveByKey(aula, giorno, idOrario);
 		Orario or = DAOFactory.getOrarioDAO().doRetrieveByKey(idOrario);
 		Aula a = DAOFactory.getAulaDAO().doRetrieveByKey(aula);
@@ -58,7 +57,7 @@ public class ShowOrario extends HttpServlet {
 		session.setAttribute("orario", or);
 		session.setAttribute("aula", a);
 		System.out.println(giorno);
-		request.getRequestDispatcher("/view/orari/InfoOrario.jsp").forward(request, response);;
+		request.getRequestDispatcher("/view/orari/InfoOrario.jsp").forward(request, response);
 	}
 
 }

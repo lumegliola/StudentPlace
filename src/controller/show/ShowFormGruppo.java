@@ -25,9 +25,9 @@ public class ShowFormGruppo extends HttpServlet {
 	}
 
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected final void doGet(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
 		String op = request.getParameter("operazione");
-		if(op.equals("crea")) {
+		if (op.equals("crea")) {
 			RequestDispatcher d = request.getRequestDispatcher("/view/GdS/CreaGruppo.jsp");
 			d.forward(request, response);
 		}
@@ -35,7 +35,7 @@ public class ShowFormGruppo extends HttpServlet {
 
 
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected final void doPost(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

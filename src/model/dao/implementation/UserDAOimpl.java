@@ -13,15 +13,15 @@ import model.dao.interfaces.UserDAO;
 import model.db_connection.DriverManagerConnectionPool;
 
 /**
- * 
+ *
  * UserDAOimpl.java
- * Gestisce la persistenza degli oggetti di tipo Utente 
+ * Gestisce la persistenza degli oggetti di tipo Utente
  * tramite interazioni con il database
- * 
+ *
  * @author F. Megliola & A. Capodanno
  * @since 12-16-2018
  *
- * 
+ *
  * */
 
 public class UserDAOimpl implements UserDAO {
@@ -38,12 +38,12 @@ public class UserDAOimpl implements UserDAO {
 		Connection connection = null;
 		PreparedStatement ps = null;
 		int result = 0;
-		
+
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
 
 			//se l'utente è amministratore ammminitratore
-				
+
 					ps = connection.prepareStatement("insert into utente values (?, ?, ?, ?, ?, ?);");
 
 					//inserisce i campi
@@ -53,10 +53,10 @@ public class UserDAOimpl implements UserDAO {
 					ps.setString(4, user.getMail());
 					ps.setObject(5, user.getPassword());
 					ps.setBoolean(6, user.isAdmin());
-					
+
 					//esegue lo statement
 					result = ps.executeUpdate();
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -73,8 +73,8 @@ public class UserDAOimpl implements UserDAO {
 	}
 
 	/**
-	 * Effettua il salvataggio nel database dell'oggetto utente, 
-	 * se l'oggetto è già presente, lo modifica con i parametri inseriti, 
+	 * Effettua il salvataggio nel database dell'oggetto utente,
+	 * se l'oggetto è già presente, lo modifica con i parametri inseriti,
 	 * ritorna l'esito dell'operazione
 	 * @param user l'oggetto da salvare (della classe Utente)
 	 * @param password la nuova password dell'utente(se si modifica)
@@ -85,22 +85,22 @@ public class UserDAOimpl implements UserDAO {
 	public boolean doSaveOrUpdate(Utente user, String password) {
 		Connection connection = null;
 		PreparedStatement ps = null;
-		int result = 0;		
-		
+		int result = 0;
+
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
 
 			//se l'utente è amministratore ammminitratore
-				
+
 					ps = connection.prepareStatement("update utente set password = ? where email = ?;");
 
 					//inserisce i campi
 					ps.setString(1, password);
 					ps.setString(2, user.getMail());
-				
+
 					//esegue lo statement
 					result = ps.executeUpdate();
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -117,7 +117,7 @@ public class UserDAOimpl implements UserDAO {
 	}
 
 	/**
-	 * Effettua la cancellazione dal database dell'oggetto utente, 
+	 * Effettua la cancellazione dal database dell'oggetto utente,
 	 * ritorna l'esito dell'operazione
 	 * @param 	user l'oggetto da eliminare(della classe Utente)
 	 * @return  Boolean
@@ -129,7 +129,7 @@ public class UserDAOimpl implements UserDAO {
 	}
 
 	/**
-	 * Effettua la cancellazione dal database dell'oggetto utente, 
+	 * Effettua la cancellazione dal database dell'oggetto utente,
 	 * ritorna l'esito dell'operazione
 	 * @param 	mail l'attributo mail dell'oggetto da eliminare(della classe Utente)
 	 * @return  Boolean
@@ -142,7 +142,7 @@ public class UserDAOimpl implements UserDAO {
 		PreparedStatement psDel = null;
 		int result = 0;
 		Utente ut=DAOFactory.getUserDAO().doRetrieveByMail(mail);
-		
+
 		List<Iscrizione> listIscr= DAOFactory.getIscrizioneDAO().doRetrieveByUser(ut.getMatricola());
 		for(Iscrizione iscr : listIscr) {
 		DAOFactory.getIscrizioneDAO().doDeleteByUserAndGroup(iscr.getIscritto().getMatricola(), iscr.getGruppo().getId());
@@ -153,7 +153,7 @@ public class UserDAOimpl implements UserDAO {
 			//dichiara lo statement
 			ps = connection.prepareStatement("delete  from utente where email = ?;");
 			ps.setString(1, mail);
-			
+
 			result = ps.executeUpdate();
 
 		} catch (SQLException e) {
@@ -172,7 +172,7 @@ public class UserDAOimpl implements UserDAO {
 	}
 
 	/**
-	 * Interroga il database per trovare un oggetto utente 
+	 * Interroga il database per trovare un oggetto utente
 	 * in base ai paramentri inseriti, ritorna l'oggetto, se lo trova
 	 * @param 	matricola l'attributo matricola dell'oggetto(della classe Utente)
 	 * @return 	Utente
@@ -185,7 +185,7 @@ public class UserDAOimpl implements UserDAO {
 
 		try {
 			Utente b = new Utente();
-		
+
 
 			connection = DriverManagerConnectionPool.getConnection();
 			//dichiara lo statement
@@ -231,7 +231,7 @@ public class UserDAOimpl implements UserDAO {
 	public List<Utente> doRetrieveAll() {
 		Connection connection = null;
 		PreparedStatement ps = null;
-		
+
 		List <Utente> utenti = new ArrayList<>();
 
 		try {
@@ -256,7 +256,7 @@ public class UserDAOimpl implements UserDAO {
 				// aggiunge l'oggetto alla lista
 				utenti.add(b);
 			}
-			
+
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -274,7 +274,7 @@ public class UserDAOimpl implements UserDAO {
 	}
 
 	/**
-	 * Interroga il database per trovare un oggetto utente 
+	 * Interroga il database per trovare un oggetto utente
 	 * in base ai paramentri inseriti, ritorna l'oggetto, se lo trova
 	 * @param 	mail l'attributo mail dell'oggetto(della classe Utente)
 	 * @param 	password l'attributo password dell'oggetto(della classe Utente)
@@ -283,7 +283,7 @@ public class UserDAOimpl implements UserDAO {
 	 * */
 	@Override
 	public Utente doRetrieveByMailAndPass(String mail, String password) {
-		
+
 		Connection connection = null;
 		PreparedStatement ps = null;
 
@@ -326,9 +326,9 @@ public class UserDAOimpl implements UserDAO {
 		}
 		return null;
 	}
-	
+
 	/**
-	 * Interroga il database per trovare un oggetto utente 
+	 * Interroga il database per trovare un oggetto utente
 	 * in base ai paramentri inseriti, ritorna l'oggetto, se lo trova
 	 * @param 	mail l'attributo mail dell'oggetto(della classe Utente)
 	 * @return 	Utente
@@ -336,14 +336,14 @@ public class UserDAOimpl implements UserDAO {
 	 * */
 	@Override
 	public Utente doRetrieveByMail(String mail) {
-		
+
 		Connection connection = null;
 		PreparedStatement ps = null;
 
 		try {
 			Utente b = new Utente();
 			b.setMail(mail);
-			
+
 
 			connection = DriverManagerConnectionPool.getConnection();
 			//dichiara lo statement

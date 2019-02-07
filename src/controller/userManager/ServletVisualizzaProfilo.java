@@ -17,7 +17,7 @@ import model.dao.DAOFactory;
 @WebServlet("/ServletVisualizzaProfilo")
 public class ServletVisualizzaProfilo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -29,7 +29,7 @@ public class ServletVisualizzaProfilo extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected final void doGet(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
     doPost(request, response);
 	}
@@ -37,16 +37,15 @@ public class ServletVisualizzaProfilo extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected final void doPost(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-        HttpSession ssn=request.getSession();
-        if(ssn.getAttribute("logged")!=null && ssn.getAttribute("logged").equals(true)) {	
-        Utente	utente=(Utente) ssn.getAttribute("utente");
+        HttpSession ssn = request.getSession();
+        if (ssn.getAttribute("logged") != null && ssn.getAttribute("logged").equals(true)) {
+        Utente	utente = (Utente) ssn.getAttribute("utente");
         request.setAttribute("utente", utente);
         request.getRequestDispatcher("/view/utente/Profilo.jsp").forward(request, response);
-        
-          	
-        }else {
+
+        } else {
         	 request.getRequestDispatcher("/view/homepage/Home.jsp").forward(request, response);
         }
 	}

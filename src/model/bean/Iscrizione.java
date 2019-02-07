@@ -1,25 +1,24 @@
 package model.bean;
 
 /**
- * 
+ *
  * Iscrizione.java
- * 
+ *
  * Definisce l'oggetto iscrizione
- * 
+ *
  * @author F. Megliola & A. Capodanno
  * @since 12-16-2018
  *
- * 
+ *
  * */
 
 public class Iscrizione {
-	
 	private Utente iscritto;
 	private GruppoDiStudio gruppo;
-	
+
 	public Iscrizione() {}
 	public Iscrizione(Utente u, GruppoDiStudio g) {
-		
+
 		this.iscritto = u;
 		this.gruppo = g;
 	}
@@ -65,6 +64,6 @@ public class Iscrizione {
 		return true;
 	}
 
-	
+
 
 }

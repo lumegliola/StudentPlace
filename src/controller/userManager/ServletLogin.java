@@ -19,13 +19,13 @@ import model.dao.DAOFactory;
 
 /* *
  * Si occupa della login.
- * 
+ *
  * Parametri:
- * 
+ *
  * email = Email dell'utente.
- * 
+ *
  * password = password dell'utente.
- * 
+ *
  * */
 
 @WebServlet("/login")
@@ -36,18 +36,19 @@ public class ServletLogin extends HttpServlet {
 		super();
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	 protected final void doGet(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
+
 		doPost(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	 protected final void doPost(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
 		//String email = request.getParameter("email").toLowerCase();
 		//String password = request.getParameter("password");
-		String password= request.getParameter("password") ;
-		String email=request.getParameter("email");
+		String password = request.getParameter("password");
+		String email = request.getParameter("email");
 		Utente user = DAOFactory.getUserDAO().doRetrieveByMailAndPass(email, password);
         System.out.println(user.getNome());
-		if(user == null) { // Utente Non trovato, credenziali errate.
+		if (user == null) { // Utente Non trovato, credenziali errate.
 			//System.out.println("null");
 			request.setAttribute("is_error", true);
 			request.setAttribute("title", "Login Fallita");
@@ -64,12 +65,12 @@ public class ServletLogin extends HttpServlet {
 			session.setAttribute("utente", user);
 		    session.setAttribute("logged", true);
 		    session.setAttribute("admin", user.isAdmin());
-		    Cookie mail=new Cookie("utente", user.getMail());
-            Cookie logged=new Cookie("logged","true");
-            Cookie admin=new Cookie("admin", "");
-            if(user.isAdmin()) {
+		    Cookie mail = new Cookie("utente", user.getMail());
+            Cookie logged = new Cookie("logged", "true");
+            Cookie admin = new Cookie("admin", "");
+            if (user.isAdmin()) {
             admin.setValue("true");
-            }else{
+            } else {
             admin.setValue("false");
 
             }

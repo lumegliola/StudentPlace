@@ -19,15 +19,15 @@ import model.dao.interfaces.OrarioDAO;
 import model.db_connection.DriverManagerConnectionPool;
 
 /**
- * 
+ *
  * OrarioDAOimpl.java
- * Gestisce la persistenza degli oggetti di tipo Orario 
+ * Gestisce la persistenza degli oggetti di tipo Orario
  * tramite interazioni con il database
- * 
+ *
  * @author F. Megliola & A. Capodanno
  * @since 12-16-2018
  *
- * 
+ *
  * */
 
 public class OrarioDAOimpl implements OrarioDAO {
@@ -39,7 +39,7 @@ public class OrarioDAOimpl implements OrarioDAO {
 	 * @return  Boolean
 	 * @see Orario
 	 * */
-	
+
 	@Override
 	public boolean doSave(Orario or) {
 		Connection connection = null;
@@ -48,16 +48,16 @@ public class OrarioDAOimpl implements OrarioDAO {
 
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
-			
+
 			//dichiara lo statement
 			ps = connection.prepareStatement("insert into orario (inizio, fine) values (?, ?);");
-			
+
 			//inserisce i campi
 			or.getInizio();
 			or.getFine();
 			ps.setTimestamp(1, or.getInizio());
 			ps.setTimestamp(2, or.getFine());
-			
+
 			//esegue lo statement
 			result = ps.executeUpdate();
 
@@ -77,8 +77,8 @@ public class OrarioDAOimpl implements OrarioDAO {
 	}
 
 	/**
-	 * Effettua il salvataggio nel database dell'oggetto Orario, 
-	 * se l'oggetto è già presente, lo modifica con i parametri inseriti, 
+	 * Effettua il salvataggio nel database dell'oggetto Orario,
+	 * se l'oggetto è già presente, lo modifica con i parametri inseriti,
 	 * ritorna l'esito dell'operazione
 	 * @param or l'oggetto da salvare (della classe Orario)
 	 * @param start il nuovo orario di inizio(se si modifica)
@@ -91,7 +91,7 @@ public class OrarioDAOimpl implements OrarioDAO {
 		Connection connection = null;
 		PreparedStatement ps = null;
 		int result = 0;
-      
+
 		try {
 			Orario or2 = doRetrieveByStartAndFinish(or.getInizio(), or.getFine());
 			int id = 0;
@@ -99,13 +99,13 @@ public class OrarioDAOimpl implements OrarioDAO {
 				id  = or2.getIdOrario();
 			}else
 				System.out.println("orario non presente nel database");
-			
+
 			//dichiara lo statement
 			connection = DriverManagerConnectionPool.getConnection();
 			ps = connection.prepareStatement("update orario set inizio = ?, fine = ? where id =? ;");
-			
+
 			//CONTROLLA CAMPI DA NON MODIFICARE
-			
+
 			ps.setTimestamp(1, start);
 			ps.setTimestamp(2, end);
 			System.out.println("id = "+id);
@@ -128,9 +128,9 @@ public class OrarioDAOimpl implements OrarioDAO {
 		}
 		return (result == 1);
 	}
-		
+
 	/**
-	 * Effettua la cancellazione dal database dell'oggetto orario, 
+	 * Effettua la cancellazione dal database dell'oggetto orario,
 	 * ritorna l'esito dell'operazione
 	 * @param 	or l'oggetto da eliminare(della classe Orario)
 	 * @return  Boolean
@@ -140,9 +140,9 @@ public class OrarioDAOimpl implements OrarioDAO {
 	public boolean doDelete(Orario or) {
 		return doDelete(or.getIdOrario());
 	}
-	
+
 	/**
-	 * Effettua la cancellazione dal database dell'oggetto orario, 
+	 * Effettua la cancellazione dal database dell'oggetto orario,
 	 * ritorna l'esito dell'operazione
 	 * @param 	id l'attributo id dell'oggetto da eliminare(della classe Orario)
 	 * @return  Boolean
@@ -180,7 +180,7 @@ public class OrarioDAOimpl implements OrarioDAO {
 	}
 
 	/**
-	 * Interroga il database per trovare un oggetto Orario 
+	 * Interroga il database per trovare un oggetto Orario
 	 * in base ai paramentri inseriti, ritorna l'oggetto, se lo trova
 	 * @param 	id l'attributo idOrario dell'oggetto(della classe Orario)
 	 * @return 	Orario
@@ -228,9 +228,9 @@ public class OrarioDAOimpl implements OrarioDAO {
 		}
 		return null;
 	}
-	
+
 	/**
-	 * Interroga il database per trovare una lista di oggetti Orario 
+	 * Interroga il database per trovare una lista di oggetti Orario
 	 * in base ai paramentri inseriti, ritorna la lista, se trova oggetti
 	 * @param 	start l'attributo inizio dell'oggetto(della classe Orario)
 	 * @return 	Orario
@@ -245,11 +245,11 @@ public class OrarioDAOimpl implements OrarioDAO {
 		try {
 
 			connection = DriverManagerConnectionPool.getConnection();
-			
+
 			//dichiara lo statement
 			ps = connection.prepareStatement("select * from orario where inizio = ?;");
 			ps.setTimestamp(1, start);
-			
+
 			//esegue lo statement
 			ResultSet result = ps.executeQuery();
 
@@ -281,10 +281,10 @@ public class OrarioDAOimpl implements OrarioDAO {
 				}
 		}
 		return orari;
-	}	
-	
+	}
+
 	/**
-	 * Interroga il database per trovare un oggetto Orario 
+	 * Interroga il database per trovare un oggetto Orario
 	 * in base ai paramentri inseriti, ritorna l'oggetto, se lo trova
 	 * @param 	start l'attributo inizio dell'oggetto(della classe Orario)
 	 * @param 	finish l'attributo fine dell'oggetto(della classe Orario)
@@ -300,13 +300,13 @@ public class OrarioDAOimpl implements OrarioDAO {
 		try {
 
 			connection = DriverManagerConnectionPool.getConnection();
-			
+
 			//dichiara lo statement
 			ps = connection.prepareStatement("select * from orario where inizio = ? and fine = ?;");
-			
+
 			ps.setTimestamp(1, start);
 			ps.setTimestamp(2, finish);
-			
+
 			//esegue lo statement
 			ResultSet result = ps.executeQuery();
 
@@ -336,7 +336,7 @@ public class OrarioDAOimpl implements OrarioDAO {
 		return b;
 	}
 
-	
+
 	/**
 	 * Interroga il database per trovare una lista di tutti gli oggetti Orario
 	 * ritorna la lista, se trova oggetti
@@ -352,10 +352,10 @@ public class OrarioDAOimpl implements OrarioDAO {
 		try {
 
 			connection = DriverManagerConnectionPool.getConnection();
-			
+
 			//dichiara lo statement
 			ps = connection.prepareStatement("select * from orario;");
-			
+
 			//esegue lo statement
 			ResultSet result = ps.executeQuery();
 

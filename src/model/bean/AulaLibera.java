@@ -1,28 +1,28 @@
 package model.bean;
 
 /**
- * 
+ *
  * AulaLibera.java
- * 
+ *
  * Definisce l'oggetto aulaLibera
- * 
+ *
  * @author F. Megliola & A. Capodanno
  * @since 12-16-2018
  *
- * 
+ *
  * */
 
 public class AulaLibera {
 
-	
+
 	private Aula aula;
 	private Orario orario;
 	private String giorno;
-	
+
 	public AulaLibera() {}
-	
+
 	public AulaLibera(Aula a, Orario o,String giorno) {
-		
+
 		this.aula = a;
 		this.orario = o;
 		this.giorno = giorno;
@@ -51,7 +51,7 @@ public class AulaLibera {
 	public void setGiorno(String giorno) {
 		this.giorno = this.getOrario().getGiorno();
 	}
-	
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -89,7 +89,4 @@ public class AulaLibera {
 		return true;
 	}
 
-	
-
-	
 }

@@ -3,32 +3,32 @@ package model.bean;
 import java.util.GregorianCalendar;
 
 /**
- * 
+ *
  * Aula.java
- * 
+ *
  * Definisce l'oggetto aula
- * 
+ *
  * @author F. Megliola & A. Capodanno
  * @since 12-16-2018
  *
- * 
+ *
  * */
 
 public class Aula {
 	private String nomeAula;
 	private String edificio;
-	
+
 	public Aula() {
 		nomeAula="";
 		edificio="";
 	}
-	
+
 	public Aula(String nomeAula, String edificio) {
 		this.nomeAula = nomeAula;
 		this.edificio = edificio;
 	}
 
-	
+
 	public String getNomeAula() {
 		return nomeAula;
 	}
@@ -65,6 +65,5 @@ public class Aula {
 
 
 
-	
-	
+
 }
