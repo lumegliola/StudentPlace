@@ -20,15 +20,15 @@ import model.dao.interfaces.GdSDAO;
 import model.db_connection.DriverManagerConnectionPool;
 
 /**
- * 
+ *
  * GdSDAOimpl.java
- * Gestisce la persistenza degli oggetti di tipo GruppoDiStudio 
+ * Gestisce la persistenza degli oggetti di tipo GruppoDiStudio
  * tramite interazioni con il database
- * 
+ *
  * @author F. Megliola & A. Capodanno
  * @since 12-16-2018
  *
- * 
+ *
  * */
 
 
@@ -81,8 +81,8 @@ public class GdSDAOimpl implements GdSDAO {
 	}
 
 	/**
-	 * Effettua il salvataggio nel database dell'oggetto GruppoDiStudio, 
-	 * se l'oggetto è già presente, lo modifica con i parametri inseriti, 
+	 * Effettua il salvataggio nel database dell'oggetto GruppoDiStudio,
+	 * se l'oggetto è già presente, lo modifica con i parametri inseriti,
 	 * ritorna l'esito dell'operazione
 	 * @param gds l'oggetto da salvare (della classe GruppoDiStudio)
 	 * @param nomeAula il nome della nuova aula(se si modifica)
@@ -138,7 +138,7 @@ public class GdSDAOimpl implements GdSDAO {
 	}
 
 	/**
-	 * Effettua la cancellazione dal database dell'oggetto GruppoDiStudio, 
+	 * Effettua la cancellazione dal database dell'oggetto GruppoDiStudio,
 	 * ritorna l'esito dell'operazione
 	 * @param 	gds l'oggetto da eliminare (della classe GruppoDiStudio)
 	 * @return  Boolean
@@ -150,7 +150,7 @@ public class GdSDAOimpl implements GdSDAO {
 	}
 
 	/**
-	 * Effettua la cancellazione dal database dell'oggetto GruppoDiStudio, 
+	 * Effettua la cancellazione dal database dell'oggetto GruppoDiStudio,
 	 * ritorna l'esito dell'operazione
 	 * @param 	nomeGruppo l'attributo nome dell'oggetto da eliminare(della classe GruppoDiStudio)
 	 * @param 	materia l'attributo materia dell'oggetto da eliminare(della classe GruppoDiStudio)
@@ -161,7 +161,7 @@ public class GdSDAOimpl implements GdSDAO {
 	public boolean doDeleteByNameAndSubjet(String nomeGruppo,String materia) {
 
 		//ricava l'id del gruppo e elimina le iscrizioni
-		GruppoDiStudio a = DAOFactory.getGdSDAO().doRetrieveByNameAndSubject(nomeGruppo, materia);	
+		GruppoDiStudio a = DAOFactory.getGdSDAO().doRetrieveByNameAndSubject(nomeGruppo, materia);
 
 		Connection connection = null;
 		PreparedStatement ps = null;
@@ -194,7 +194,7 @@ public class GdSDAOimpl implements GdSDAO {
 	}
 
 	/**
-	 * Interroga il database per trovare una lista di oggetti GruppoDiStudio 
+	 * Interroga il database per trovare una lista di oggetti GruppoDiStudio
 	 * in base ai parametri inseriti, ritorna la lista, se trova oggetti
 	 * @param	nomeGruppo l'attributo nome dell'oggetto(della classe GruppoDiStudio)
 	 * @return 	List<GruppoDiStudio>
@@ -249,7 +249,7 @@ public class GdSDAOimpl implements GdSDAO {
 	}
 
 	/**
-	 * Interroga il database per trovare una lista di oggetti GruppoDiStudio 
+	 * Interroga il database per trovare una lista di oggetti GruppoDiStudio
 	 * in base ai parametri inseriti, ritorna la lista, se trova oggetti
 	 * @param	matricola l'attributo creatore dell'oggetto(della classe GruppoDiStudio)
 	 * @return 	List<GruppoDiStudio>
@@ -304,7 +304,7 @@ public class GdSDAOimpl implements GdSDAO {
 	}
 
 	/**
-	 * Interroga il database per trovare una lista di oggetti GruppoDiStudio 
+	 * Interroga il database per trovare una lista di oggetti GruppoDiStudio
 	 * in base ai parametri inseriti, ritorna la lista, se trova oggetti
 	 * @param	materia l'attributo materia dell'oggetto(della classe GruppoDiStudio)
 	 * @return 	List<GruppoDiStudio>
@@ -354,7 +354,7 @@ public class GdSDAOimpl implements GdSDAO {
 	}
 
 	/**
-	 * Interroga il database per trovare una lista di oggetti GruppoDiStudio 
+	 * Interroga il database per trovare una lista di oggetti GruppoDiStudio
 	 * in base ai parametri inseriti, ritorna la lista, se trova oggetti
 	 * @param	nomeGruppo l'attributo nome dell'oggetto(della classe GruppoDiStudio)
 	 * @param	materia l'attributo materia dell'oggetto(della classe GruppoDiStudio)
@@ -455,7 +455,7 @@ public class GdSDAOimpl implements GdSDAO {
 	}
 
 	/**
-	 * Interroga il database per trovare una lista di tutti gli oggetti GruppoDiStudio 
+	 * Interroga il database per trovare una lista di tutti gli oggetti GruppoDiStudio
 	 * ritorna la lista, se trova oggetti
 	 * @return 	List<GruppoDiStudio>
 	 * @see 	GruppoDiStudio
@@ -502,10 +502,10 @@ public class GdSDAOimpl implements GdSDAO {
 		}
 		return null;
 
-	}	
-	
+	}
+
 	/**
-	 * Interroga il database per trovare una lista di oggetti GruppoDiStudio 
+	 * Interroga il database per trovare una lista di oggetti GruppoDiStudio
 	 * in base alla stringa inserita(anche con riferimento parziale)
 	 *  ritorna la lista, se trova oggetti
 	 * @param	subString l'attributo materia dell'oggetto(della classe GruppoDiStudio)
