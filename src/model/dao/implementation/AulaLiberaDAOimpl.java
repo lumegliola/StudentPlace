@@ -28,15 +28,15 @@ import model.dao.interfaces.AulaLiberaDAO;
 import model.db_connection.DriverManagerConnectionPool;
 
 /**
- * 
+ *
  * AulaLiberaDAOimpl.java
- * Gestisce la persistenza degli oggetti di tipo AulaLibera 
+ * Gestisce la persistenza degli oggetti di tipo AulaLibera
  * tramite interazioni con il database
- * 
+ *
  * @author F. Megliola & A. Capodanno
  * @since 12-16-2018
  *
- * 
+ *
  * */
 
 public class AulaLiberaDAOimpl implements AulaLiberaDAO{
@@ -91,8 +91,8 @@ public class AulaLiberaDAOimpl implements AulaLiberaDAO{
 
 
 	/**
-	 * Effettua il salvataggio nel database dell'oggetto aulaLibera, 
-	 * se l'oggetto è già presente, lo modifica con i parametri inseriti, 
+	 * Effettua il salvataggio nel database dell'oggetto aulaLibera,
+	 * se l'oggetto è già presente, lo modifica con i parametri inseriti,
 	 * ritorna l'esito dell'operazione
 	 * @param aula l'oggetto da salvare (della classe AulaLibera)
 	 * @param giorno il nuovo giorno in cui l'aula è libera(se si modifica)
@@ -137,13 +137,13 @@ public class AulaLiberaDAOimpl implements AulaLiberaDAO{
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
-			}
+		  }
 		}
 		return (result == 1);
 	}
 
 	/**
-	 * Effettua la cancellazione dal database dell'oggetto aulaLibera, 
+	 * Effettua la cancellazione dal database dell'oggetto aulaLibera,
 	 * ritorna l'esito dell'operazione
 	 * @param 	aula l'oggetto da eliminare(della classe AulaLibera)
 	 * @return  Boolean
@@ -160,7 +160,7 @@ public class AulaLiberaDAOimpl implements AulaLiberaDAO{
 	}
 
 	/**
-	 * Effettua la cancellazione dal database dell'oggetto aulaLibera, 
+	 * Effettua la cancellazione dal database dell'oggetto aulaLibera,
 	 * ritorna l'esito dell'operazione
 	 * @param 	nomeAula l'attributo nome dell'oggetto da eliminare(della classe AulaLibera)
 	 * @param 	giorno l'attributo giorno dell'oggetto da eliminare(della classe AulaLibera)
@@ -203,7 +203,7 @@ public class AulaLiberaDAOimpl implements AulaLiberaDAO{
 	}
 
 	/**
-	 * Effettua la cancellazione dal database dell'oggetto aulaLibera, 
+	 * Effettua la cancellazione dal database dell'oggetto aulaLibera,
 	 * ritorna l'esito dell'operazione
 	 * @param 	idOrario l'attributo id dell'oggetto da eliminare(della classe AulaLibera)
 	 * @return  Boolean
@@ -294,7 +294,7 @@ public class AulaLiberaDAOimpl implements AulaLiberaDAO{
 	}
 
 	/**
-	 * Interroga il database per trovare una lista di oggetti aulaLibera 
+	 * Interroga il database per trovare una lista di oggetti aulaLibera
 	 * in base ai parametri inseriti, ritorna l'oggetto, se trovato
 	 * @param	nomeAula l'attributo nome dell'oggetto(della classe AulaLibera)
 	 * @return 	List<AulaLibera>
@@ -340,11 +340,11 @@ public class AulaLiberaDAOimpl implements AulaLiberaDAO{
 			}
 		}
 		return aule;
-	}	
+	}
 
 
 	/**
-	 * Interroga il database per trovare una lista di oggetti aulaLibera 
+	 * Interroga il database per trovare una lista di oggetti aulaLibera
 	 * in base ai parametri inseriti, ritorna l'oggetto, se trovato
 	 * @param	data l'attributo inizio dell'oggetto(della classe Orario)che è attributo di AulaLibera
 	 * @return 	List<AulaLibera>
@@ -400,7 +400,7 @@ public class AulaLiberaDAOimpl implements AulaLiberaDAO{
 	}
 
 	/**
-	 * Interroga il database per trovare una lista di tutti gli oggetti aulaLibera 
+	 * Interroga il database per trovare una lista di tutti gli oggetti aulaLibera
 	 * ritorna la lista, se trova oggetti
 	 * @return 	List<AulaLibera>
 	 * @see 	AulaLibera
