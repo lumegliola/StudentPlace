@@ -35,7 +35,7 @@ public class TestServletRegistrazione extends TestCase {
 
 		@Mock
 	 	ServletContext context= mock(ServletContext.class);
-	 	
+
 	 	@Mock
 	 	RequestDispatcher dispatcher;
 
@@ -44,7 +44,7 @@ public class TestServletRegistrazione extends TestCase {
 
 	    @Mock
 	    HttpServletResponse response;
-	 
+
 	    @Mock
 	    HttpSession session;
 
@@ -55,14 +55,14 @@ public class TestServletRegistrazione extends TestCase {
 		private IDataSet dataSet;
 
 		private FlatXmlDataSet loadedDataSer;
-	    
+
 	@Before
 	public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         Class driverClass = Class.forName("com.mysql.cj.jdbc.Driver");
         connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentplacedb?serverTimezone = EST5EDT", "root", "root");
 	    dbconnection = new DatabaseConnection(connection);
-	    dataSet = getDataSet(); 
+	    dataSet = getDataSet();
 	}
 
 	@Test
@@ -73,7 +73,7 @@ public class TestServletRegistrazione extends TestCase {
 		when(request.getParameter("nome")).thenReturn("ciao");
 		when(request.getParameter("cognome")).thenReturn("mondo");
 		when(request.getSession()).thenReturn(session);
-		
+
 	    when(request.getRequestDispatcher("/view/homepage/Home.jsp")).thenReturn(dispatcher);
 
 		new ServletRegistrazione().doPost(request, response);
@@ -85,7 +85,7 @@ public class TestServletRegistrazione extends TestCase {
      loadedDataSer =   new FlatXmlDataSetBuilder().build(new FileInputStream("database.xml"));
      return loadedDataSer;
 	}
-	
+
     @After
     protected void tearDown() throws Exception {
 		// TODO Auto-generated method stub

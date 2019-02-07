@@ -26,7 +26,7 @@ public class ServletCreaGdsTestSecond {
 
     @Mock
  	ServletContext context= mock(ServletContext.class);
- 	
+
  	@Mock
  	RequestDispatcher dispatcher;
 
@@ -35,20 +35,20 @@ public class ServletCreaGdsTestSecond {
 
     @Mock
     HttpServletResponse response;
- 
+
     @Mock
     HttpSession session=mock(HttpSession.class);
-    
+
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        
+
    }
 @Test
 public void testDoPostHttpServletRequestHttpServletResponse() throws ServletException, IOException {
 
-	when(request.getParameter("nomeGruppo")).thenReturn("Gruppo di is");	
-	when(request.getParameter("materia")).thenReturn("Ingegneria Del Software");	
+	when(request.getParameter("nomeGruppo")).thenReturn("Gruppo di is");
+	when(request.getParameter("materia")).thenReturn("Ingegneria Del Software");
 	when(request.getSession()).thenReturn(session);
 	when(session.getAttribute("utente")).thenReturn(DAOFactory.getUserDAO().doRetrieveByMail("b.ello@studenti.unisa.it"));
 	when(session.getAttribute("logged")).thenReturn(true);

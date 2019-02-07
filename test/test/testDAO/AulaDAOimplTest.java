@@ -41,9 +41,9 @@ public class AulaDAOimplTest  extends DBTestCase{
 	private Connection connection;
 	@Test
 	public void testDoSave() throws SQLException {
-		
+
 	    Aula aula=new Aula("F10","F2");
-		AulaDAO aulaDao=DAOFactory.getAulaDAO();	
+		AulaDAO aulaDao=DAOFactory.getAulaDAO();
 		System.out.println("Start test");
 		boolean res=aulaDao.doSave(aula);
 		assertTrue(res);
@@ -58,7 +58,7 @@ public class AulaDAOimplTest  extends DBTestCase{
 		}
 		assertFalse(listaAule.isEmpty());
 		boolean ok=false;
-		
+
 		for(Aula al:listaAule) {
 			if(aula.equals(al)) {
 				ok = true;
@@ -93,7 +93,7 @@ public class AulaDAOimplTest  extends DBTestCase{
 		}
        assertTrue(ok);
        System.out.println("End test");
-		
+
 	}
 
 	@Test
@@ -123,7 +123,7 @@ public class AulaDAOimplTest  extends DBTestCase{
   	    boolean res=aulaDao.doDelete(nomeAula);
   	    assertTrue(res);
 	    System.out.println("End test");
-	
+
 	}
 
 	@Test
@@ -136,18 +136,17 @@ public class AulaDAOimplTest  extends DBTestCase{
 		assertNotNull(aulaDao);
 		assertNotNull(aula);
 		String nomeAula=aula.getNomeAula();
-		
+
   	    Aula res=aulaDao.doRetrieveByKey(nomeAula);
   	    assertEquals(res, aula);
   	    System.out.println("End test");
-	
-	
+
 	}
 
 	@Test
 	public void testDoRetrieveAll() {
 		System.out.println("Start test");
-		
+
 		AulaDAO aulaDao=DAOFactory.getAulaDAO();
 		assertNotNull(aulaDao);
 		List<Aula> lista=aulaDao.doRetrieveAll();
@@ -155,10 +154,9 @@ public class AulaDAOimplTest  extends DBTestCase{
 		for(Aula aula: lista) {
 			System.out.println("Aula:"+aula.getNomeAula()+",Edificio:"+aula.getEdificio());
 		}
-		 
-		
+
 		System.out.println("End test");
-		
+
 	}
 
 	@Before
@@ -173,7 +171,7 @@ public class AulaDAOimplTest  extends DBTestCase{
 	       Class driverClass = Class.forName("com.mysql.cj.jdbc.Driver");
 	       connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentplacedb?serverTimezone = EST5EDT", "root", "root");
 	       dbconnection = new DatabaseConnection(connection);
-	       
+
 	       dataSet = getDataSet();
 	    }
     	@After
@@ -182,7 +180,7 @@ public class AulaDAOimplTest  extends DBTestCase{
     		 DatabaseOperation.CLEAN_INSERT.execute(dbconnection, getDataSet());
         }
 
-	   
+
 
 
 }

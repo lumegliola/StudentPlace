@@ -34,7 +34,7 @@ public class TestServletInserisciOrario extends TestCase{
 
 	@Mock
  	ServletContext context= mock(ServletContext.class);
- 	
+
  	@Mock
  	RequestDispatcher dispatcher;
 
@@ -43,10 +43,10 @@ public class TestServletInserisciOrario extends TestCase{
 
     @Mock
     HttpServletResponse response;
- 
+
     @Mock
     HttpSession session;
-    
+
 
 	private IDataSet loadedDataSer;
 
@@ -55,15 +55,14 @@ public class TestServletInserisciOrario extends TestCase{
 	private DatabaseConnection dbconnection;
 
 	private IDataSet dataSet;
-    
-	 
+
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         Class driverClass = Class.forName("com.mysql.cj.jdbc.Driver");
         connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentplacedb?serverTimezone = EST5EDT", "root", "root");
 	    dbconnection = new DatabaseConnection(connection);
-	    dataSet = getDataSet(); 
+	    dataSet = getDataSet();
    }
 	@Before
 	protected IDataSet getDataSet() throws Exception {
@@ -71,7 +70,7 @@ public class TestServletInserisciOrario extends TestCase{
      loadedDataSer =   new FlatXmlDataSetBuilder().build(new FileInputStream("database.xml"));
      return loadedDataSer;
 	}
-	
+
     @After
     protected void tearDown() throws Exception {
 		// TODO Auto-generated method stub
@@ -93,7 +92,7 @@ public class TestServletInserisciOrario extends TestCase{
 		when(request.getRequestDispatcher("GestioneOrario")).thenReturn(dispatcher);
 
 		new ServletInserisciOrario().doPost(request, response);
-		
+
 		verify(dispatcher).forward(request, response);		}
 
 }

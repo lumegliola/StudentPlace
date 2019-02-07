@@ -33,7 +33,7 @@ public class TestServletLogin extends TestCase {
 
 	@Mock
  	ServletContext context= mock(ServletContext.class);
- 	
+
  	@Mock
  	RequestDispatcher dispatcher;
 
@@ -42,18 +42,18 @@ public class TestServletLogin extends TestCase {
 
     @Mock
     HttpServletResponse response;
- 
+
     @Mock
     HttpSession session=mock(HttpSession.class);
-    
+
     @Before
     public void setUp() throws Exception {
-        MockitoAnnotations.initMocks(this);        
+        MockitoAnnotations.initMocks(this);
    }
-	
+
     @Test
  	public void testDoPostHttpServletRequestHttpServletResponse() throws ServletException, IOException {
-    	
+
     when(request.getParameter("email")).thenReturn("c.iao@studenti.unisa.it");
  	when(request.getParameter("password")).thenReturn("123456");
     when(request.getSession()).thenReturn(session);
@@ -61,10 +61,10 @@ public class TestServletLogin extends TestCase {
  	when(request.getRequestDispatcher("/view/homepage/Home.jsp")).thenReturn(dispatcher);
 
  	new ServletLogin().doPost(request, response);
- 	
+
  	verify(dispatcher).forward(request, response);
-     
+
      }
-	
+
 
 }

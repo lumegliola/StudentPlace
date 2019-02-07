@@ -35,7 +35,7 @@ public class TestServletModificaProfilo  extends TestCase{
 
 	 @Mock
 	 	ServletContext context= mock(ServletContext.class);
-	 	
+
 	 	@Mock
 	 	RequestDispatcher dispatcher;
 
@@ -44,7 +44,7 @@ public class TestServletModificaProfilo  extends TestCase{
 
 	    @Mock
 	    HttpServletResponse response;
-	 
+
 	    @Mock
 	    HttpSession session;
 
@@ -55,14 +55,14 @@ public class TestServletModificaProfilo  extends TestCase{
 		private DatabaseConnection dbconnection;
 
 		private IDataSet dataSet;
-	    
+
 	    @Before
 	    public void setUp() throws Exception {
 	        MockitoAnnotations.initMocks(this);
 	        Class driverClass = Class.forName("com.mysql.cj.jdbc.Driver");
 	        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentplacedb?serverTimezone = EST5EDT", "root", "root");
 		    dbconnection = new DatabaseConnection(connection);
-		    dataSet = getDataSet(); 
+		    dataSet = getDataSet();
 	   }
 
 	@Test
@@ -82,7 +82,7 @@ public class TestServletModificaProfilo  extends TestCase{
      loadedDataSer =   new FlatXmlDataSetBuilder().build(new FileInputStream("database.xml"));
      return loadedDataSer;
 	}
-	
+
     @After
     protected void tearDown() throws Exception {
 		// TODO Auto-generated method stub

@@ -15,15 +15,15 @@ import model.dao.DAOFactory;
 import model.dao.interfaces.AulaDAO;
 import model.db_connection.DriverManagerConnectionPool;
 /**
- * 
+ *
  * AulaDAOimpl.java
- * Gestisce la persistenza degli oggetti di tipo Aula 
+ * Gestisce la persistenza degli oggetti di tipo Aula
  * tramite interazioni con il database
- * 
+ *
  * @author F. Megliola & A. Capodanno
  * @since 12-16-2018
  *
- * 
+ *
  * */
 
 

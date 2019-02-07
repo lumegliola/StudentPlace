@@ -34,7 +34,7 @@ public class TestServletEliminaGds extends TestCase {
 
     	@Mock
 	 	ServletContext context= mock(ServletContext.class);
-	 	
+
 	 	@Mock
 	 	RequestDispatcher dispatcher;
 
@@ -43,10 +43,10 @@ public class TestServletEliminaGds extends TestCase {
 
 	    @Mock
 	    HttpServletResponse response;
-	 
+
 	    @Mock
 	    HttpSession session;
-	 
+
 
 		private IDataSet loadedDataSer;
 
@@ -55,15 +55,14 @@ public class TestServletEliminaGds extends TestCase {
 		private DatabaseConnection dbconnection;
 
 		private IDataSet dataSet;
-	    
-		 
+
 	    @Before
 	    public void setUp() throws Exception {
 	        MockitoAnnotations.initMocks(this);
 	        Class driverClass = Class.forName("com.mysql.cj.jdbc.Driver");
 	        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentplacedb?serverTimezone = EST5EDT", "root", "root");
 		    dbconnection = new DatabaseConnection(connection);
-		    dataSet = getDataSet(); 
+		    dataSet = getDataSet();
 	   }
 		@Before
 		protected IDataSet getDataSet() throws Exception {
@@ -71,7 +70,7 @@ public class TestServletEliminaGds extends TestCase {
 	     loadedDataSer =   new FlatXmlDataSetBuilder().build(new FileInputStream("database.xml"));
 	     return loadedDataSer;
 		}
-		
+
 	    @After
 	    protected void tearDown() throws Exception {
 			// TODO Auto-generated method stub
@@ -80,21 +79,21 @@ public class TestServletEliminaGds extends TestCase {
 
 	    @Test
 		public void testDoPostHttpServletRequestHttpServletResponse() throws ServletException, IOException {
-	  
+
 		when(request.getParameter("nomeGruppo")).thenReturn("Gruppo di is");
-	    
+
 		when(request.getParameter("materia")).thenReturn("Ingegneria del software");
-		
+
 		when(request.getSession()).thenReturn(session);
-	    
+
 		when(session.getAttribute("logged")).thenReturn(true);
-		
+
 		when(session.getAttribute("utente")).thenReturn(DAOFactory.getUserDAO().doRetrieveByKey("0512102865"));
-		
+
 		when(request.getRequestDispatcher("/view/OpEffettuata.jsp")).thenReturn(dispatcher);
 
 		new ServletEliminaGdS().doPost(request, response);
-		
+
 		verify(dispatcher).forward(request, response);
 	    }
 }

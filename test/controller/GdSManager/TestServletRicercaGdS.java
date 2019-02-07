@@ -24,10 +24,10 @@ import controller.GdSManager.ServletRicercaGds;
 import model.dao.DAOFactory;
 
 public class TestServletRicercaGdS {
-	
+
 	@Mock
  	ServletContext context= mock(ServletContext.class);
- 	
+
  	@Mock
  	RequestDispatcher dispatcher;
 
@@ -36,48 +36,46 @@ public class TestServletRicercaGdS {
 
     @Mock
     HttpServletResponse response;
- 
+
     @Mock
     HttpSession session=mock(HttpSession.class);
-    
+
     @Before
     public void setUp() throws Exception {
-        MockitoAnnotations.initMocks(this);        
+        MockitoAnnotations.initMocks(this);
    }
 
-    
     @Test
     public void testDoGetHttpServletRequestHttpServletResponse() throws ServletException, IOException {
-    	
+
     	when(request.getSession()).thenReturn(session);
-    	
+
     	when(session.getAttribute("logged")).thenReturn(true);
-    	
+
     	when(request.getParameter("inputGruppo")).thenReturn("prog");
     	when(response.getWriter()).thenReturn(new PrintWriter(new StringWriter()));
-    	
+
     	new ServletRicercaGds().doGet(request, response);
-    	
+
     }
-    
+
     @Test
 	public void testDoPostHttpServletRequestHttpServletResponse() throws ServletException, IOException {
-  
-	
+
 	when(request.getSession()).thenReturn(session);
-    
+
 	when(session.getAttribute("logged")).thenReturn(true);
-	
+
 	when(request.getParameter("inputGruppo")).thenReturn("prog");
 
 	when(session.getAttribute("matricola")).thenReturn("0512102865");
-	
+
 	when(request.getRequestDispatcher("/view/GdS/ListaGruppi.jsp")).thenReturn(dispatcher);
 
 	new ServletRicercaGds().doPost(request, response);
-	
+
 	verify(dispatcher).forward(request, response);
-    
+
     }
 
 }

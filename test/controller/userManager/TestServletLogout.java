@@ -36,7 +36,7 @@ public class TestServletLogout extends TestCase {
 
 	@Mock
  	ServletContext context= mock(ServletContext.class);
- 	
+
  	@Mock
  	RequestDispatcher dispatcher;
 
@@ -45,27 +45,27 @@ public class TestServletLogout extends TestCase {
 
     @Mock
     HttpServletResponse response;
- 
+
     @Mock
     HttpSession session;
 
     @Before
     public void setUp() throws Exception {
-        MockitoAnnotations.initMocks(this);        
+        MockitoAnnotations.initMocks(this);
    }
-	
+
     @Test
  	public void testDoPostHttpServletRequestHttpServletResponse() throws ServletException, IOException {
     Cookie []cookies= {new Cookie("utente","qualcosa"),new Cookie("admin","qualcosa"),new Cookie("logged","qualcosa")};
 
     when(request.getSession()).thenReturn(session);
     when(request.getCookies()).thenReturn(cookies);
- 	
+
  	when(request.getRequestDispatcher("/view/homepage/Home.jsp")).thenReturn(dispatcher);
 
  	new ServletLogout().doGet(request, response);
- 	
+
  	verify(dispatcher).forward(request, response);
-     
+
      }
 }

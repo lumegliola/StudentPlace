@@ -31,7 +31,7 @@ public class OrarioDAOimplTest extends TestCase{
 
   @Test
   public void testDoSave() {
-    
+
     System.out.println("Start test");
       OrarioDAO orarioDao=DAOFactory.getOrarioDAO();
       assertNotNull(orarioDao);
@@ -54,7 +54,7 @@ public class OrarioDAOimplTest extends TestCase{
       assertTrue(orario.equals(controllo));
       System.out.println("End test");
       }
-  
+
 @Test
  public void testDoSaveOrUpdate() {
     System.out.println("Start test");
@@ -63,12 +63,10 @@ public class OrarioDAOimplTest extends TestCase{
       Orario orario=new Orario();
       orario.setInizio(new Timestamp(2019,11,2,12,0,0,0));
       orario.setFine(new Timestamp(2019,11,2, 14,0,0,0));
-      
+
       DAOFactory.getOrarioDAO().doSave(orario);
       orario = DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(orario.getInizio(), orario.getFine());
-    
-     
-         
+
       boolean valore=orarioDao.doSaveOrUpdate(orario, new Timestamp(119,11,3,15,0,0,0), new Timestamp(119,11,3 ,16,0,0,0));
       assertTrue(valore);
 
@@ -86,7 +84,7 @@ public class OrarioDAOimplTest extends TestCase{
       orario.setFine(new Timestamp(2019,11,02, 13,00,00, 0));
       DAOFactory.getOrarioDAO().doSave(orario);
       Orario or2 = DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(orario.getInizio(), orario.getFine());
-      
+
       boolean valore=orarioDao.doDelete(or2);
       assertTrue(valore);
 
@@ -103,13 +101,13 @@ public class OrarioDAOimplTest extends TestCase{
       orario.setFine(new Timestamp(2019,11,02, 14,00,00, 0));
       DAOFactory.getOrarioDAO().doSave(orario);
       Orario or2 = DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(orario.getInizio(), orario.getFine());
-    
+
       boolean valore=orarioDao.doDelete(or2.getIdOrario());
       assertTrue(valore);
 
       System.out.println("End test");  }
 
- 
+
 
   @Test
  public  void testDoRetrieveByStart() {
@@ -123,7 +121,7 @@ public class OrarioDAOimplTest extends TestCase{
         System.out.println("Start"+or.getInizio()+"Fine"+or.getFine());
          }
       System.out.println("End test");
-  
+
   }
 
   @Test
@@ -134,9 +132,9 @@ public class OrarioDAOimplTest extends TestCase{
       Orario orario=null;
       orario=orarioDao.doRetrieveByStartAndFinish(new Timestamp(2019,11,02,11,00,00, 0),new Timestamp(2019,11,02,13,00,00, 0));
       assertNotNull(orario);
-     
+
       System.out.println("End test");
-  
+
   }
 
   @Test
@@ -150,7 +148,7 @@ public class OrarioDAOimplTest extends TestCase{
       for (Orario or :listOrario) {
         System.out.println("Start"+or.getInizio()+"Fine"+or.getFine());
          }
-      System.out.println("End test");  
+      System.out.println("End test");
       }
 	private FlatXmlDataSet loadedDataSer;
 	private Connection connection;
@@ -168,7 +166,7 @@ public class OrarioDAOimplTest extends TestCase{
 	       Class driverClass = Class.forName("com.mysql.cj.jdbc.Driver");
 	       connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentplacedb?serverTimezone = EST5EDT", "root", "root");
 	       dbconnection = new DatabaseConnection(connection);
-	       
+
 	       dataSet = getDataSet();
 	    }
     	@After
@@ -176,5 +174,5 @@ public class OrarioDAOimplTest extends TestCase{
 		// TODO Auto-generated method stub
     		 DatabaseOperation.CLEAN_INSERT.execute(dbconnection, dataSet);
         }
-	
+
 }

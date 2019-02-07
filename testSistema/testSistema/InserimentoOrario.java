@@ -22,7 +22,7 @@ public class InserimentoOrario {
 
 	@Test
 	public void testInserimentoOrario() throws Exception {
-		
+
 			    driver.get("http://localhost:8080/StudentPlace/ShowHome");
 			    driver.findElement(By.id("email")).click();
 			    driver.findElement(By.id("email")).clear();

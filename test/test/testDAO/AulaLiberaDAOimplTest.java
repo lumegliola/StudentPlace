@@ -39,22 +39,20 @@ public class AulaLiberaDAOimplTest extends DBTestCase{
 		Orario or = new Orario(inizio, fine);
 		String giorno = or.getGiorno();
 		DAOFactory.getOrarioDAO().doSave(or);
-		
+
 
 		AulaLibera al = new AulaLibera(aula, or, giorno);
 
 		Boolean res = DAOFactory.getAulaLiberaDAO().doSave(al);
 		assertTrue(res);
-		
-		
+
 		AulaLibera risultato = DAOFactory.getAulaLiberaDAO().doRetrieveByKey(al.getAula().getNomeAula(), giorno, DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(inizio, fine).getIdOrario());
 		al.getOrario().setIdOrario(DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(inizio, fine).getIdOrario());
-	
-		
-		//confronto il risultato della query con l'oracolo	
+
+		//confronto il risultato della query con l'oracolo
 		assertTrue(risultato.equals(al));
 
-		System.out.println("successo");	
+		System.out.println("successo");
 
 	}
 
@@ -94,9 +92,9 @@ public class AulaLiberaDAOimplTest extends DBTestCase{
 		AulaLibera oracolo = new AulaLibera(aula, or2,or2.getGiorno());
 		oracolo.getOrario().setIdOrario(DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(inizio1, fine1).getIdOrario());
 
-		//confronto il risultato della query con l'oracolo	
+		//confronto il risultato della query con l'oracolo
 		assertTrue(risultato.equals(oracolo));
-		System.out.println("successo");	
+		System.out.println("successo");
 	}
 
 	@Test
@@ -123,7 +121,7 @@ public class AulaLiberaDAOimplTest extends DBTestCase{
 		//genero l'oracolo vuoto
 		AulaLibera oracolo = new AulaLibera();
 
-		//confronto il risultato della query con l'oracolo	
+		//confronto il risultato della query con l'oracolo
 		assertTrue(oracolo.equals(controllo));
 		System.out.println("successo");
 
@@ -187,7 +185,6 @@ public class AulaLiberaDAOimplTest extends DBTestCase{
 		System.out.println("successo");
 
 	}
-	
 
 	@Test
 	public void testDoRetrieveByName() {
@@ -254,16 +251,16 @@ public class AulaLiberaDAOimplTest extends DBTestCase{
 		//genero l'oracolo 3
 		AulaLibera oracolo3 = new AulaLibera(aula3, or3,or3.getGiorno());
 		oracolo3.getOrario().setIdOrario(DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(inizio3, fine3).getIdOrario());
-		
+
 		//lista risultati
 		List<AulaLibera> listaRisultati = DAOFactory.getAulaLiberaDAO().doRetrieveByName("P2");
-		
+
 		//genero la lista oracolo
 		List<AulaLibera> listaOracolo = new ArrayList<>();
 		listaOracolo.add(oracolo);
 		listaOracolo.add(oracolo2);
 		listaOracolo.add(oracolo3);
-		
+
 		//confronto
 		assertTrue(listaOracolo.containsAll(listaRisultati));
 		System.out.println("successo");
@@ -334,16 +331,16 @@ public class AulaLiberaDAOimplTest extends DBTestCase{
 		//genero l'oracolo 3
 		AulaLibera oracolo3 = new AulaLibera(aula3, or3,or3.getGiorno());
 		oracolo3.getOrario().setIdOrario(DAOFactory.getOrarioDAO().doRetrieveByStartAndFinish(inizio3, fine3).getIdOrario());
-		
+
 		//lista risultati
 		List<AulaLibera> listaRisultati = DAOFactory.getAulaLiberaDAO().doRetrieveByDate(inizio);
-		
+
 		//genero la lista oracolo
 		List<AulaLibera> listaOracolo = new ArrayList<>();
 		listaOracolo.add(oracolo);
 		listaOracolo.add(oracolo2);
 		listaOracolo.add(oracolo3);
-		
+
 		//confronto
 		assertTrue(listaRisultati.containsAll(listaOracolo));
 		System.out.println("successo");
@@ -360,7 +357,7 @@ public class AulaLiberaDAOimplTest extends DBTestCase{
 	       Class driverClass = Class.forName("com.mysql.cj.jdbc.Driver");
 	       connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentplacedb?serverTimezone = EST5EDT", "root", "root");
 	       dbconnection = new DatabaseConnection(connection);
-	       
+
 	       dataSet = getDataSet();
 	    }
     	@After
@@ -369,5 +366,5 @@ public class AulaLiberaDAOimplTest extends DBTestCase{
     		 DatabaseOperation.CLEAN_INSERT.execute(dbconnection, getDataSet());
         }
 
-	   
+
 }

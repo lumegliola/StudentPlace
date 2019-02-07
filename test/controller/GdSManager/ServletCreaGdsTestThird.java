@@ -28,7 +28,7 @@ public class ServletCreaGdsTestThird extends TestCase{
 
     @Mock
  	ServletContext context= mock(ServletContext.class);
- 	
+
  	@Mock
  	RequestDispatcher dispatcher;
 
@@ -37,19 +37,19 @@ public class ServletCreaGdsTestThird extends TestCase{
 
     @Mock
     HttpServletResponse response;
- 
+
     @Mock
     HttpSession session=mock(HttpSession.class);
-    
+
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        
+
    }
 @Test
 public void testDoPostHttpServletRequestHttpServletResponse() throws ServletException, IOException {
 
-		
+
 	when(request.getSession()).thenReturn(session);
 	when(session.getAttribute("logged")).thenReturn(false);
 	when(request.getRequestDispatcher("/view/errore/Errore.jsp")).thenReturn(dispatcher);

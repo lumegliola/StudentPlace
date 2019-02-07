@@ -32,7 +32,7 @@ class ServletvisualizzaAuleLibereTest extends TestCase {
 	}
 	 @Mock
 	 	ServletContext context;
-	 	
+
 	 	@Mock
 	 	RequestDispatcher dispatcher= Mockito.mock(RequestDispatcher.class);;
 
@@ -41,20 +41,20 @@ class ServletvisualizzaAuleLibereTest extends TestCase {
 
 	    @Mock
 	    HttpServletResponse response;
-	 
+
 	    @Mock
 	    HttpSession session;
-        
+
 	@Test
 	void testDoPostHttpServletRequestHttpServletResponse() throws ServletException, IOException {
 		  ServletContext context = Mockito.mock(ServletContext.class);
 	    when(request.getRequestDispatcher("/view/auleliber/aulelibere.jsp")).thenReturn(dispatcher);
 	    when(request.getSession()).thenReturn(session);
-	    
+
 		new ServletvisualizzaAuleLibere().doPost(request, response);
 		verify(dispatcher).forward(request, response);
 
-		
+
 	}
 
 }

@@ -111,13 +111,13 @@ public class IscrizioneDAOImplTest extends TestCase{
       assertNotNull(iscrDao);
       GdSDAO gdsDao=DAOFactory.getGdSDAO();
       GruppoDiStudio gruppo=gdsDao.doRetrieveByNameAndSubject("Gruppo di is", "Ingegneria Del software");
-     
+
       assertNotNull(gruppo);
       List <Iscrizione> listIscr=null;
       listIscr=iscrDao.doRetrieveByGroup(gruppo.getId());
       assertNotNull(listIscr);
-      System.out.println("End test");  
-      
+      System.out.println("End test");
+
   }
 
 
@@ -126,14 +126,14 @@ public void testDoRetrieveByUserAndGroup() {
     System.out.println("Start test");
       IscrizioneDAO iscrDao=DAOFactory.getIscrizioneDAO();
       assertNotNull(iscrDao);
-      
+
       UserDAO utenteDao=DAOFactory.getUserDAO();
       Utente utente=utenteDao.doRetrieveByKey("0512102765");
       assertNotNull(utente);
       GdSDAO gdsDao=DAOFactory.getGdSDAO();
       GruppoDiStudio gruppo=gdsDao.doRetrieveByNameAndSubject("Gruppo di is", "Ingegneria Del software");
        assertNotNull(gruppo);
-     
+
       Iscrizione iscr=null;
       iscr=iscrDao.doRetrieveByUserAndGroup(utente.getMatricola(),gruppo.getId());
       assertNotNull(iscr);
@@ -149,7 +149,7 @@ public void testDoRetrieveByUserAndGroup() {
     listIscr=iscrDao.doRetrieveAll();
     assertNotNull(listIscr);
       System.out.println("End test");
-     
+
   }
   	@Before
   	protected IDataSet getDataSet() throws Exception {
@@ -163,7 +163,7 @@ public void testDoRetrieveByUserAndGroup() {
   	       Class driverClass = Class.forName("com.mysql.cj.jdbc.Driver");
   	       connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentplacedb?serverTimezone = EST5EDT", "root", "root");
   	       dbconnection = new DatabaseConnection(connection);
-  	       
+
   	       dataSet = getDataSet();
   	    }
       	@After
@@ -172,4 +172,4 @@ public void testDoRetrieveByUserAndGroup() {
       		 DatabaseOperation.CLEAN_INSERT.execute(dbconnection, dataSet);
           }
  }
-  
+

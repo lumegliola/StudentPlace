@@ -36,7 +36,7 @@ public class TestServletVisualizzaProfilo extends TestCase{
 
 	@Mock
  	ServletContext context= mock(ServletContext.class);
- 	
+
  	@Mock
  	RequestDispatcher dispatcher;
 
@@ -45,28 +45,28 @@ public class TestServletVisualizzaProfilo extends TestCase{
 
     @Mock
     HttpServletResponse response;
- 
+
     @Mock
     HttpSession session;
-    
+
     @Before
     public void setUp() throws Exception {
-        MockitoAnnotations.initMocks(this);        
+        MockitoAnnotations.initMocks(this);
    }
-	
+
     @Test
  	public void testDoPostHttpServletRequestHttpServletResponse() throws ServletException, IOException {
-   
+
     when(request.getSession()).thenReturn(session);
-    
+
     when(session.getAttribute("utente")).thenReturn(DAOFactory.getUserDAO().doRetrieveByKey("0512102765"));
     when(session.getAttribute("logged")).thenReturn(true);
- 	
+
  	when(request.getRequestDispatcher("/view/utente/Profilo.jsp")).thenReturn(dispatcher);
 
  	new ServletVisualizzaProfilo().doPost(request, response);
- 	
+
  	verify(dispatcher).forward(request, response);
-     
+
      }
 }

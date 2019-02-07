@@ -43,12 +43,12 @@ public class UserDAOimplTest extends TestCase{
 	}
     @Before protected void setUp() throws Exception
 	    {	 Connection connection;
-		
+
 		 IDataSet dataSet;
 	       Class driverClass = Class.forName("com.mysql.cj.jdbc.Driver");
 	       connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentplacedb?serverTimezone = EST5EDT", "root", "root");
 	       dbconnection = new DatabaseConnection(connection);
-	       
+
 	       dataSet = getDataSet();
 	    }
     	@After
@@ -60,31 +60,31 @@ public class UserDAOimplTest extends TestCase{
 	public void testDoSave() {
 		System.out.println("Test metodo 1");
 		Utente user = new Utente("0512103322", "Silvio", "Berlusconi", "menomalechesilviocè1@studenti.unisa.it", "miconsenta");
-		
+
 		boolean res = DAOFactory.getUserDAO().doSave(user);
-			
+
 		assertTrue(res);
 		//ricavo l'inserimento dal DB
 		Utente risultato = DAOFactory.getUserDAO().doRetrieveByKey(user.getMatricola());
-	
+
 		//confronto
 		assertTrue(user.equals(risultato));
 		System.out.println("successo");
-		
+
 	}
 
 	@Test
 	public void testDoSaveOrUpdate() {
 		System.out.println("Test metodo 2");
 		Utente user = new Utente("miconsenta", "Filippo", "Megliola", "f.megliola1@studenti.unisa.it",  "123456");
-		
+
 		boolean res = DAOFactory.getUserDAO().doSaveOrUpdate(user, "ciaoMondo");
-			
+
 		assertTrue(res);
 		//ricavo l'inserimento dal DB
 		Utente risultato = DAOFactory.getUserDAO().doRetrieveByKey("0512102865");
 		//confronto
-		
+
 		assertTrue(risultato.getPassword().equals("ciaoMondo"));
 		System.out.println("successo");	}
 
@@ -97,7 +97,7 @@ public class UserDAOimplTest extends TestCase{
 		boolean res = DAOFactory.getUserDAO().doDelete(user);
 		assertTrue(res);
 		//ricavo l'inserimento dal DB
-		System.out.println("successo");	
+		System.out.println("successo");
 		}
 
 	@Test
@@ -110,18 +110,18 @@ public class UserDAOimplTest extends TestCase{
 		boolean res = DAOFactory.getUserDAO().doDelete(user.getMail());
 		assertTrue(res);
 		//ricavo l'inserimento dal DB
-		System.out.println("successo");	
+		System.out.println("successo");
 
 	}
 
 	@Test
 	public void testDoRetrieveByKey() {
 		System.out.println("Test metodo 5");
-		
+
 		Utente user = null;
 		user= DAOFactory.getUserDAO().doRetrieveByKey("0512103593");
 		assertNotNull(user);
-		System.out.println("successo");		
+		System.out.println("successo");
 
 		}
 
@@ -132,7 +132,7 @@ public class UserDAOimplTest extends TestCase{
 			user= DAOFactory.getUserDAO().doRetrieveAll();
 			assertNotNull(user);
 			//ricavo l'inserimento dal DB
-			System.out.println("successo");				
+			System.out.println("successo");
 	}
 
 
