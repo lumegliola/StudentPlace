@@ -13,24 +13,29 @@ function validazione(input){
 	console.log()
 var valore = document.getElementById(input.id).value;
 	var res=false;
-	if(input.name=="email"){
-	res=validateMail(valore);
+	
+	switch(input.name) {
+	  case "email":
+		  res=validateMail(valore);
+		  break;
+      case "password":
+    	  res=validatePassword(valore);
+	  break;
+	  case "nome":
+			res=validateName(valore);
+      break;
+      case "cognome":
+    	  res=validateSurname(valore);
+      break;
+	  case "matricola":
+		  res=validateMatricola(valore);
+      break;
+			  
+		  
 	}
-	if(input.name=="nome"){
-		res=validateName(valore);
-		}
-	if(input.name=="password"){
-		res=validatePassword(valore);
-		}
-	if(input.name=="cognome"){
-		res=validateSurname(valore);
-		}
-	if(input.name="matricola"){
-		res=validateMatricola(valore);
-			
-	}
+	
 	if (res==true) {
-	console.log("Input"+input.name+"Valido")
+	console.log("Input "+input.name+" Valido")
 	} else {
 	console.log("Input "+input.name+" non valida");
 	}
