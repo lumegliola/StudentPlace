@@ -29,6 +29,7 @@
 	type="text/css">
 <link rel="stylesheet" href="view\registrazione\loginregistrazione.css"
 	type="text/css">
+
 <script >
 $(window).on("load",function() {
 
@@ -42,7 +43,23 @@ $(window).on("load",function() {
     	$("#reg").hide();
     	
     });
-});</script>
+});
+</script>
+<script type="text/javascript" src="view/validator/Validator.js">
+var mail = document.getElementById('email');
+if (validateMail(mail.value)) {
+	if (res) {
+		document.getElementById("res").innerHTML = "";
+	}
+} else {
+	document.getElementById("res").innerHTML = "Inserire una mail valida.";
+	document.getElementById("res").style.color = "red";
+	res = false;
+}
+
+return res;
+};
+</script>
 	
 </head>
 <!-- INCLUDE PAGE -->
