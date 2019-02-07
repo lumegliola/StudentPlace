@@ -1,6 +1,6 @@
 //validazione mail
-function validateMail (mail) {
-	var mailExpr = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w+)+$/;
+function validateMail(mail) {
+	var mailExpr =/^\w+([\.-]?\w+)*@(studenti.unisa.it|unisa.it)$/;
 	if (mail.match(mailExpr)) {
 		return true;
 	} else {
@@ -8,6 +8,34 @@ function validateMail (mail) {
 	}
 }
 
+
+function validazione(input){
+	console.log()
+var valore = document.getElementById(input.id).value;
+	var res=false;
+	if(input.name=="email"){
+	res=validateMail(valore);
+	}
+	if(input.name=="nome"){
+		res=validateName(valore);
+		}
+	if(input.name=="password"){
+		res=validatePassword(valore);
+		}
+	if(input.name=="cognome"){
+		res=validateSurname(valore);
+		}
+	if(input.name="matricola"){
+		res=validateMatricola(valore);
+			
+	}
+	if (res==true) {
+	console.log("Input"+input.name+"Valido")
+	} else {
+	console.log("Input "+input.name+" non valida");
+	}
+	
+}
 //validazione password
 function validatePassword (pass) {
 	var passExpr = /^[0-9a-zA-Z]+$/;
@@ -32,6 +60,15 @@ function validateSurname(surname) {
 function validateName(name) {
 	var nameExpr = /^[a-zA-Z]+$/;
 	if (name.match(nameExpr)) {
+		return true
+	} else {
+		return false;
+	}
+}
+//validazione matricola 
+function validateMatricola(matricola) {
+	var matricolaExpr = /\d{10}/g;
+	if (matricola.match(matricolaExpr)) {
 		return true
 	} else {
 		return false;
