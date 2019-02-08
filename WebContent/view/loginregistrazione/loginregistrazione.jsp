@@ -45,20 +45,7 @@ $(window).on("load",function() {
     });
 });
 </script>
-<script type="text/javascript" src="view/validator/Validator.js">
-var mail = document.getElementById('email');
-if (validateMail(mail.value)) {
-	if (res) {
-		document.getElementById("res").innerHTML = "";
-	}
-} else {
-	document.getElementById("res").innerHTML = "Inserire una mail valida.";
-	document.getElementById("res").style.color = "red";
-	res = false;
-}
-
-return res;
-}
+<script src="view/validator/Validator.js">
 </script>
 	
 </head>
@@ -66,39 +53,39 @@ return res;
 <body>
 
 	<div class="container-fluid login" n="login" method="post">
-		<form action="login" method="post" name="formLog" id="log" onkeyup="return validateMail()">
+		<form action="login" method="post" name="formLog" id="log" >
 		<h4 style="color: #a01313">Login</h4>
-			<label>E-mail:&nbsp;</label><label id="resMail"></label><br /> <input
+			<label>E-mail:&nbsp;</label><label id="resMail"></label><br /> <input 
 				type="text" name="email" id="email" placeholder="Inserisci email"
-				style="width: 90%; clear: both; margin-bottom: 2em;"><br />
+				style="width: 90%; clear: both; margin-bottom: 2em;" required="required"><br/>
+				
 
 			<label>Password:&nbsp;</label><label id="resPass"></label> <input
 				type="password" name="password" id="password" placeholder="Inserisci password"
-				style="width: 90%; clear: both; margin-bottom: 2em;"> <span><input
+				style="width: 90%; clear: both; margin-bottom: 2em;" required="required"> <span><input
 				type="submit" class="button" value="Accedi"></input> <sub>o <a
 					id="pulsanteReg">Registrati</a></sub></span>
 		</form>
 
-		<form action="ServletRegistrazione" method="post" name="formReg" onkeyup="return validateMail()"
+		<form action="ServletRegistrazione" method="post" name="formReg" 
 			id="reg" style="display:none;">
 			<h4 style="color: #a01313">Registrazione</h4>
-			<label>Nome:&nbsp;</label> <input
+			<label>Nome:&nbsp;</label> <input onblur="validazione(this)"
 				type="text" name="nome" id="nome" placeholder="Inserisci il tuo nome"
-				style="width: 90%; clear: both; margin-bottom: 0.5em;">
+				style="width: 90%; clear: both; margin-bottom: 0.5em;" required="required">
 
-			<label>Cognome:&nbsp;</label><input
+			<label>Cognome:&nbsp;</label><input onblur="validazione(this)"
 				type="text" name="cognome" id="cognome" placeholder="Inserisci il tuo cognome"
+				style="width: 90%; clear: both; margin-bottom: 0.5em;" required="required"> 
+				
+						<label>E-mail:&nbsp;</label><input required="required"
+				type="text" name="email" id="cemail" placeholder="Inserisci la tua email" onblur="validazione(this)" style="width: 90%; clear: both; margin-bottom: 0.5em;"> 
+				
+							<label>Password:&nbsp;</label><input required="required"
+				type="password" name="password" id="cpassword" placeholder="Scegli una password" onblur="validazione(this)"
 				style="width: 90%; clear: both; margin-bottom: 0.5em;"> 
 				
-						<label>E-mail:&nbsp;</label><input
-				type="text" name="email" id="cemail" placeholder="Inserisci la tua email"
-				style="width: 90%; clear: both; margin-bottom: 0.5em;"> 
-				
-							<label>Password:&nbsp;</label><input
-				type="password" name="password" id="cpassword" placeholder="Scegli una password"
-				style="width: 90%; clear: both; margin-bottom: 0.5em;"> 
-				
-							<label>Matricola:&nbsp;</label><input
+							<label>Matricola:&nbsp;</label><input onblur="validazione(this)" required="required"
 				type="text" name="matricola" id="matricola" placeholder="Inserisci la tua matricola"
 				style="width: 90%; clear: both; margin-bottom: 1em;"> 
 				

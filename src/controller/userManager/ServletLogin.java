@@ -47,7 +47,7 @@ public class ServletLogin extends HttpServlet {
 		String password = request.getParameter("password");
 		String email = request.getParameter("email");
 		Utente user = DAOFactory.getUserDAO().doRetrieveByMailAndPass(email, password);
-        
+
 		if (user == null) { // Utente Non trovato, credenziali errate.
 			//System.out.println("null");
 			request.setAttribute("is_error", true);

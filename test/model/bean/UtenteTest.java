@@ -18,7 +18,7 @@ public class UtenteTest {
 	}
 
 	@Test
-	public void testIsAdmin() { 
+	public void testIsAdmin() {
       assertFalse(utente.isAdmin());
 	}
 
