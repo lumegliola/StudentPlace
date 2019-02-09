@@ -4,7 +4,7 @@
 <html>
 <head>
 <title>Student Place</title>
-
+<link rel="icon"  href="view/images/logoxsp.png" />
 <!-- IMPORT BOOTSTRAP-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -22,7 +22,7 @@
 <!-- INCLUDE PAGE -->
 <body>
 <%@ include file="../headerfooter/Header.jsp" %>
-<div  style="min-height: 30em; margin-top: 15px;" class  ="home">
+<div  style="min-height: 35em; margin-top: 15px;" class  ="home">
 
 <%int larghezza=7;
 

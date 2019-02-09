@@ -9,6 +9,8 @@
 <html>
 <head>
 <title>Student Place</title>
+<link rel="icon"  href="view/images/logoxsp.png" />
+
 
 <!-- IMPORT BOOTSTRAP-->
 <meta name="viewport" content="width=device-width, initial-scale=1">

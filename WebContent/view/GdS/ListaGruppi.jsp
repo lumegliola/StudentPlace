@@ -17,7 +17,9 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>StudentPlace</title>
+<link rel="icon"  href="view/images/logoxsp.png" />
+
 </head>
 <body>
 	<%@ include file="../headerfooter/Header.jsp"%>

@@ -24,8 +24,12 @@
 	type="text/css">
 <link rel="stylesheet" href="view/headerfooter/Footer.css"
 	type="text/css">
+	    
+	
 
 <title>Header</title>
+<link rel="icon"  href="view/images/logoxsp.png" />
+
 <script type="text/javascript">
 	function showResult(str) {
 		if (str.length == 0) {
@@ -96,7 +100,6 @@
 						href="CreaModificaGruppo?operazione=crea">Crea gruppo di studio</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="visualizzaAuleLibere">Cerca aule libere</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Contatti</a></li>
 					<%
 				boolean logged=false;
 				if(session.getAttribute("logged")==null){

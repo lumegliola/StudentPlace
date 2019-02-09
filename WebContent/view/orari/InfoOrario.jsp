@@ -4,7 +4,9 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Info aula liberai</title>
+<title>Info aula libera</title>
+<link rel="icon"  href="view/images/logoxsp.png" />
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="stylesheet"

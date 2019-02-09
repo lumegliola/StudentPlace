@@ -69,13 +69,13 @@ public class ServletRegistrazione extends HttpServlet {
 		} else {
 			System.out.println("Non salvato");
 
-			request.getRequestDispatcher("/view/registrazione/ShowRegistrazioneErrore.jsp").forward(request, response);
+			request.getRequestDispatcher("/view/errore/RegistrazioneErrore.jsp").forward(request, response);
        		return;
 		}
 		} else {
 			System.out.println("Parametri null");
 
-			request.getRequestDispatcher("/view/registrazione/ShowRegistrazioneErrore.jsp").forward(request, response);
+			request.getRequestDispatcher("/view/errore/RegistrazioneErrore.jsp").forward(request, response);
        		return;
 		}
 	}

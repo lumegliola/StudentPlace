@@ -69,6 +69,7 @@ function validateSurname(surname) {
 	} else {
 		return false;
 	}
+	
 }
 
 //validazione nome
