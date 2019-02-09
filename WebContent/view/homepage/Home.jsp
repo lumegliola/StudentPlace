@@ -22,7 +22,7 @@
 <!-- INCLUDE PAGE -->
 <body>
 <%@ include file="../headerfooter/Header.jsp" %>
-<div  style="min-height: 35em; margin-top: 15px;" class  ="home">
+<div  style="min-height: 39em; margin-top: 15px;" class  ="home">
 
 <%int larghezza=7;
 
