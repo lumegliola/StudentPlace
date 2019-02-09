@@ -25,7 +25,7 @@
 <!-- IMPORT CSS-->
 <link rel="stylesheet" href="view/headerfooter/Footer.css"
 	type="text/css">
-<link rel="stylesheet" href="/view/headerfooter/Header.css"
+<link rel="stylesheet" href="view/headerfooter/Header.css"
 	type="text/css">
 <link rel="stylesheet" href="view/registrazione/loginregistrazione.css"
 	type="text/css">
@@ -79,7 +79,7 @@ $(window).on("load",function() {
 				style="width: 90%; clear: both; margin-bottom: 0.5em;" required="required"><br> 
 				
 						<label>E-mail:&nbsp;</label><br><input required="required"
-				type="text" name="email" id="cemail" placeholder="Inserisci la tua email" onblur="validazione(this)" style="width: 90%; clear: both; margin-bottom: 0.5em;"> <br>
+				type="text" name="email" id="cemail" placeholder="Inserisci la tua email" onblur="validazione(this)" style="width: 90%; clear: both; margin-bottom: 0.5em;"></input> <br>
 				
 							<label>Password:&nbsp;</label><br><input required="required"
 				type="password" name="password" id="cpassword" placeholder="Scegli una password" onblur="validazione(this)"
