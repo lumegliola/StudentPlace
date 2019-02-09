@@ -23,11 +23,11 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <!-- IMPORT CSS-->
-<link rel="stylesheet" href="\view\headerfooter\Footer.css"
+<link rel="stylesheet" href="view/headerfooter/Footer.css"
 	type="text/css">
-<link rel="stylesheet" href="\view\headerfooter\Header.css"
+<link rel="stylesheet" href="/view/headerfooter/Header.css"
 	type="text/css">
-<link rel="stylesheet" href="view\registrazione\loginregistrazione.css"
+<link rel="stylesheet" href="view/registrazione/loginregistrazione.css"
 	type="text/css">
 
 <script >
