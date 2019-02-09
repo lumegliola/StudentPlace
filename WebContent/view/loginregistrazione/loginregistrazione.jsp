@@ -84,11 +84,11 @@ $(window).on("load",function() {
 				
 							<label>Password:&nbsp;</label><br><input required="required" 
 				type="password" name="password" id="cpassword" placeholder="Scegli una password" onblur="validazione(this),validazioneRegistrazione()"
-				style="width: 90%; clear: both; margin-bottom: 0.5em;"> <br>
+				style="width: 90%; clear: both; margin-bottom: 0.5em;"><br>
 				
 							<label>Matricola:&nbsp;</label><br><input onblur="validazione(this),validazioneRegistrazione()"  required="required"
 				type="text" name="matricola" id="matricola" placeholder="Inserisci la tua matricola"
-				style="width: 90%; clear: both; margin-bottom: 1em;"> <br>
+				style="width: 90%; clear: both; margin-bottom: 1em;"><br>
 				
 					<span><input id="bottone" type="submit" value="Iscriviti!" >
 						<a id="pulsanteLog">Sei registrato?</a></span>

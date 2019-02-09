@@ -43,17 +43,11 @@ var valore = document.getElementById(input.id).value;
 	if (res==true) {
 	console.log("Input "+input.name+" Valido");
 	$("."+input.id).remove();
-	$("#"+input.id).after(
-"<label style='color:green ' class='"+input.id+"'>Formato valido</label><br class='"+input.id+"'>"
-			);
+    $("#"+input.id).after("<label style='color:green ' class='"+input.id+"'>Formato valido</label>");
 	} else {
     $("."+input.id).remove();
-	console.log("Input "+input.name+" non valida");
-	$("#"+input.id).after(
-			
-			"<label style='color:red' class='"+input.id+"'>Formato errato</label><br class ='"+input.id+"'>"
-						);
-				
+    console.log("Input "+input.name+" non valida");
+    $("#"+input.id).after("<label style='color:red' class='"+input.id+"'>Formato errato</label>");			
 	}
 	
 }
