@@ -36,6 +36,7 @@ $(window).on("load",function() {
  $("#pulsanteReg").click(function(){
     	$("#reg").show();
     	$("#log").hide();
+    	$("#bottone").hide();
     	
     });
  $("#pulsanteLog").click(function(){
@@ -70,26 +71,26 @@ $(window).on("load",function() {
 		<form action="ServletRegistrazione" method="post" name="formReg" 
 			id="reg" style="display:none;">
 			<h4 style="color: #a01313">Registrazione</h4>
-			<label>Nome:&nbsp;</label><br> <input onblur="validazione(this)"
+			<label>Nome:&nbsp;</label><br> <input onblur="validazione(this),validazioneRegistrazione()" onchange="validazioneRegistrazione()"
 				type="text" name="nome" id="nome" placeholder="Inserisci il tuo nome"
 				style="width: 90%; clear: both; margin-bottom: 0.5em;" required="required"><br>
 
-			<label>Cognome:&nbsp;</label><br><input onblur="validazione(this)"
+			<label>Cognome:&nbsp;</label><br><input onblur="validazione(this),validazioneRegistrazione()" onchange="validazioneRegistrazione()"
 				type="text" name="cognome" id="cognome" placeholder="Inserisci il tuo cognome"
 				style="width: 90%; clear: both; margin-bottom: 0.5em;" required="required"><br> 
 				
-						<label>E-mail:&nbsp;</label><br><input required="required"
-				type="text" name="email" id="cemail" placeholder="Inserisci la tua email" onblur="validazione(this)" style="width: 90%; clear: both; margin-bottom: 0.5em;"></input> <br>
+						<label>E-mail:&nbsp;</label><br><input required="required" onchange="validazioneRegistrazione()"
+				type="text" name="email" id="cemail" placeholder="Inserisci la tua email" onblur="validazione(this),validazioneRegistrazione()" style="width: 90%; clear: both; margin-bottom: 0.5em;"></input> <br>
 				
-							<label>Password:&nbsp;</label><br><input required="required"
-				type="password" name="password" id="cpassword" placeholder="Scegli una password" onblur="validazione(this)"
+							<label>Password:&nbsp;</label><br><input required="required" 
+				type="password" name="password" id="cpassword" placeholder="Scegli una password" onblur="validazione(this),validazioneRegistrazione()"
 				style="width: 90%; clear: both; margin-bottom: 0.5em;"> <br>
 				
-							<label>Matricola:&nbsp;</label><br><input onblur="validazione(this)" required="required"
+							<label>Matricola:&nbsp;</label><br><input onblur="validazione(this),validazioneRegistrazione()"  required="required"
 				type="text" name="matricola" id="matricola" placeholder="Inserisci la tua matricola"
 				style="width: 90%; clear: both; margin-bottom: 1em;"> <br>
 				
-					<span><input id="bottone" type="submit" value="Iscriviti!">
+					<span><input id="bottone" type="submit" value="Iscriviti!" >
 						<a id="pulsanteLog">Sei registrato?</a></span>
 				</div>
 		</form>
