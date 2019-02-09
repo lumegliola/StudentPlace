@@ -6,7 +6,7 @@ var vc=false;
 var vp=false;
 function validateMail(mail) {
 	var mailExpr =/^\w+([\.-]?\w+)*@(studenti.unisa.it|unisa.it)$/;
-	if (mail.match(mailExpr)) {
+	if (mail.match(mailExpr,"i")) {
 		vm=true;
 		return true;
 	} else {
