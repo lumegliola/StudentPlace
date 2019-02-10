@@ -17,39 +17,39 @@ function validateMail(mail) {
 
 function validazione(input){
 	console.log()
-var valore = document.getElementById(input.id).value;
+	var valore = document.getElementById(input.id).value;
 	var res=false;
-	
+
 	switch(input.name) {
-	  case "email":
-		  res=validateMail(valore);
-		  break;
-      case "password":
-    	  res=validatePassword(valore);
-	  break;
-	  case "nome":
-			res=validateName(valore);
-      break;
-      case "cognome":
-    	  res=validateSurname(valore);
-      break;
-	  case "matricola":
-		  res=validateMatricola(valore);
-      break;
-			  
-		  
+	case "email":
+		res=validateMail(valore);
+		break;
+	case "password":
+		res=validatePassword(valore);
+		break;
+	case "nome":
+		res=validateName(valore);
+		break;
+	case "cognome":
+		res=validateSurname(valore);
+		break;
+	case "matricola":
+		res=validateMatricola(valore);
+		break;
+
+
 	}
-	
+
 	if (res==true) {
-	console.log("Input "+input.name+" Valido");
-	$("."+input.id).remove();
-    $("#"+input.id).after("<label style='color:green ' class='"+input.id+"'>Formato valido</label>");
+		console.log("Input "+input.name+" Valido");
+		$("."+input.id).remove();
+		$("#"+input.id).after("<label style='color:green ' class='"+input.id+"'>Formato valido</label>");
 	} else {
-    $("."+input.id).remove();
-    console.log("Input "+input.name+" non valida");
-    $("#"+input.id).after("<label style='color:red' class='"+input.id+"'>Formato errato</label>");			
+		$("."+input.id).remove();
+		console.log("Input "+input.name+" non valida");
+		$("#"+input.id).after("<label style='color:red' class='"+input.id+"'>Formato errato</label>");			
 	}
-	
+
 }
 //validazione password
 function validatePassword (pass) {
@@ -57,7 +57,7 @@ function validatePassword (pass) {
 	if (pass.match(passExpr) && pass.length >= 6) {
 		vp=true;
 		return true;
-		
+
 	} else {
 		return false;
 	}
@@ -66,19 +66,19 @@ function validatePassword (pass) {
 //validazione cognome
 function validateSurname(surname) {
 	var surnameExpr = /^[a-zA-Z'\s]+$/;
-	if (surname.match(surnameExpr)) {
+	if (surname.match(surnameExpr) && surname.lenght >= 1) {
 		vc=true;
 		return true;
 	} else {
 		return false;
 	}
-	
+
 }
 
 //validazione nome
 function validateName(name) {
 	var nameExpr = /^[a-zA-Z]+$/;
-	if (name.match(nameExpr)) {
+	if (name.match(nameExpr) && name.lenght >= 1) {
 		vn=true;
 		return true
 	} else {
@@ -99,6 +99,57 @@ function validazioneRegistrazione(){
 	if(vm==true && vc==true && vn==true && vp==true && vmatr==true){
 		$("#bottone").show();
 	}
-	
-	
+}
+
+function validateNomeGruppo(nomeGruppo){
+	var grpExpr = /^[a-zA-Z0-9/_/f/r/v/t/n]+$/;
+	if(nomeGruppo.match(grpExpr, "i") && nomeGruppo.lenght >= 1 && nomeGruppo <= 35){
+		vNg=true;
+		return true;
+	}else
+		return false;
+
+}
+
+function validateMateria(materia){
+	var matExpr = /^[a-zA-Z0-9/f/r/v/t/n]+$/;
+	if(materia.match(matExpr, "i"), materia.lenght >= 1 && materia.lenght <= 20){
+		vMat=true;
+		return true;
+	}else
+		return false;
+
+}
+
+function validazioneG(input){
+	console.log()
+	var valore = document.getElementById(input.id).value;
+	var res=false;
+
+	switch(input.name) {
+	case "nomeGruppo":
+		res=validateNomeGruppo(valore);
+		break;
+	case "materia":
+		res=validateMateria(valore);
+		break;
+
+	}
+
+	if (res==true) {
+		console.log("Input "+input.name+" Valido");
+		$("."+input.id).remove();
+		$("#"+input.id).after("<label style='color:green ' class='"+input.id+"'>Formato valido</label>");
+	} else {
+		$("."+input.id).remove();
+		console.log("Input "+input.name+" non valida");
+		$("#"+input.id).after("<label style='color:red' class='"+input.id+"'>Formato errato</label>");			
+	}
+
+}
+
+function validazioneNuovoGruppo(){
+	if(vNg==true && vMat==true){
+		$("#bottone").show();
+	}
 }

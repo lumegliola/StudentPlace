@@ -45,12 +45,12 @@
 					value="<%=session.getAttribute("matricola")%>">
 				<label>Nome Gruppo:&nbsp;</label><br>
 					 <input
-				type="text" name="nomeGruppo" class="name" placeholder="Inserisci il nome del gruppo"  required="required"
-				style="width: 70%; clear: both; margin-bottom: 1.5em;"><br>
+				type="text" id="nomeGruppo" name="nomeGruppo" class="name" placeholder="Inserisci il nome del gruppo"  required="required"
+				style="width: 70%; clear: both; margin-bottom: 1.5em;" onblur="validazioneG(this), validazioneNuovoGruppo()" ><br>
 
 			<label>Materia:&nbsp;</label><br><input
-				type="text" name="materia" class="materia" placeholder="Materia"
-				style="width: 70%; clear: both; margin-bottom: 1.5em;"> <br>
+				type="text" id="materia" name="materia" class="materia" placeholder="Materia"
+				style="width: 70%; clear: both; margin-bottom: 1.5em;"onblur="validazioneG(this), validazioneNuovoGruppo()"> <br>
 
 					<label>Data:</label>
 						<input style="margin-bottom: 1.5em;" type="date" name="data" onchange="setdata()" id="data">
