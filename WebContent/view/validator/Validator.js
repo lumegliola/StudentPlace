@@ -66,7 +66,7 @@ function validatePassword (pass) {
 //validazione cognome
 function validateSurname(surname) {
 	var surnameExpr = /^[a-zA-Z'\s]+$/;
-	if (surname.match(surnameExpr) && surname.lenght >= 1) {
+	if (surname.match(surnameExpr, "i") && surname.lenght >= 1) {
 		vc=true;
 		return true;
 	} else {
@@ -78,7 +78,7 @@ function validateSurname(surname) {
 //validazione nome
 function validateName(name) {
 	var nameExpr = /^[a-zA-Z]+$/;
-	if (name.match(nameExpr) && name.lenght >= 1) {
+	if (name.match(nameExpr, "i") && name.lenght >= 1) {
 		vn=true;
 		return true
 	} else {
